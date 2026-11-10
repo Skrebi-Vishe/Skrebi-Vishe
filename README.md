@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/"><img src=".github/banner.svg" alt="Настройка трекеров SlimeVR — гайд от Skrebi" width="100%"></a>
+  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/"><img src=".github/banner-skrebi.svg" alt="Настройка трекеров SlimeVR — гайд от Skrebi" width="100%"></a>
 </p>
 
 <p align="center">
