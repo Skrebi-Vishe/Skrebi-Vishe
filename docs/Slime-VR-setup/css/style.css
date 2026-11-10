@@ -158,6 +158,10 @@ table.dims td,table.dims th{text-align:center} table.dims td:first-child{text-al
 .bodymap{max-width:720px;margin:0 auto}
 .bm-title{font-family:var(--display);font-size:15px;font-weight:500;fill:var(--ink)}
 .bm-body{fill:var(--accent-soft)}
+.bm-ink{fill:var(--accent);fill-opacity:.9}
+.bm-glow{fill:var(--accent);opacity:.25}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bm-glow{opacity:.55}}
+:root[data-theme="dark"] .bm-glow{opacity:.55}
 .bm-outline{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-opacity:.55;vector-effect:non-scaling-stroke}
 .bm-shade{stroke:var(--accent);stroke-width:18;stroke-opacity:.22}
 .bm-zone{fill:var(--warm);fill-opacity:.2;stroke:var(--warm);stroke-opacity:.55;stroke-width:1.2;stroke-dasharray:5 4;vector-effect:non-scaling-stroke}
