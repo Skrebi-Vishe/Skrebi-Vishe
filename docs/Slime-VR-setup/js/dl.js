@@ -22,5 +22,5 @@
 })();
 
 (function(){var b=document.getElementById('dc-copy'),h=document.getElementById('dc-hint');if(!b)return;
-b.addEventListener('click',function(){var t='skrebi_vishe_';var ok=function(){h.textContent='Скопировано';setTimeout(function(){h.textContent='Скопировать';},1800);};
+b.addEventListener('click',function(){var t='skrebi_vishe_';var ok=function(){h.textContent='Скопировано';setTimeout(function(){h.textContent='Скопировать ник';},1800);};
 try{navigator.clipboard.writeText(t).then(ok,function(){h.textContent='Ник: '+t;});}catch(e){h.textContent='Ник: '+t;}});})();

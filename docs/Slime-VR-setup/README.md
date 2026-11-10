@@ -36,6 +36,6 @@ models/SlimeVR_Hyperion_models.zip      — модели корпусов для
 
 ## Автор
 
-**Skrebi**, Discord: **skrebi_vishe_**
+**Skrebi**, Discord: **[skrebi_vishe_](https://discord.com/users/339711054256930828)**
 
 <sub>Гайд составлен сообществом и не является официальным документом SlimeVR.</sub>
