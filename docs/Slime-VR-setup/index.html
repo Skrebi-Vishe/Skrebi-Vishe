@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Настройка трекеров SlimeVR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
+<div class="layout">
+<aside class="toc" id="toc" aria-label="Оглавление">
+  <div class="toc-head"><span class="toc-kicker">Оглавление</span><button type="button" class="toc-close" id="toc-close" aria-label="Закрыть оглавление">✕</button></div>
+  <nav>
+    <ol class="toc-list">
+      <li><a href="#s1" data-step="s1"><span class="tn">1</span><span class="tt">Проверка трекеров</span><span class="tm">2 мин</span></a></li>
+      <li><a href="#s2" data-step="s2"><span class="tn">2</span><span class="tt">Подготовка</span><span class="tm">10 мин</span></a></li>
+      <li><a href="#s3" data-step="s3"><span class="tn">3</span><span class="tt">Прошивка v0.5.4</span><span class="tm">5 мин</span></a></li>
+      <li class="toc-loop"><span class="toc-loop-label">Для каждого трекера</span>
+        <a href="#s4" data-step="s4"><span class="tn">4</span><span class="tt">Калибровка по осям</span><span class="tm">5 мин</span></a>
+        <a href="#s5" data-step="s5"><span class="tn">5</span><span class="tt">Температурная</span><span class="tm">35+ мин</span></a>
+        <a href="#s6" data-step="s6"><span class="tn">6</span><span class="tt">Проверка калибровки</span><span class="tm">2 мин</span></a>
+      </li>
+      <li><a href="#s7" data-step="s7"><span class="tn">7</span><span class="tt">Пол и SteamVR</span><span class="tm">5 мин</span></a></li>
+      <li><a href="#s8" data-step="s8"><span class="tn">8</span><span class="tt">Наденьте трекеры</span><span class="tm">5 мин</span></a></li>
+      <li><a href="#s9" data-step="s9"><span class="tn">9</span><span class="tt">Настройка в SlimeVR</span><span class="tm">10 мин</span></a></li>
+      <li><a href="#s10" data-step="s10"><span class="tn">10</span><span class="tt">Калибровка в VRChat</span><span class="tm">2 мин</span></a></li>
+    </ol>
+    <ol class="toc-list toc-extra">
+      <li><a href="#every" data-step="every"><span class="tn">▶</span><span class="tt">Перед каждой игрой</span></a></li>
+      <li><a href="#help" data-step="help"><span class="tn">?</span><span class="tt">Частые проблемы</span></a></li>
+    </ol>
+  </nav>
+  <div class="toc-foot">
+    <div class="toc-progress"><div class="tp-bar"><span id="tp-fill"></span></div><span id="tp-text">Выполнено 0 из 10</span></div>
+    <div class="toc-actions"><a href="#top" class="toc-top">↑ Наверх</a><button type="button" class="toc-reset" id="toc-reset">Сбросить отметки</button></div>
+  </div>
+</aside>
+<button type="button" class="toc-fab" id="toc-fab" aria-controls="toc" aria-expanded="false"><span class="fab-step" id="fab-step">Шаги</span><span class="fab-ico" aria-hidden="true">☰</span></button>
+<div class="wrap" id="top">
+
+<header>
+  <div class="kicker">SlimeVR · трекеры на BMI160 · прошивка v0.5.4</div>
+  <h1>Настройка трекеров SlimeVR с нуля</h1>
+  <p class="lead">Инструкция для тех, кто делает это впервые. Читайте сверху вниз и выполняйте шаги строго по порядку. Ничего не пропускайте, если в самом шаге не написано, что его можно пропустить.</p>
+</header>
+
+<div class="road" id="road">
+  <h2 style="font-size:19px">Весь путь целиком</h2>
+  <ol>
+    <li><a href="#s1"><span class="rn">1</span><span>Проверьте, подходят ли трекеры</span><span class="rt">2 мин</span></a></li>
+    <li><a href="#s2"><span class="rn">2</span><span>Подготовьте всё нужное</span><span class="rt">10 мин</span></a></li>
+    <li><a href="#s3"><span class="rn">3</span><span>Установите прошивку v0.5.4</span><span class="rt">5 мин на трекер</span></a></li>
+    <li class="loop">
+      <span class="loop-label">Для каждого трекера по очереди:</span>
+      <a href="#s4"><span class="rn">4</span><span>Калибровка по осям</span><span class="rt">5 мин</span></a>
+      <a href="#s5"><span class="rn">5</span><span>Температурная калибровка</span><span class="rt">от 35 мин</span></a>
+      <a href="#s6"><span class="rn">6</span><span>Проверка калибровки</span><span class="rt">2 мин</span></a>
+    </li>
+    <li><a href="#s7"><span class="rn">7</span><span>Пол в шлеме и SteamVR</span><span class="rt">5 мин</span></a></li>
+    <li><a href="#s8"><span class="rn">8</span><span>Наденьте трекеры</span><span class="rt">5 мин</span></a></li>
+    <li><a href="#s9"><span class="rn">9</span><span>Настройка в SlimeVR</span><span class="rt">10 мин</span></a></li>
+    <li><a href="#s10"><span class="rn">10</span><span>Калибровка в VRChat</span><span class="rt">2 мин</span></a></li>
+  </ol>
+  <p style="font-size:15px;color:var(--muted)">После настройки: <a href="#every">что делать перед каждой игрой</a> и <a href="#help">частые проблемы</a>.</p>
+</div>
+
+<!-- ШАГ 1 -->
+<section class="step" id="s1">
+  <div class="step-head"><div class="num">1</div><div><h2>Проверьте, подходят ли трекеры</h2><p>Инструкция только для трекеров с температурной калибровкой</p></div><button type="button" class="done-toggle" data-done="s1" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p>Температурная калибровка в прошивке SlimeVR есть <strong>только у датчика BMI160</strong>. Другие датчики, даже той же серии BMI, её не поддерживают. Включите трекер, откройте SlimeVR, нажмите на трекер и посмотрите его информацию.</p>
+  <div class="fit-grid">
+    <div class="fit-item ok-item"><b>Подходит: BMI160</b><span>Строка «Датчик IMU» показывает BMI160. Продолжайте.</span></div>
+    <div class="fit-item no-item"><b>Не подходит: всё остальное</b><span>BMI270, BMI323, BNO085, BNO080, MPU6050, MPU9250, ICM‑20948, ICM‑45686, LSM6DSV, LSM6DSR. С ними эта инструкция не сработает.</span></div>
+    <div class="fit-item"><b>Запомните версию прошивки</b><span>Строка «Версия прошивки → Current», например v0.3.2 или v0.5.4. Она понадобится на шаге 3.</span></div>
+  </div>
+  <p style="color:var(--muted);font-size:15px">Основная плата у таких трекеров обычно Wemos D1 Mini (ESP8266). Это первое поколение трекеров SlimeVR, которые работают по Wi‑Fi. В примерах этой инструкции трекеры собраны в корпусе <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a> из документации SlimeVR.</p>
+  <p class="next">Датчик BMI160? Переходите к шагу 2</p>
+</section>
+
+<!-- ШАГ 2 -->
+<section class="step" id="s2">
+  <div class="step-head"><div class="num">2</div><div><h2>Подготовьте всё нужное</h2><p>Соберите всё заранее, чтобы не отвлекаться посреди калибровки</p></div><button type="button" class="done-toggle" data-done="s2" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <ul class="checklist">
+    <li><span><strong>SlimeVR Server последней версии</strong>. Скачать: <a href="https://slimevr.dev/download">slimevr.dev/download</a>.</span></li>
+    <li><span><strong>USB‑кабель с передачей данных.</strong> Кабель «только для зарядки» не подойдёт: компьютер не увидит трекер. Подключайте его к плате Wemos, а не к плате зарядки.</span></li>
+    <li><span><strong>Браузер Chrome или Edge</strong> для сайта прошивки и сайта проверки. Firefox не умеет подключаться к трекеру.</span></li>
+    <li><span><strong>Калибровочная коробочка</strong>, <strong>двусторонний вспененный скотч</strong> и <strong>упор на столе</strong>. Как их сделать, описано ниже.</span></li>
+    <li><span><strong>Холодильник или морозилка</strong> и <strong>обычный фен для волос</strong>.</span></li>
+    <li><span><strong>Свободное время</strong>: около часа на каждый трекер. Спешка портит калибровку.</span></li>
+  </ul>
+
+  <div class="card" id="box">
+    <h3 style="margin-top:0">Калибровочная коробочка</h3>
+    <p>На шаге 4 трекер нужно класть ровно на каждую из шести сторон. В коробочке с ровными гранями это получается точно и без лишних движений. Подойдёт деревянная коробка без крышки, её можно купить на Ozon или другом маркетплейсе.</p>
+    <figure class="three-wrap">
+      <div class="aux-toggle" role="radiogroup" aria-label="Вариант трекера"><label><input type="radio" name="aux1" value="main" checked> Без ответвления</label><label><input type="radio" name="aux1" value="aux"> С ответвлением</label></div>
+      <div class="three-stage"><canvas id="box3d" aria-label="3D-модель калибровочной коробочки с трекером в корпусе Hyperion"></canvas><span class="three-hint">Потяните, чтобы повернуть</span></div>
+      <p class="three-fallback">3D‑модель не загрузилась: для неё нужен интернет. Как выглядит коробочка вживую, видно на фото ниже.</p>
+      <figcaption>Трекер в корпусе Hyperion (переработанная версия с отверстием под Type‑C) приклеен скотчем точно по центру дна. Штекер Type‑C вставлен в трекер, и кабель уходит прямо в вырез, не сгибаясь внутри коробки. Буквы X, Y, Z помогают не перепутать грани.</figcaption>
+    </figure>
+    <table class="dims">
+      <thead><tr><th></th><th>Ширина</th><th>Глубина</th><th>Высота</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Снаружи</strong></td><td>203 мм</td><td>103 мм</td><td>60 мм</td></tr>
+        <tr><td><strong>Внутри</strong></td><td>182 мм</td><td>91 мм</td><td>53 мм</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:15px;color:var(--muted)">Точно такие размеры не обязательны. Главное, чтобы трекер свободно помещался внутри, а все грани коробки были ровными и под прямым углом друг к другу.</p>
+    <ol class="do">
+      <li><span>Купите деревянную коробку без крышки, примерно 20 × 10 × 6 см.</span></li>
+      <li><span>Сделайте в длинной стенке <strong>вырез под USB‑кабель</strong> почти до дна, <strong>точно напротив разъёма трекера</strong>. Кабель должен выходить из трекера ровно в вырез, без изгиба внутри коробки. Ширину выреза сделайте чуть больше хвостовика штекера, чтобы кабель при необходимости можно было подогнуть внутри выреза и вывести через открытую сторону коробки: это понадобится, когда коробка лежит вырезом вниз.</span></li>
+      <li><span>Наклейте в центр дна кусок <strong>двустороннего вспененного скотча</strong>.</span></li>
+      <li><span>Приклейте трекер на скотч <strong>точно по центру</strong>, разъёмом USB к вырезу, краями параллельно стенкам коробки. Скотч держит трекер, когда коробку переворачивают, поэтому трекер должен сидеть крепко и не сдвигаться.</span></li>
+      <li><span>Подпишите грани карандашом: X на торцах, Y на длинных боках, Z на дне. Так легче запомнить, на каких сторонах коробка уже стояла.</span></li>
+    </ol>
+    <div class="photo-row">
+      <figure><img src="img/inbox.jpg" alt="Трекер, приклеенный по центру дна деревянной коробочки" width="900" height="506" loading="lazy"><figcaption>Так это выглядит вживую: трекер по центру, вырез под кабель в стенке.</figcaption></figure>
+      <figure><img src="img/tape.jpg" alt="Рулон двустороннего вспененного скотча" width="420" height="746" loading="lazy"><figcaption>Подойдёт такой двусторонний вспененный скотч.</figcaption></figure>
+    </div>
+    <h3>Упор на столе</h3>
+    <p>Поставьте коробку на <strong>ровный стол</strong> и положите или закрепите рядом упор: ровную доску, брусок или толстую книгу. Каждый раз, переворачивая коробку, <strong>прижимайте её к упору</strong>. Тогда она всегда стоит на одном и том же месте и под одним углом, а калибровка получается точнее. Как это выглядит, показано на шаге 4.</p>
+  </div>
+
+  <div class="card dl-card">
+    <h3 style="margin-top:0">Корпуса для 3D‑печати: комплект 8+2</h3>
+    <p>Если нужны новые корпуса, есть готовый комплект на основе Hyperion, переработанный под эту инструкцию: в корпусах сделано отверстие под Type‑C, а на крышках подписаны места (грудь, таз, левое и правое бедро, левая и правая голень, левая и правая стопа). В комплекте есть и корпуса для ответвлений с крышками.</p>
+    <div class="dl-row">
+      <a class="dl-btn" id="dl-models" href="models/SlimeVR_Hyperion_models.zip" download>
+        <span class="dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span>
+        <span class="dl-txt"><b>Скачать модели</b><small>ZIP · 2 файла STL · 0,7 МБ</small></span>
+      </a>
+      <span class="dl-status" id="dl-status" aria-live="polite"></span>
+    </div>
+    <div class="dl-files"><span>Guide_models_8+2.stl — весь комплект</span><span>Guide_models1.stl — трекер с ответвлением</span></div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Как открыть консоль трекера</h3>
+    <p>Подключите трекер к компьютеру по USB и в SlimeVR откройте <strong>Настройки → Serial Console</strong> (раздел «Утилиты»). В консоли трекер пишет, что он сейчас делает и чего ждёт от вас. Внизу консоли есть строка, в которую можно вводить команды.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Как видеть температуру трекера</h3>
+    <p>Она нужна на шаге 5. В SlimeVR откройте <strong>Настройки</strong> и включите <strong>режим разработчика</strong>. Затем на главной странице справа внизу включите переключатель <strong>«Подробнее»</strong>. Рядом с каждым трекером появится его температура.</p>
+  </div>
+  <p class="next">Всё готово? Переходите к шагу 3</p>
+</section>
+
+<!-- ШАГ 3 -->
+<section class="step" id="s3">
+  <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="warn"><b>Почему именно v0.5.4</b><p>Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p></div>
+  <div class="tip"><b>Можно пропустить</b><p>Если на шаге 1 вы увидели <strong>v0.5.4</strong>, этот шаг пропустите и переходите к шагу 4. Перепрошивать трекер на ту же версию не нужно.</p></div>
+  <div class="warn"><b>Прошивайте через сайт, а не через SlimeVR</b><p>Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
+
+  <div class="card" id="rotation">
+    <h3 style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
+    <p>При прошивке нужно указать, как модуль BMI160 повёрнут внутри корпуса. Если указать неправильно, трекер будет двигаться не в ту сторону. Модули и сборки у всех разные, поэтому смотрите именно на свой трекер.</p>
+    <ol class="do">
+      <li><span>Откройте корпус трекера и найдите фиолетовый модуль с надписью <strong>BMI160</strong>.</span></li>
+      <li><span>Держите трекер так, как он стоит на теле: стороной, которая будет смотреть <strong>в потолок</strong>, вверх.</span></li>
+      <li><span>В нижнем ряду таблицы (подпись «Only for BMI160, v0.3.3 and higher») найдите картинку, на которой модуль повёрнут так же: по рядам контактов, отверстиям и маленьким микросхемам. Стрелка «Ceiling» справа показывает, где потолок.</span></li>
+      <li><span>Число в подписи над этой картинкой (0, 90, 180 или 270) и есть значение для поля <strong>IMU Rotation (DEG)</strong>. Запишите его. Если у трекера есть ответвление, так же определите поворот его датчика.</span></li>
+    </ol>
+    <div class="photo-row">
+      <figure><img src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
+      <figure><img src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
+    </div>
+    <div class="tip"><b>Если модуль не похож ни на одну картинку</b><p>Бывают модули другой разводки. Выберите самое похожее значение, а после прошивки проверьте: наклоните трекер вперёд, и его 3D‑модель в SlimeVR тоже должна наклониться вперёд, а не вбок или назад. Если наклоняется не туда, перепрошейте с другим значением.</p></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">3.2 · Сотрите старые данные трекера</h3>
+    <p>Сайт прошивки не стирает память трекера, поэтому старые калибровки остаются внутри и могут помешать новым. Чтобы начать с чистого листа:</p>
+    <ol class="do">
+      <li><span>Подключите трекер по USB и откройте <strong>Serial Console</strong> в SlimeVR.</span></li>
+      <li><span>Введите команду <code>FRST</code> и нажмите Enter. Трекер сотрёт калибровки и сохранённый Wi‑Fi, затем перезагрузится.</span></li>
+      <li><span><strong>Полностью закройте SlimeVR Server</strong>, в том числе в трее Windows возле часов. Пока он открыт, он занимает порт трекера, и сайт прошивки выдаст ошибку подключения.</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">3.3 · Прошейте трекер на сайте</h3>
+    <p>Откройте сайт прошивки уже с нужными настройками для BMI160: <a class="btn-link" href="https://slimevr-firmware.bscotch.ca/?config=eyJyZWxlYXNlIjoiU2xpbWVWUi92MC41LjQiLCJib2FyZCI6eyJ0eXBlIjoiQk9BUkRfV0VNT1NEMU1JTkkiLCJwaW5zIjp7ImltdVNEQSI6IkQyIiwiaW11U0NMIjoiRDEiLCJsZWQiOiIyIn0sImxlZEludmVydGVkIjp0cnVlLCJlbmFibGVMZWQiOnRydWV9LCJpbXVzIjpbeyJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiSU1VX0JNSTE2MCIsInJvdGF0aW9uIjoiMCIsImltdUlOVCI6IkQ1In0seyJlbmFibGVkIjpmYWxzZSwidHlwZSI6IklNVV9CTUkxNjAiLCJyb3RhdGlvbiI6IjAiLCJpbXVJTlQiOiJENiJ9XSwiYmF0dGVyeSI6eyJ0eXBlIjoiQkFUX0VYVEVSTkFMIiwicmVzaXN0YW5jZSI6MTgwLCJyMSI6MTAwLCJyMiI6MjIwLCJwaW4iOiJBMCJ9LCJzd2FwQWRkcmVzc2VzIjpmYWxzZSwiZGVidWciOnsidXNlNkF4aXMiOnRydWUsIm9wdGltaXplVXBkYXRlcyI6dHJ1ZSwiY29tcGxpYW5jZU1vZGUiOnRydWUsImJtaTE2MFVzZVRlbXBjYWwiOnRydWUsImJtaTE2MFRlbXBjYWxEZWJ1ZyI6ZmFsc2UsImJtaTE2MFVzZVNlbnNjYWwiOnRydWV9fQ">Открыть сайт прошивки с настройками для BMI160</a></p>
+    <p style="font-size:15px;color:var(--muted)">Адрес сайта: <a href="https://slimevr-firmware.bscotch.ca/">slimevr-firmware.bscotch.ca</a>. Если открыли его без настроек, выставьте всё по таблице вручную.</p>
+    <div class="scroll-x">
+    <table class="settings">
+      <thead><tr><th>Поле на сайте</th><th>Что выбрать</th><th>Пояснение</th></tr></thead>
+      <tbody>
+        <tr class="must"><td>Firmware Version</td><td><strong>SlimeVR/v0.5.4</strong></td><td>Обязательно эта версия.</td></tr>
+        <tr><td>Board</td><td><strong>Wemos D1 Mini</strong></td><td>Или ваша плата, если другая.</td></tr>
+        <tr><td>Advanced options</td><td>не трогать</td><td>SDA = D2, SCL = D1, LED Pin = 2, LED Inverted включено. Меняйте, только если трекер собран по другой схеме.</td></tr>
+        <tr><td>Swap IMU Addresses</td><td>выключено</td><td></td></tr>
+        <tr class="must"><td>Primary IMU → IMU Type</td><td><strong>IMU_BMI160</strong></td><td>Основной датчик, галочка включена.</td></tr>
+        <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>ваше число</strong></td><td>То, что вы определили в пункте 3.1.</td></tr>
+        <tr><td>Primary IMU → IMU INT Pin</td><td>D5</td><td>Как по умолчанию.</td></tr>
+        <tr><td>Secondary IMU</td><td>по ситуации</td><td>Есть ответвление: включите галочку, IMU_BMI160 и его поворот. Нет ответвления: галочка выключена.</td></tr>
+        <tr><td>Battery Sense</td><td>как по умолчанию</td><td>BAT_EXTERNAL, 180 кОм, пин A0. Это стандартная схема DIY‑трекера.</td></tr>
+        <tr><td>Use 6 Axis</td><td>включено</td><td>У BMI160 нет магнитометра.</td></tr>
+        <tr><td>Optimize Updates, Compliance Mode</td><td>включено</td><td>Как по умолчанию.</td></tr>
+        <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>включено</strong></td><td>Это и есть температурная калибровка. Без неё шаг 5 не сработает.</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>выключено</strong></td><td>Пояснение ниже.</td></tr>
+        <tr><td>BMI160 Use Senscal</td><td>как по умолчанию</td><td>Ничего дополнительно делать не нужно.</td></tr>
+        <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>ваша сеть</strong></td><td>Только 2.4 ГГц, без WPA3. Регистр букв важен.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <ol class="do">
+      <li><span>Убедитесь, что <strong>SlimeVR Server закрыт</strong>. Проверьте все поля по таблице и нажмите <strong>Flash to device</strong>.</span></li>
+      <li><span>Браузер попросит выбрать порт: выберите порт трекера (обычно USB‑SERIAL CH340) и нажмите «Подключиться».</span></li>
+      <li><span>Дождитесь окончания прошивки и настройки Wi‑Fi. Не отключайте трекер в процессе.</span></li>
+      <li><span>Откройте SlimeVR и убедитесь, что трекер появился и в его информации стоит <strong>v0.5.4</strong>. Только после этого прошивайте следующий трекер.</span></li>
+    </ol>
+    <details>
+      <summary>Нужна ли галочка «BMI160 Tempcal Debug»</summary>
+      <div>
+        <p>Не нужна, оставьте её выключенной. С ней SlimeVR вместо обычной температуры постоянно показывает код вида <code>AXXYY</code>: A = 2, пока идёт калибровка; XX = прогресс от 0 до 60; YY = температура. Полностью откалиброванный трекер показывает <code>160YY</code>.</p>
+        <p>Код остаётся навсегда, а чтобы его убрать, придётся перепрошивать трекер и калибровать заново. Обычной температуры в SlimeVR и проверки на шаге 6 вполне хватает.</p>
+      </div>
+    </details>
+  </div>
+  <div class="warn"><b>После калибровки прошивку не трогайте</b><p>Перепрошивка делает сохранённую температурную калибровку недействительной. Если SlimeVR предлагает обновить прошивку, откажитесь. Если перепрошить всё же пришлось, повторите пункт 3.2 и все калибровки заново.</p></div>
+  <p class="next">На всех трекерах v0.5.4? Переходите к шагу 4</p>
+</section>
+
+<div class="loop-banner" style="margin-top:44px">
+  <b>Шаги 4, 5 и 6 делаются для одного трекера целиком</b>
+  <p>Возьмите первый трекер и пройдите с ним шаги 4, 5 и 6. Когда он готов, возьмите следующий и снова начните с шага 4. Так по очереди со всеми трекерами.</p>
+</div>
+
+<!-- ШАГ 4 -->
+<section class="step" id="s4">
+  <div class="step-head"><div class="num">4</div><div><h2>Калибровка по осям</h2><p>Через консоль SlimeVR · один трекер · ~5 минут</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p>Трекер запоминает, как выглядит «ровно» в каждом из шести положений. Он приклеен в коробочке: вы переворачиваете коробочку и каждый раз прижимаете её к упору.</p>
+  <div class="warn"><b>Нужны только две калибровки</b><p>В этой инструкции всего две калибровки: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
+
+  <div class="video-card">
+    <div class="video-play" aria-hidden="true"></div>
+    <div><b>Сначала посмотрите видео: «Калибруем BMI160», канал BANANKA Group</b>
+    <p>Калибровка по осям через консоль, наглядно. Ссылка открывает видео сразу с нужного момента: <a href="https://youtu.be/fzPMEmzXP0k?t=489">youtu.be/fzPMEmzXP0k?t=489</a>. Посмотрите его до начала, чтобы не запутаться.</p></div>
+  </div>
+
+  <div class="card aux-card">
+    <h3 style="margin-top:0">Если у трекера есть ответвление</h3>
+    <p>Трекер с ответвлением (второй датчик на проводе) калибруют вместе: наклейте кусок двустороннего скотча сверху на основной трекер и приклейте на него ответвление <strong>ровно по центру и параллельно</strong> корпусу. Дальше всё как обычно: прошивка сама откалибрует оба датчика. После калибровки скотч с трекера просто снимите. Включите «С ответвлением» над 3D‑сценой, чтобы посмотреть, как это выглядит.</p>
+  </div>
+  <ol class="do">
+    <li><span>Поставьте коробочку с трекером на стол <strong>в обычном положении</strong> (дном вниз) и прижмите к упору.</span></li>
+    <li><span>Подключите трекер по USB через вырез в коробочке и откройте <strong>Serial Console</strong>.</span></li>
+    <li><span><strong>Переверните коробочку вверх ногами</strong> (открытой стороной вниз) и снова прижмите к упору. Скотч удержит трекер внутри.</span></li>
+    <li><span>Нажмите кнопку перезагрузки трекера в SlimeVR или кнопку reset на плате. Трекер включится вверх ногами и поймёт, что нужно начать калибровку.</span></li>
+    <li><span>Дальше смотрите в консоль и делайте то, что написано в правой колонке таблицы.</span></li>
+  </ol>
+
+  <div class="con" role="table" aria-label="Сообщения консоли при калибровке по осям">
+    <div class="con-title"><i></i><i></i><i></i><span>Serial Console: что пишет трекер и что вам делать</span></div>
+    <div class="con-row key">
+      <div class="con-msg">Flip front to confirm start calibration<small>Переверните лицом вверх, чтобы начать калибровку</small></div>
+      <div class="con-do"><span class="act move">Перевернуть</span><span><strong>Сразу переверните коробочку дном вниз</strong>, прижмите к упору и больше не трогайте. На это есть 5 секунд. Не успели: переверните вверх ногами и перезагрузите трекер ещё раз.</span></div>
+    </div>
+    <div class="con-row">
+      <div class="con-msg">Put down the device and wait for baseline gyro reading calibration (5.0 seconds)<br>3... 2... 1...<br>Gyro calibration started...<small>Положите устройство и ждите калибровку гироскопа</small></div>
+      <div class="con-do"><span class="act wait">Ждать</span><span>Коробочка стоит дном вниз. <strong>Не трогайте её</strong> и стол тоже не трогайте.</span></div>
+    </div>
+    <div class="con-row">
+      <div class="con-msg">Put the device into 6 unique orientations (all sides), leave it still and do not hold/touch for 3 seconds each<br>3... 2... 1...<small>Положите устройство в 6 разных положений, на каждом не трогайте 3 секунды</small></div>
+      <div class="con-do"><span class="act wait">Ждать</span><span>Это предупреждение, что дальше будут 6 положений. Пока <strong>ничего не делайте</strong>.</span></div>
+    </div>
+    <div class="con-row">
+      <div class="con-msg">Gathering accelerometer data...<br>Waiting for position 1, you can leave the device as is...<small>Жду положение 1, можно оставить как есть</small></div>
+      <div class="con-do"><span class="act wait">Ждать</span><span>Положение 1: коробочка дном вниз, как она уже стоит. <strong>Не трогайте.</strong></span></div>
+    </div>
+    <div class="con-row key">
+      <div class="con-msg">Recorded, waiting for position 2...<small>Записано, жду положение 2</small></div>
+      <div class="con-do"><span class="act move">Перевернуть</span><span>Положение 1 записано, светодиод мигнёт два раза. <strong>Поставьте коробочку в положение 2</strong> (смотрите 3D‑сцену ниже), прижмите к упору и уберите руки. Через 3–4 секунды неподвижности трекер запишет его сам.</span></div>
+    </div>
+    <div class="con-row key">
+      <div class="con-msg">Recorded, waiting for position 3...<br>Recorded, waiting for position 4...<br>Recorded, waiting for position 5...<br>Recorded, waiting for position 6...</div>
+      <div class="con-do"><span class="act move">Перевернуть</span><span>Каждый раз, когда появляется новая строка «Recorded, waiting for position N», <strong>ставьте коробочку в положение N</strong> и прижимайте к упору.</span></div>
+    </div>
+    <div class="con-row fin">
+      <div class="con-msg">Calibration data gathered, exiting calibration mode in...<br>3... 2... 1...<small>Данные собраны, выход из режима калибровки</small></div>
+      <div class="con-do"><span class="act done">Готово</span><span>Калибровка по осям завершена и сохранена. Трекер начнёт показывать вращение в SlimeVR.</span></div>
+    </div>
+  </div>
+
+  <figure class="three-wrap">
+    <div class="aux-toggle" role="radiogroup" aria-label="Вариант трекера"><label><input type="radio" name="aux2" value="main" checked> Без ответвления</label><label><input type="radio" name="aux2" value="aux"> С ответвлением</label></div>
+    <div class="pos-buttons" role="group" aria-label="Положения коробочки">
+      <button type="button" data-pos="0" id="pos-btn-0">Старт</button>
+      <button type="button" data-pos="1" id="pos-btn-1">1 · Дном вниз</button>
+      <button type="button" data-pos="2" id="pos-btn-2">2 · На торец</button>
+      <button type="button" data-pos="3" id="pos-btn-3">3 · Вверх ногами</button>
+      <button type="button" data-pos="4" id="pos-btn-4">4 · Другой торец</button>
+      <button type="button" data-pos="5" id="pos-btn-5">5 · На бок</button>
+      <button type="button" data-pos="6" id="pos-btn-6">6 · Другой бок</button>
+    </div>
+    <div class="three-stage tall"><canvas id="pos3d" aria-label="3D-сцена: коробочка у упора в выбранном положении"></canvas><span class="three-hint">Потяните, чтобы повернуть</span></div>
+    <p class="pos-caption" id="pos-caption" aria-live="polite">Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.</p>
+    <p class="three-fallback">3D‑сцена не загрузилась: для неё нужен интернет. Положения те же, что на кадрах из видео ниже.</p>
+    <figcaption>Нажимайте кнопки, чтобы увидеть каждое положение и то, как уложен кабель. Серый брусок сзади это упор: коробочка всегда прижата к нему. Порядок тот же, что в видео.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="frames">
+      <div><img src="img/v1.jpg" alt="Положение 1: коробочка дном вниз" loading="lazy"><span>1</span></div>
+      <div><img src="img/v2.jpg" alt="Положение 2: коробочка на торце" loading="lazy"><span>2</span></div>
+      <div><img src="img/v3.jpg" alt="Положение 3: коробочка вверх ногами" loading="lazy"><span>3</span></div>
+      <div><img src="img/v4.jpg" alt="Положение 4: коробочка на другом торце" loading="lazy"><span>4</span></div>
+      <div><img src="img/v5.jpg" alt="Положение 5: коробочка на длинном боку" loading="lazy"><span>5</span></div>
+      <div><img src="img/v6.jpg" alt="Положение 6: коробочка на другом длинном боку" loading="lazy"><span>6</span></div>
+    </div>
+    <figcaption>Шесть положений вживую, кадры из видео BANANKA Group. В каждом положении коробочка прижата к деревянному упору сзади.</figcaption>
+  </figure>
+
+  <div class="tip"><b>Как укладывать кабель</b><p>Кабель не должен тянуть, приподнимать или сдвигать коробочку: иначе она стоит неровно, и калибровка получится неточной. В большинстве положений кабель просто выходит из выреза и свободно ложится на стол. Когда коробочка лежит вырезом вниз, аккуратно подогните кабель внутри выреза и выведите его через открытую сторону коробочки. Перед каждым поворотом оставляйте кабелю запас длины.</p></div>
+  <div class="tip"><b>Почему важно, как трекер лежит в коробочке</b><p>Прошивке важно, чтобы трекер побывал каждой из шести сторон вниз и при этом лежал ровно. Порядок сторон после первой ей не важен, но проще всего повторять за видео. Главное, чтобы трекер был приклеен <strong>ровно и параллельно стенкам</strong>: тогда грани коробки совпадают с осями датчика внутри корпуса, и калибровка получается точной.</p></div>
+  <div class="tip"><b>Если в консоли ничего не меняется</b><p>Трекер ждёт, пока его подвинут и снова оставят в покое. Если строка «Recorded» не появляется, проверьте, что коробочка стоит неподвижно и вы её не держите. Если случайно поставили коробочку на одну сторону дважды, калибровка получится неточной: переверните её вверх ногами, перезагрузите трекер и начните калибровку заново.</p></div>
+  <p class="next">Увидели «Calibration data gathered»? Переходите к шагу 5 с этим же трекером</p>
+</section>
+
+<!-- ШАГ 5 -->
+<section class="step heat" id="s5">
+  <div class="step-head"><div class="num">5</div><div><h2>Температурная калибровка</h2><p>Тот же трекер · от 35 минут · заметно уменьшает дрифт</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p>На теле BMI160 нагревается, и из‑за этого его показания «уплывают». Эта калибровка учит трекер поправлять это. Она <strong>сама начинается, когда датчик включён и холоднее 15 °C</strong>, и <strong>сама сохраняется, когда он нагреется выше 45 °C</strong>. Кнопки нажимать не нужно, нужно только правильно охладить и плавно нагреть трекер.</p>
+  <div class="ok"><b>Кабель не нужен</b><p>Эту калибровку можно делать без USB‑кабеля: трекер работает от своей батареи и передаёт температуру в SlimeVR по Wi‑Fi. Батарея должна быть заряжена. Результат потом проверите по кабелю на шаге 6.</p></div>
+  <figure>
+    <div class="scroll-x">
+    <svg viewBox="0 0 720 300" role="img" aria-label="График температуры трекера во время калибровки">
+      <g class="svg-line" stroke-width="1">
+        <line x1="60" y1="250" x2="700" y2="250"/><line x1="60" y1="195" x2="700" y2="195"/>
+        <line x1="60" y1="140" x2="700" y2="140"/><line x1="60" y1="85" x2="700" y2="85"/><line x1="60" y1="30" x2="700" y2="30"/>
+      </g>
+      <g class="svg-small">
+        <text x="52" y="254" text-anchor="end">10°</text><text x="52" y="199" text-anchor="end">20°</text>
+        <text x="52" y="144" text-anchor="end">30°</text><text x="52" y="89" text-anchor="end">40°</text><text x="52" y="34" text-anchor="end">50°</text>
+        <text x="60" y="270" text-anchor="middle">0</text><text x="220" y="270" text-anchor="middle">10</text>
+        <text x="380" y="270" text-anchor="middle">20</text><text x="540" y="270" text-anchor="middle">30</text><text x="700" y="270" text-anchor="middle">40+ мин</text>
+      </g>
+      <line x1="60" y1="222.5" x2="700" y2="222.5" stroke="var(--cold)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="696" y="216" text-anchor="end" class="svg-small" style="fill:var(--cold)">15° калибровка начинается</text>
+      <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45° калибровка сохраняется</text>
+      <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">из холодильника</text>
+      <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="140" y="140" class="svg-text">прогрелся сам</text>
+      <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">фен ~43°</text>
+      <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="446" y="166" class="svg-text">остыл ~30°</text>
+      <circle cx="604" cy="52" r="5" style="fill:var(--warm)"/><text x="604" y="36" text-anchor="middle" class="svg-text">фен ~46°</text>
+    </svg>
+    </div>
+    <figcaption>Примерный ход температуры. Время зависит от комнаты и корпуса. Не старайтесь уложиться в 35 минут: если выйдет дольше, это даже лучше.</figcaption>
+  </figure>
+  <h3>Подготовка</h3>
+  <ol class="do">
+    <li><span>Включите в SlimeVR показ температуры (как на шаге 2).</span></li>
+    <li><span><strong>Снимите крышку корпуса трекера заранее</strong>, до охлаждения. Без крышки тёплый воздух сразу доходит до датчика, и температура точнее следует за феном: после выключения фена корпус не продолжает отдавать тепло, и трекер не перегревается сверх нужного. Снимать крышку позже нельзя: трекер должен лежать неподвижно.</span></li>
+    <li><span><strong>Выключите трекер</strong> и положите его в холодильник или морозилку <strong>примерно на 10 минут</strong>. В холодильник трекер кладут только выключенным.</span></li>
+  </ol>
+  <h3>Калибровка</h3>
+  <ol class="do">
+    <li><span>Достаньте трекер, положите на ровную поверхность и <strong>включите</strong>. Проверьте в SlimeVR, что его температура <strong>ниже 15 °C</strong>. Если выше: выключите, положите в холодильник ещё на несколько минут и повторите.</span></li>
+    <li><span>Дайте трекеру <strong>прогреться самому</strong> до комнатной температуры. <strong>Фен пока не трогайте.</strong></span></li>
+    <li><span>Когда температура перестанет расти, начните греть феном <strong>примерно до 43 °C</strong>. Держите фен на расстоянии и подавайте тёплый воздух <strong>сверху, слабым потоком</strong>, чтобы трекер нагревался очень плавно. Поток не должен сдвигать или сдувать трекер: если он сдвинулся, данные в этот момент не записываются. <strong>До 45 °C не доходите</strong>, иначе калибровка сохранится раньше времени.</span></li>
+    <li><span>Выключите фен и дайте трекеру <strong>остыть примерно до 30 °C</strong>. Остывать он должен постепенно, торопиться не нужно.</span></li>
+    <li><span>Снова грейте феном так же плавно, теперь <strong>примерно до 46 °C</strong>. Как только трекер пройдёт отметку 45 °C, калибровка сохранится сама.</span></li>
+    <li><span>Выключите фен и дайте трекеру остыть. Наденьте крышку обратно.</span></li>
+  </ol>
+  <div class="warn"><b>Если температура растёт слишком сильно или трекер не остывает</b><p>Выключите фен и охлаждайте трекер мягко, без резких перепадов: положите рядом какой‑нибудь холодный продукт из холодильника или, если на улице холодно, приоткройте окно. Трекер постепенно остынет сам, спешить не нужно. <strong>В холодильник посреди калибровки не кладите:</strong> если трекер снова станет холоднее 15 °C, калибровка начнётся с нуля.</p></div>
+  <div class="con" role="table" aria-label="Сообщение консоли при сохранении температурной калибровки">
+    <div class="con-title"><i></i><i></i><i></i><span>Если трекер подключён по USB и открыта Serial Console</span></div>
+    <div class="con-row fin">
+      <div class="con-msg">Saved temperature calibration config (100.0%) for sensorId:0<small>Температурная калибровка сохранена (100%)</small></div>
+      <div class="con-do"><span class="act done">Готово</span><span>Процент показывает, какая часть диапазона записалась: чем ближе к 100%, тем лучше. Если в консоли написано ещё и «Calibration will resume from this checkpoint after reboot», калибровка записалась не полностью.</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Правила, проверенные на практике</h3>
+    <ul class="plain">
+      <li><strong>Не торопитесь.</strong> В среднем уходит около 35 минут на трекер, но гнаться за этим временем не нужно: чем дольше и плавнее нагрев, тем лучше результат.</li>
+      <li><strong>Трекер всё время лежит неподвижно.</strong> Пока он двигается, данные не записываются.</li>
+      <li><strong>Аккумулятор.</strong> При мягком нагреве батарее ничего не будет: 45–46 °C это верхний предел, выше не надо. Не направляйте горячий поток в одну точку.</li>
+      <li><strong>Трекер с ответвлением</strong> (второй датчик на проводе) калибруйте один, <strong>вместе с его ответвлением</strong>. Два таких трекера одновременно калибруются плохо.</li>
+      <li><strong>Два обычных трекера без ответвлений</strong> можно калибровать одновременно, если прогревать их равномерно.</li>
+    </ul>
+  </div>
+  <p class="next">Калибровка сохранилась? Переходите к шагу 6</p>
+</section>
+
+<!-- ШАГ 6 -->
+<section class="step heat" id="s6">
+  <div class="step-head"><div class="num">6</div><div><h2>Проверьте калибровку</h2><p>Сайт TCAL Checker · пару минут</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <ol class="do">
+    <li><span>Подключите трекер по USB. <strong>Закройте Serial Console в SlimeVR</strong>: пока она открыта, сайт не сможет подключиться к трекеру.</span></li>
+    <li><span>Откройте в Chrome или Edge сайт <a href="https://ilyasnow.github.io/TCAL-Checker/">ilyasnow.github.io/TCAL-Checker</a>.</span></li>
+    <li><span>Нажмите <strong>«Get TCAL Data from Serial: Select COM Port»</strong> и выберите порт трекера. Через несколько секунд появятся графики.</span></li>
+    <li><span>Сравните результат с таблицей ниже.</span></li>
+  </ol>
+  <div class="card">
+    <div class="scroll-x">
+    <table>
+      <thead><tr><th>Что смотреть</th><th>Хорошо</th><th>Плохо</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TCAL Done</strong></td><td>Близко к 100%</td><td>Заметно меньше: часть диапазона не записалась</td></tr>
+        <tr><td><strong>Графики X, Y, Z</strong></td><td>Оранжевая кривая идёт по синим точкам</td><td>Кривая уходит от точек или в точках провалы</td></tr>
+        <tr><td><strong>Зона 30–40 °C</strong></td><td>Точное совпадение: при этой температуре трекер работает на теле</td><td>Расхождение именно здесь сильнее всего портит трекинг</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="tip"><b>Если результат плохой</b><p>С этим же трекером повторите температурную калибровку (шаг 5) медленнее и плавнее, затем проверьте ещё раз. Калибровку по осям повторять не нужно.</p></div>
+  <div class="loop-banner">
+    <b>Результат хороший?</b>
+    <p>Этот трекер готов. Если остались неоткалиброванные трекеры, возьмите следующий и начните с шага 4. Когда готовы все, переходите к шагу 7.</p>
+  </div>
+</section>
+
+<!-- ШАГ 7 -->
+<section class="step" id="s7">
+  <div class="step-head"><div class="num">7</div><div><h2>Пол в шлеме и в SteamVR</h2><p>Все трекеры откалиброваны</p></div><button type="button" class="done-toggle" data-done="s7" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p>SlimeVR считает положение ног от уровня пола. Если пол стоит неправильно, ноги будут проваливаться или висеть в воздухе, как бы хорошо ни были откалиброваны трекеры.</p>
+  <ol class="do">
+    <li><span><strong>В самом шлеме</strong> заново настройте игровую зону и уровень пола.</span></li>
+    <li><span>Подключите шлем к компьютеру и запустите <strong>SteamVR</strong>.</span></li>
+    <li><span>Положите шлем на пол и запустите в SteamVR калибровку пола (настройку комнаты). Кнопки нажимайте <strong>мышкой на компьютере</strong>.</span></li>
+  </ol>
+  <div class="warn"><b>Главная хитрость</b><p>Пока калибруете пол, <strong>закройте пальцем датчик приближения</strong> на внутренней стороне шлема, между линзами. Иначе шлем решит, что его сняли, уснёт и отключится посреди калибровки.</p></div>
+  <p class="next">Пол настроен? Переходите к шагу 8</p>
+</section>
+
+<!-- ШАГ 8 -->
+<section class="step" id="s8">
+  <div class="step-head"><div class="num">8</div><div><h2>Наденьте трекеры</h2><p>Правильное место на теле важно не меньше калибровки</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <figure class="body-map">
+    <div class="scroll-x">
+    <svg viewBox="0 0 720 630" role="img" aria-label="Схема размещения трекеров на теле: спереди и сзади вполоборота" class="bodymap">
+<defs><linearGradient id="cyl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".45" stop-color="#fff" stop-opacity=".28"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
+<linearGradient id="winfade" x1="0" y1="0" x2="0" y2="1"><stop offset=".78" stop-color="var(--surface)" stop-opacity="0"/><stop offset="1" stop-color="var(--surface)" stop-opacity=".9"/></linearGradient>
+<filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+<clipPath id="win"><rect x="404" y="40" width="236" height="278.0" rx="16"/></clipPath></defs>
+<text class="bm-title" x="200" y="20" text-anchor="middle">Спереди</text><text class="bm-title" x="522" y="20" text-anchor="middle">Сзади</text>
+<g transform="translate(104.3,30) scale(0.92)">
+<clipPath id="clipF"><path d="M106.0,7.6 Q103.0,7.0 100.5,7.6 Q98.0,8.3 95.2,10.6 Q92.4,13.0 91.7,15.0 Q91.0,17.0 90.9,20.5 Q90.9,24.0 89.9,25.6 Q88.9,27.3 82.9,30.1 Q77.0,33.0 73.8,36.0 Q70.6,39.0 67.8,44.0 Q65.0,49.0 63.3,55.4 Q61.6,61.9 59.8,62.9 Q58.0,63.9 53.0,63.9 Q48.0,64.0 46.7,65.1 Q45.4,66.1 44.8,67.6 Q44.1,69.0 45.0,72.5 Q45.9,76.0 50.2,80.5 Q54.6,85.0 54.4,89.0 Q54.1,93.0 55.3,95.3 Q56.4,97.6 59.7,99.6 Q63.0,101.6 67.3,101.7 Q71.6,101.9 72.2,102.9 Q72.9,104.0 73.0,106.9 Q73.1,109.9 73.8,111.1 Q74.4,112.3 76.7,113.4 Q79.0,114.4 82.4,114.9 Q85.9,115.4 86.7,116.3 Q87.6,117.1 87.7,118.1 Q87.9,119.0 86.8,121.5 Q85.7,124.0 82.9,126.5 Q80.0,129.0 77.0,130.5 Q74.0,132.0 69.5,133.1 Q65.0,134.3 61.0,136.1 Q57.0,137.9 55.0,139.9 Q53.0,142.0 51.6,145.0 Q50.1,148.0 46.3,164.0 Q42.4,180.0 39.9,196.5 Q37.3,213.0 35.5,217.5 Q33.7,222.0 33.1,226.0 Q32.6,230.0 29.7,238.0 Q26.9,246.0 25.4,263.0 Q24.0,280.0 23.3,284.5 Q22.6,289.0 20.6,292.0 Q18.7,295.0 19.6,299.5 Q20.4,304.0 19.4,307.5 Q18.4,311.0 16.7,323.0 Q15.0,335.0 16.9,342.5 Q18.9,350.0 22.0,355.0 Q25.1,360.0 27.1,361.1 Q29.0,362.3 30.7,361.7 Q32.4,361.1 35.2,356.6 Q38.0,352.0 40.0,344.0 Q42.0,336.0 41.9,330.0 Q41.7,324.0 39.4,318.0 Q37.0,312.0 36.6,308.5 Q36.1,305.0 37.7,302.0 Q39.3,299.0 46.4,277.5 Q53.4,256.0 55.2,243.5 Q57.0,231.0 60.6,222.0 Q64.3,213.0 65.7,211.7 Q67.1,210.4 68.5,210.4 Q69.9,210.4 71.1,211.3 Q72.3,212.1 73.1,214.1 Q73.9,216.0 74.4,220.0 Q75.0,224.0 74.8,227.0 Q74.6,230.0 73.1,235.5 Q71.7,241.0 69.5,245.0 Q67.3,249.0 60.9,267.5 Q54.6,286.0 53.8,297.5 Q53.0,309.0 53.0,324.0 Q53.0,339.0 57.6,365.5 Q62.3,392.0 62.7,399.0 Q63.1,406.0 64.8,409.5 Q66.4,413.0 65.9,419.0 Q65.4,425.0 63.5,432.0 Q61.6,439.0 60.3,449.0 Q59.0,459.0 61.7,481.5 Q64.4,504.0 65.2,505.7 Q66.0,507.4 66.9,515.2 Q67.9,523.0 67.2,527.0 Q66.6,531.0 68.4,535.0 Q70.1,539.0 70.6,541.5 Q71.0,544.0 69.7,554.5 Q68.4,565.0 66.5,569.0 Q64.6,573.0 63.9,576.0 Q63.1,579.0 60.6,585.0 Q58.1,591.0 58.1,593.5 Q58.0,596.0 59.1,597.6 Q60.3,599.3 61.6,599.9 Q63.0,600.6 69.0,600.9 Q75.0,601.3 80.0,600.8 Q85.0,600.3 88.0,601.1 Q91.0,601.9 93.5,601.1 Q96.0,600.3 97.4,598.1 Q98.9,596.0 96.7,587.5 Q94.6,579.0 94.6,575.1 Q94.6,571.3 93.2,567.6 Q91.9,564.0 91.4,561.0 Q91.0,558.0 91.2,553.1 Q91.4,548.1 90.7,542.6 Q90.0,537.0 90.9,533.5 Q91.9,530.0 91.4,525.0 Q91.0,520.0 92.0,510.0 Q93.0,500.0 95.5,482.5 Q98.0,465.0 98.0,457.5 Q98.0,450.0 97.0,441.5 Q96.0,433.0 96.0,427.0 Q96.0,421.0 97.1,412.0 Q98.1,403.0 97.1,395.0 Q96.0,387.0 96.4,380.0 Q96.9,373.0 96.0,370.0 Q95.1,367.0 95.1,364.5 Q95.0,362.0 97.0,346.5 Q99.0,331.0 99.1,323.5 Q99.1,316.0 99.8,314.9 Q100.4,313.9 102.2,313.4 Q104.0,313.0 105.3,313.4 Q106.6,313.9 107.2,314.9 Q107.9,316.0 107.9,323.5 Q108.0,331.0 110.0,346.5 Q112.0,362.0 111.9,364.5 Q111.9,367.0 111.0,370.0 Q110.1,373.0 110.6,380.0 Q111.0,387.0 109.9,395.0 Q108.9,403.0 109.9,412.0 Q111.0,421.0 111.0,427.0 Q111.0,433.0 110.0,441.5 Q109.0,450.0 109.0,457.5 Q109.0,465.0 111.5,482.5 Q114.0,500.0 115.0,510.0 Q116.0,520.0 115.6,525.0 Q115.1,530.0 116.1,533.5 Q117.0,537.0 116.3,542.6 Q115.6,548.1 115.8,553.1 Q116.0,558.0 115.6,561.0 Q115.1,564.0 113.8,567.6 Q112.4,571.3 112.4,575.1 Q112.4,579.0 110.3,587.5 Q108.1,596.0 109.1,597.8 Q110.1,599.6 112.6,600.7 Q115.0,601.9 118.5,601.1 Q122.0,600.3 129.5,600.8 Q137.0,601.3 141.4,600.6 Q145.9,599.9 147.2,598.4 Q148.6,597.0 148.9,595.5 Q149.3,594.0 145.9,583.5 Q142.4,573.0 140.5,569.0 Q138.6,565.0 137.3,554.5 Q136.0,544.0 136.4,541.5 Q136.9,539.0 138.6,535.0 Q140.4,531.0 139.8,527.0 Q139.1,523.0 140.1,515.2 Q141.0,507.4 141.8,505.7 Q142.6,504.0 145.3,481.5 Q148.0,459.0 146.7,449.0 Q145.4,439.0 143.5,432.0 Q141.6,425.0 141.1,419.0 Q140.6,413.0 142.2,409.5 Q143.9,406.0 144.3,399.0 Q144.7,392.0 149.4,365.5 Q154.0,339.0 154.0,324.0 Q154.0,309.0 153.2,297.5 Q152.4,286.0 146.1,267.5 Q139.7,249.0 137.5,245.0 Q135.3,241.0 133.6,234.0 Q132.0,227.0 132.9,220.5 Q133.7,214.0 135.4,212.2 Q137.1,210.4 138.5,210.4 Q139.9,210.4 141.3,211.7 Q142.7,213.0 146.4,222.0 Q150.0,231.0 151.8,243.5 Q153.6,256.0 160.6,277.5 Q167.7,299.0 169.3,302.0 Q170.9,305.0 170.4,308.5 Q170.0,312.0 167.6,318.0 Q165.3,324.0 165.1,330.0 Q165.0,336.0 167.0,344.0 Q169.0,352.0 171.8,356.6 Q174.6,361.1 175.8,361.7 Q177.0,362.3 178.7,361.9 Q180.4,361.4 183.8,356.7 Q187.1,352.0 189.2,346.0 Q191.3,340.0 191.6,336.5 Q192.0,333.0 190.3,322.0 Q188.6,311.0 187.6,307.5 Q186.6,304.0 187.4,299.5 Q188.3,295.0 186.4,292.0 Q184.4,289.0 183.7,284.5 Q183.0,280.0 181.6,263.0 Q180.1,246.0 177.4,238.5 Q174.7,231.0 174.0,226.5 Q173.3,222.0 171.5,217.5 Q169.7,213.0 167.1,196.5 Q164.6,180.0 160.7,164.0 Q156.9,148.0 155.4,145.0 Q154.0,142.0 152.0,139.9 Q150.0,137.9 146.0,136.1 Q142.0,134.3 137.5,133.1 Q133.0,132.0 130.0,130.5 Q127.0,129.0 124.1,126.5 Q121.3,124.0 120.2,121.5 Q119.1,119.0 119.3,118.1 Q119.4,117.1 120.3,116.3 Q121.1,115.4 124.6,114.9 Q128.0,114.4 130.3,113.4 Q132.6,112.3 133.2,111.1 Q133.9,109.9 134.0,106.9 Q134.1,104.0 134.8,102.9 Q135.4,101.9 139.7,101.7 Q144.0,101.6 147.3,99.6 Q150.6,97.6 151.7,95.3 Q152.9,93.0 152.6,89.0 Q152.4,85.0 156.8,80.5 Q161.1,76.0 162.0,72.5 Q162.9,69.0 162.2,67.6 Q161.6,66.1 160.3,65.1 Q159.0,64.0 154.0,63.9 Q149.0,63.9 147.2,62.9 Q145.4,61.9 143.7,55.4 Q142.0,49.0 139.2,44.0 Q136.4,39.0 133.2,36.0 Q130.0,33.0 124.1,30.1 Q118.1,27.3 117.1,25.6 Q116.1,24.0 116.0,20.0 Q115.9,16.0 114.9,14.0 Q113.9,12.0 111.4,10.1 Q109.0,8.3 106.0,7.6 Z"/></clipPath>
+<path class="bm-body" d="M106.0,7.6 Q103.0,7.0 100.5,7.6 Q98.0,8.3 95.2,10.6 Q92.4,13.0 91.7,15.0 Q91.0,17.0 90.9,20.5 Q90.9,24.0 89.9,25.6 Q88.9,27.3 82.9,30.1 Q77.0,33.0 73.8,36.0 Q70.6,39.0 67.8,44.0 Q65.0,49.0 63.3,55.4 Q61.6,61.9 59.8,62.9 Q58.0,63.9 53.0,63.9 Q48.0,64.0 46.7,65.1 Q45.4,66.1 44.8,67.6 Q44.1,69.0 45.0,72.5 Q45.9,76.0 50.2,80.5 Q54.6,85.0 54.4,89.0 Q54.1,93.0 55.3,95.3 Q56.4,97.6 59.7,99.6 Q63.0,101.6 67.3,101.7 Q71.6,101.9 72.2,102.9 Q72.9,104.0 73.0,106.9 Q73.1,109.9 73.8,111.1 Q74.4,112.3 76.7,113.4 Q79.0,114.4 82.4,114.9 Q85.9,115.4 86.7,116.3 Q87.6,117.1 87.7,118.1 Q87.9,119.0 86.8,121.5 Q85.7,124.0 82.9,126.5 Q80.0,129.0 77.0,130.5 Q74.0,132.0 69.5,133.1 Q65.0,134.3 61.0,136.1 Q57.0,137.9 55.0,139.9 Q53.0,142.0 51.6,145.0 Q50.1,148.0 46.3,164.0 Q42.4,180.0 39.9,196.5 Q37.3,213.0 35.5,217.5 Q33.7,222.0 33.1,226.0 Q32.6,230.0 29.7,238.0 Q26.9,246.0 25.4,263.0 Q24.0,280.0 23.3,284.5 Q22.6,289.0 20.6,292.0 Q18.7,295.0 19.6,299.5 Q20.4,304.0 19.4,307.5 Q18.4,311.0 16.7,323.0 Q15.0,335.0 16.9,342.5 Q18.9,350.0 22.0,355.0 Q25.1,360.0 27.1,361.1 Q29.0,362.3 30.7,361.7 Q32.4,361.1 35.2,356.6 Q38.0,352.0 40.0,344.0 Q42.0,336.0 41.9,330.0 Q41.7,324.0 39.4,318.0 Q37.0,312.0 36.6,308.5 Q36.1,305.0 37.7,302.0 Q39.3,299.0 46.4,277.5 Q53.4,256.0 55.2,243.5 Q57.0,231.0 60.6,222.0 Q64.3,213.0 65.7,211.7 Q67.1,210.4 68.5,210.4 Q69.9,210.4 71.1,211.3 Q72.3,212.1 73.1,214.1 Q73.9,216.0 74.4,220.0 Q75.0,224.0 74.8,227.0 Q74.6,230.0 73.1,235.5 Q71.7,241.0 69.5,245.0 Q67.3,249.0 60.9,267.5 Q54.6,286.0 53.8,297.5 Q53.0,309.0 53.0,324.0 Q53.0,339.0 57.6,365.5 Q62.3,392.0 62.7,399.0 Q63.1,406.0 64.8,409.5 Q66.4,413.0 65.9,419.0 Q65.4,425.0 63.5,432.0 Q61.6,439.0 60.3,449.0 Q59.0,459.0 61.7,481.5 Q64.4,504.0 65.2,505.7 Q66.0,507.4 66.9,515.2 Q67.9,523.0 67.2,527.0 Q66.6,531.0 68.4,535.0 Q70.1,539.0 70.6,541.5 Q71.0,544.0 69.7,554.5 Q68.4,565.0 66.5,569.0 Q64.6,573.0 63.9,576.0 Q63.1,579.0 60.6,585.0 Q58.1,591.0 58.1,593.5 Q58.0,596.0 59.1,597.6 Q60.3,599.3 61.6,599.9 Q63.0,600.6 69.0,600.9 Q75.0,601.3 80.0,600.8 Q85.0,600.3 88.0,601.1 Q91.0,601.9 93.5,601.1 Q96.0,600.3 97.4,598.1 Q98.9,596.0 96.7,587.5 Q94.6,579.0 94.6,575.1 Q94.6,571.3 93.2,567.6 Q91.9,564.0 91.4,561.0 Q91.0,558.0 91.2,553.1 Q91.4,548.1 90.7,542.6 Q90.0,537.0 90.9,533.5 Q91.9,530.0 91.4,525.0 Q91.0,520.0 92.0,510.0 Q93.0,500.0 95.5,482.5 Q98.0,465.0 98.0,457.5 Q98.0,450.0 97.0,441.5 Q96.0,433.0 96.0,427.0 Q96.0,421.0 97.1,412.0 Q98.1,403.0 97.1,395.0 Q96.0,387.0 96.4,380.0 Q96.9,373.0 96.0,370.0 Q95.1,367.0 95.1,364.5 Q95.0,362.0 97.0,346.5 Q99.0,331.0 99.1,323.5 Q99.1,316.0 99.8,314.9 Q100.4,313.9 102.2,313.4 Q104.0,313.0 105.3,313.4 Q106.6,313.9 107.2,314.9 Q107.9,316.0 107.9,323.5 Q108.0,331.0 110.0,346.5 Q112.0,362.0 111.9,364.5 Q111.9,367.0 111.0,370.0 Q110.1,373.0 110.6,380.0 Q111.0,387.0 109.9,395.0 Q108.9,403.0 109.9,412.0 Q111.0,421.0 111.0,427.0 Q111.0,433.0 110.0,441.5 Q109.0,450.0 109.0,457.5 Q109.0,465.0 111.5,482.5 Q114.0,500.0 115.0,510.0 Q116.0,520.0 115.6,525.0 Q115.1,530.0 116.1,533.5 Q117.0,537.0 116.3,542.6 Q115.6,548.1 115.8,553.1 Q116.0,558.0 115.6,561.0 Q115.1,564.0 113.8,567.6 Q112.4,571.3 112.4,575.1 Q112.4,579.0 110.3,587.5 Q108.1,596.0 109.1,597.8 Q110.1,599.6 112.6,600.7 Q115.0,601.9 118.5,601.1 Q122.0,600.3 129.5,600.8 Q137.0,601.3 141.4,600.6 Q145.9,599.9 147.2,598.4 Q148.6,597.0 148.9,595.5 Q149.3,594.0 145.9,583.5 Q142.4,573.0 140.5,569.0 Q138.6,565.0 137.3,554.5 Q136.0,544.0 136.4,541.5 Q136.9,539.0 138.6,535.0 Q140.4,531.0 139.8,527.0 Q139.1,523.0 140.1,515.2 Q141.0,507.4 141.8,505.7 Q142.6,504.0 145.3,481.5 Q148.0,459.0 146.7,449.0 Q145.4,439.0 143.5,432.0 Q141.6,425.0 141.1,419.0 Q140.6,413.0 142.2,409.5 Q143.9,406.0 144.3,399.0 Q144.7,392.0 149.4,365.5 Q154.0,339.0 154.0,324.0 Q154.0,309.0 153.2,297.5 Q152.4,286.0 146.1,267.5 Q139.7,249.0 137.5,245.0 Q135.3,241.0 133.6,234.0 Q132.0,227.0 132.9,220.5 Q133.7,214.0 135.4,212.2 Q137.1,210.4 138.5,210.4 Q139.9,210.4 141.3,211.7 Q142.7,213.0 146.4,222.0 Q150.0,231.0 151.8,243.5 Q153.6,256.0 160.6,277.5 Q167.7,299.0 169.3,302.0 Q170.9,305.0 170.4,308.5 Q170.0,312.0 167.6,318.0 Q165.3,324.0 165.1,330.0 Q165.0,336.0 167.0,344.0 Q169.0,352.0 171.8,356.6 Q174.6,361.1 175.8,361.7 Q177.0,362.3 178.7,361.9 Q180.4,361.4 183.8,356.7 Q187.1,352.0 189.2,346.0 Q191.3,340.0 191.6,336.5 Q192.0,333.0 190.3,322.0 Q188.6,311.0 187.6,307.5 Q186.6,304.0 187.4,299.5 Q188.3,295.0 186.4,292.0 Q184.4,289.0 183.7,284.5 Q183.0,280.0 181.6,263.0 Q180.1,246.0 177.4,238.5 Q174.7,231.0 174.0,226.5 Q173.3,222.0 171.5,217.5 Q169.7,213.0 167.1,196.5 Q164.6,180.0 160.7,164.0 Q156.9,148.0 155.4,145.0 Q154.0,142.0 152.0,139.9 Q150.0,137.9 146.0,136.1 Q142.0,134.3 137.5,133.1 Q133.0,132.0 130.0,130.5 Q127.0,129.0 124.1,126.5 Q121.3,124.0 120.2,121.5 Q119.1,119.0 119.3,118.1 Q119.4,117.1 120.3,116.3 Q121.1,115.4 124.6,114.9 Q128.0,114.4 130.3,113.4 Q132.6,112.3 133.2,111.1 Q133.9,109.9 134.0,106.9 Q134.1,104.0 134.8,102.9 Q135.4,101.9 139.7,101.7 Q144.0,101.6 147.3,99.6 Q150.6,97.6 151.7,95.3 Q152.9,93.0 152.6,89.0 Q152.4,85.0 156.8,80.5 Q161.1,76.0 162.0,72.5 Q162.9,69.0 162.2,67.6 Q161.6,66.1 160.3,65.1 Q159.0,64.0 154.0,63.9 Q149.0,63.9 147.2,62.9 Q145.4,61.9 143.7,55.4 Q142.0,49.0 139.2,44.0 Q136.4,39.0 133.2,36.0 Q130.0,33.0 124.1,30.1 Q118.1,27.3 117.1,25.6 Q116.1,24.0 116.0,20.0 Q115.9,16.0 114.9,14.0 Q113.9,12.0 111.4,10.1 Q109.0,8.3 106.0,7.6 Z"/>
+<g clip-path="url(#clipF)">
+<path d="M106.0,7.6 Q103.0,7.0 100.5,7.6 Q98.0,8.3 95.2,10.6 Q92.4,13.0 91.7,15.0 Q91.0,17.0 90.9,20.5 Q90.9,24.0 89.9,25.6 Q88.9,27.3 82.9,30.1 Q77.0,33.0 73.8,36.0 Q70.6,39.0 67.8,44.0 Q65.0,49.0 63.3,55.4 Q61.6,61.9 59.8,62.9 Q58.0,63.9 53.0,63.9 Q48.0,64.0 46.7,65.1 Q45.4,66.1 44.8,67.6 Q44.1,69.0 45.0,72.5 Q45.9,76.0 50.2,80.5 Q54.6,85.0 54.4,89.0 Q54.1,93.0 55.3,95.3 Q56.4,97.6 59.7,99.6 Q63.0,101.6 67.3,101.7 Q71.6,101.9 72.2,102.9 Q72.9,104.0 73.0,106.9 Q73.1,109.9 73.8,111.1 Q74.4,112.3 76.7,113.4 Q79.0,114.4 82.4,114.9 Q85.9,115.4 86.7,116.3 Q87.6,117.1 87.7,118.1 Q87.9,119.0 86.8,121.5 Q85.7,124.0 82.9,126.5 Q80.0,129.0 77.0,130.5 Q74.0,132.0 69.5,133.1 Q65.0,134.3 61.0,136.1 Q57.0,137.9 55.0,139.9 Q53.0,142.0 51.6,145.0 Q50.1,148.0 46.3,164.0 Q42.4,180.0 39.9,196.5 Q37.3,213.0 35.5,217.5 Q33.7,222.0 33.1,226.0 Q32.6,230.0 29.7,238.0 Q26.9,246.0 25.4,263.0 Q24.0,280.0 23.3,284.5 Q22.6,289.0 20.6,292.0 Q18.7,295.0 19.6,299.5 Q20.4,304.0 19.4,307.5 Q18.4,311.0 16.7,323.0 Q15.0,335.0 16.9,342.5 Q18.9,350.0 22.0,355.0 Q25.1,360.0 27.1,361.1 Q29.0,362.3 30.7,361.7 Q32.4,361.1 35.2,356.6 Q38.0,352.0 40.0,344.0 Q42.0,336.0 41.9,330.0 Q41.7,324.0 39.4,318.0 Q37.0,312.0 36.6,308.5 Q36.1,305.0 37.7,302.0 Q39.3,299.0 46.4,277.5 Q53.4,256.0 55.2,243.5 Q57.0,231.0 60.6,222.0 Q64.3,213.0 65.7,211.7 Q67.1,210.4 68.5,210.4 Q69.9,210.4 71.1,211.3 Q72.3,212.1 73.1,214.1 Q73.9,216.0 74.4,220.0 Q75.0,224.0 74.8,227.0 Q74.6,230.0 73.1,235.5 Q71.7,241.0 69.5,245.0 Q67.3,249.0 60.9,267.5 Q54.6,286.0 53.8,297.5 Q53.0,309.0 53.0,324.0 Q53.0,339.0 57.6,365.5 Q62.3,392.0 62.7,399.0 Q63.1,406.0 64.8,409.5 Q66.4,413.0 65.9,419.0 Q65.4,425.0 63.5,432.0 Q61.6,439.0 60.3,449.0 Q59.0,459.0 61.7,481.5 Q64.4,504.0 65.2,505.7 Q66.0,507.4 66.9,515.2 Q67.9,523.0 67.2,527.0 Q66.6,531.0 68.4,535.0 Q70.1,539.0 70.6,541.5 Q71.0,544.0 69.7,554.5 Q68.4,565.0 66.5,569.0 Q64.6,573.0 63.9,576.0 Q63.1,579.0 60.6,585.0 Q58.1,591.0 58.1,593.5 Q58.0,596.0 59.1,597.6 Q60.3,599.3 61.6,599.9 Q63.0,600.6 69.0,600.9 Q75.0,601.3 80.0,600.8 Q85.0,600.3 88.0,601.1 Q91.0,601.9 93.5,601.1 Q96.0,600.3 97.4,598.1 Q98.9,596.0 96.7,587.5 Q94.6,579.0 94.6,575.1 Q94.6,571.3 93.2,567.6 Q91.9,564.0 91.4,561.0 Q91.0,558.0 91.2,553.1 Q91.4,548.1 90.7,542.6 Q90.0,537.0 90.9,533.5 Q91.9,530.0 91.4,525.0 Q91.0,520.0 92.0,510.0 Q93.0,500.0 95.5,482.5 Q98.0,465.0 98.0,457.5 Q98.0,450.0 97.0,441.5 Q96.0,433.0 96.0,427.0 Q96.0,421.0 97.1,412.0 Q98.1,403.0 97.1,395.0 Q96.0,387.0 96.4,380.0 Q96.9,373.0 96.0,370.0 Q95.1,367.0 95.1,364.5 Q95.0,362.0 97.0,346.5 Q99.0,331.0 99.1,323.5 Q99.1,316.0 99.8,314.9 Q100.4,313.9 102.2,313.4 Q104.0,313.0 105.3,313.4 Q106.6,313.9 107.2,314.9 Q107.9,316.0 107.9,323.5 Q108.0,331.0 110.0,346.5 Q112.0,362.0 111.9,364.5 Q111.9,367.0 111.0,370.0 Q110.1,373.0 110.6,380.0 Q111.0,387.0 109.9,395.0 Q108.9,403.0 109.9,412.0 Q111.0,421.0 111.0,427.0 Q111.0,433.0 110.0,441.5 Q109.0,450.0 109.0,457.5 Q109.0,465.0 111.5,482.5 Q114.0,500.0 115.0,510.0 Q116.0,520.0 115.6,525.0 Q115.1,530.0 116.1,533.5 Q117.0,537.0 116.3,542.6 Q115.6,548.1 115.8,553.1 Q116.0,558.0 115.6,561.0 Q115.1,564.0 113.8,567.6 Q112.4,571.3 112.4,575.1 Q112.4,579.0 110.3,587.5 Q108.1,596.0 109.1,597.8 Q110.1,599.6 112.6,600.7 Q115.0,601.9 118.5,601.1 Q122.0,600.3 129.5,600.8 Q137.0,601.3 141.4,600.6 Q145.9,599.9 147.2,598.4 Q148.6,597.0 148.9,595.5 Q149.3,594.0 145.9,583.5 Q142.4,573.0 140.5,569.0 Q138.6,565.0 137.3,554.5 Q136.0,544.0 136.4,541.5 Q136.9,539.0 138.6,535.0 Q140.4,531.0 139.8,527.0 Q139.1,523.0 140.1,515.2 Q141.0,507.4 141.8,505.7 Q142.6,504.0 145.3,481.5 Q148.0,459.0 146.7,449.0 Q145.4,439.0 143.5,432.0 Q141.6,425.0 141.1,419.0 Q140.6,413.0 142.2,409.5 Q143.9,406.0 144.3,399.0 Q144.7,392.0 149.4,365.5 Q154.0,339.0 154.0,324.0 Q154.0,309.0 153.2,297.5 Q152.4,286.0 146.1,267.5 Q139.7,249.0 137.5,245.0 Q135.3,241.0 133.6,234.0 Q132.0,227.0 132.9,220.5 Q133.7,214.0 135.4,212.2 Q137.1,210.4 138.5,210.4 Q139.9,210.4 141.3,211.7 Q142.7,213.0 146.4,222.0 Q150.0,231.0 151.8,243.5 Q153.6,256.0 160.6,277.5 Q167.7,299.0 169.3,302.0 Q170.9,305.0 170.4,308.5 Q170.0,312.0 167.6,318.0 Q165.3,324.0 165.1,330.0 Q165.0,336.0 167.0,344.0 Q169.0,352.0 171.8,356.6 Q174.6,361.1 175.8,361.7 Q177.0,362.3 178.7,361.9 Q180.4,361.4 183.8,356.7 Q187.1,352.0 189.2,346.0 Q191.3,340.0 191.6,336.5 Q192.0,333.0 190.3,322.0 Q188.6,311.0 187.6,307.5 Q186.6,304.0 187.4,299.5 Q188.3,295.0 186.4,292.0 Q184.4,289.0 183.7,284.5 Q183.0,280.0 181.6,263.0 Q180.1,246.0 177.4,238.5 Q174.7,231.0 174.0,226.5 Q173.3,222.0 171.5,217.5 Q169.7,213.0 167.1,196.5 Q164.6,180.0 160.7,164.0 Q156.9,148.0 155.4,145.0 Q154.0,142.0 152.0,139.9 Q150.0,137.9 146.0,136.1 Q142.0,134.3 137.5,133.1 Q133.0,132.0 130.0,130.5 Q127.0,129.0 124.1,126.5 Q121.3,124.0 120.2,121.5 Q119.1,119.0 119.3,118.1 Q119.4,117.1 120.3,116.3 Q121.1,115.4 124.6,114.9 Q128.0,114.4 130.3,113.4 Q132.6,112.3 133.2,111.1 Q133.9,109.9 134.0,106.9 Q134.1,104.0 134.8,102.9 Q135.4,101.9 139.7,101.7 Q144.0,101.6 147.3,99.6 Q150.6,97.6 151.7,95.3 Q152.9,93.0 152.6,89.0 Q152.4,85.0 156.8,80.5 Q161.1,76.0 162.0,72.5 Q162.9,69.0 162.2,67.6 Q161.6,66.1 160.3,65.1 Q159.0,64.0 154.0,63.9 Q149.0,63.9 147.2,62.9 Q145.4,61.9 143.7,55.4 Q142.0,49.0 139.2,44.0 Q136.4,39.0 133.2,36.0 Q130.0,33.0 124.1,30.1 Q118.1,27.3 117.1,25.6 Q116.1,24.0 116.0,20.0 Q115.9,16.0 114.9,14.0 Q113.9,12.0 111.4,10.1 Q109.0,8.3 106.0,7.6 Z" fill="none" class="bm-shade" filter="url(#soft)"/>
+<path class="bm-zone" d="M33,148.0 Q103.5,166.0 174,148.0 L174,202.0 Q103.5,220.0 33,202.0 Z"/><path class="bm-cyl" d="M33,148.0 Q103.5,166.0 174,148.0 L174,202.0 Q103.5,220.0 33,202.0 Z" fill="url(#cyl)"/>
+<path class="bm-zone" d="M45,345.0 Q103.5,363.0 162,345.0 L162,432.0 Q103.5,450.0 45,432.0 Z"/><path class="bm-cyl" d="M45,345.0 Q103.5,363.0 162,345.0 L162,432.0 Q103.5,450.0 45,432.0 Z" fill="url(#cyl)"/>
+<path class="bm-zone" d="M51,466.0 Q104.0,484.0 157,466.0 L157,542.0 Q104.0,560.0 51,542.0 Z"/><path class="bm-cyl" d="M51,466.0 Q104.0,484.0 157,466.0 L157,542.0 Q104.0,560.0 51,542.0 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M45,166.5 Q103.5,182.5 162,166.5 L162,177.5 Q103.5,193.5 45,177.5 Z"/><path class="bm-cyl" d="M45,166.5 Q103.5,182.5 162,166.5 L162,177.5 Q103.5,193.5 45,177.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M30,206.5 Q51.0,222.5 72,206.5 L72,217.5 Q51.0,233.5 30,217.5 Z"/><path class="bm-cyl" d="M30,206.5 Q51.0,222.5 72,206.5 L72,217.5 Q51.0,233.5 30,217.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M135,206.5 Q156.0,222.5 177,206.5 L177,217.5 Q156.0,233.5 135,217.5 Z"/><path class="bm-cyl" d="M135,206.5 Q156.0,222.5 177,206.5 L177,217.5 Q156.0,233.5 135,217.5 Z" fill="url(#cyl)"/>
+<path class="bm-band-alt" d="M66,231.5 Q103.5,247.5 141,231.5 L141,242.5 Q103.5,258.5 66,242.5 Z"/><path class="bm-cyl" d="M66,231.5 Q103.5,247.5 141,231.5 L141,242.5 Q103.5,258.5 66,242.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M54,259.5 Q103.5,275.5 153,259.5 L153,270.5 Q103.5,286.5 54,270.5 Z"/><path class="bm-cyl" d="M54,259.5 Q103.5,275.5 153,259.5 L153,270.5 Q103.5,286.5 54,270.5 Z" fill="url(#cyl)"/>
+<path class="bm-band-alt" d="M16,284.5 Q32.5,297.7 49,284.5 L49,295.5 Q32.5,308.7 16,295.5 Z"/><path class="bm-cyl" d="M16,284.5 Q32.5,297.7 49,284.5 L49,295.5 Q32.5,308.7 16,295.5 Z" fill="url(#cyl)"/>
+<path class="bm-band-alt" d="M158,284.5 Q174.5,297.7 191,284.5 L191,295.5 Q174.5,308.7 158,295.5 Z"/><path class="bm-cyl" d="M158,284.5 Q174.5,297.7 191,284.5 L191,295.5 Q174.5,308.7 158,295.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M55,386.5 Q79.5,402.5 104,386.5 L104,397.5 Q79.5,413.5 55,397.5 Z"/><path class="bm-cyl" d="M55,386.5 Q79.5,402.5 104,386.5 L104,397.5 Q79.5,413.5 55,397.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M103,386.5 Q127.5,402.5 152,386.5 L152,397.5 Q127.5,413.5 103,397.5 Z"/><path class="bm-cyl" d="M103,386.5 Q127.5,402.5 152,386.5 L152,397.5 Q127.5,413.5 103,397.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M60,512.5 Q79.0,527.7 98,512.5 L98,523.5 Q79.0,538.7 60,523.5 Z"/><path class="bm-cyl" d="M60,512.5 Q79.0,527.7 98,512.5 L98,523.5 Q79.0,538.7 60,523.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M109,512.5 Q128.0,527.7 147,512.5 L147,523.5 Q128.0,538.7 109,523.5 Z"/><path class="bm-cyl" d="M109,512.5 Q128.0,527.7 147,512.5 L147,523.5 Q128.0,538.7 109,523.5 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M61,562.0 Q80.0,577.2 99,562.0 L99,570.0 Q80.0,585.2 61,570.0 Z"/><path class="bm-cyl" d="M61,562.0 Q80.0,577.2 99,562.0 L99,570.0 Q80.0,585.2 61,570.0 Z" fill="url(#cyl)"/>
+<path class="bm-band" d="M108,562.0 Q127.0,577.2 146,562.0 L146,570.0 Q127.0,585.2 108,570.0 Z"/><path class="bm-cyl" d="M108,562.0 Q127.0,577.2 146,562.0 L146,570.0 Q127.0,585.2 108,570.0 Z" fill="url(#cyl)"/>
+</g>
+<rect class="bm-trk" x="96.5" y="171" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="44.0" y="211" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="149.0" y="211" width="14" height="18" rx="3"/>
+<rect class="bm-trk-alt" x="96.5" y="236" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="96.5" y="264" width="14" height="18" rx="3"/>
+<rect class="bm-trk-alt" x="25.5" y="287.6" width="14" height="18" rx="3"/>
+<rect class="bm-trk-alt" x="167.5" y="287.6" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="72.5" y="391" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="120.5" y="391" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="72.0" y="516.6" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="121.0" y="516.6" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="73.0" y="564.6" width="14" height="18" rx="3"/>
+<rect class="bm-trk" x="120.0" y="564.6" width="14" height="18" rx="3"/>
+<path class="bm-outline" d="M106.0,7.6 Q103.0,7.0 100.5,7.6 Q98.0,8.3 95.2,10.6 Q92.4,13.0 91.7,15.0 Q91.0,17.0 90.9,20.5 Q90.9,24.0 89.9,25.6 Q88.9,27.3 82.9,30.1 Q77.0,33.0 73.8,36.0 Q70.6,39.0 67.8,44.0 Q65.0,49.0 63.3,55.4 Q61.6,61.9 59.8,62.9 Q58.0,63.9 53.0,63.9 Q48.0,64.0 46.7,65.1 Q45.4,66.1 44.8,67.6 Q44.1,69.0 45.0,72.5 Q45.9,76.0 50.2,80.5 Q54.6,85.0 54.4,89.0 Q54.1,93.0 55.3,95.3 Q56.4,97.6 59.7,99.6 Q63.0,101.6 67.3,101.7 Q71.6,101.9 72.2,102.9 Q72.9,104.0 73.0,106.9 Q73.1,109.9 73.8,111.1 Q74.4,112.3 76.7,113.4 Q79.0,114.4 82.4,114.9 Q85.9,115.4 86.7,116.3 Q87.6,117.1 87.7,118.1 Q87.9,119.0 86.8,121.5 Q85.7,124.0 82.9,126.5 Q80.0,129.0 77.0,130.5 Q74.0,132.0 69.5,133.1 Q65.0,134.3 61.0,136.1 Q57.0,137.9 55.0,139.9 Q53.0,142.0 51.6,145.0 Q50.1,148.0 46.3,164.0 Q42.4,180.0 39.9,196.5 Q37.3,213.0 35.5,217.5 Q33.7,222.0 33.1,226.0 Q32.6,230.0 29.7,238.0 Q26.9,246.0 25.4,263.0 Q24.0,280.0 23.3,284.5 Q22.6,289.0 20.6,292.0 Q18.7,295.0 19.6,299.5 Q20.4,304.0 19.4,307.5 Q18.4,311.0 16.7,323.0 Q15.0,335.0 16.9,342.5 Q18.9,350.0 22.0,355.0 Q25.1,360.0 27.1,361.1 Q29.0,362.3 30.7,361.7 Q32.4,361.1 35.2,356.6 Q38.0,352.0 40.0,344.0 Q42.0,336.0 41.9,330.0 Q41.7,324.0 39.4,318.0 Q37.0,312.0 36.6,308.5 Q36.1,305.0 37.7,302.0 Q39.3,299.0 46.4,277.5 Q53.4,256.0 55.2,243.5 Q57.0,231.0 60.6,222.0 Q64.3,213.0 65.7,211.7 Q67.1,210.4 68.5,210.4 Q69.9,210.4 71.1,211.3 Q72.3,212.1 73.1,214.1 Q73.9,216.0 74.4,220.0 Q75.0,224.0 74.8,227.0 Q74.6,230.0 73.1,235.5 Q71.7,241.0 69.5,245.0 Q67.3,249.0 60.9,267.5 Q54.6,286.0 53.8,297.5 Q53.0,309.0 53.0,324.0 Q53.0,339.0 57.6,365.5 Q62.3,392.0 62.7,399.0 Q63.1,406.0 64.8,409.5 Q66.4,413.0 65.9,419.0 Q65.4,425.0 63.5,432.0 Q61.6,439.0 60.3,449.0 Q59.0,459.0 61.7,481.5 Q64.4,504.0 65.2,505.7 Q66.0,507.4 66.9,515.2 Q67.9,523.0 67.2,527.0 Q66.6,531.0 68.4,535.0 Q70.1,539.0 70.6,541.5 Q71.0,544.0 69.7,554.5 Q68.4,565.0 66.5,569.0 Q64.6,573.0 63.9,576.0 Q63.1,579.0 60.6,585.0 Q58.1,591.0 58.1,593.5 Q58.0,596.0 59.1,597.6 Q60.3,599.3 61.6,599.9 Q63.0,600.6 69.0,600.9 Q75.0,601.3 80.0,600.8 Q85.0,600.3 88.0,601.1 Q91.0,601.9 93.5,601.1 Q96.0,600.3 97.4,598.1 Q98.9,596.0 96.7,587.5 Q94.6,579.0 94.6,575.1 Q94.6,571.3 93.2,567.6 Q91.9,564.0 91.4,561.0 Q91.0,558.0 91.2,553.1 Q91.4,548.1 90.7,542.6 Q90.0,537.0 90.9,533.5 Q91.9,530.0 91.4,525.0 Q91.0,520.0 92.0,510.0 Q93.0,500.0 95.5,482.5 Q98.0,465.0 98.0,457.5 Q98.0,450.0 97.0,441.5 Q96.0,433.0 96.0,427.0 Q96.0,421.0 97.1,412.0 Q98.1,403.0 97.1,395.0 Q96.0,387.0 96.4,380.0 Q96.9,373.0 96.0,370.0 Q95.1,367.0 95.1,364.5 Q95.0,362.0 97.0,346.5 Q99.0,331.0 99.1,323.5 Q99.1,316.0 99.8,314.9 Q100.4,313.9 102.2,313.4 Q104.0,313.0 105.3,313.4 Q106.6,313.9 107.2,314.9 Q107.9,316.0 107.9,323.5 Q108.0,331.0 110.0,346.5 Q112.0,362.0 111.9,364.5 Q111.9,367.0 111.0,370.0 Q110.1,373.0 110.6,380.0 Q111.0,387.0 109.9,395.0 Q108.9,403.0 109.9,412.0 Q111.0,421.0 111.0,427.0 Q111.0,433.0 110.0,441.5 Q109.0,450.0 109.0,457.5 Q109.0,465.0 111.5,482.5 Q114.0,500.0 115.0,510.0 Q116.0,520.0 115.6,525.0 Q115.1,530.0 116.1,533.5 Q117.0,537.0 116.3,542.6 Q115.6,548.1 115.8,553.1 Q116.0,558.0 115.6,561.0 Q115.1,564.0 113.8,567.6 Q112.4,571.3 112.4,575.1 Q112.4,579.0 110.3,587.5 Q108.1,596.0 109.1,597.8 Q110.1,599.6 112.6,600.7 Q115.0,601.9 118.5,601.1 Q122.0,600.3 129.5,600.8 Q137.0,601.3 141.4,600.6 Q145.9,599.9 147.2,598.4 Q148.6,597.0 148.9,595.5 Q149.3,594.0 145.9,583.5 Q142.4,573.0 140.5,569.0 Q138.6,565.0 137.3,554.5 Q136.0,544.0 136.4,541.5 Q136.9,539.0 138.6,535.0 Q140.4,531.0 139.8,527.0 Q139.1,523.0 140.1,515.2 Q141.0,507.4 141.8,505.7 Q142.6,504.0 145.3,481.5 Q148.0,459.0 146.7,449.0 Q145.4,439.0 143.5,432.0 Q141.6,425.0 141.1,419.0 Q140.6,413.0 142.2,409.5 Q143.9,406.0 144.3,399.0 Q144.7,392.0 149.4,365.5 Q154.0,339.0 154.0,324.0 Q154.0,309.0 153.2,297.5 Q152.4,286.0 146.1,267.5 Q139.7,249.0 137.5,245.0 Q135.3,241.0 133.6,234.0 Q132.0,227.0 132.9,220.5 Q133.7,214.0 135.4,212.2 Q137.1,210.4 138.5,210.4 Q139.9,210.4 141.3,211.7 Q142.7,213.0 146.4,222.0 Q150.0,231.0 151.8,243.5 Q153.6,256.0 160.6,277.5 Q167.7,299.0 169.3,302.0 Q170.9,305.0 170.4,308.5 Q170.0,312.0 167.6,318.0 Q165.3,324.0 165.1,330.0 Q165.0,336.0 167.0,344.0 Q169.0,352.0 171.8,356.6 Q174.6,361.1 175.8,361.7 Q177.0,362.3 178.7,361.9 Q180.4,361.4 183.8,356.7 Q187.1,352.0 189.2,346.0 Q191.3,340.0 191.6,336.5 Q192.0,333.0 190.3,322.0 Q188.6,311.0 187.6,307.5 Q186.6,304.0 187.4,299.5 Q188.3,295.0 186.4,292.0 Q184.4,289.0 183.7,284.5 Q183.0,280.0 181.6,263.0 Q180.1,246.0 177.4,238.5 Q174.7,231.0 174.0,226.5 Q173.3,222.0 171.5,217.5 Q169.7,213.0 167.1,196.5 Q164.6,180.0 160.7,164.0 Q156.9,148.0 155.4,145.0 Q154.0,142.0 152.0,139.9 Q150.0,137.9 146.0,136.1 Q142.0,134.3 137.5,133.1 Q133.0,132.0 130.0,130.5 Q127.0,129.0 124.1,126.5 Q121.3,124.0 120.2,121.5 Q119.1,119.0 119.3,118.1 Q119.4,117.1 120.3,116.3 Q121.1,115.4 124.6,114.9 Q128.0,114.4 130.3,113.4 Q132.6,112.3 133.2,111.1 Q133.9,109.9 134.0,106.9 Q134.1,104.0 134.8,102.9 Q135.4,101.9 139.7,101.7 Q144.0,101.6 147.3,99.6 Q150.6,97.6 151.7,95.3 Q152.9,93.0 152.6,89.0 Q152.4,85.0 156.8,80.5 Q161.1,76.0 162.0,72.5 Q162.9,69.0 162.2,67.6 Q161.6,66.1 160.3,65.1 Q159.0,64.0 154.0,63.9 Q149.0,63.9 147.2,62.9 Q145.4,61.9 143.7,55.4 Q142.0,49.0 139.2,44.0 Q136.4,39.0 133.2,36.0 Q130.0,33.0 124.1,30.1 Q118.1,27.3 117.1,25.6 Q116.1,24.0 116.0,20.0 Q115.9,16.0 114.9,14.0 Q113.9,12.0 111.4,10.1 Q109.0,8.3 106.0,7.6 Z"/></g>
+<rect class="bm-win" x="404" y="40" width="236" height="278.0" rx="16"/>
+<g clip-path="url(#win)">
+<g transform="translate(407.0,30) scale(1.0)">
+<clipPath id="clipB"><path d="M132.4,17.4 Q131.0,16.6 128.5,16.4 Q126.0,16.1 123.9,17.6 Q121.9,19.0 121.6,20.5 Q121.4,22.0 122.6,25.0 Q123.7,28.0 123.1,29.1 Q122.6,30.1 117.8,30.8 Q113.0,31.4 110.0,32.6 Q107.0,33.7 97.0,41.5 Q87.0,49.3 83.0,50.9 Q79.0,52.4 74.0,53.3 Q69.0,54.1 67.6,55.1 Q66.1,56.1 64.9,58.1 Q63.7,60.0 63.4,62.0 Q63.0,64.0 63.8,66.5 Q64.6,69.0 65.8,70.2 Q67.0,71.4 69.8,73.0 Q72.6,74.6 73.1,75.8 Q73.7,77.0 70.6,81.5 Q67.6,86.0 67.3,88.0 Q67.0,90.0 67.5,92.0 Q68.0,94.0 69.5,95.7 Q71.0,97.4 74.6,98.9 Q78.1,100.4 79.1,104.1 Q80.0,107.7 82.8,109.6 Q85.6,111.6 87.1,114.6 Q88.6,117.6 91.1,119.1 Q93.6,120.7 94.1,121.9 Q94.7,123.0 93.4,125.1 Q92.0,127.1 83.0,132.2 Q74.0,137.3 70.7,140.1 Q67.4,143.0 64.3,149.0 Q61.1,155.0 58.8,162.5 Q56.4,170.0 48.5,201.0 Q40.6,232.0 39.8,236.5 Q39.0,241.0 39.0,250.5 Q39.0,260.0 38.5,263.5 Q38.0,267.0 38.2,295.3 Q38.4,323.6 39.3,324.2 Q40.1,324.9 49.4,324.7 Q58.6,324.6 59.2,323.7 Q59.9,322.9 59.9,309.4 Q60.0,296.0 57.6,290.5 Q55.1,285.0 55.5,280.5 Q55.9,276.0 60.1,259.5 Q64.3,243.0 65.9,230.5 Q67.4,218.0 70.9,209.0 Q74.3,200.0 76.1,198.6 Q78.0,197.1 79.6,197.8 Q81.3,198.4 81.9,199.7 Q82.6,201.0 84.9,211.5 Q87.1,222.0 88.1,230.0 Q89.0,238.0 86.5,246.5 Q84.0,255.0 80.0,263.0 Q76.0,271.0 74.2,279.0 Q72.4,287.0 71.7,292.0 Q71.0,297.0 71.0,309.5 Q71.0,322.0 71.4,323.1 Q71.9,324.1 72.9,324.6 Q74.0,325.0 131.8,324.8 Q189.6,324.6 190.2,323.7 Q190.9,322.9 190.9,309.9 Q191.0,297.0 190.6,295.0 Q190.1,293.0 185.6,282.5 Q181.0,272.0 169.8,243.0 Q158.6,214.0 157.3,205.0 Q156.0,196.0 156.5,174.0 Q157.0,152.0 155.6,145.5 Q154.1,139.0 152.7,136.6 Q151.3,134.3 149.6,133.0 Q148.0,131.7 145.0,130.7 Q142.0,129.7 136.5,128.9 Q131.0,128.0 129.5,126.5 Q128.0,125.0 127.5,123.0 Q127.0,121.0 128.1,119.2 Q129.1,117.4 133.1,117.5 Q137.0,117.6 139.8,115.8 Q142.6,114.0 146.1,108.5 Q149.6,103.0 151.0,98.4 Q152.4,93.9 157.7,92.9 Q163.0,92.0 164.9,91.1 Q166.9,90.1 167.9,89.0 Q169.0,87.9 169.3,85.4 Q169.6,83.0 167.3,78.5 Q165.0,74.0 165.5,70.0 Q166.0,66.0 165.8,64.0 Q165.6,62.0 164.6,59.5 Q163.7,57.0 161.2,53.5 Q158.7,50.0 156.0,44.5 Q153.3,39.0 150.6,36.7 Q148.0,34.4 143.4,33.0 Q138.9,31.6 137.4,26.3 Q136.0,21.0 134.9,19.6 Q133.9,18.3 132.4,17.4 Z"/></clipPath>
+<path class="bm-body" d="M132.4,17.4 Q131.0,16.6 128.5,16.4 Q126.0,16.1 123.9,17.6 Q121.9,19.0 121.6,20.5 Q121.4,22.0 122.6,25.0 Q123.7,28.0 123.1,29.1 Q122.6,30.1 117.8,30.8 Q113.0,31.4 110.0,32.6 Q107.0,33.7 97.0,41.5 Q87.0,49.3 83.0,50.9 Q79.0,52.4 74.0,53.3 Q69.0,54.1 67.6,55.1 Q66.1,56.1 64.9,58.1 Q63.7,60.0 63.4,62.0 Q63.0,64.0 63.8,66.5 Q64.6,69.0 65.8,70.2 Q67.0,71.4 69.8,73.0 Q72.6,74.6 73.1,75.8 Q73.7,77.0 70.6,81.5 Q67.6,86.0 67.3,88.0 Q67.0,90.0 67.5,92.0 Q68.0,94.0 69.5,95.7 Q71.0,97.4 74.6,98.9 Q78.1,100.4 79.1,104.1 Q80.0,107.7 82.8,109.6 Q85.6,111.6 87.1,114.6 Q88.6,117.6 91.1,119.1 Q93.6,120.7 94.1,121.9 Q94.7,123.0 93.4,125.1 Q92.0,127.1 83.0,132.2 Q74.0,137.3 70.7,140.1 Q67.4,143.0 64.3,149.0 Q61.1,155.0 58.8,162.5 Q56.4,170.0 48.5,201.0 Q40.6,232.0 39.8,236.5 Q39.0,241.0 39.0,250.5 Q39.0,260.0 38.5,263.5 Q38.0,267.0 38.2,295.3 Q38.4,323.6 39.3,324.2 Q40.1,324.9 49.4,324.7 Q58.6,324.6 59.2,323.7 Q59.9,322.9 59.9,309.4 Q60.0,296.0 57.6,290.5 Q55.1,285.0 55.5,280.5 Q55.9,276.0 60.1,259.5 Q64.3,243.0 65.9,230.5 Q67.4,218.0 70.9,209.0 Q74.3,200.0 76.1,198.6 Q78.0,197.1 79.6,197.8 Q81.3,198.4 81.9,199.7 Q82.6,201.0 84.9,211.5 Q87.1,222.0 88.1,230.0 Q89.0,238.0 86.5,246.5 Q84.0,255.0 80.0,263.0 Q76.0,271.0 74.2,279.0 Q72.4,287.0 71.7,292.0 Q71.0,297.0 71.0,309.5 Q71.0,322.0 71.4,323.1 Q71.9,324.1 72.9,324.6 Q74.0,325.0 131.8,324.8 Q189.6,324.6 190.2,323.7 Q190.9,322.9 190.9,309.9 Q191.0,297.0 190.6,295.0 Q190.1,293.0 185.6,282.5 Q181.0,272.0 169.8,243.0 Q158.6,214.0 157.3,205.0 Q156.0,196.0 156.5,174.0 Q157.0,152.0 155.6,145.5 Q154.1,139.0 152.7,136.6 Q151.3,134.3 149.6,133.0 Q148.0,131.7 145.0,130.7 Q142.0,129.7 136.5,128.9 Q131.0,128.0 129.5,126.5 Q128.0,125.0 127.5,123.0 Q127.0,121.0 128.1,119.2 Q129.1,117.4 133.1,117.5 Q137.0,117.6 139.8,115.8 Q142.6,114.0 146.1,108.5 Q149.6,103.0 151.0,98.4 Q152.4,93.9 157.7,92.9 Q163.0,92.0 164.9,91.1 Q166.9,90.1 167.9,89.0 Q169.0,87.9 169.3,85.4 Q169.6,83.0 167.3,78.5 Q165.0,74.0 165.5,70.0 Q166.0,66.0 165.8,64.0 Q165.6,62.0 164.6,59.5 Q163.7,57.0 161.2,53.5 Q158.7,50.0 156.0,44.5 Q153.3,39.0 150.6,36.7 Q148.0,34.4 143.4,33.0 Q138.9,31.6 137.4,26.3 Q136.0,21.0 134.9,19.6 Q133.9,18.3 132.4,17.4 Z"/>
+<g clip-path="url(#clipB)">
+<path d="M132.4,17.4 Q131.0,16.6 128.5,16.4 Q126.0,16.1 123.9,17.6 Q121.9,19.0 121.6,20.5 Q121.4,22.0 122.6,25.0 Q123.7,28.0 123.1,29.1 Q122.6,30.1 117.8,30.8 Q113.0,31.4 110.0,32.6 Q107.0,33.7 97.0,41.5 Q87.0,49.3 83.0,50.9 Q79.0,52.4 74.0,53.3 Q69.0,54.1 67.6,55.1 Q66.1,56.1 64.9,58.1 Q63.7,60.0 63.4,62.0 Q63.0,64.0 63.8,66.5 Q64.6,69.0 65.8,70.2 Q67.0,71.4 69.8,73.0 Q72.6,74.6 73.1,75.8 Q73.7,77.0 70.6,81.5 Q67.6,86.0 67.3,88.0 Q67.0,90.0 67.5,92.0 Q68.0,94.0 69.5,95.7 Q71.0,97.4 74.6,98.9 Q78.1,100.4 79.1,104.1 Q80.0,107.7 82.8,109.6 Q85.6,111.6 87.1,114.6 Q88.6,117.6 91.1,119.1 Q93.6,120.7 94.1,121.9 Q94.7,123.0 93.4,125.1 Q92.0,127.1 83.0,132.2 Q74.0,137.3 70.7,140.1 Q67.4,143.0 64.3,149.0 Q61.1,155.0 58.8,162.5 Q56.4,170.0 48.5,201.0 Q40.6,232.0 39.8,236.5 Q39.0,241.0 39.0,250.5 Q39.0,260.0 38.5,263.5 Q38.0,267.0 38.2,295.3 Q38.4,323.6 39.3,324.2 Q40.1,324.9 49.4,324.7 Q58.6,324.6 59.2,323.7 Q59.9,322.9 59.9,309.4 Q60.0,296.0 57.6,290.5 Q55.1,285.0 55.5,280.5 Q55.9,276.0 60.1,259.5 Q64.3,243.0 65.9,230.5 Q67.4,218.0 70.9,209.0 Q74.3,200.0 76.1,198.6 Q78.0,197.1 79.6,197.8 Q81.3,198.4 81.9,199.7 Q82.6,201.0 84.9,211.5 Q87.1,222.0 88.1,230.0 Q89.0,238.0 86.5,246.5 Q84.0,255.0 80.0,263.0 Q76.0,271.0 74.2,279.0 Q72.4,287.0 71.7,292.0 Q71.0,297.0 71.0,309.5 Q71.0,322.0 71.4,323.1 Q71.9,324.1 72.9,324.6 Q74.0,325.0 131.8,324.8 Q189.6,324.6 190.2,323.7 Q190.9,322.9 190.9,309.9 Q191.0,297.0 190.6,295.0 Q190.1,293.0 185.6,282.5 Q181.0,272.0 169.8,243.0 Q158.6,214.0 157.3,205.0 Q156.0,196.0 156.5,174.0 Q157.0,152.0 155.6,145.5 Q154.1,139.0 152.7,136.6 Q151.3,134.3 149.6,133.0 Q148.0,131.7 145.0,130.7 Q142.0,129.7 136.5,128.9 Q131.0,128.0 129.5,126.5 Q128.0,125.0 127.5,123.0 Q127.0,121.0 128.1,119.2 Q129.1,117.4 133.1,117.5 Q137.0,117.6 139.8,115.8 Q142.6,114.0 146.1,108.5 Q149.6,103.0 151.0,98.4 Q152.4,93.9 157.7,92.9 Q163.0,92.0 164.9,91.1 Q166.9,90.1 167.9,89.0 Q169.0,87.9 169.3,85.4 Q169.6,83.0 167.3,78.5 Q165.0,74.0 165.5,70.0 Q166.0,66.0 165.8,64.0 Q165.6,62.0 164.6,59.5 Q163.7,57.0 161.2,53.5 Q158.7,50.0 156.0,44.5 Q153.3,39.0 150.6,36.7 Q148.0,34.4 143.4,33.0 Q138.9,31.6 137.4,26.3 Q136.0,21.0 134.9,19.6 Q133.9,18.3 132.4,17.4 Z" fill="none" class="bm-shade" filter="url(#soft)"/>
+<path class="bm-zone" d="M45,150.0 Q106.0,168.0 167,150.0 L167,204.0 Q106.0,222.0 45,204.0 Z"/><path class="bm-cyl" d="M45,150.0 Q106.0,168.0 167,150.0 L167,204.0 Q106.0,222.0 45,204.0 Z" fill="url(#cyl)"/>
+<path class="bm-band-alt" d="M51,172.5 Q105.0,188.5 159,172.5 L159,183.5 Q105.0,199.5 51,183.5 Z"/><path class="bm-cyl" d="M51,172.5 Q105.0,188.5 159,172.5 L159,183.5 Q105.0,199.5 51,183.5 Z" fill="url(#cyl)"/>
+<path class="bm-band-alt" d="M73,259.5 Q128.0,275.5 183,259.5 L183,270.5 Q128.0,286.5 73,270.5 Z"/><path class="bm-cyl" d="M73,259.5 Q128.0,275.5 183,259.5 L183,270.5 Q128.0,286.5 73,270.5 Z" fill="url(#cyl)"/>
+</g>
+<rect class="bm-trk-alt" x="98.0" y="177" width="14" height="18" rx="3"/>
+<rect class="bm-trk-alt" x="121.0" y="264" width="14" height="18" rx="3"/>
+<path class="bm-outline" d="M132.4,17.4 Q131.0,16.6 128.5,16.4 Q126.0,16.1 123.9,17.6 Q121.9,19.0 121.6,20.5 Q121.4,22.0 122.6,25.0 Q123.7,28.0 123.1,29.1 Q122.6,30.1 117.8,30.8 Q113.0,31.4 110.0,32.6 Q107.0,33.7 97.0,41.5 Q87.0,49.3 83.0,50.9 Q79.0,52.4 74.0,53.3 Q69.0,54.1 67.6,55.1 Q66.1,56.1 64.9,58.1 Q63.7,60.0 63.4,62.0 Q63.0,64.0 63.8,66.5 Q64.6,69.0 65.8,70.2 Q67.0,71.4 69.8,73.0 Q72.6,74.6 73.1,75.8 Q73.7,77.0 70.6,81.5 Q67.6,86.0 67.3,88.0 Q67.0,90.0 67.5,92.0 Q68.0,94.0 69.5,95.7 Q71.0,97.4 74.6,98.9 Q78.1,100.4 79.1,104.1 Q80.0,107.7 82.8,109.6 Q85.6,111.6 87.1,114.6 Q88.6,117.6 91.1,119.1 Q93.6,120.7 94.1,121.9 Q94.7,123.0 93.4,125.1 Q92.0,127.1 83.0,132.2 Q74.0,137.3 70.7,140.1 Q67.4,143.0 64.3,149.0 Q61.1,155.0 58.8,162.5 Q56.4,170.0 48.5,201.0 Q40.6,232.0 39.8,236.5 Q39.0,241.0 39.0,250.5 Q39.0,260.0 38.5,263.5 Q38.0,267.0 38.2,295.3 Q38.4,323.6 39.3,324.2 Q40.1,324.9 49.4,324.7 Q58.6,324.6 59.2,323.7 Q59.9,322.9 59.9,309.4 Q60.0,296.0 57.6,290.5 Q55.1,285.0 55.5,280.5 Q55.9,276.0 60.1,259.5 Q64.3,243.0 65.9,230.5 Q67.4,218.0 70.9,209.0 Q74.3,200.0 76.1,198.6 Q78.0,197.1 79.6,197.8 Q81.3,198.4 81.9,199.7 Q82.6,201.0 84.9,211.5 Q87.1,222.0 88.1,230.0 Q89.0,238.0 86.5,246.5 Q84.0,255.0 80.0,263.0 Q76.0,271.0 74.2,279.0 Q72.4,287.0 71.7,292.0 Q71.0,297.0 71.0,309.5 Q71.0,322.0 71.4,323.1 Q71.9,324.1 72.9,324.6 Q74.0,325.0 131.8,324.8 Q189.6,324.6 190.2,323.7 Q190.9,322.9 190.9,309.9 Q191.0,297.0 190.6,295.0 Q190.1,293.0 185.6,282.5 Q181.0,272.0 169.8,243.0 Q158.6,214.0 157.3,205.0 Q156.0,196.0 156.5,174.0 Q157.0,152.0 155.6,145.5 Q154.1,139.0 152.7,136.6 Q151.3,134.3 149.6,133.0 Q148.0,131.7 145.0,130.7 Q142.0,129.7 136.5,128.9 Q131.0,128.0 129.5,126.5 Q128.0,125.0 127.5,123.0 Q127.0,121.0 128.1,119.2 Q129.1,117.4 133.1,117.5 Q137.0,117.6 139.8,115.8 Q142.6,114.0 146.1,108.5 Q149.6,103.0 151.0,98.4 Q152.4,93.9 157.7,92.9 Q163.0,92.0 164.9,91.1 Q166.9,90.1 167.9,89.0 Q169.0,87.9 169.3,85.4 Q169.6,83.0 167.3,78.5 Q165.0,74.0 165.5,70.0 Q166.0,66.0 165.8,64.0 Q165.6,62.0 164.6,59.5 Q163.7,57.0 161.2,53.5 Q158.7,50.0 156.0,44.5 Q153.3,39.0 150.6,36.7 Q148.0,34.4 143.4,33.0 Q138.9,31.6 137.4,26.3 Q136.0,21.0 134.9,19.6 Q133.9,18.3 132.4,17.4 Z"/></g>
+</g>
+<rect x="404" y="40" width="236" height="278.0" rx="16" fill="url(#winfade)"/>
+<rect class="bm-win-stroke" x="404" y="40" width="236" height="278.0" rx="16"/>
+<line class="bm-lead" x1="46" y1="188.2" x2="146.2" y2="188.2"/><circle class="bm-num" cx="46" cy="188.2" r="12"/><text class="bm-numt" x="46" y="192.7" text-anchor="middle">1</text>
+<line class="bm-lead" x1="46" y1="225.0" x2="132.4" y2="225.0"/><circle class="bm-num" cx="46" cy="225.0" r="12"/><text class="bm-numt" x="46" y="229.5" text-anchor="middle">2</text>
+<line class="bm-lead" x1="46" y1="248.0" x2="165.5" y2="248.0"/><circle class="bm-num" cx="46" cy="248.0" r="12"/><text class="bm-numt" x="46" y="252.5" text-anchor="middle">4</text>
+<line class="bm-lead" x1="46" y1="273.8" x2="154.4" y2="273.8"/><circle class="bm-num" cx="46" cy="273.8" r="12"/><text class="bm-numt" x="46" y="278.3" text-anchor="middle">5</text>
+<line class="bm-lead" x1="46" y1="298.6" x2="119.5" y2="298.6"/><circle class="bm-num" cx="46" cy="298.6" r="12"/><text class="bm-numt" x="46" y="303.1" text-anchor="middle">3</text>
+<line class="bm-lead" x1="46" y1="390.6" x2="155.4" y2="390.6"/><circle class="bm-num" cx="46" cy="390.6" r="12"/><text class="bm-numt" x="46" y="395.1" text-anchor="middle">6</text>
+<line class="bm-lead" x1="46" y1="506.6" x2="160.0" y2="506.6"/><circle class="bm-num" cx="46" cy="506.6" r="12"/><text class="bm-numt" x="46" y="511.1" text-anchor="middle">7</text>
+<line class="bm-lead" x1="46" y1="550.7" x2="160.9" y2="550.7"/><circle class="bm-num" cx="46" cy="550.7" r="12"/><text class="bm-numt" x="46" y="555.2" text-anchor="middle">8</text>
+<line class="bm-lead" x1="676" y1="208.0" x2="565.0" y2="208.0"/><circle class="bm-num" cx="676" cy="208.0" r="12"/><text class="bm-numt" x="676" y="212.5" text-anchor="middle">9</text>
+<line class="bm-lead" x1="676" y1="295.0" x2="589.0" y2="295.0"/><circle class="bm-num" cx="676" cy="295.0" r="12"/><text class="bm-numt" x="676" y="299.5" text-anchor="middle">9</text>
+<text class="bm-note-b" x="522" y="352" text-anchor="middle">9 · Спина</text>
+<text class="bm-note" x="522" y="374" text-anchor="middle">Трекеры груди и таза можно</text>
+<text class="bm-note" x="522" y="392" text-anchor="middle">носить на спине. На точность</text>
+<text class="bm-note" x="522" y="410" text-anchor="middle">это не влияет, выбирайте по удобству.</text>
+</svg>
+    </div>
+    <figcaption style="text-align:center">Силуэт и места крепления взяты из руководства SlimeVR.</figcaption>
+    <div class="map-legend">
+      <span><i class="lg-rec"></i>Рекомендуемое место</span>
+      <span><i class="lg-alt"></i>Можно и здесь</span>
+      <span><i class="lg-zone"></i>Допустимая зона</span>
+    </div>
+  </figure>
+  <div class="place-grid">
+    <div class="place"><b>1</b><div><strong>Грудь</strong><span>Чем выше на груди, тем лучше.</span></div></div>
+    <div class="place"><b>2</b><div><strong>Плечи</strong><span>На плече, между локтем и плечевым суставом.</span></div></div>
+    <div class="place"><b>3</b><div><strong>Предплечья</strong><span>Опустите руки: трекер на предплечье, ближе к запястью.</span></div></div>
+    <div class="place"><b>4</b><div><strong>Талия</strong><span>На уровне пояса.</span></div></div>
+    <div class="place"><b>5</b><div><strong>Таз</strong><span>Спереди или сзади, как удобнее.</span></div></div>
+    <div class="place"><b>6</b><div><strong>Бёдра</strong><span>Чем ниже, ближе к колену, тем лучше. Спереди или сбоку.</span></div></div>
+    <div class="place"><b>7</b><div><strong>Голени</strong><span>Лучше сбоку от ноги, выше лодыжки.</span></div></div>
+    <div class="place"><b>8</b><div><strong>Стопы</strong><span>Ближе к центру стопы, на самой плоской части.</span></div></div>
+    <div class="place"><b>9</b><div><strong>Спина</strong><span>Трекеры груди и таза можно носить на спине. На точность это не влияет, выбирайте по удобству.</span></div></div>
+  </div>
+  <ul class="checklist">
+    <li><span><strong>Все трекеры смотрят стрелкой вверх</strong>, и все одинаково. Проверьте стрелочки на корпусах.</span></li>
+    <li><span>Ремешки затянуты плотно: трекер не болтается и не проворачивается.</span></li>
+    <li><span><strong>Запомните</strong>, где на каждой части тела стоит трекер: спереди, сзади, слева или справа. Это понадобится на шаге 9.</span></li>
+  </ul>
+  <div class="tip"><b>Пробуйте разные варианты</b><p>Идеальное место у всех своё. Если трекинг не нравится, попробуйте сдвинуть трекер выше или ниже, спереди или сбоку, и каждый раз заново пройдите настройку на шаге 9. Часто небольшой сдвиг заметно улучшает результат.</p></div>
+  <p class="next">Трекеры надеты? Наденьте шлем и переходите к шагу 9</p>
+</section>
+
+<!-- ШАГ 9 -->
+<section class="step" id="s9">
+  <div class="step-head"><div class="num">9</div><div><h2>Настройка в SlimeVR</h2><p>Шлем надет, SteamVR запущен</p></div><button type="button" class="done-toggle" data-done="s9" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p>Оставайтесь в SteamVR и запустите SlimeVR. Пройдите настройку <strong>полностью, по порядку</strong>, ничего не пропуская.</p>
+  <ol class="do">
+    <li><span><strong>Назначение трекеров.</strong> Укажите, какой трекер на какой части тела. Чтобы понять, какой где, потрясите трекер: в SlimeVR он подсветится.</span></li>
+    <li><span><strong>Расположение каждого трекера.</strong> Нажмите на трекер и выберите, где он стоит: <strong>спереди, сзади, слева или справа</strong>, ровно так, как он надет на вас. Трекеры на конце провода (ответвления) проверьте особенно внимательно.</span></li>
+    <li><span><strong>Калибровка крепления</strong> (Mounting calibration). Обязательно, по подсказкам на экране.</span></li>
+    <li><span><strong>Пропорции тела.</strong> Сначала попробуйте автоматическую калибровку: SlimeVR сам подстроит длину костей.</span></li>
+    <li><span>Пройдите калибровку крепления и пропорций тела <strong>ещё раз</strong>, и лучше несколько раз подряд.</span></li>
+  </ol>
+  <figure>
+    <svg viewBox="0 0 360 230" role="img" aria-label="Выбор расположения трекера: спереди, справа, сзади, слева" style="max-width:360px;margin:0 auto">
+      <circle cx="180" cy="118" r="86" class="svg-box" stroke-width="2"/>
+      <line x1="119" y1="57" x2="241" y2="179" class="svg-line" stroke-width="1.5"/><line x1="241" y1="57" x2="119" y2="179" class="svg-line" stroke-width="1.5"/>
+      <ellipse cx="180" cy="118" rx="16" ry="24" class="svg-acc"/>
+      <text x="180" y="22" text-anchor="middle" class="svg-text" style="font-weight:700">Спереди</text>
+      <text x="180" y="224" text-anchor="middle" class="svg-text" style="font-weight:700">Сзади</text>
+      <text x="282" y="122" class="svg-text" style="font-weight:700">Справа</text>
+      <text x="78" y="122" text-anchor="end" class="svg-text" style="font-weight:700">Слева</text>
+    </svg>
+    <figcaption>Так выглядит выбор расположения в настройках трекера. Укажите сторону, на которой трекер реально закреплён.</figcaption>
+  </figure>
+  <div class="tip"><b>Пробуйте разные варианты</b><p>Если скелет ведёт себя странно, попробуйте всё: другое расположение трекеров на теле, другое значение «спереди/сбоку» в настройках, автоматическую калибровку пропорций несколько раз подряд или <strong>ручную настройку скелета</strong>, где длину костей выставляете сами. Сравнивайте и оставляйте то, что работает лучше.</p></div>
+  <p class="next">Скелет в SlimeVR повторяет ваши движения? Переходите к шагу 10</p>
+</section>
+
+<!-- ШАГ 10 -->
+<section class="step" id="s10">
+  <div class="step-head"><div class="num">10</div><div><h2>Калибровка в VRChat</h2><p>При первом заходе</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <ol class="do">
+    <li><span>Не выключая SlimeVR, зайдите в <strong>VRChat</strong>.</span></li>
+    <li><span>Откройте <strong>настройки VRChat</strong>, встаньте ровно, держите голову прямо и запустите <strong>автоматическую калибровку роста</strong>. VRChat сам выставит ваш рост.</span></li>
+    <li><span>Когда VRChat предложит откалибровать полное тело, встаньте прямо в ту же позу, что и аватар, и подтвердите. Так трекеры привяжутся к аватару.</span></li>
+  </ol>
+  <div class="tip"><b>Настройки VRChat, которые советует SlimeVR</b><p>Диапазон калибровки IK (IK calibration range) поставьте <strong>0.2</strong>. Выключите <strong>Legacy Calibration</strong> и <strong>Legacy IK</strong>.</p></div>
+  <div class="ok"><b>Готово</b><p>Трекеры откалиброваны и настроены. Калибровку по осям и температурную больше делать не нужно. Перед каждой игрой выполняйте короткий порядок ниже.</p></div>
+</section>
+
+<!-- ПЕРЕД ИГРОЙ -->
+<section class="step" id="every">
+  <div class="step-head"><div class="num">▶</div><div><h2>Каждый раз перед игрой</h2><p>Только в таком порядке</p></div></div>
+  <div class="warn"><b>Сначала про холод</b><p>Если трекер включить, когда он холоднее 15 °C (лежал у открытого окна, на холодном полу, его принесли с мороза), он решит, что началась новая температурная калибровка. Сохранённая калибровка из памяти не сотрётся, но <strong>до перезагрузки трекер перестанет её использовать</strong> и будет дрифтить сильнее. Поэтому перед включением трекеры должны полежать в тёплой комнате. Если включили холодными: выключите, дайте согреться до комнатной температуры и включите снова. Включённые трекеры тоже не оставляйте остывать на холодном полу или у открытого окна.</p></div>
+  <ol class="do">
+    <li><span>Запустите <strong>SlimeVR</strong> и включите все трекеры.</span></li>
+    <li><span>Положите трекеры <strong>ровно на пол</strong> (или на стол) и не трогайте <strong>минимум 15 минут, в идеале 30</strong>. За это время они прогреются и стабилизируются.</span></li>
+    <li><span>Наденьте трекеры и шлем.</span></li>
+    <li><span>Встаньте ровно: <strong>стопы на ширине плеч</strong>, спина прямая, смотрите вперёд. Нажмите <strong>полный сброс</strong> (Full Reset).</span></li>
+    <li><span>Сделайте <strong>калибровку крепления в позе лыжника</strong> (Mounting calibration): чуть согните колени и наклонитесь вперёд, как показывает SlimeVR.</span></li>
+    <li><span>Если есть трекеры на стопах, сделайте <strong>калибровку стоп</strong> (сброс крепления стоп).</span></li>
+    <li><span>Заходите в игру. В <strong>VRChat</strong> сделайте калибровку полного тела, то есть привязку трекеров к аватару.</span></li>
+  </ol>
+  <div class="tip"><b>Во время игры</b><p>Если ноги или корпус постепенно «уехали» в сторону, встаньте ровно и сделайте <strong>быстрый сброс</strong> (Yaw Reset). Для IMU‑трекеров это нормально. Удобно назначить на него сочетание клавиш в настройках SlimeVR.</p></div>
+</section>
+
+<!-- ПРОБЛЕМЫ -->
+<section class="step" id="help">
+  <div class="step-head"><div class="num" style="font-size:22px">?</div><div><h2>Частые проблемы</h2><p>Что делать, если что‑то не так</p></div></div>
+
+  <h3>Прошивка и подключение</h3>
+  <details>
+    <summary>Компьютер не видит трекер по USB</summary>
+    <div><p>Проверьте, что кабель с передачей данных и подключён к плате Wemos, а не к плате зарядки. Установите драйвер CH340 (CH341). Закройте программы, которые могут занимать порт: Serial Console в SlimeVR, Cura, VS Code.</p><p><strong>Если ничего не помогает, проверьте саму Windows.</strong> На урезанных неофициальных сборках («Compact», «Lite» и подобных) часто вырезаны компоненты, без которых драйвер USB не ставится правильно. Был случай: перепробовали много разных драйверов, и ни один не помог. Заработало только после установки официальной лицензионной Windows вместо сборки Windows 10 Compact.</p></div>
+  </details>
+  <details>
+    <summary>Трекер не подключается к Wi‑Fi</summary>
+    <div><p>Нужна сеть <strong>2.4 ГГц</strong>: 5 ГГц трекеры не поддерживают. Защита WPA2, не WPA3. Каналы 1–11. Имя сети лучше из латинских букв и цифр. Не используйте гостевую сеть. Если меняли роутер или пароль, подключите трекер по USB и задайте Wi‑Fi заново в SlimeVR или на сайте прошивки.</p></div>
+  </details>
+  <details>
+    <summary>Трекер в Wi‑Fi, но не появляется в SlimeVR</summary>
+    <div><p>Запущен ли только один SlimeVR? Разрешите SlimeVR в брандмауэре Windows для частных и общественных сетей (в папке SlimeVR есть файл <code>firewall.bat</code>, запустите его от имени администратора). Сделайте сеть «частной» и включите сетевое обнаружение. Отключите VPN.</p></div>
+  </details>
+  <details>
+    <summary>В консоли ошибка датчика: «failed to initialize» или «No I2C devices found»</summary>
+    <div><p>В прошивке выбран не тот датчик или не та плата, либо перепутаны провода SDA и SCL (D2 и D1), либо плохая пайка. Проверьте настройки на сайте прошивки и пайку контактов.</p></div>
+  </details>
+  <details>
+    <summary>Консоль пишет «Temperature calibration not supported for IMU BMI160»</summary>
+    <div><p>На трекере стоит прошивка новее v0.5.4, в ней температурной калибровки для BMI160 нет. Установите v0.5.4 (шаг 3) и откалибруйте трекер заново.</p></div>
+  </details>
+  <details>
+    <summary>SteamVR не видит трекеры</summary>
+    <div><p>Установите SlimeVR официальным установщиком, чтобы поставился драйвер для SteamVR. В SteamVR включите дополнение SlimeVR: Настройки → Запуск/выключение → Управление дополнениями. В настройках SlimeVR включите трекеры для SteamVR.</p></div>
+  </details>
+
+  <h3>Трекинг</h3>
+  <details>
+    <summary>Трекер сильно дрифтит</summary>
+    <div><p>Проверьте, что после включения трекеры лежали неподвижно и прогрелись, и что их не включали холодными (смотрите «Каждый раз перед игрой»). Сделайте полный сброс. Если дрифт остался, проверьте трекер на TCAL Checker и при плохом результате повторите температурную калибровку.</p></div>
+  </details>
+  <details>
+    <summary>Кость скелета крутится в обратную сторону</summary>
+    <div><p>Почти всегда неправильно выбрано расположение трекера (спереди, сзади, слева, справа) или трекер надет стрелкой не вверх. Если всё верно, проверьте IMU Rotation в прошивке (шаг 3.1). Затем заново пройдите калибровку крепления.</p></div>
+  </details>
+  <details>
+    <summary>Движения слишком сильные или почти не меняются при сгибании</summary>
+    <div><p>Проверьте, на ту ли часть тела назначен трекер и плотно ли он сидит. Трекеры бёдер должны быть выше колена, трекеры голеней на голени, а не на стопе. Затем несколько раз пройдите калибровку крепления и пропорций тела.</p></div>
+  </details>
+  <details>
+    <summary>Правая и левая стороны ведут себя по‑разному</summary>
+    <div><p>Сравните расположение парных трекеров: например, на одной ноге выбрано «спереди», а на другой «сбоку». Настройка должна совпадать с тем, как трекер реально надет. Если всё совпадает, а разница осталась, заново откалибруйте отстающий трекер.</p></div>
+  </details>
+  <details>
+    <summary>Ноги скрещиваются, когда садишься</summary>
+    <div><p>При калибровке крепления держите стопы на расстоянии хотя бы 10 см друг от друга. Попробуйте закрепить трекеры бёдер чуть сбоку или на разной высоте, сбросьте и заново откалибруйте пропорции тела.</p></div>
+  </details>
+  <details>
+    <summary>Ноги проваливаются в пол или скользят</summary>
+    <div><p>Заново откалибруйте пол (шаг 7) и проверьте, что рост указан одинаково в SlimeVR и в игре. В настройках SlimeVR включите «Коррекцию скольжения» (Skating correction) и «Пол» (Floor clip). Затем снова пройдите автоматическую калибровку.</p></div>
+  </details>
+  <details>
+    <summary>Стопы повёрнуты неправильно</summary>
+    <div><p>После калибровки крепления сделайте калибровку стоп. Трекер стопы должен лежать ровно, без наклона вбок.</p></div>
+  </details>
+  <details>
+    <summary>Аватар в VRChat парит над полом</summary>
+    <div><p>Заново настройте зону и пол в шлеме, проверьте, что рост совпадает в SlimeVR и VRChat. На Quest выключите режим «Использовать лёжа» (Use in a lying position).</p></div>
+  </details>
+  <details>
+    <summary>Трекеры падали или куплены давно</summary>
+    <div><p>После сильного удара датчик внутри мог сместиться. Откройте корпус и проверьте, что модуль сидит ровно и ничего не отпаялось. Затем откалибруйте трекер заново.</p></div>
+  </details>
+  <details>
+    <summary>Светодиод трекера мигает</summary>
+    <div><p>Это нормально: количеством вспышек трекер показывает своё состояние, например что он ищет Wi‑Fi или сервер. Если трекер при этом нормально работает в SlimeVR, ничего делать не нужно.</p></div>
+  </details>
+
+  <div class="card" style="margin-top:6px">
+    <h3 style="margin-top:0">Когда калибровать заново</h3>
+    <p>Калибровка по осям и температурная сохраняются в трекере и делаются <strong>один раз</strong>. Повторять их нужно, только если:</p>
+    <ul class="plain">
+      <li>прошивку обновили или переустановили: перед этим сотрите данные командой <code>FRST</code> (шаг 3.2);</li>
+      <li>заменили датчик или переставили ответвление на другой трекер;</li>
+      <li>трекер сильно ударился и после этого начал дрифтить;</li>
+      <li>калибровку сделали плохо: трекер двигали, торопились или калибровали непрогретым.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="author" aria-label="Автор гайда">
+  <div class="author-mark" aria-hidden="true">S</div>
+  <div class="author-info">
+    <span class="author-kicker">Автор гайда</span>
+    <b class="author-name">Skrebi</b>
+    <span class="author-text">Вопросы, идеи и найденные ошибки пишите в Discord.</span>
+  </div>
+  <button type="button" class="author-dc" id="dc-copy" title="Скопировать ник">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.3 5.3A16.7 16.7 0 0 0 15.2 4l-.5 1a15.5 15.5 0 0 0-5.4 0l-.5-1a16.6 16.6 0 0 0-4.1 1.3C2.1 9.2 1.4 13 1.8 16.7a16.8 16.8 0 0 0 5 2.6l1.1-1.8a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 10.8 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.8a16.7 16.7 0 0 0 5-2.6c.5-4.3-.8-8-3.9-11.4ZM8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>
+    <span class="dc-nick">skrebi_vishe_</span>
+    <span class="dc-hint" id="dc-hint">Скопировать</span>
+  </button>
+</div>
+
+<footer>
+  <p>Источники: <a href="https://docs.slimevr.dev/server/imu-calibration.html">документация SlimeVR по калибровке IMU</a>, <a href="https://docs.slimevr.dev/common-issues.html">частые проблемы SlimeVR</a>, исходный код прошивки <a href="https://github.com/SlimeVR/SlimeVR-Tracker-ESP">SlimeVR‑Tracker‑ESP</a> (сообщения консоли взяты из v0.5.4), <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>, корпус <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a>, видео BANANKA Group, опыт сообщества.</p>
+  <p>Инструкция составлена сообществом (автор: Skrebi, Discord: skrebi_vishe_) и не является официальным документом SlimeVR.</p>
+</footer>
+
+</div>
+</div><!--layout-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/hyperion.js"></script>
+<script src="js/scenes.js"></script>
+<script src="js/dl.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>

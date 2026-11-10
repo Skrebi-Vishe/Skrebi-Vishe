@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/"><img src=".github/banner.svg" alt="Настройка трекеров SlimeVR — гайд от Skrebi" width="100%"></a>
+  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/"><img src=".github/banner.svg" alt="Настройка трекеров SlimeVR — гайд от Skrebi" width="100%"></a>
 </p>
 
 <p align="center">
-  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/"><img alt="Открыть гайд" src="https://img.shields.io/badge/%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20%D0%B3%D0%B0%D0%B9%D0%B4-7c4dff?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
+  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/"><img alt="Открыть гайд" src="https://img.shields.io/badge/%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20%D0%B3%D0%B0%D0%B9%D0%B4-7c4dff?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
   &nbsp;
   <img alt="Discord: skrebi_vishe_" src="https://img.shields.io/badge/Discord-skrebi__vishe__-5865F2?style=for-the-badge&logo=discord&logoColor=white">
 </p>
@@ -14,7 +14,7 @@
 
 ## Гайд «Настройка трекеров SlimeVR с нуля»
 
-**[→ Открыть гайд](https://skrebi-vishe.github.io/Skrebi-Vishe/)** · работает в браузере на компьютере и телефоне.
+**[→ Открыть гайд](https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/)** · работает в браузере на компьютере и телефоне.
 
 **Для кого:** трекеры SlimeVR первого поколения на плате **Wemos D1 Mini (ESP8266)** с датчиком **BMI160**. Только у BMI160 есть температурная калибровка, ради которой и написан гайд.
 
@@ -38,8 +38,9 @@
 ## Что в репозитории
 
 ```
-docs/index.html   — сам гайд (его показывает GitHub Pages)
-.github/          — оформление этой страницы
+docs/Slime-VR-setup/   — гайд: index.html, css/, js/, img/, models/ и свой README
+docs/index.html        — переадресация на гайд
+.github/               — оформление этой страницы
 ```
 
 ## Связь
