@@ -39,7 +39,6 @@
 
 ```
 docs/Slime-VR-setup/   — гайд: index.html, css/, js/, img/, models/ и свой README
-docs/index.html        — переадресация на гайд
 .github/               — оформление этой страницы
 ```
 
