@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/"><img src=".github/banner.svg" alt="Настройка трекеров SlimeVR — гайд от Скрэби" width="100%"></a>
+  <a href="https://skrebi-vishe.github.io/Skrebi-Vishe/"><img src=".github/banner.svg" alt="Настройка трекеров SlimeVR — гайд от Skrebi" width="100%"></a>
 </p>
 
 <p align="center">
@@ -8,7 +8,7 @@
   <img alt="Discord: skrebi_vishe_" src="https://img.shields.io/badge/Discord-skrebi__vishe__-5865F2?style=for-the-badge&logo=discord&logoColor=white">
 </p>
 
-# Привет, я Скрэби
+# Привет, я Skrebi
 
 Собираю и настраиваю трекеры для полного отслеживания тела в VR (**SlimeVR**) и помогаю другим сделать то же самое. Здесь лежит мой гайд, по которому можно с нуля откалибровать старые DIY‑трекеры и получить точный трекинг.
 
