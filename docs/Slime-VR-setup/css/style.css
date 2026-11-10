@@ -158,6 +158,11 @@ table.dims td,table.dims th{text-align:center} table.dims td:first-child{text-al
 .bodymap{max-width:720px;margin:0 auto}
 .bm-title{font-family:var(--display);font-size:15px;font-weight:500;fill:var(--ink)}
 .bm-body{fill:var(--accent-soft)}
+.mount-wheel .mw-q{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.mount-wheel .mw-disc{fill:#3b4b5f}
+.mount-wheel .mw-div line{stroke:#0d1117;stroke-width:5;stroke-linecap:butt}
+.mount-wheel .mw-foot{fill:#a9b6c6}
+.mount-wheel .mw-lab{font-family:var(--display);font-size:17px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px}
 .bm-ink{fill:var(--accent);fill-opacity:.9}
 .bm-glow{fill:var(--accent);opacity:.25}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bm-glow{opacity:.55}}
