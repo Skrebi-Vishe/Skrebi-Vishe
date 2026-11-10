@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1fc22f84">
-<script>window.GUIDE_VERSION="ec6c4043f6";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<link rel="stylesheet" href="css/style.css?v=686ff248">
+<script>window.GUIDE_VERSION="45a6f4ef97";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -52,16 +52,16 @@
 <div class="road" id="road">
   <h2 style="font-size:19px">Весь путь целиком</h2>
   <ol>
-    <li><a href="#s1"><span class="rn">1</span><span>Проверьте, подходят ли трекеры</span><span class="rt">2 мин</span></a></li>
-    <li><a href="#s2"><span class="rn">2</span><span>Подготовьте всё нужное</span><span class="rt">10 мин</span></a></li>
-    <li><a href="#s3"><span class="rn">3</span><span>Установите прошивку v0.5.4</span><span class="rt">5 мин на трекер</span></a></li>
+    <li><a href="#s1"><span class="rn">1</span><span>Проверка трекеров</span><span class="rt">2 мин</span></a></li>
+    <li><a href="#s2"><span class="rn">2</span><span>Подготовка</span><span class="rt">10 мин</span></a></li>
+    <li><a href="#s3"><span class="rn">3</span><span>Прошивка v0.5.4</span><span class="rt">5 мин</span></a></li>
     <li class="loop">
       <span class="loop-label">Для каждого трекера по очереди:</span>
       <a href="#s4"><span class="rn">4</span><span>Калибровка по осям</span><span class="rt">5 мин</span></a>
-      <a href="#s5"><span class="rn">5</span><span>Температурная калибровка</span><span class="rt">от 35 мин</span></a>
+      <a href="#s5"><span class="rn">5</span><span>Температурная</span><span class="rt">35+ мин</span></a>
       <a href="#s6"><span class="rn">6</span><span>Проверка калибровки</span><span class="rt">2 мин</span></a>
     </li>
-    <li><a href="#s7"><span class="rn">7</span><span>Пол в шлеме и SteamVR</span><span class="rt">5 мин</span></a></li>
+    <li><a href="#s7"><span class="rn">7</span><span>Пол и SteamVR</span><span class="rt">5 мин</span></a></li>
     <li><a href="#s8"><span class="rn">8</span><span>Наденьте трекеры</span><span class="rt">5 мин</span></a></li>
     <li><a href="#s9"><span class="rn">9</span><span>Настройка в SlimeVR</span><span class="rt">10 мин</span></a></li>
     <li><a href="#s10"><span class="rn">10</span><span>Калибровка в VRChat</span><span class="rt">2 мин</span></a></li>
@@ -152,9 +152,8 @@
 <!-- ШАГ 3 -->
 <section class="step" id="s3">
   <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
-  <div class="warn"><b>Почему именно v0.5.4</b><p>Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p></div>
   <div class="tip"><b>Можно пропустить</b><p>Если на шаге 1 вы увидели <strong>v0.5.4</strong>, этот шаг пропустите и переходите к шагу 4. Перепрошивать трекер на ту же версию не нужно.</p></div>
-  <div class="warn"><b>Прошивайте через сайт, а не через SlimeVR</b><p>Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
+  <div class="warn"><b>Важно</b><p><strong>Почему именно v0.5.4.</strong> Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
@@ -167,7 +166,7 @@
     </ol>
     <div class="photo-row">
       <figure><img src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
-      <figure><img src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
+      <figure><img class="contain" src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
     </div>
     <div class="tip"><b>Если модуль не похож ни на одну картинку</b><p>Бывают модули другой разводки. Выберите самое похожее значение, а после прошивки проверьте: наклоните трекер вперёд, и его 3D‑модель в SlimeVR тоже должна наклониться вперёд, а не вбок или назад. Если наклоняется не туда, перепрошейте с другим значением.</p></div>
   </div>
@@ -192,22 +191,29 @@
       <tbody>
         <tr class="must"><td>Firmware Version</td><td><strong>SlimeVR/v0.5.4</strong></td><td>Обязательно эта версия.</td></tr>
         <tr><td>Board</td><td><strong>Wemos D1 Mini</strong></td><td>Или ваша плата, если другая.</td></tr>
-        <tr><td>Advanced options</td><td>не трогать</td><td>SDA = D2, SCL = D1, LED Pin = 2, LED Inverted включено. Меняйте, только если трекер собран по другой схеме.</td></tr>
-        <tr><td>Swap IMU Addresses</td><td>выключено</td><td></td></tr>
         <tr class="must"><td>Primary IMU → IMU Type</td><td><strong>IMU_BMI160</strong></td><td>Основной датчик, галочка включена.</td></tr>
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>ваше число</strong></td><td>То, что вы определили в пункте 3.1.</td></tr>
-        <tr><td>Primary IMU → IMU INT Pin</td><td>D5</td><td>Как по умолчанию.</td></tr>
         <tr><td>Secondary IMU</td><td>по ситуации</td><td>Есть ответвление: включите галочку, IMU_BMI160 и его поворот. Нет ответвления: галочка выключена.</td></tr>
-        <tr><td>Battery Sense</td><td>как по умолчанию</td><td>BAT_EXTERNAL, 180 кОм, пин A0. Это стандартная схема DIY‑трекера.</td></tr>
-        <tr><td>Use 6 Axis</td><td>включено</td><td>У BMI160 нет магнитометра.</td></tr>
-        <tr><td>Optimize Updates, Compliance Mode</td><td>включено</td><td>Как по умолчанию.</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>включено</strong></td><td>Это и есть температурная калибровка. Без неё шаг 5 не сработает.</td></tr>
         <tr><td>BMI160 Tempcal Debug</td><td><strong>выключено</strong></td><td>Пояснение ниже.</td></tr>
-        <tr><td>BMI160 Use Senscal</td><td>как по умолчанию</td><td>Ничего дополнительно делать не нужно.</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>ваша сеть</strong></td><td>Только 2.4 ГГц, без WPA3. Регистр букв важен.</td></tr>
       </tbody>
     </table>
     </div>
+    <details>
+      <summary>Остальные поля: оставьте как есть</summary>
+      <div>
+        <p>Если сайт открыт по кнопке выше, эти поля уже заполнены правильно. Меняйте их, только если трекер собран по другой схеме.</p>
+        <ul class="plain">
+          <li><strong>Advanced options:</strong> SDA = D2, SCL = D1, LED Pin = 2, LED Inverted включено.</li>
+          <li><strong>Swap IMU Addresses:</strong> выключено.</li>
+          <li><strong>IMU INT Pin:</strong> D5 у основного датчика, D6 у ответвления.</li>
+          <li><strong>Battery Sense:</strong> BAT_EXTERNAL, 180 кОм, пин A0, стандартная схема DIY‑трекера.</li>
+          <li><strong>Use 6 Axis, Optimize Updates, Compliance Mode:</strong> включено. У BMI160 нет магнитометра.</li>
+          <li><strong>BMI160 Use Senscal:</strong> как по умолчанию, ничего делать не нужно.</li>
+        </ul>
+      </div>
+    </details>
     <ol class="do">
       <li><span>Убедитесь, что <strong>SlimeVR Server закрыт</strong>. Проверьте все поля по таблице и нажмите <strong>Flash to device</strong>.</span></li>
       <li><span>Браузер попросит выбрать порт: выберите порт трекера (обычно USB‑SERIAL CH340) и нажмите «Подключиться».</span></li>
@@ -227,7 +233,7 @@
 </section>
 
 <div class="loop-banner" style="margin-top:44px">
-  <b>Шаги 4, 5 и 6 делаются для одного трекера целиком</b>
+  <b>Цикл · шаги 4, 5 и 6 для каждого трекера</b>
   <p>Возьмите первый трекер и пройдите с ним шаги 4, 5 и 6. Когда он готов, возьмите следующий и снова начните с шага 4. Так по очереди со всеми трекерами.</p>
 </div>
 
@@ -316,9 +322,13 @@
     <figcaption>Шесть положений вживую, кадры из видео BANANKA Group. В каждом положении коробочка прижата к деревянному упору сзади.</figcaption>
   </figure>
 
-  <div class="tip"><b>Как укладывать кабель</b><p>Кабель не должен тянуть, приподнимать или сдвигать коробочку: иначе она стоит неровно, и калибровка получится неточной. В большинстве положений кабель просто выходит из выреза и свободно ложится на стол. Когда коробочка лежит вырезом вниз, аккуратно подогните кабель внутри выреза и выведите его через открытую сторону коробочки. Перед каждым поворотом оставляйте кабелю запас длины.</p></div>
-  <div class="tip"><b>Почему важно, как трекер лежит в коробочке</b><p>Прошивке важно, чтобы трекер побывал каждой из шести сторон вниз и при этом лежал ровно. Порядок сторон после первой ей не важен, но проще всего повторять за видео. Главное, чтобы трекер был приклеен <strong>ровно и параллельно стенкам</strong>: тогда грани коробки совпадают с осями датчика внутри корпуса, и калибровка получается точной.</p></div>
-  <div class="tip"><b>Если в консоли ничего не меняется</b><p>Трекер ждёт, пока его подвинут и снова оставят в покое. Если строка «Recorded» не появляется, проверьте, что коробочка стоит неподвижно и вы её не держите. Если случайно поставили коробочку на одну сторону дважды, калибровка получится неточной: переверните её вверх ногами, перезагрузите трекер и начните калибровку заново.</p></div>
+  <div class="tip tip-list"><b>Советы</b>
+    <dl>
+      <dt>Как укладывать кабель</dt><dd>Кабель не должен тянуть, приподнимать или сдвигать коробочку: иначе она стоит неровно, и калибровка получится неточной. В большинстве положений кабель просто выходит из выреза и свободно ложится на стол. Когда коробочка лежит вырезом вниз, аккуратно подогните кабель внутри выреза и выведите его через открытую сторону коробочки. Перед каждым поворотом оставляйте кабелю запас длины.</dd>
+      <dt>Почему важно, как трекер лежит в коробочке</dt><dd>Прошивке важно, чтобы трекер побывал каждой из шести сторон вниз и при этом лежал ровно. Порядок сторон после первой ей не важен, но проще всего повторять за видео. Главное, чтобы трекер был приклеен <strong>ровно и параллельно стенкам</strong>: тогда грани коробки совпадают с осями датчика внутри корпуса, и калибровка получается точной.</dd>
+      <dt>Если в консоли ничего не меняется</dt><dd>Трекер ждёт, пока его подвинут и снова оставят в покое. Если строка «Recorded» не появляется, проверьте, что коробочка стоит неподвижно и вы её не держите. Если случайно поставили коробочку на одну сторону дважды, калибровка получится неточной: переверните её вверх ногами, перезагрузите трекер и начните калибровку заново.</dd>
+    </dl>
+  </div>
   <p class="next">Увидели «Calibration data gathered»? Переходите к шагу 5 с этим же трекером</p>
 </section>
 
@@ -326,7 +336,7 @@
 <section class="step heat" id="s5">
   <div class="step-head"><div class="num">5</div><div><h2>Температурная калибровка</h2><p>Тот же трекер · от 35 минут · заметно уменьшает дрифт</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p>На теле BMI160 нагревается, и из‑за этого его показания «уплывают». Эта калибровка учит трекер поправлять это. Она <strong>сама начинается, когда датчик включён и холоднее 15 °C</strong>, и <strong>сама сохраняется, когда он нагреется выше 45 °C</strong>. Кнопки нажимать не нужно, нужно только правильно охладить и плавно нагреть трекер.</p>
-  <div class="ok"><b>Кабель не нужен</b><p>Эту калибровку можно делать без USB‑кабеля: трекер работает от своей батареи и передаёт температуру в SlimeVR по Wi‑Fi. Батарея должна быть заряжена. Результат потом проверите по кабелю на шаге 6.</p></div>
+  <div class="tip"><b>Кабель не нужен</b><p>Эту калибровку можно делать без USB‑кабеля: трекер работает от своей батареи и передаёт температуру в SlimeVR по Wi‑Fi. Батарея должна быть заряжена. Результат потом проверите по кабелю на шаге 6.</p></div>
   <figure>
     <div class="scroll-x">
     <svg viewBox="0 0 720 300" role="img" aria-label="График температуры трекера во время калибровки">
@@ -413,7 +423,7 @@
   </div>
   <div class="tip"><b>Если результат плохой</b><p>С этим же трекером повторите температурную калибровку (шаг 5) медленнее и плавнее, затем проверьте ещё раз. Калибровку по осям повторять не нужно.</p></div>
   <div class="loop-banner">
-    <b>Результат хороший?</b>
+    <b>Цикл · результат хороший?</b>
     <p>Этот трекер готов. Если остались неоткалиброванные трекеры, возьмите следующий и начните с шага 4. Когда готовы все, переходите к шагу 7.</p>
   </div>
 </section>
@@ -705,6 +715,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=d1ff6ef2"></script>
 <script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=eb4d476e"></script>
+<script src="js/nav.js?v=dfb542a4"></script>
 </body>
 </html>

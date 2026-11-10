@@ -31,7 +31,14 @@
     document.querySelectorAll('.toc a[data-step]').forEach(function (a) {
       if (a.dataset.step === id) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
     });
-    if (fabStep) fabStep.textContent = id ? (/^s\d+$/.test(id) ? 'Шаг ' + id.slice(1) + ' из 10 · ' : '') + TITLES[id] : 'Шаги';
+    if (fabStep) {
+      var num = id && /^s\d+$/.test(id) ? 'Шаг ' + id.slice(1) + '/10' : '';
+      var title = id ? TITLES[id] : 'Шаги';
+      fabStep.innerHTML = '';
+      if (num) { var a1 = document.createElement('span'); a1.className = 'fab-num'; a1.textContent = num; fabStep.appendChild(a1);
+        var s1 = document.createElement('span'); s1.className = 'fab-sep'; s1.textContent = ' · '; fabStep.appendChild(s1); }
+      var t1 = document.createElement('span'); t1.className = num ? 'fab-title' : ''; t1.textContent = title; fabStep.appendChild(t1);
+    }
   }
   function spy() {
     var y = window.innerHeight * 0.35, best = null;
