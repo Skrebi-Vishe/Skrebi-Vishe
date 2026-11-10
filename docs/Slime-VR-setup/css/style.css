@@ -158,11 +158,13 @@ table.dims td,table.dims th{text-align:center} table.dims td:first-child{text-al
 .bodymap{max-width:720px;margin:0 auto}
 .bm-title{font-family:var(--display);font-size:15px;font-weight:500;fill:var(--ink)}
 .bm-body{fill:var(--accent-soft)}
-.mount-wheel .mw-q{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
-.mount-wheel .mw-disc{fill:#3b4b5f}
-.mount-wheel .mw-div line{stroke:#0d1117;stroke-width:5;stroke-linecap:butt}
-.mount-wheel .mw-foot{fill:#a9b6c6}
-.mount-wheel .mw-lab{font-family:var(--display);font-size:17px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px}
+.mw-panel{background:rgb(0,5,9);border-radius:14px;padding:18px 12px 12px;max-width:420px;margin:0 auto}
+.mw-q{font-family:var(--body);font-weight:700;font-size:17px;line-height:1.3;color:#fff;text-align:center;margin:0 0 6px}
+.mount-wheel{display:block;width:100%}
+.mw-foot{fill:rgb(255,255,255)}
+.mw-slices{stroke:rgb(0,5,9);stroke-width:4}
+.mw-slice path{fill:rgb(61,99,129);opacity:.5}
+.mw-slice text{fill:#fff;stroke:#fff;stroke-width:1;font-family:var(--body);font-weight:700;font-size:16px}
 .bm-ink{fill:var(--accent);fill-opacity:.9}
 .bm-glow{fill:var(--accent);opacity:.25}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bm-glow{opacity:.55}}
