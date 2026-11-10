@@ -24,3 +24,7 @@
 (function(){var b=document.getElementById('dc-copy'),h=document.getElementById('dc-hint');if(!b)return;
 b.addEventListener('click',function(){var t='skrebi_vishe_';var ok=function(){h.textContent='Скопировано';setTimeout(function(){h.textContent='Скопировать ник';},1800);};
 try{navigator.clipboard.writeText(t).then(ok,function(){h.textContent='Ник: '+t;});}catch(e){h.textContent='Ник: '+t;}});})();
+
+(function(){var img=document.querySelector('.author-avatar');if(!img)return;
+var live='https://api.lanyard.rest/339711054256930828.png';
+var t=new Image();t.onload=function(){if(t.naturalWidth>0){img.src=t.src;}};t.src=live;})();
