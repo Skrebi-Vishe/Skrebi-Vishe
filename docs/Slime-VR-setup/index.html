@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=fc597695">
-<script>window.GUIDE_VERSION="43c20c3dab";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<link rel="stylesheet" href="css/style.css?v=c4774dde">
+<script>window.GUIDE_VERSION="8b59d89bb8";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -46,7 +46,8 @@
 <header>
   <div class="kicker">SlimeVR · трекеры на BMI160 · прошивка v0.5.4</div>
   <h1>Настройка трекеров SlimeVR с нуля</h1>
-  <p class="lead">Инструкция для тех, кто делает это впервые. Читайте сверху вниз и выполняйте шаги строго по порядку. Ничего не пропускайте, если в самом шаге не написано, что его можно пропустить.</p>
+  <p class="lead">Настройте самодельные трекеры на BMI160 для SteamVR и VRChat. Пройдите шаги по порядку, от проверки датчика до движений аватара.</p>
+  <div class="intro-actions"><a class="btn-link" href="#s1">Начать с проверки</a><a href="#every">Памятка перед игрой</a></div>
 </header>
 
 <div class="road" id="road">
@@ -72,13 +73,20 @@
 <!-- ШАГ 1 -->
 <section class="step" id="s1">
   <div class="step-head"><div class="num">1</div><div><h2>Проверьте, подходят ли трекеры</h2><p>Инструкция только для трекеров с температурной калибровкой</p></div><button type="button" class="done-toggle" data-done="s1" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
-  <p>Температурная калибровка в прошивке SlimeVR есть <strong>только у датчика BMI160</strong>. Другие датчики, даже той же серии BMI, её не поддерживают. Включите трекер, откройте SlimeVR, нажмите на трекер и посмотрите его информацию.</p>
+  <p>Этот гайд рассчитан на <strong>BMI160</strong> и <strong>Wemos D1 Mini (ESP8266)</strong>. IMU — датчик, по которому трекер определяет, как он повёрнут.
+  </p>
+  <ol class="do">
+    <li><span>Если программы ещё нет, скачайте и установите <a href="https://slimevr.dev/download">SlimeVR Server</a>. Оставьте отмеченным драйвер SteamVR.</span></li>
+    <li><span>Включите трекер, откройте SlimeVR и нажмите на карточку трекера. Найдите <strong>«Датчик IMU»</strong> и <strong>«Версия прошивки»</strong>. Если карточка не появилась, откройте справку <a href="#help">«Частые проблемы»</a>.</span></li>
+  </ol>
+  <p class="section-note">Проверьте тип датчика и версию на каждом трекере.</p>
   <div class="fit-grid">
     <div class="fit-item ok-item"><b>Подходит: BMI160</b><span>Строка «Датчик IMU» показывает BMI160. Продолжайте.</span></div>
     <div class="fit-item no-item"><b>Не подходит: всё остальное</b><span>BMI270, BMI323, BNO085, BNO080, MPU6050, MPU9250, ICM‑20948, ICM‑45686, LSM6DSV, LSM6DSR. С ними эта инструкция не сработает.</span></div>
-    <div class="fit-item"><b>Запомните версию прошивки</b><span>Строка «Версия прошивки → Current», например v0.3.2 или v0.5.4. Она понадобится на шаге 3.</span></div>
+    <div class="fit-item"><b>Запомните версию прошивки</b><span>Запишите текущую версию из строки «Версия прошивки». Она понадобится на шаге 3.</span></div>
   </div>
-  <p style="color:var(--muted);font-size:15px">Основная плата у таких трекеров обычно Wemos D1 Mini (ESP8266). Это первое поколение трекеров SlimeVR, которые работают по Wi‑Fi. В примерах этой инструкции трекеры собраны в корпусе <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a> из документации SlimeVR.</p>
+  <p style="color:var(--muted);font-size:15px">В примерах трекеры собраны в корпусе <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a> из документации SlimeVR.</p>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>На каждом трекере указан BMI160, а текущая версия прошивки записана.</p></div><button type="button" class="done-toggle" data-done="s1" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Датчик BMI160? Переходите к шагу 2</p>
 </section>
 
@@ -86,14 +94,15 @@
 <section class="step" id="s2">
   <div class="step-head"><div class="num">2</div><div><h2>Подготовьте всё нужное</h2><p>Соберите всё заранее, чтобы не отвлекаться посреди калибровки</p></div><button type="button" class="done-toggle" data-done="s2" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <ul class="checklist">
-    <li><span><strong>SlimeVR Server последней версии</strong>. Скачать: <a href="https://slimevr.dev/download">slimevr.dev/download</a>.</span></li>
-    <li><span><strong>USB‑кабель с передачей данных.</strong> Кабель «только для зарядки» не подойдёт: компьютер не увидит трекер. Подключайте его к плате Wemos, а не к плате зарядки.</span></li>
-    <li><span><strong>Браузер Chrome или Edge</strong> для сайта прошивки и сайта проверки. Firefox не умеет подключаться к трекеру.</span></li>
-    <li><span><strong>Калибровочная коробочка</strong>, <strong>двусторонний вспененный скотч</strong> и <strong>упор на столе</strong>. Как их сделать, описано ниже.</span></li>
-    <li><span><strong>Холодильник или морозилка</strong> и <strong>обычный фен для волос</strong>.</span></li>
-    <li><span><strong>Свободное время</strong>: около часа на каждый трекер. Спешка портит калибровку.</span></li>
+    <li><label><input type="checkbox" data-prep="s2-1"><span><strong>SlimeVR Server</strong>, установленный в шаге 1.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s2-2"><span><strong>USB‑кабель с передачей данных.</strong> Кабель «только для зарядки» не подойдёт: компьютер не увидит трекер. Подключайте его к плате Wemos, а не к плате зарядки.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s2-3"><span><strong>Браузер Chrome или Edge</strong> для сайта прошивки и сайта проверки. Firefox не умеет подключаться к трекеру.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s2-4"><span><strong>Калибровочная коробочка</strong>, <strong>двусторонний вспененный скотч</strong> и <strong>упор на столе</strong>. Как их сделать, описано ниже.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s2-5"><span><strong>Холодильник или морозилка</strong> и <strong>обычный фен для волос</strong>.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s2-6"><span><strong>Свободное время</strong>: около часа на каждый трекер. Спешка портит калибровку.</span></label></li>
   </ul>
 
+  <p class="section-note">Ответвление — второй датчик на проводе, подключённый к основному трекеру.</p>
   <div class="card" id="box">
     <h3 style="margin-top:0">Калибровочная коробочка</h3>
     <p>На шаге 4 трекер нужно класть ровно на каждую из шести сторон. В коробочке с ровными гранями это получается точно и без лишних движений. Подойдёт деревянная коробка без крышки, её можно купить на Ozon или другом маркетплейсе.</p>
@@ -140,12 +149,13 @@
   </div>
   <div class="card">
     <h3 style="margin-top:0">Как открыть консоль трекера</h3>
-    <p>Подключите трекер к компьютеру по USB и в SlimeVR откройте <strong>Настройки → Serial Console</strong> (раздел «Утилиты»). В консоли трекер пишет, что он сейчас делает и чего ждёт от вас. Внизу консоли есть строка, в которую можно вводить команды.</p>
+    <p>Подключите трекер к компьютеру по USB и в SlimeVR откройте <strong>«Настройки» → «Консоль»</strong> (Serial Console). В консоли трекер пишет, что он сейчас делает и чего ждёт от вас. Внизу консоли есть строка, в которую можно вводить команды.</p>
   </div>
   <div class="card">
     <h3 style="margin-top:0">Как видеть температуру трекера</h3>
-    <p>Она нужна на шаге 5. В SlimeVR откройте <strong>Настройки</strong> и включите <strong>режим разработчика</strong>. Затем на главной странице справа внизу включите переключатель <strong>«Подробнее»</strong>. Рядом с каждым трекером появится его температура.</p>
+    <p>Она нужна на шаге 5. В SlimeVR откройте <strong>Настройки</strong> и включите <strong>режим разработчика</strong>. Затем на главной странице справа внизу включите показ дополнительных данных. В русской версии v21.1.0 переключатель называется <strong>«Дополнительная информация»</strong>. Рядом с каждым трекером появится его температура.</p>
   </div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Трекер закреплён по центру коробочки, USB-кабель достаёт до разъёма, а в SlimeVR видна температура.</p></div><button type="button" class="done-toggle" data-done="s2" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Всё готово? Переходите к шагу 3</p>
 </section>
 
@@ -153,10 +163,11 @@
 <section class="step" id="s3">
   <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <div class="tip"><b>Можно пропустить</b><p>Если на шаге 1 вы увидели <strong>v0.5.4</strong>, этот шаг пропустите и переходите к шагу 4. Перепрошивать трекер на ту же версию не нужно.</p></div>
+  <nav class="step-links" aria-label="В шаге 3"><a href="#rotation">Поворот датчика</a><a href="#erase">Сброс данных</a><a href="#flash">Прошивка</a></nav>
   <div class="warn"><b>Важно</b><p><strong>Почему именно v0.5.4.</strong> Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
 
   <div class="card" id="rotation">
-    <h3 style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
+    <h3 id="rotation" style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
     <p>При прошивке нужно указать, как модуль BMI160 повёрнут внутри корпуса. Если указать неправильно, трекер будет двигаться не в ту сторону. Модули и сборки у всех разные, поэтому смотрите именно на свой трекер.</p>
     <ol class="do">
       <li><span>Откройте корпус трекера и найдите фиолетовый модуль с надписью <strong>BMI160</strong>.</span></li>
@@ -166,13 +177,13 @@
     </ol>
     <div class="photo-row">
       <figure><img src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
-      <figure><img class="contain" src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
+      <figure data-zoom="Таблица поворотов датчика"><img class="contain" src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
     </div>
     <div class="tip"><b>Если модуль не похож ни на одну картинку</b><p>Бывают модули другой разводки. Выберите самое похожее значение, а после прошивки проверьте: наклоните трекер вперёд, и его 3D‑модель в SlimeVR тоже должна наклониться вперёд, а не вбок или назад. Если наклоняется не туда, перепрошейте с другим значением.</p></div>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">3.2 · Сотрите старые данные трекера</h3>
+    <h3 id="erase" style="margin-top:0">3.2 · Сотрите старые данные трекера</h3>
     <p>Сайт прошивки не стирает память трекера, поэтому старые калибровки остаются внутри и могут помешать новым. Чтобы начать с чистого листа:</p>
     <ol class="do">
       <li><span>Подключите трекер по USB и откройте <strong>Serial Console</strong> в SlimeVR.</span></li>
@@ -182,7 +193,7 @@
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">3.3 · Прошейте трекер на сайте</h3>
+    <h3 id="flash" style="margin-top:0">3.3 · Прошейте трекер на сайте</h3>
     <p>Откройте сайт прошивки уже с нужными настройками для BMI160: <a class="btn-link" href="https://slimevr-firmware.bscotch.ca/?config=eyJyZWxlYXNlIjoiU2xpbWVWUi92MC41LjQiLCJib2FyZCI6eyJ0eXBlIjoiQk9BUkRfV0VNT1NEMU1JTkkiLCJwaW5zIjp7ImltdVNEQSI6IkQyIiwiaW11U0NMIjoiRDEiLCJsZWQiOiIyIn0sImxlZEludmVydGVkIjp0cnVlLCJlbmFibGVMZWQiOnRydWV9LCJpbXVzIjpbeyJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiSU1VX0JNSTE2MCIsInJvdGF0aW9uIjoiMCIsImltdUlOVCI6IkQ1In0seyJlbmFibGVkIjpmYWxzZSwidHlwZSI6IklNVV9CTUkxNjAiLCJyb3RhdGlvbiI6IjAiLCJpbXVJTlQiOiJENiJ9XSwiYmF0dGVyeSI6eyJ0eXBlIjoiQkFUX0VYVEVSTkFMIiwicmVzaXN0YW5jZSI6MTgwLCJyMSI6MTAwLCJyMiI6MjIwLCJwaW4iOiJBMCJ9LCJzd2FwQWRkcmVzc2VzIjpmYWxzZSwiZGVidWciOnsidXNlNkF4aXMiOnRydWUsIm9wdGltaXplVXBkYXRlcyI6dHJ1ZSwiY29tcGxpYW5jZU1vZGUiOnRydWUsImJtaTE2MFVzZVRlbXBjYWwiOnRydWUsImJtaTE2MFRlbXBjYWxEZWJ1ZyI6ZmFsc2UsImJtaTE2MFVzZVNlbnNjYWwiOnRydWV9fQ">Открыть сайт прошивки с настройками для BMI160</a></p>
     <p style="font-size:15px;color:var(--muted)">Адрес сайта: <a href="https://slimevr-firmware.bscotch.ca/">slimevr-firmware.bscotch.ca</a>. Если открыли его без настроек, выставьте всё по таблице вручную.</p>
     <div class="scroll-x">
@@ -229,6 +240,7 @@
     </details>
   </div>
   <div class="warn"><b>После калибровки прошивку не трогайте</b><p>Перепрошивка делает сохранённую температурную калибровку недействительной. Если SlimeVR предлагает обновить прошивку, откажитесь. Если перепрошить всё же пришлось, повторите пункт 3.2 и все калибровки заново.</p></div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Все трекеры видны в SlimeVR, и у каждого указана v0.5.4.</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">На всех трекерах v0.5.4? Переходите к шагу 4</p>
 </section>
 
@@ -237,11 +249,22 @@
   <p>Возьмите первый трекер и пройдите с ним шаги 4, 5 и 6. Когда он готов, возьмите следующий и снова начните с шага 4. Так по очереди со всеми трекерами.</p>
 </div>
 
+<details class="tracker-log" id="tracker-log">
+  <summary>Отметки по трекерам <span id="tracker-count" aria-live="polite">Не добавлены</span></summary>
+  <div>
+    <p>Добавьте все основные трекеры. Ответвление отмечайте вместе с его основным трекером. Галочки в оглавлении ставьте после завершения шага на всём комплекте.</p>
+    <div id="tracker-rows"></div>
+    <button type="button" class="quiet-button" id="tracker-add">Добавить трекер</button>
+    <noscript>Запишите для каждого трекера три отметки: оси, температура и проверка.</noscript>
+  </div>
+</details>
+
 <!-- ШАГ 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>Калибровка по осям</h2><p>Через консоль SlimeVR · один трекер · ~5 минут</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p>Трекер запоминает, как выглядит «ровно» в каждом из шести положений. Он приклеен в коробочке: вы переворачиваете коробочку и каждый раз прижимаете её к упору.</p>
-  <div class="warn"><b>Нужны только две калибровки</b><p>В этой инструкции всего две калибровки: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
+  <nav class="step-links" aria-label="В шаге 4"><a href="#axis-console">Сообщения консоли</a><a href="#axis-positions">Положения коробочки</a><a href="#axis-tips">Советы</a><a href="#tracker-log">Отметки трекеров</a></nav>
+  <div class="warn"><b>Две калибровки датчика</b><p>Датчик калибруют двумя способами: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -261,7 +284,7 @@
     <li><span>Дальше смотрите в консоль и делайте то, что написано в правой колонке таблицы.</span></li>
   </ol>
 
-  <div class="con" role="table" aria-label="Сообщения консоли при калибровке по осям">
+  <div class="con" id="axis-console" role="table" aria-label="Сообщения консоли при калибровке по осям">
     <div class="con-title"><i></i><i></i><i></i><span>Serial Console: что пишет трекер и что вам делать</span></div>
     <div class="con-row key">
       <div class="con-msg">Flip front to confirm start calibration<small>Переверните лицом вверх, чтобы начать калибровку</small></div>
@@ -293,7 +316,8 @@
     </div>
   </div>
 
-  <figure class="three-wrap">
+  <nav class="step-links" aria-label="К положению коробочки"><a href="#axis-positions">Смотреть положения коробочки</a></nav>
+  <figure class="three-wrap" id="axis-positions">
     <div class="aux-toggle" role="radiogroup" aria-label="Вариант трекера"><label><input type="radio" name="aux2" value="main" checked> Без ответвления</label><label><input type="radio" name="aux2" value="aux"> С ответвлением</label></div>
     <div class="pos-buttons" role="group" aria-label="Положения коробочки">
       <button type="button" data-pos="0" id="pos-btn-0">Старт</button>
@@ -307,7 +331,7 @@
     <div class="three-stage tall"><canvas id="pos3d" aria-label="3D-сцена: коробочка у упора в выбранном положении"></canvas><span class="three-hint">Потяните, чтобы повернуть</span></div>
     <p class="pos-caption" id="pos-caption" aria-live="polite">Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.</p>
     <p class="three-fallback">3D‑сцена не загрузилась: для неё нужен интернет. Положения те же, что на кадрах из видео ниже.</p>
-    <figcaption>Нажимайте кнопки, чтобы увидеть каждое положение и то, как уложен кабель. Серый брусок сзади это упор: коробочка всегда прижата к нему. Порядок тот же, что в видео.</figcaption>
+    <figcaption>Нажимайте кнопки, чтобы увидеть каждое положение и укладку кабеля. Серый брусок сзади — упор. Прижимайте к нему коробочку в каждом положении. Порядок тот же, что в видео. <a href="#axis-console">Сообщения консоли</a>.</figcaption>
   </figure>
 
   <figure>
@@ -322,23 +346,31 @@
     <figcaption>Шесть положений вживую, кадры из видео BANANKA Group. В каждом положении коробочка прижата к деревянному упору сзади.</figcaption>
   </figure>
 
-  <div class="tip tip-list"><b>Советы</b>
+  <div class="tip tip-list" id="axis-tips"><b>Советы</b>
     <dl>
       <dt>Как укладывать кабель</dt><dd>Кабель не должен тянуть, приподнимать или сдвигать коробочку: иначе она стоит неровно, и калибровка получится неточной. В большинстве положений кабель просто выходит из выреза и свободно ложится на стол. Когда коробочка лежит вырезом вниз, аккуратно подогните кабель внутри выреза и выведите его через открытую сторону коробочки. Перед каждым поворотом оставляйте кабелю запас длины.</dd>
       <dt>Почему важно, как трекер лежит в коробочке</dt><dd>Прошивке важно, чтобы трекер побывал каждой из шести сторон вниз и при этом лежал ровно. Порядок сторон после первой ей не важен, но проще всего повторять за видео. Главное, чтобы трекер был приклеен <strong>ровно и параллельно стенкам</strong>: тогда грани коробки совпадают с осями датчика внутри корпуса, и калибровка получается точной.</dd>
       <dt>Если в консоли ничего не меняется</dt><dd>Трекер ждёт, пока его подвинут и снова оставят в покое. Если строка «Recorded» не появляется, проверьте, что коробочка стоит неподвижно и вы её не держите. Если случайно поставили коробочку на одну сторону дважды, калибровка получится неточной: переверните её вверх ногами, перезагрузите трекер и начните калибровку заново.</dd>
     </dl>
   </div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Консоль показала «Calibration data gathered». Поставьте отметку «Оси» у этого трекера в <a href="#tracker-log">списке трекеров</a>. Отмечайте весь шаг после всех трекеров.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Увидели «Calibration data gathered»? Переходите к шагу 5 с этим же трекером</p>
 </section>
 
 <!-- ШАГ 5 -->
 <section class="step heat" id="s5">
   <div class="step-head"><div class="num">5</div><div><h2>Температурная калибровка</h2><p>Тот же трекер · от 35 минут · заметно уменьшает дрифт</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
-  <p>На теле BMI160 нагревается, и из‑за этого его показания «уплывают». Эта калибровка учит трекер поправлять это. Она <strong>сама начинается, когда датчик включён и холоднее 15 °C</strong>, и <strong>сама сохраняется, когда он нагреется выше 45 °C</strong>. Кнопки нажимать не нужно, нужно только правильно охладить и плавно нагреть трекер.</p>
+  <p>При нагреве показания BMI160 могут постепенно «уплывать», даже если трекер неподвижен. Это называется дрифтом. Температурная калибровка помогает его уменьшить. Она <strong>сама начинается, когда датчик включён и холоднее 15 °C</strong>, и <strong>сама сохраняется, когда он нагреется выше 45 °C</strong>. Кнопки нажимать не нужно, нужно только правильно охладить и плавно нагреть трекер.</p>
   <div class="tip"><b>Кабель не нужен</b><p>Эту калибровку можно делать без USB‑кабеля: трекер работает от своей батареи и передаёт температуру в SlimeVR по Wi‑Fi. Батарея должна быть заряжена. Результат потом проверите по кабелю на шаге 6.</p></div>
-  <figure>
-    <div class="scroll-x">
+  <nav class="step-links" aria-label="В шаге 5"><a href="#temperature-prep">Подготовка</a><a href="#temperature-run">Калибровка</a><a href="#temperature-save">Сообщение о сохранении</a><a href="#tracker-log">Отметки трекеров</a></nav>
+  <figure class="temperature-figure" data-zoom="Ход температуры при калибровке">
+    <ol class="temperature-stages" aria-label="Основные отметки температуры">
+      <li><b>Ниже 15 °C</b><span>Включите трекер</span></li>
+      <li><b>Около 43 °C</b><span>После самопрогрева грейте феном</span></li>
+      <li><b>Около 30 °C</b><span>Дайте остыть</span></li>
+      <li><b>Около 46 °C</b><span>Снова грейте феном</span></li>
+    </ol>
+    <div class="scroll-x temperature-scroll" tabindex="0" role="region" aria-label="График температуры">
     <svg viewBox="0 0 720 300" role="img" aria-label="График температуры трекера во время калибровки">
       <g class="svg-line" stroke-width="1">
         <line x1="60" y1="250" x2="700" y2="250"/><line x1="60" y1="195" x2="700" y2="195"/>
@@ -348,7 +380,7 @@
         <text x="52" y="254" text-anchor="end">10°</text><text x="52" y="199" text-anchor="end">20°</text>
         <text x="52" y="144" text-anchor="end">30°</text><text x="52" y="89" text-anchor="end">40°</text><text x="52" y="34" text-anchor="end">50°</text>
         <text x="60" y="270" text-anchor="middle">0</text><text x="220" y="270" text-anchor="middle">10</text>
-        <text x="380" y="270" text-anchor="middle">20</text><text x="540" y="270" text-anchor="middle">30</text><text x="700" y="270" text-anchor="middle">40+ мин</text>
+        <text x="380" y="270" text-anchor="middle">20</text><text x="540" y="270" text-anchor="middle">30</text><text x="700" y="270" text-anchor="end">40+ мин</text>
       </g>
       <line x1="60" y1="222.5" x2="700" y2="222.5" stroke="var(--cold)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="696" y="216" text-anchor="end" class="svg-small" style="fill:var(--cold)">15° калибровка начинается</text>
@@ -362,15 +394,15 @@
       <circle cx="604" cy="52" r="5" style="fill:var(--warm)"/><text x="604" y="36" text-anchor="middle" class="svg-text">фен ~46°</text>
     </svg>
     </div>
-    <figcaption>Примерный ход температуры. Время зависит от комнаты и корпуса. Не старайтесь уложиться в 35 минут: если выйдет дольше, это даже лучше.</figcaption>
+    <figcaption><span class="mobile-graph-note">Откройте график крупнее, чтобы прочитать все подписи.</span> Примерный ход температуры. Время зависит от комнаты и корпуса. Не старайтесь уложиться в 35 минут: если выйдет дольше, это даже лучше.</figcaption>
   </figure>
-  <h3>Подготовка</h3>
+  <h3 id="temperature-prep">Подготовка</h3>
   <ol class="do">
     <li><span>Включите в SlimeVR показ температуры (как на шаге 2).</span></li>
     <li><span><strong>Снимите крышку корпуса трекера заранее</strong>, до охлаждения. Без крышки тёплый воздух сразу доходит до датчика, и температура точнее следует за феном: после выключения фена корпус не продолжает отдавать тепло, и трекер не перегревается сверх нужного. Снимать крышку позже нельзя: трекер должен лежать неподвижно.</span></li>
     <li><span><strong>Выключите трекер</strong> и положите его в холодильник или морозилку <strong>примерно на 10 минут</strong>. В холодильник трекер кладут только выключенным.</span></li>
   </ol>
-  <h3>Калибровка</h3>
+  <h3 id="temperature-run">Калибровка</h3>
   <ol class="do">
     <li><span>Достаньте трекер, положите на ровную поверхность и <strong>включите</strong>. Проверьте в SlimeVR, что его температура <strong>ниже 15 °C</strong>. Если выше: выключите, положите в холодильник ещё на несколько минут и повторите.</span></li>
     <li><span>Дайте трекеру <strong>прогреться самому</strong> до комнатной температуры. <strong>Фен пока не трогайте.</strong></span></li>
@@ -380,7 +412,7 @@
     <li><span>Выключите фен и дайте трекеру остыть. Наденьте крышку обратно.</span></li>
   </ol>
   <div class="warn"><b>Если температура растёт слишком сильно или трекер не остывает</b><p>Выключите фен и охлаждайте трекер мягко, без резких перепадов: положите рядом какой‑нибудь холодный продукт из холодильника или, если на улице холодно, приоткройте окно. Трекер постепенно остынет сам, спешить не нужно. <strong>В холодильник посреди калибровки не кладите:</strong> если трекер снова станет холоднее 15 °C, калибровка начнётся с нуля.</p></div>
-  <div class="con" role="table" aria-label="Сообщение консоли при сохранении температурной калибровки">
+  <div class="con" id="temperature-save" role="table" aria-label="Сообщение консоли при сохранении температурной калибровки">
     <div class="con-title"><i></i><i></i><i></i><span>Если трекер подключён по USB и открыта Serial Console</span></div>
     <div class="con-row fin">
       <div class="con-msg">Saved temperature calibration config (100.0%) for sensorId:0<small>Температурная калибровка сохранена (100%)</small></div>
@@ -392,11 +424,12 @@
     <ul class="plain">
       <li><strong>Не торопитесь.</strong> В среднем уходит около 35 минут на трекер, но гнаться за этим временем не нужно: чем дольше и плавнее нагрев, тем лучше результат.</li>
       <li><strong>Трекер всё время лежит неподвижно.</strong> Пока он двигается, данные не записываются.</li>
-      <li><strong>Аккумулятор.</strong> При мягком нагреве батарее ничего не будет: 45–46 °C это верхний предел, выше не надо. Не направляйте горячий поток в одну точку.</li>
+      <li><strong>Нагрев.</strong> На последнем прогреве ориентируйтесь на показания датчика около 46 °C. Не направляйте горячий поток в одну точку.</li>
       <li><strong>Трекер с ответвлением</strong> (второй датчик на проводе) калибруйте один, <strong>вместе с его ответвлением</strong>. Два таких трекера одновременно калибруются плохо.</li>
       <li><strong>Два обычных трекера без ответвлений</strong> можно калибровать одновременно, если прогревать их равномерно.</li>
     </ul>
   </div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Температура датчика прошла 45 °C. Дайте трекеру остыть. Поставьте отметку «Температура» в <a href="#tracker-log">списке трекеров</a> и проверьте запись в шаге 6. Отмечайте весь шаг после всех трекеров.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Калибровка сохранилась? Переходите к шагу 6</p>
 </section>
 
@@ -406,26 +439,37 @@
   <ol class="do">
     <li><span>Подключите трекер по USB. <strong>Закройте Serial Console в SlimeVR</strong>: пока она открыта, сайт не сможет подключиться к трекеру.</span></li>
     <li><span>Откройте в Chrome или Edge сайт <a href="https://ilyasnow.github.io/TCAL-Checker/">ilyasnow.github.io/TCAL-Checker</a>.</span></li>
-    <li><span>Нажмите <strong>«Get TCAL Data from Serial: Select COM Port»</strong> и выберите порт трекера. Через несколько секунд появятся графики.</span></li>
+    <li><span>Под надписью «Get TCAL Data from Serial» нажмите <strong>«Select COM Port»</strong> и выберите порт трекера. Через несколько секунд появятся графики.</span></li>
     <li><span>Сравните результат с таблицей ниже.</span></li>
   </ol>
   <div class="card">
     <div class="scroll-x">
-    <table>
+    <table class="result-table">
       <thead><tr><th>Что смотреть</th><th>Хорошо</th><th>Плохо</th></tr></thead>
       <tbody>
-        <tr><td><strong>TCAL Done</strong></td><td>Близко к 100%</td><td>Заметно меньше: часть диапазона не записалась</td></tr>
-        <tr><td><strong>Графики X, Y, Z</strong></td><td>Оранжевая кривая идёт по синим точкам</td><td>Кривая уходит от точек или в точках провалы</td></tr>
-        <tr><td><strong>Зона 30–40 °C</strong></td><td>Точное совпадение: при этой температуре трекер работает на теле</td><td>Расхождение именно здесь сильнее всего портит трекинг</td></tr>
+        <tr><th scope="row"><strong>TCAL Done</strong></th><td data-label="Хорошо">Близко к 100%</td><td data-label="Плохо">Заметно меньше: часть диапазона не записалась</td></tr>
+        <tr><th scope="row"><strong>Графики X, Y, Z</strong></th><td data-label="Хорошо">Оранжевая кривая идёт по синим точкам</td><td data-label="Плохо">Кривая уходит от точек или в точках провалы</td></tr>
+        <tr><th scope="row"><strong>Зона 30–40 °C</strong></th><td data-label="Хорошо">Точное совпадение: при этой температуре трекер работает на теле</td><td data-label="Плохо">Расхождение именно здесь сильнее всего портит трекинг</td></tr>
       </tbody>
     </table>
     </div>
+  </div>
+  <div class="reference-block" id="tcal-examples">
+    <h3>Сравните с примерами TCAL Checker</h3>
+    <p>Синие точки показывают замеры. Оранжевая линия показывает поправку, которую рассчитала прошивка. Сравните их на всех трёх графиках.</p>
+    <div class="reference-grid tcal-examples">
+      <figure class="reference-shot curve-good" data-zoom="Хороший результат."><img src="img/tcal-good.png" alt="Оранжевая линия проходит среди синих точек почти по всему диапазону" loading="lazy"><figcaption><strong>Хороший результат.</strong> Замеры покрывают почти весь диапазон. Линия идёт среди точек.</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="Неполный результат."><img src="img/tcal-partial.png" alt="Синие точки заканчиваются примерно при 33 °C, линия идёт дальше" loading="lazy"><figcaption><strong>Неполный результат.</strong> На этом примере выше 33 °C замеров нет. Сверьте покрытие с температурой ваших трекеров во время игры.</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="Плохой результат."><img src="img/tcal-bad.png" alt="Между синими точками большой пробел в области рабочей температуры" loading="lazy"><figcaption><strong>Плохой результат.</strong> Мало замеров, а около рабочей температуры в этом примере есть пробел. Поправка в нём рассчитана без замеров.</figcaption></figure>
+    </div>
+    <p class="source-note">Примеры из раздела «What do these graphs mean?» в <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>.</p>
   </div>
   <div class="tip"><b>Если результат плохой</b><p>С этим же трекером повторите температурную калибровку (шаг 5) медленнее и плавнее, затем проверьте ещё раз. Калибровку по осям повторять не нужно.</p></div>
   <div class="loop-banner">
     <b>Цикл · результат хороший?</b>
     <p>Этот трекер готов. Если остались неоткалиброванные трекеры, возьмите следующий и начните с шага 4. Когда готовы все, переходите к шагу 7.</p>
   </div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Поставьте отметку «Проверка» у готового трекера в <a href="#tracker-log">списке трекеров</a>. Отмечайте весь шаг, когда проверили весь комплект.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
 </section>
 
 <!-- ШАГ 7 -->
@@ -438,13 +482,14 @@
     <li><span>Положите шлем на пол и запустите в SteamVR калибровку пола (настройку комнаты). Кнопки нажимайте <strong>мышкой на компьютере</strong>.</span></li>
   </ol>
   <div class="warn"><b>Главная хитрость</b><p>Пока калибруете пол, <strong>закройте пальцем датчик приближения</strong> на внутренней стороне шлема, между линзами. Иначе шлем решит, что его сняли, уснёт и отключится посреди калибровки.</p></div>
-  <p class="next">Пол настроен? Переходите к шагу 8</p>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Граница виртуального пола совпадает с реальным полом.</p></div><button type="button" class="done-toggle" data-done="s7" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <p class="next">В SteamVR виртуальный пол совпадает с реальным? Переходите к шагу 8</p>
 </section>
 
 <!-- ШАГ 8 -->
 <section class="step" id="s8">
   <div class="step-head"><div class="num">8</div><div><h2>Наденьте трекеры</h2><p>Правильное место на теле важно не меньше калибровки</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
-  <figure class="body-map">
+  <figure class="body-map" data-zoom="Места крепления трекеров">
     <div class="scroll-x">
     <svg viewBox="0 0 720 640" role="img" aria-label="Схема размещения трекеров на теле: спереди и сзади" class="bodymap">
 <defs><linearGradient id="cyl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".45" stop-color="#fff" stop-opacity=".28"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
@@ -475,7 +520,7 @@
 <text class="bm-note" x="522" y="531.3" text-anchor="middle" style="fill:var(--ink)">В SlimeVR укажите для них «сзади».</text>
 </svg>
     </div>
-    <figcaption style="text-align:center">Силуэт и места крепления взяты из руководства SlimeVR.</figcaption>
+    <figcaption style="text-align:center">Контуры нарисовал Skrebi. Места крепления сверены с руководством SlimeVR.</figcaption>
     <div class="map-legend">
       <span><i class="lg-rec"></i>Рекомендуемое место</span>
       <span><i class="lg-alt"></i>Можно и здесь</span>
@@ -494,12 +539,13 @@
     <div class="place"><b>9</b><div><strong>Спина</strong><span>Трекеры груди и таза можно носить на спине. На точность это не влияет, выбирайте по удобству. Только не забудьте указать «сзади» в SlimeVR на шаге 9.</span></div></div>
   </div>
   <ul class="checklist">
-    <li><span><strong>Все трекеры смотрят стрелкой вверх</strong>, и все одинаково. Проверьте стрелочки на корпусах.</span></li>
-    <li><span>Ремешки затянуты плотно: трекер не болтается и не проворачивается.</span></li>
-    <li><span><strong>Запомните</strong>, где на каждой части тела стоит трекер: спереди, сзади, слева или справа. Это понадобится на шаге 9.</span></li>
+    <li><label><input type="checkbox" data-prep="s8-1"><span><strong>Все трекеры смотрят стрелкой вверх</strong>, и все одинаково. Проверьте стрелочки на корпусах.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s8-2"><span>Ремешки затянуты плотно: трекер не болтается и не проворачивается.</span></label></li>
+    <li><label><input type="checkbox" data-prep="s8-3"><span><strong>Запомните</strong>, где на каждой части тела стоит трекер: спереди, сзади, слева или справа. Это понадобится на шаге 9.</span></label></li>
   </ul>
   <div class="warn"><b>Как надели, так и указываете в SlimeVR</b><p>Расположение трекера в SlimeVR Server должно совпадать с тем, как он реально надет. Носите трекер груди или таза на спине — на шаге 9 выберите для него <strong>«сзади»</strong>. Трекер бедра сбоку — <strong>«слева»</strong> или <strong>«справа»</strong>. Если в программе указано не так, как на теле, скелет будет наклоняться и поворачиваться неправильно.</p></div>
   <div class="tip"><b>Пробуйте разные варианты</b><p>Идеальное место у всех своё. Если трекинг не нравится, попробуйте сдвинуть трекер выше или ниже, спереди или сбоку, и каждый раз заново пройдите настройку на шаге 9. Часто небольшой сдвиг заметно улучшает результат.</p></div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Трекеры держатся плотно. Вы знаете, на какой части тела и с какой стороны закреплён каждый.</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Трекеры надеты? Наденьте шлем и переходите к шагу 9</p>
 </section>
 
@@ -508,10 +554,10 @@
   <div class="step-head"><div class="num">9</div><div><h2>Настройка в SlimeVR</h2><p>Шлем надет, SteamVR запущен</p></div><button type="button" class="done-toggle" data-done="s9" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p>Оставайтесь в SteamVR и запустите SlimeVR. Пройдите настройку <strong>полностью, по порядку</strong>, ничего не пропуская.</p>
   <ol class="do">
-    <li><span><strong>Назначение трекеров.</strong> Укажите, какой трекер на какой части тела. Чтобы понять, какой где, потрясите трекер: в SlimeVR он подсветится.</span></li>
+    <li><span><strong>Назначение трекеров.</strong> В боковом меню SlimeVR откройте <strong>«Назначение трекера»</strong>. Выберите часть тела на схеме и укажите соответствующий трекер. Чтобы понять, какой где, потрясите трекер: в SlimeVR он подсветится.</span></li>
     <li><span><strong>Расположение каждого трекера.</strong> Нажмите на трекер и выберите, где он стоит: <strong>спереди, сзади, слева или справа</strong>, ровно так, как он надет на вас. Например, трекер груди или таза на спине — это «сзади». Трекеры на конце провода (ответвления) проверьте особенно внимательно.</span></li>
-    <li><span><strong>Калибровка крепления</strong> (Mounting calibration). Обязательно, по подсказкам на экране.</span></li>
-    <li><span><strong>Пропорции тела.</strong> Сначала попробуйте автоматическую калибровку: SlimeVR сам подстроит длину костей.</span></li>
+    <li><span><strong>Калибровка крепления.</strong> Откройте <strong>«Калибровка крепления»</strong> в боковом меню и запустите <strong>«Автоматическая привязка»</strong>. Повторяйте позы и действия, которые показывает мастер.</span></li>
+    <li><span><strong>Пропорции тела.</strong> Откройте <strong>«Пропорции тела»</strong> в боковом меню. В SlimeVR v21.1.0 нажмите <strong>«Manual Proportions»</strong>, затем <strong>«Автоматически точно настроить пропорции»</strong>. Следуйте подсказкам мастера.</span></li>
     <li><span>Пройдите калибровку крепления и пропорций тела <strong>ещё раз</strong>, и лучше несколько раз подряд.</span></li>
   </ol>
   <figure>
@@ -519,7 +565,18 @@
     <svg class="mount-wheel" viewBox="0 0 250 250" role="img" aria-label="Окно SlimeVR Server: круг из восьми секторов, сверху Спереди, справа Справа, снизу Сзади, слева Слева" style="max-width:340px;margin:0 auto"><g class="mw-slices"><g class="mw-slice"><path d="M0 0-89 44A99 99 0 0 1-89-44Z" transform="translate(125 125)" id="mw-left"/><text dy="-5"><textPath href="#mw-left" startOffset="50%" text-anchor="middle">Слева</textPath></text></g><g class="mw-slice"><path d="M0 0-89-44A99 99 0 0 1-44-89Z" transform="translate(125 125)" id="mw-fl"/></g><g class="mw-slice"><path d="M0 0-44-89A99 99 0 0 1 44-89Z" transform="translate(125 125)" id="mw-front"/><text dy="-5"><textPath href="#mw-front" startOffset="50%" text-anchor="middle">Спереди</textPath></text></g><g class="mw-slice"><path d="M0 0 44-89A99 99 0 0 1 89-44Z" transform="translate(125 125)" id="mw-fr"/></g><g class="mw-slice"><path d="M0 0 89-44A99 99 0 0 1 89 44Z" transform="translate(125 125)" id="mw-right"/><text dy="-5"><textPath href="#mw-right" startOffset="50%" text-anchor="middle">Справа</textPath></text></g><g class="mw-slice"><path d="M0 0 89 44A99 99 0 0 1 44 89Z" transform="translate(125 125)" id="mw-br"/></g><g class="mw-slice"><path d="M0 0 44 89A99 99 0 0 1-44 89Z" transform="translate(125 125)" id="mw-back"/><text dy="-5"><textPath href="#mw-back" startOffset="50%" text-anchor="middle">Сзади</textPath></text></g><g class="mw-slice"><path d="M0 0-44 89A99 99 0 0 1-89 44Z" transform="translate(125 125)" id="mw-bl"/></g></g><g transform="translate(80,0)"><svg width="100" viewBox="0 0 30 30"><path class="mw-foot" transform="scale(-1,1) translate(-28,0)" d="M11.5 3A1.5 2 0 0 0 10 5a1.5 2 0 0 0 1.5 2A1.5 2 0 0 0 13 5a1.5 2 0 0 0-1.5-2zm3.244.678a1 1.333 0 0 0-1 1.334 1 1.333 0 0 0 1 1.332 1 1.333 0 0 0 1-1.332 1 1.333 0 0 0-1-1.334zm2.33 1.039a.863 1.151 0 0 0-.861 1.15.863 1.151 0 0 0 .861 1.15.863 1.151 0 0 0 .863-1.15.863 1.151 0 0 0-.863-1.15zm1.582 1.863a.611.815 0 0 0-.61.815.611.815 0 0 0 .61.816.611.815 0 0 0 .612-.816.611.815 0 0 0-.612-.815zM13.918 8C11.629 8 10 9.731 10 12c0 2.887 3 2.82 3 5 0 1.604-1.272 2.766-1.781 4.295a3.5 3.5 0 0 0-.096.305c-.014.054-.031.108-.043.164a3.5 3.5 0 0 0-.08.736 3.5 3.5 0 0 0 3.5 3.5 3.5 3.5 0 0 0 3.5-3.5c0-3.91 1.998-5.5 1.998-8.5 0-3.612-3.317-6-6.08-6zm5.582.666a.5.667 0 0 0-.5.666.5.667 0 0 0 .5.668.5.667 0 0 0 .5-.668.5.667 0 0 0-.5-.666z"/></svg></g></svg></div>
     <figcaption>Так выглядит окно выбора расположения в SlimeVR Server (настройки трекера → «Изменить прикрепление»). Нажмите на ту сторону, на которой трекер реально закреплён на теле. Схема взята из исходного кода SlimeVR Server (компонент MountingSelectionMenu, <a href="https://github.com/SlimeVR/SlimeVR-Server">github.com/SlimeVR/SlimeVR-Server</a>, лицензии MIT и Apache-2.0).</figcaption>
   </figure>
+  <div class="reference-block" id="slimevr-screens">
+    <h3>Где это в SlimeVR</h3>
+    <p>Откройте нужный экран крупнее. Снимки сделаны в русской версии SlimeVR Server v21.1.0 без подключённых трекеров.</p>
+    <div class="reference-grid slimevr-examples">
+      <figure class="reference-shot" data-zoom="Назначение трекеров."><img src="img/slimevr-21-assign.png" alt="Страница «Привязать трекеры»" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Выберите часть тела.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.png" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Автоматические пропорции."><img src="img/slimevr-21-proportions-auto.png" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
+    </div>
+    <p class="source-note">Интерфейс из <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
+  </div>
   <div class="tip"><b>Пробуйте разные варианты</b><p>Если скелет ведёт себя странно, попробуйте всё: другое расположение трекеров на теле, другое значение «спереди/сбоку» в настройках, автоматическую калибровку пропорций несколько раз подряд или <strong>ручную настройку скелета</strong>, где длину костей выставляете сами. Сравнивайте и оставляйте то, что работает лучше.</p></div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>Наклонитесь вперёд и слегка согните колени. Скелет повторяет движения в ту же сторону, левая и правая ноги не перепутаны.</p></div><button type="button" class="done-toggle" data-done="s9" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">Скелет в SlimeVR повторяет ваши движения? Переходите к шагу 10</p>
 </section>
 
@@ -528,17 +585,25 @@
   <div class="step-head"><div class="num">10</div><div><h2>Калибровка в VRChat</h2><p>При первом заходе</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <ol class="do">
     <li><span>Не выключая SlimeVR, зайдите в <strong>VRChat</strong>.</span></li>
-    <li><span>Откройте <strong>настройки VRChat</strong>, встаньте ровно, держите голову прямо и запустите <strong>автоматическую калибровку роста</strong>. VRChat сам выставит ваш рост.</span></li>
-    <li><span>Когда VRChat предложит откалибровать полное тело, встаньте прямо в ту же позу, что и аватар, и подтвердите. Так трекеры привяжутся к аватару.</span></li>
+    <li><span>Откройте <strong>«Tracking &amp; IK»</strong> в большом меню настроек. Встаньте ровно, смотрите прямо и нажмите <strong>«Measure Height»</strong> рядом с полем <strong>«User Real Height»</strong>.</span></li>
+    <li><span>В <strong>«Tracking &amp; IK»</strong> поставьте <strong>«Calibration Range»</strong> на <strong>0,20 м</strong>. Выключите <strong>«Legacy Calibration»</strong> и <strong>«Use Legacy IK Solving»</strong>, если эти переключатели есть в вашей версии. IK — расчёт положения суставов аватара.</span></li>
+    <li><span>Откройте быстрое меню и нажмите <strong>«Calibrate FBT»</strong> (калибровка полного тела). Встаньте как аватар, смотрите прямо и подтвердите обоими курками на контроллерах.</span></li>
   </ol>
-  <div class="tip"><b>Настройки VRChat, которые советует SlimeVR</b><p>Диапазон калибровки IK (IK calibration range) поставьте <strong>0.2</strong>. Выключите <strong>Legacy Calibration</strong> и <strong>Legacy IK</strong>.</p></div>
+  <details class="reference-details">
+    <summary>Где искать рост и параметры калибровки</summary>
+    <div>
+      <figure class="reference-shot portrait-shot" data-zoom="Настройки Tracking &amp; IK."><img src="img/vrchat-settings.png" alt="Раздел Tracking & IK, строки User Real Height и Calibration Range" loading="lazy"><figcaption><strong>Настройки Tracking &amp; IK.</strong> Снимок из документации SlimeVR. Выполните действия из списка выше.</figcaption></figure>
+      <p class="source-note">Снимок из <a href="https://docs.slimevr.dev/tools/vrchat-config.html">документации SlimeVR</a>. Кнопка «Calibrate FBT» описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
+    </div>
+  </details>
   <div class="ok"><b>Готово</b><p>Трекеры откалиброваны и настроены. Калибровку по осям и температурную больше делать не нужно. Перед каждой игрой выполняйте короткий порядок ниже.</p></div>
+  <div class="step-finish"><div><b>Проверьте результат</b><p>После подтверждения аватар повторяет движения корпуса и ног.</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
 </section>
 
 <!-- ПЕРЕД ИГРОЙ -->
 <section class="step" id="every">
   <div class="step-head"><div class="num">▶</div><div><h2>Каждый раз перед игрой</h2><p>Только в таком порядке</p></div></div>
-  <div class="warn"><b>Сначала про холод</b><p>Если трекер включить, когда он холоднее 15 °C (лежал у открытого окна, на холодном полу, его принесли с мороза), он решит, что началась новая температурная калибровка. Сохранённая калибровка из памяти не сотрётся, но <strong>до перезагрузки трекер перестанет её использовать</strong> и будет дрифтить сильнее. Поэтому перед включением трекеры должны полежать в тёплой комнате. Если включили холодными: выключите, дайте согреться до комнатной температуры и включите снова. Включённые трекеры тоже не оставляйте остывать на холодном полу или у открытого окна.</p></div>
+  <div class="warn"><b>Сначала про холод</b><p><strong>Включайте трекеры, когда они согрелись до комнатной температуры.</strong> Включили холодными? Выключите, дайте согреться и включите снова. Держите работающие трекеры подальше от холодного пола и открытого окна.</p></div>
   <ol class="do">
     <li><span>Запустите <strong>SlimeVR</strong> и включите все трекеры.</span></li>
     <li><span>Положите трекеры <strong>ровно на пол</strong> (или на стол) и не трогайте <strong>минимум 15 минут, в идеале 30</strong>. За это время они прогреются и стабилизируются.</span></li>
@@ -548,6 +613,10 @@
     <li><span>Если есть трекеры на стопах, сделайте <strong>калибровку стоп</strong> (сброс крепления стоп).</span></li>
     <li><span>Заходите в игру. В <strong>VRChat</strong> сделайте калибровку полного тела, то есть привязку трекеров к аватару.</span></li>
   </ol>
+  <details>
+    <summary>Почему трекеры сначала нужно согреть</summary>
+    <div><p>При включении ниже 15 °C трекер начинает новую температурную калибровку. Сохранённые данные остаются в памяти. Трекер снова начнёт их использовать после перезагрузки в тепле.</p></div>
+  </details>
   <div class="tip"><b>Во время игры</b><p>Если ноги или корпус постепенно «уехали» в сторону, встаньте ровно и сделайте <strong>быстрый сброс</strong> (Yaw Reset). Для IMU‑трекеров это нормально. Удобно назначить на него сочетание клавиш в настройках SlimeVR.</p></div>
 </section>
 
@@ -654,7 +723,7 @@
 
 <footer>
   <p>Источники: <a href="https://docs.slimevr.dev/server/imu-calibration.html">документация SlimeVR по калибровке IMU</a>, <a href="https://docs.slimevr.dev/common-issues.html">частые проблемы SlimeVR</a>, исходный код прошивки <a href="https://github.com/SlimeVR/SlimeVR-Tracker-ESP">SlimeVR‑Tracker‑ESP</a> (сообщения консоли взяты из v0.5.4), <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>, корпус <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a>, видео BANANKA Group, опыт сообщества.</p>
-  <p>Инструкция составлена сообществом (автор: Skrebi, Discord: skrebi_vishe_) и не является официальным документом SlimeVR. Схема выбора расположения трекера взята из SlimeVR Server (MIT / Apache-2.0); SlimeVR — товарный знак SlimeVR B.V.</p>
+  <p>Инструкция составлена сообществом (автор: Skrebi, Discord: skrebi_vishe_) и не является официальным документом SlimeVR. Схема выбора расположения и снимки программы взяты из SlimeVR Server (<a href="https://github.com/SlimeVR/SlimeVR-Server/blob/v21.1.0/LICENSE-MIT">MIT</a> и <a href="https://github.com/SlimeVR/SlimeVR-Server/blob/v21.1.0/LICENSE-APACHE">Apache-2.0</a>). SlimeVR — товарный знак SlimeVR B.V.</p>
 </footer>
 
 </div>
@@ -663,6 +732,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=d1ff6ef2"></script>
 <script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=dfb542a4"></script>
+<script src="js/nav.js?v=4f09edbf"></script>
 </body>
 </html>
