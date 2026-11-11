@@ -174,7 +174,7 @@ table.dims td,table.dims th{text-align:center} table.dims td:first-child{text-al
 :root[data-theme="dark"] .bm-glow{opacity:.55}
 .bm-outline{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-opacity:.55;vector-effect:non-scaling-stroke}
 .bm-shade{stroke:var(--accent);stroke-width:18;stroke-opacity:.22}
-.bm-zone{fill:var(--warm);fill-opacity:.2;stroke:var(--warm);stroke-opacity:.55;stroke-width:1.2;stroke-dasharray:5 4;vector-effect:non-scaling-stroke}
+.bm-zone{fill:var(--warm);fill-opacity:.28;stroke:var(--warm);stroke-opacity:.8;stroke-width:1.2;stroke-dasharray:5 4;vector-effect:non-scaling-stroke}
 .bm-band{fill:var(--ink);fill-opacity:.88}
 .bm-band-alt{fill:var(--ink);fill-opacity:.2;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
 .bm-cyl{pointer-events:none}
@@ -189,7 +189,7 @@ table.dims td,table.dims th{text-align:center} table.dims td:first-child{text-al
 .map-legend i{display:inline-block;width:26px;height:10px;border-radius:3px}
 .lg-rec{background:var(--ink);opacity:.85}
 .lg-alt{border:1.5px dashed var(--ink);background:color-mix(in srgb,var(--ink) 20%,transparent)}
-.lg-zone{background:color-mix(in srgb,var(--warm) 18%,transparent);border:1px dashed var(--warm)}
+.lg-zone{background:color-mix(in srgb,var(--warm) 28%,transparent);border:1px dashed var(--warm)}
 .place-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
 .place{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .place>b{font-family:var(--display);font-size:13px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--surface)}
