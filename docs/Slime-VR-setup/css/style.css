@@ -468,3 +468,11 @@ body:has(.image-viewer[open]){overflow:hidden}
   .viewer-content>svg{min-width:620px;margin:0}
   .viewer-content.viewer-enlarged>svg{min-width:880px}
 }
+.guide-stats:not([hidden]){display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap}
+#guide-visit-frame{border:0}
+#guide-like[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+#guide-like:disabled{cursor:default;opacity:.65}
+#guide-stats-error:not(:empty){flex-basis:100%}
+#guide-author-form:not([hidden]){display:grid;justify-items:start;gap:8px}
+#guide-author-form input{max-width:340px}
+#guide-author-status:not(:empty){display:block;margin-top:8px}

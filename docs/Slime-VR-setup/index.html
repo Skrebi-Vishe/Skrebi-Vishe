@@ -7,8 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=91e93eae">
-<script>window.GUIDE_VERSION="776974c5ea";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<link rel="stylesheet" href="css/style.css?v=0ed14441">
+<meta name="guide-hosted-stats">
+<script>window.GUIDE_VERSION="5512aef322";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -722,8 +723,29 @@
 </div>
 
 <footer>
+  <div class="guide-stats" id="guide-public-stats" hidden>
+    <span>Посетители</span>
+    <iframe id="guide-visit-frame" title="Счётчик посетителей" width="85" height="26"></iframe>
+    <button type="button" class="quiet-button" id="guide-public-like" disabled>♡ Нравится</button>
+    <span id="guide-public-likes" role="status"></span>
+  </div>
+  <div class="guide-stats" id="guide-stats" hidden>
+    <span id="visitor-total"></span>
+    <button type="button" class="quiet-button" id="guide-like" aria-pressed="false" disabled>♡ Нравится</button>
+    <span id="guide-likes" aria-live="polite"></span>
+    <span id="guide-stats-error" role="status"></span>
+  </div>
   <p>Источники: <a href="https://docs.slimevr.dev/server/imu-calibration.html">документация SlimeVR по калибровке IMU</a>, <a href="https://docs.slimevr.dev/common-issues.html">частые проблемы SlimeVR</a>, исходный код прошивки <a href="https://github.com/SlimeVR/SlimeVR-Tracker-ESP">SlimeVR‑Tracker‑ESP</a> (сообщения консоли взяты из v0.5.4), <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>, корпус <a href="https://docs.slimevr.dev/diy/cases.html">Hyperion</a>, видео BANANKA Group, опыт сообщества.</p>
   <p>Инструкция составлена сообществом (автор: Skrebi, Discord: skrebi_vishe_) и не является официальным документом SlimeVR. Схема выбора расположения и снимки программы взяты из SlimeVR Server (<a href="https://github.com/SlimeVR/SlimeVR-Server/blob/v21.1.0/LICENSE-MIT">MIT</a> и <a href="https://github.com/SlimeVR/SlimeVR-Server/blob/v21.1.0/LICENSE-APACHE">Apache-2.0</a>). SlimeVR — товарный знак SlimeVR B.V.</p>
+  <div id="guide-author-mode" hidden>
+    <form id="guide-author-form">
+      <label for="guide-author-key">Секретный ключ автора</label>
+      <input class="tracker-name" id="guide-author-key" type="password" required minlength="64" maxlength="64" autocomplete="off">
+      <button class="quiet-button" type="submit">Включить режим автора</button>
+    </form>
+    <button class="quiet-button" id="guide-author-exit" type="button" hidden>Выйти из режима автора</button>
+    <span id="guide-author-status" role="status"></span>
+  </div>
 </footer>
 
 </div>
@@ -732,6 +754,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=d1ff6ef2"></script>
 <script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=4f09edbf"></script>
+<script src="js/nav.js?v=19110a66"></script>
 </body>
 </html>

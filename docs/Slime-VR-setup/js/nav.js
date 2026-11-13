@@ -244,3 +244,187 @@
     if (trigger) trigger.focus({ preventScroll: true });
   });
 })();
+(async function () {
+  const counter = document.querySelector('meta[name="guide-visitor-api"]');
+  if (!counter || location.origin !== 'https://skrebi-vishe.github.io') return;
+
+  const stats = document.getElementById('guide-stats');
+  const visitors = document.getElementById('visitor-total');
+  const button = document.getElementById('guide-like');
+  const likes = document.getElementById('guide-likes');
+  const status = document.getElementById('guide-stats-error');
+  const authorMode = document.getElementById('guide-author-mode');
+  const authorForm = document.getElementById('guide-author-form');
+  const authorInput = document.getElementById('guide-author-key');
+  const authorExit = document.getElementById('guide-author-exit');
+  const authorStatus = document.getElementById('guide-author-status');
+  const authorStorage = 'slimevr-guide-owner-key';
+  let ownerKey = null;
+  let id = null;
+  try {
+    ownerKey = localStorage.getItem(authorStorage);
+    const key = 'slimevr-guide-browser-id';
+    const getId = () => {
+      const saved = localStorage.getItem(key) || crypto.randomUUID();
+      localStorage.setItem(key, saved);
+      return saved;
+    };
+    id = navigator.locks ? await navigator.locks.request(key, getId) : getId();
+  } catch (error) {
+    // A browser without persistent storage can only read the count.
+  }
+
+  const headers = id ? { 'X-Visitor-Id': id } : {};
+  async function request(url, method, key) {
+    const requestHeaders = key ? { Authorization: 'Bearer ' + key } : headers;
+    const response = await fetch(url, { method, headers: requestHeaders, credentials: 'omit', signal: AbortSignal.timeout(8000) });
+    if (response.status === 429 && method === 'POST') return request(url, 'GET');
+    if (!response.ok) throw Object.assign(new Error('Statistics request failed'), { status: response.status });
+    return response.json();
+  }
+  function render(data) {
+    if (![data.total, data.likes].every(value => Number.isSafeInteger(value) && value >= 0)) {
+      throw new Error('Invalid statistics');
+    }
+    visitors.textContent = 'Уникальных браузеров: ' + data.total.toLocaleString('ru-RU');
+    likes.textContent = 'Лайков: ' + data.likes.toLocaleString('ru-RU');
+    button.setAttribute('aria-pressed', String(data.liked === true));
+    button.textContent = data.liked ? '♥ Нравится' : '♡ Нравится';
+    button.disabled = !id || !data.registered || data.owner === true;
+    stats.hidden = false;
+    if (data.owner === true) {
+      authorMode.hidden = false;
+      authorForm.hidden = true;
+      authorExit.hidden = false;
+      authorStatus.textContent = 'Вы — автор гайда.';
+    }
+  }
+  function openAuthorForm() {
+    authorMode.hidden = false;
+    authorMode.scrollIntoView({ block: 'center' });
+  }
+  authorForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const key = authorInput.value.trim();
+    authorInput.value = '';
+    const submit = authorForm.querySelector('button');
+    submit.disabled = true;
+    try {
+      const data = await request(counter.content, 'GET', key);
+      if (data.owner !== true) throw new Error('Owner verification failed');
+      localStorage.setItem(authorStorage, key);
+      render(data);
+    } catch (error) {
+      authorStatus.textContent = error.status === 401 ? 'Ключ не подошёл.' : 'Не удалось включить режим автора.';
+    } finally {
+      submit.disabled = false;
+    }
+  });
+  authorExit.addEventListener('click', () => {
+    localStorage.removeItem(authorStorage);
+    location.hash = 'author-mode';
+    location.reload();
+  });
+  if (location.hash === '#author-mode') openAuthorForm();
+  window.addEventListener('hashchange', () => {
+    if (location.hash === '#author-mode') openAuthorForm();
+  });
+  try {
+    const authorPage = location.hash === '#author-mode';
+    render(await request(counter.content, !authorPage && !ownerKey && id ? 'POST' : 'GET', ownerKey));
+  } catch (error) {
+    if (ownerKey && error.status === 401) {
+      openAuthorForm();
+      authorStatus.textContent = 'Ключ изменился. Введите новый.';
+    }
+  }
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    status.textContent = '';
+    try {
+      const method = button.getAttribute('aria-pressed') === 'true' ? 'DELETE' : 'PUT';
+      render(await request(new URL('/likes', counter.content), method));
+    } catch (error) {
+      status.textContent = 'Не удалось сохранить отметку. Попробуйте ещё раз.';
+      button.disabled = false;
+    }
+  });
+})();
+
+(async function () {
+  if (!document.querySelector('meta[name="guide-hosted-stats"]') ||
+      location.origin !== 'https://skrebi-vishe.github.io') return;
+
+  const stats = document.getElementById('guide-public-stats');
+  const frame = document.getElementById('guide-visit-frame');
+  const button = document.getElementById('guide-public-like');
+  const label = document.getElementById('guide-public-likes');
+  const slug = '/slime-vr-setup';
+  const votedKey = 'slimevr-guide-iine-voted';
+  const api = 'https://vhiweeypifbwacashxjz.supabase.co/rest/v1/rpc/';
+  const apiKey = 'sb_publishable_EoB7MFJhCmb6PiAk-GPJ4w_PGhQ44Ru';
+
+  async function send(action, data) {
+    const response = await fetch(api + action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: apiKey },
+      body: JSON.stringify(data),
+      credentials: 'omit',
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) throw new Error('Like service unavailable');
+    return response.json();
+  }
+
+  function showCount(count) {
+    if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid like count');
+    label.textContent = 'Лайков: ' + count.toLocaleString('ru-RU');
+  }
+
+  stats.hidden = false;
+  frame.src = 'visits.html';
+  frame.addEventListener('load', () => {
+    if (!frame.contentDocument?.querySelector('img')) frame.hidden = true;
+  });
+
+  let voted;
+  try {
+    showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
+    voted = localStorage.getItem(votedKey) === '1';
+    button.disabled = voted;
+    if (voted) button.textContent = '♥ Лайк поставлен';
+  } catch {
+    label.textContent = 'Лайки пока недоступны';
+    return;
+  }
+
+  async function vote() {
+    if (localStorage.getItem(votedKey) === '1') return;
+    // Check that the browser can remember this action before sending it.
+    localStorage.setItem(votedKey, '1');
+    try {
+      await send('increment_hits', { page_slug: slug });
+    } catch (error) {
+      localStorage.removeItem(votedKey);
+      throw error;
+    }
+  }
+
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    try {
+      if (navigator.locks) await navigator.locks.request(votedKey, vote);
+      else await vote();
+      button.textContent = '♥ Лайк поставлен';
+    } catch {
+      label.textContent = 'Не удалось поставить лайк';
+      button.disabled = false;
+      return;
+    }
+    try {
+      showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
+    } catch {
+      label.textContent = 'Число лайков пока недоступно';
+    }
+  });
+})();
