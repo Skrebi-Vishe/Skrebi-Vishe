@@ -254,108 +254,101 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
     if (trigger) trigger.focus({ preventScroll: true });
   });
 })();
+// Свой сервер лайков и посетителей (src/visitor-counter/worker.mjs).
+// Включается, когда при сборке задан адрес сервера и ключ Turnstile (tools/stats_config.json).
 (async function () {
-  const counter = document.querySelector('meta[name="guide-visitor-api"]');
-  if (!counter || location.origin !== 'https://skrebi-vishe.github.io') return;
+  const apiMeta = document.querySelector('meta[name="guide-stats-api"]');
+  const keyMeta = document.querySelector('meta[name="guide-turnstile-sitekey"]');
+  if (!apiMeta || !keyMeta || location.origin !== 'https://skrebi-vishe.github.io') return;
+  const api = apiMeta.content.replace(/\/$/, '');
+  if (!/^https:\/\/[a-z0-9.-]+$/i.test(api)) return;
+  const locale = GL ? 'en-US' : 'ru-RU';
+  const stats = document.getElementById('guide-public-stats');
+  const frame = document.getElementById('guide-visit-frame');
+  const visits = document.getElementById('guide-visit-status');
+  const button = document.getElementById('guide-public-like');
+  const label = document.getElementById('guide-public-likes');
+  const box = document.getElementById('guide-turnstile');
+  if (!stats || !button || !label || !visits || !box) return;
 
-  const stats = document.getElementById('guide-stats');
-  const visitors = document.getElementById('visitor-total');
-  const button = document.getElementById('guide-like');
-  const likes = document.getElementById('guide-likes');
-  const status = document.getElementById('guide-stats-error');
-  const authorMode = document.getElementById('guide-author-mode');
-  const authorForm = document.getElementById('guide-author-form');
-  const authorInput = document.getElementById('guide-author-key');
-  const authorExit = document.getElementById('guide-author-exit');
-  const authorStatus = document.getElementById('guide-author-status');
-  const authorStorage = 'slimevr-guide-owner-key';
-  let ownerKey = null;
-  let id = null;
-  try {
-    ownerKey = localStorage.getItem(authorStorage);
-    const key = 'slimevr-guide-browser-id';
-    const getId = () => {
-      const saved = localStorage.getItem(key) || crypto.randomUUID();
-      localStorage.setItem(key, saved);
-      return saved;
-    };
-    id = navigator.locks ? await navigator.locks.request(key, getId) : getId();
-  } catch (error) {
-    // A browser without persistent storage can only read the count.
+  async function request(method, path, body) {
+    const response = await fetch(api + path, {
+      method,
+      headers: body ? { 'Content-Type': 'application/json' } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'omit',
+      signal: AbortSignal.timeout(10000),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) { const e = new Error(data.error || 'http'); e.status = response.status; throw e; }
+    return data;
+  }
+  let liked = false;
+  function show(data) {
+    if (!Number.isSafeInteger(data.visitors) || !Number.isSafeInteger(data.likes)) throw new Error('bad data');
+    if (frame) frame.hidden = true;
+    visits.hidden = false;
+    visits.textContent = data.visitors.toLocaleString(locale);
+    label.textContent = T('Лайков: ', 'Likes: ') + data.likes.toLocaleString(locale);
+    liked = data.liked === true;
+    button.setAttribute('aria-pressed', String(liked));
+    button.classList.toggle('liked', liked);
+    button.textContent = liked ? T('♥ Спасибо!', '♥ Thank you!') : T('♡ Нравится', '♡ Like');
+    button.title = liked ? T('Нажмите ещё раз, чтобы убрать лайк', 'Click again to remove your like') : '';
   }
 
-  const headers = id ? { 'X-Visitor-Id': id } : {};
-  async function request(url, method, key) {
-    const requestHeaders = key ? { Authorization: 'Bearer ' + key } : headers;
-    const response = await fetch(url, { method, headers: requestHeaders, credentials: 'omit', signal: AbortSignal.timeout(8000) });
-    if (response.status === 429 && method === 'POST') return request(url, 'GET');
-    if (!response.ok) throw Object.assign(new Error('Statistics request failed'), { status: response.status });
-    return response.json();
-  }
-  function render(data) {
-    if (![data.total, data.likes].every(value => Number.isSafeInteger(value) && value >= 0)) {
-      throw new Error('Invalid statistics');
-    }
-    visitors.textContent = T('Уникальных браузеров: ','Unique browsers: ') + data.total.toLocaleString(GL ? 'en-US' : 'ru-RU');
-    likes.textContent = T('Лайков: ','Likes: ') + data.likes.toLocaleString(GL ? 'en-US' : 'ru-RU');
-    button.setAttribute('aria-pressed', String(data.liked === true));
-    button.textContent = data.liked ? T('♥ Нравится','♥ Like') : T('♡ Нравится','♡ Like');
-    button.disabled = !id || !data.registered || data.owner === true;
-    stats.hidden = false;
-    if (data.owner === true) {
-      authorMode.hidden = false;
-      authorForm.hidden = true;
-      authorExit.hidden = false;
-      authorStatus.textContent = T('Вы — автор гайда.','You are the guide author.');
-    }
-  }
-  function openAuthorForm() {
-    authorMode.hidden = false;
-    authorMode.scrollIntoView({ block: 'center' });
-  }
-  authorForm.addEventListener('submit', async event => {
-    event.preventDefault();
-    const key = authorInput.value.trim();
-    authorInput.value = '';
-    const submit = authorForm.querySelector('button');
-    submit.disabled = true;
-    try {
-      const data = await request(counter.content, 'GET', key);
-      if (data.owner !== true) throw new Error('Owner verification failed');
-      localStorage.setItem(authorStorage, key);
-      render(data);
-    } catch (error) {
-      authorStatus.textContent = error.status === 401 ? T('Ключ не подошёл.','Wrong key.') : T('Не удалось включить режим автора.','Could not enable author mode.');
-    } finally {
-      submit.disabled = false;
-    }
-  });
-  authorExit.addEventListener('click', () => {
-    localStorage.removeItem(authorStorage);
-    location.hash = 'author-mode';
-    location.reload();
-  });
-  if (location.hash === '#author-mode') openAuthorForm();
-  window.addEventListener('hashchange', () => {
-    if (location.hash === '#author-mode') openAuthorForm();
-  });
+  stats.hidden = false;
   try {
-    const authorPage = location.hash === '#author-mode';
-    render(await request(counter.content, !authorPage && !ownerKey && id ? 'POST' : 'GET', ownerKey));
-  } catch (error) {
-    if (ownerKey && error.status === 401) {
-      openAuthorForm();
-      authorStatus.textContent = T('Ключ изменился. Введите новый.','The key has changed. Enter the new one.');
-    }
+    let first = true;
+    try { first = !sessionStorage.getItem('guide-visit-sent'); } catch (e) {}
+    show(await request(first ? 'POST' : 'GET', first ? '/visit' : '/stats'));
+    try { sessionStorage.setItem('guide-visit-sent', '1'); } catch (e) {}
+    button.disabled = false;
+  } catch (e) {
+    visits.textContent = T('нет данных', 'no data');
+    label.textContent = T('Лайки пока недоступны', 'Likes are unavailable right now');
+    return;
   }
+
+  let turnstileReady = null;
+  function loadTurnstile() {
+    if (window.turnstile) return Promise.resolve();
+    if (!turnstileReady) {
+      turnstileReady = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true; s.onload = resolve; s.onerror = () => { turnstileReady = null; reject(new Error('turnstile')); };
+        document.head.appendChild(s);
+      });
+    }
+    return turnstileReady;
+  }
+  let widget = null;
+  async function humanToken() {
+    await loadTurnstile();
+    return new Promise((resolve, reject) => {
+      if (widget !== null) { try { window.turnstile.remove(widget); } catch (e) {} widget = null; }
+      box.hidden = false;
+      widget = window.turnstile.render(box, {
+        sitekey: keyMeta.content, action: 'like', appearance: 'interaction-only',
+        language: GL ? 'en' : 'ru', theme: 'auto',
+        callback: (token) => { box.hidden = true; resolve(token); },
+        'error-callback': () => { reject(new Error('captcha')); },
+        'expired-callback': () => { reject(new Error('expired')); },
+      });
+    });
+  }
+
   button.addEventListener('click', async () => {
     button.disabled = true;
-    status.textContent = '';
     try {
-      const method = button.getAttribute('aria-pressed') === 'true' ? 'DELETE' : 'PUT';
-      render(await request(new URL('/likes', counter.content), method));
-    } catch (error) {
-      status.textContent = T('Не удалось сохранить отметку. Попробуйте ещё раз.','Could not save. Please try again.');
+      if (liked) show(await request('DELETE', '/like'));
+      else show(await request('POST', '/like', { token: await humanToken() }));
+    } catch (e) {
+      label.textContent = e.status === 429
+        ? T('Слишком часто. Попробуйте через минуту.', 'Too many attempts. Try again in a minute.')
+        : T('Не удалось поставить лайк', 'Could not send your like');
+    } finally {
       button.disabled = false;
     }
   });

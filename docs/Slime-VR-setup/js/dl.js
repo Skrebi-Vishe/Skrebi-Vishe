@@ -32,9 +32,9 @@ try{navigator.clipboard.writeText(t).then(ok,function(){h.textContent=T('Ник:
 var deco=document.querySelector('.author-deco'),ID='339711054256930828';
 fetch('https://api.lanyard.rest/v1/users/'+ID).then(function(r){return r.json();}).then(function(j){
   if(!j||!j.success||!j.data||!j.data.discord_user)return;var u=j.data.discord_user;
-  if(u.avatar){var t=new Image();t.onload=function(){if(t.naturalWidth>0)img.src=t.src;};
+  if(u.avatar&&/^(a_)?[0-9a-f]{32}$/.test(u.avatar)){var t=new Image();t.onload=function(){if(t.naturalWidth>0)img.src=t.src;};
     t.src='https://cdn.discordapp.com/avatars/'+ID+'/'+u.avatar+(u.avatar.indexOf('a_')===0?'.gif':'.png')+'?size=128';}
   var dd=u.avatar_decoration_data;
-  if(deco&&dd&&dd.asset){deco.onload=function(){deco.hidden=false;};
+  if(deco&&dd&&typeof dd.asset==='string'&&/^(a_)?[0-9a-f]{32}$/.test(dd.asset)){deco.onload=function(){deco.hidden=false;};
     deco.src='https://cdn.discordapp.com/avatar-decoration-presets/'+dd.asset+'.png?size=160&passthrough=true';}
 })['catch'](function(){});})();
