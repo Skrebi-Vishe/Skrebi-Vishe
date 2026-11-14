@@ -347,7 +347,9 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
     } catch (e) {
       label.textContent = e.status === 429
         ? T('Слишком часто. Попробуйте через минуту.', 'Too many attempts. Try again in a minute.')
-        : T('Не удалось поставить лайк', 'Could not send your like');
+        : (e.message === 'captcha' || e.message === 'expired' || e.status === 403)
+          ? T('Проверка не пройдена. Нажмите ещё раз', 'Check failed. Please try again')
+          : T('Не удалось поставить лайк', 'Could not send your like');
     } finally {
       button.disabled = false;
     }
