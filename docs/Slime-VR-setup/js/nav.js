@@ -369,8 +369,8 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
   const frame = document.getElementById('guide-visit-frame');
   const button = document.getElementById('guide-public-like');
   const label = document.getElementById('guide-public-likes');
-  const slug = '/slime-vr-setup';
-  const votedKey = 'slimevr-guide-iine-voted';
+  const slug = '/slime-vr-setup-v2';  // 15.11: счётчик обнулён после накрутки
+  const votedKey = 'slimevr-guide-iine-voted-v2';
   const api = 'https://vhiweeypifbwacashxjz.supabase.co/rest/v1/rpc/';
   const apiKey = 'sb_publishable_EoB7MFJhCmb6PiAk-GPJ4w_PGhQ44Ru';
 
@@ -415,7 +415,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
 
   let voted;
   try {
-    showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
+    showCount((await send('get_hits', { page_slugs: [slug] }))[slug] ?? 0);
     voted = localStorage.getItem(votedKey) === '1';
     button.disabled = voted;
     if (voted) { button.textContent = T('♥ Спасибо!','♥ Thank you!'); button.classList.add('liked'); }
@@ -449,7 +449,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
       return;
     }
     try {
-      showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
+      showCount((await send('get_hits', { page_slugs: [slug] }))[slug] ?? 0);
     } catch {
       label.textContent = T('Число лайков пока недоступно','Like count is unavailable right now');
     }
