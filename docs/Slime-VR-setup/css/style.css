@@ -524,3 +524,10 @@ img[loading="lazy"]{background:var(--surface)}
 @media (max-width:620px){.stats-ask{margin-left:0;flex-basis:100%;order:2}
   .author-stats .like-btn{order:3}#guide-public-likes{order:4}}
 @media (prefers-reduced-motion: reduce){.checklist input,.tracker-stage input,.like-btn,.checklist label{transition:none}}
+.hero-facts{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0}
+.hero-facts li{margin:0;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;color:var(--muted)}
+.hero-facts li::before{content:none}
+.hero-facts b{color:var(--ink);font-weight:700}
+.intro-actions{margin-top:18px}
+.fab-done{font-size:12px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--ok);color:var(--bg);white-space:nowrap}
+.fab-done[hidden]{display:none}

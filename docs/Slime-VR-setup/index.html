@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2f40585f">
+<link rel="stylesheet" href="css/style.css?v=c46ddc73">
 <meta name="guide-hosted-stats">
-<script>window.GUIDE_VERSION="79a2bf9ec4";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="281e11a900";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -41,14 +41,15 @@
     <div class="toc-actions"><a href="#top" class="toc-top">↑ Наверх</a><button type="button" class="toc-reset" id="toc-reset">Сбросить отметки</button></div>
   </div>
 </aside>
-<button type="button" class="toc-fab" id="toc-fab" aria-controls="toc" aria-expanded="false"><span class="fab-step" id="fab-step">Шаги</span><span class="fab-ico" aria-hidden="true">☰</span></button>
+<button type="button" class="toc-fab" id="toc-fab" aria-controls="toc" aria-expanded="false"><span class="fab-step" id="fab-step">Шаги</span><span class="fab-done" id="fab-done" hidden></span><span class="fab-ico" aria-hidden="true">☰</span></button>
 <div class="wrap" id="top">
 
 <header>
   <div class="kicker">SlimeVR · трекеры на BMI160 · прошивка v0.5.4</div>
   <h1>Настройка трекеров SlimeVR с нуля</h1>
   <p class="lead">Настройте самодельные трекеры на BMI160 для SteamVR и VRChat. Пройдите шаги по порядку, от проверки датчика до движений аватара.</p>
-  <div class="intro-actions"><a class="btn-link" href="#s1">Начать с проверки</a><a href="#every">Памятка перед игрой</a></div>
+  <ul class="hero-facts" aria-label="Коротко о гайде"><li><b>10</b> шагов</li><li><b>≈1 час</b> на трекер</li><li><b>BMI160</b> + Wemos D1 Mini</li><li>прошивка <b>v0.5.4</b></li><li>SteamVR и VRChat</li></ul>
+  <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">Начать с проверки</a><a href="#every">Памятка перед игрой</a></div>
 </header>
 
 <div class="road" id="road">
@@ -265,7 +266,7 @@
   <div class="step-head"><div class="num">4</div><div><h2>Калибровка по осям</h2><p>Через консоль SlimeVR · один трекер · ~5 минут</p></div></div>
   <p>Трекер запоминает, как выглядит «ровно» в каждом из шести положений. Он приклеен в коробочке: вы переворачиваете коробочку и каждый раз прижимаете её к упору.</p>
   <nav class="step-links" aria-label="В шаге 4"><a href="#axis-console">Сообщения консоли</a><a href="#axis-positions">Положения коробочки</a><a href="#axis-tips">Советы</a><a href="#tracker-log">Отметки трекеров</a></nav>
-  <div class="warn"><b>Две калибровки датчика</b><p>Датчик калибруют двумя способами: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
+  <div class="tip"><b>Две калибровки датчика</b><p>Датчик калибруют двумя способами: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -482,7 +483,7 @@
     <li><span>Подключите шлем к компьютеру и запустите <strong>SteamVR</strong>.</span></li>
     <li><span>Положите шлем на пол и запустите в SteamVR калибровку пола (настройку комнаты). Кнопки нажимайте <strong>мышкой на компьютере</strong>.</span></li>
   </ol>
-  <div class="warn"><b>Главная хитрость</b><p>Пока калибруете пол, <strong>закройте пальцем датчик приближения</strong> на внутренней стороне шлема, между линзами. Иначе шлем решит, что его сняли, уснёт и отключится посреди калибровки.</p></div>
+  <div class="tip"><b>Главная хитрость</b><p>Пока калибруете пол, <strong>закройте пальцем датчик приближения</strong> на внутренней стороне шлема, между линзами. Иначе шлем решит, что его сняли, уснёт и отключится посреди калибровки.</p></div>
   <div class="step-finish"><div><b>Проверьте результат</b><p>Граница виртуального пола совпадает с реальным полом.</p></div><button type="button" class="done-toggle" data-done="s7" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
   <p class="next">В SteamVR виртуальный пол совпадает с реальным? Переходите к шагу 8</p>
 </section>
@@ -760,6 +761,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=d1ff6ef2"></script>
 <script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=2f82f651"></script>
+<script src="js/nav.js?v=344b31c7"></script>
 </body>
 </html>

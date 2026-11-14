@@ -15,6 +15,15 @@
     var f = document.getElementById('tp-fill'), t = document.getElementById('tp-text');
     if (f) f.style.width = (n / STEPS.length * 100) + '%';
     if (t) t.textContent = 'Выполнено ' + n + ' из ' + STEPS.length;
+    var fd = document.getElementById('fab-done');
+    if (fd) { fd.hidden = n === 0; fd.textContent = '✓ ' + n + '/' + STEPS.length; fd.title = 'Выполнено шагов: ' + n + ' из ' + STEPS.length; }
+    var hs = document.getElementById('hero-start');
+    if (hs) {
+      var next = STEPS.filter(function (id) { return !done[id]; })[0];
+      if (n === 0) { hs.textContent = 'Начать с проверки'; hs.href = '#s1'; }
+      else if (!next) { hs.textContent = 'Все шаги выполнены · памятка перед игрой'; hs.href = '#every'; }
+      else { hs.textContent = 'Продолжить: шаг ' + next.slice(1) + ' · ' + (TITLES[next] || ''); hs.href = '#' + next; }
+    }
   }
   document.querySelectorAll('.done-toggle').forEach(function (b) {
     b.addEventListener('click', function () { var id = b.dataset.done; done[id] = !done[id]; save(); render(); });
