@@ -408,7 +408,7 @@
     showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
     voted = localStorage.getItem(votedKey) === '1';
     button.disabled = voted;
-    if (voted) button.textContent = '♥ Лайк поставлен';
+    if (voted) { button.textContent = '♥ Спасибо!'; button.classList.add('liked'); }
   } catch {
     label.textContent = 'Лайки пока недоступны';
     return;
@@ -431,7 +431,8 @@
     try {
       if (navigator.locks) await navigator.locks.request(votedKey, vote);
       else await vote();
-      button.textContent = '♥ Лайк поставлен';
+      button.textContent = '♥ Спасибо!';
+      button.classList.add('liked');
     } catch {
       label.textContent = 'Не удалось поставить лайк';
       button.disabled = false;

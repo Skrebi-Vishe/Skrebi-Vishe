@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=c1431ee6">
+<link rel="stylesheet" href="css/style.css?v=2f40585f">
 <meta name="guide-hosted-stats">
-<script>window.GUIDE_VERSION="ac28b30bb3";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="79a2bf9ec4";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -73,7 +73,7 @@
 
 <!-- ШАГ 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>Проверьте, подходят ли трекеры</h2><p>Инструкция только для трекеров с температурной калибровкой</p></div><button type="button" class="done-toggle" data-done="s1" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">1</div><div><h2>Проверьте, подходят ли трекеры</h2><p>Инструкция только для трекеров с температурной калибровкой</p></div></div>
   <p>Этот гайд рассчитан на <strong>BMI160</strong> и <strong>Wemos D1 Mini (ESP8266)</strong>. IMU — датчик, по которому трекер определяет, как он повёрнут.
   </p>
   <ol class="do">
@@ -93,7 +93,7 @@
 
 <!-- ШАГ 2 -->
 <section class="step" id="s2">
-  <div class="step-head"><div class="num">2</div><div><h2>Подготовьте всё нужное</h2><p>Соберите всё заранее, чтобы не отвлекаться посреди калибровки</p></div><button type="button" class="done-toggle" data-done="s2" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">2</div><div><h2>Подготовьте всё нужное</h2><p>Соберите всё заранее, чтобы не отвлекаться посреди калибровки</p></div></div>
   <ul class="checklist">
     <li><label><input type="checkbox" data-prep="s2-1"><span><strong>SlimeVR Server</strong>, установленный в шаге 1.</span></label></li>
     <li><label><input type="checkbox" data-prep="s2-2"><span><strong>USB‑кабель с передачей данных.</strong> Кабель «только для зарядки» не подойдёт: компьютер не увидит трекер. Подключайте его к плате Wemos, а не к плате зарядки.</span></label></li>
@@ -162,7 +162,7 @@
 
 <!-- ШАГ 3 -->
 <section class="step" id="s3">
-  <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div></div>
   <div class="tip"><b>Можно пропустить</b><p>Если на шаге 1 вы увидели <strong>v0.5.4</strong>, этот шаг пропустите и переходите к шагу 4. Перепрошивать трекер на ту же версию не нужно.</p></div>
   <nav class="step-links" aria-label="В шаге 3"><a href="#rotation">Поворот датчика</a><a href="#erase">Сброс данных</a><a href="#flash">Прошивка</a></nav>
   <div class="warn"><b>Важно</b><p><strong>Почему именно v0.5.4.</strong> Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
@@ -178,7 +178,7 @@
     </ol>
     <div class="photo-row">
       <figure><img src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
-      <figure data-zoom="Таблица поворотов датчика"><img class="contain" src="img/rotation.png" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
+      <figure data-zoom="Таблица поворотов датчика"><img class="contain" src="img/rotation.webp" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
     </div>
     <div class="tip"><b>Если модуль не похож ни на одну картинку</b><p>Бывают модули другой разводки. Выберите самое похожее значение, а после прошивки проверьте: наклоните трекер вперёд, и его 3D‑модель в SlimeVR тоже должна наклониться вперёд, а не вбок или назад. Если наклоняется не туда, перепрошейте с другим значением.</p></div>
   </div>
@@ -262,7 +262,7 @@
 
 <!-- ШАГ 4 -->
 <section class="step" id="s4">
-  <div class="step-head"><div class="num">4</div><div><h2>Калибровка по осям</h2><p>Через консоль SlimeVR · один трекер · ~5 минут</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">4</div><div><h2>Калибровка по осям</h2><p>Через консоль SlimeVR · один трекер · ~5 минут</p></div></div>
   <p>Трекер запоминает, как выглядит «ровно» в каждом из шести положений. Он приклеен в коробочке: вы переворачиваете коробочку и каждый раз прижимаете её к упору.</p>
   <nav class="step-links" aria-label="В шаге 4"><a href="#axis-console">Сообщения консоли</a><a href="#axis-positions">Положения коробочки</a><a href="#axis-tips">Советы</a><a href="#tracker-log">Отметки трекеров</a></nav>
   <div class="warn"><b>Две калибровки датчика</b><p>Датчик калибруют двумя способами: <strong>по осям</strong> (этот шаг) и <strong>температурная</strong> (шаг 5). В видео ниже показано ещё и вращение трекера по часовой стрелке 10 раз. <strong>Его делать не нужно.</strong> Это отдельная калибровка чувствительности, для которой результаты нужно вручную вписывать в прошивку.</p></div>
@@ -360,7 +360,7 @@
 
 <!-- ШАГ 5 -->
 <section class="step heat" id="s5">
-  <div class="step-head"><div class="num">5</div><div><h2>Температурная калибровка</h2><p>Тот же трекер · от 35 минут · заметно уменьшает дрифт</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">5</div><div><h2>Температурная калибровка</h2><p>Тот же трекер · от 35 минут · заметно уменьшает дрифт</p></div></div>
   <p>При нагреве показания BMI160 могут постепенно «уплывать», даже если трекер неподвижен. Это называется дрифтом. Температурная калибровка помогает его уменьшить. Она <strong>сама начинается, когда датчик включён и холоднее 15 °C</strong>, и <strong>сама сохраняется, когда он нагреется выше 45 °C</strong>. Кнопки нажимать не нужно, нужно только правильно охладить и плавно нагреть трекер.</p>
   <div class="tip"><b>Кабель не нужен</b><p>Эту калибровку можно делать без USB‑кабеля: трекер работает от своей батареи и передаёт температуру в SlimeVR по Wi‑Fi. Батарея должна быть заряжена. Результат потом проверите по кабелю на шаге 6.</p></div>
   <nav class="step-links" aria-label="В шаге 5"><a href="#temperature-prep">Подготовка</a><a href="#temperature-run">Калибровка</a><a href="#temperature-save">Сообщение о сохранении</a><a href="#tracker-log">Отметки трекеров</a></nav>
@@ -436,7 +436,7 @@
 
 <!-- ШАГ 6 -->
 <section class="step heat" id="s6">
-  <div class="step-head"><div class="num">6</div><div><h2>Проверьте калибровку</h2><p>Сайт TCAL Checker · пару минут</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">6</div><div><h2>Проверьте калибровку</h2><p>Сайт TCAL Checker · пару минут</p></div></div>
   <ol class="do">
     <li><span>Подключите трекер по USB. <strong>Закройте Serial Console в SlimeVR</strong>: пока она открыта, сайт не сможет подключиться к трекеру.</span></li>
     <li><span>Откройте в Chrome или Edge сайт <a href="https://ilyasnow.github.io/TCAL-Checker/">ilyasnow.github.io/TCAL-Checker</a>.</span></li>
@@ -475,7 +475,7 @@
 
 <!-- ШАГ 7 -->
 <section class="step" id="s7">
-  <div class="step-head"><div class="num">7</div><div><h2>Пол в шлеме и в SteamVR</h2><p>Все трекеры откалиброваны</p></div><button type="button" class="done-toggle" data-done="s7" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">7</div><div><h2>Пол в шлеме и в SteamVR</h2><p>Все трекеры откалиброваны</p></div></div>
   <p>SlimeVR считает положение ног от уровня пола. Если пол стоит неправильно, ноги будут проваливаться или висеть в воздухе, как бы хорошо ни были откалиброваны трекеры.</p>
   <ol class="do">
     <li><span><strong>В самом шлеме</strong> заново настройте игровую зону и уровень пола.</span></li>
@@ -489,7 +489,7 @@
 
 <!-- ШАГ 8 -->
 <section class="step" id="s8">
-  <div class="step-head"><div class="num">8</div><div><h2>Наденьте трекеры</h2><p>Правильное место на теле важно не меньше калибровки</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">8</div><div><h2>Наденьте трекеры</h2><p>Правильное место на теле важно не меньше калибровки</p></div></div>
   <figure class="body-map" data-zoom="Места крепления трекеров">
     <div class="scroll-x">
     <svg viewBox="0 0 720 640" role="img" aria-label="Схема размещения трекеров на теле: спереди и сзади" class="bodymap">
@@ -552,7 +552,7 @@
 
 <!-- ШАГ 9 -->
 <section class="step" id="s9">
-  <div class="step-head"><div class="num">9</div><div><h2>Настройка в SlimeVR</h2><p>Шлем надет, SteamVR запущен</p></div><button type="button" class="done-toggle" data-done="s9" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">9</div><div><h2>Настройка в SlimeVR</h2><p>Шлем надет, SteamVR запущен</p></div></div>
   <p>Оставайтесь в SteamVR и запустите SlimeVR. Пройдите настройку <strong>полностью, по порядку</strong>, ничего не пропуская.</p>
   <ol class="do">
     <li><span><strong>Назначение трекеров.</strong> В боковом меню SlimeVR откройте <strong>«Назначение трекера»</strong>. Выберите часть тела на схеме и укажите соответствующий трекер. Чтобы понять, какой где, потрясите трекер: в SlimeVR он подсветится.</span></li>
@@ -570,9 +570,9 @@
     <h3>Где это в SlimeVR</h3>
     <p>Откройте нужный экран крупнее. Снимки сделаны в русской версии SlimeVR Server v21.1.0 без подключённых трекеров.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Назначение трекеров."><img src="img/slimevr-21-assign.png" alt="Страница «Привязать трекеры»" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Выберите часть тела.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.png" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Автоматические пропорции."><img src="img/slimevr-21-proportions-auto.png" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Назначение трекеров."><img src="img/slimevr-21-assign.webp" alt="Страница «Привязать трекеры»" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Выберите часть тела.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.webp" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Автоматические пропорции."><img src="img/slimevr-21-proportions-auto.webp" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
     </div>
     <p class="source-note">Интерфейс из <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
   </div>
@@ -583,7 +583,7 @@
 
 <!-- ШАГ 10 -->
 <section class="step" id="s10">
-  <div class="step-head"><div class="num">10</div><div><h2>Калибровка в VRChat</h2><p>При первом заходе</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
+  <div class="step-head"><div class="num">10</div><div><h2>Калибровка в VRChat</h2><p>При первом заходе</p></div></div>
   <ol class="do">
     <li><span>Не выключая SlimeVR, зайдите в <strong>VRChat</strong>.</span></li>
     <li><span>Откройте <strong>«Tracking &amp; IK»</strong> в большом меню настроек. Встаньте ровно, смотрите прямо и нажмите <strong>«Measure Height»</strong> рядом с полем <strong>«User Real Height»</strong>.</span></li>
@@ -593,7 +593,7 @@
   <details class="reference-details">
     <summary>Где искать рост и параметры калибровки</summary>
     <div>
-      <figure class="reference-shot portrait-shot" data-zoom="Настройки Tracking &amp; IK."><img src="img/vrchat-settings.png" alt="Раздел Tracking & IK, строки User Real Height и Calibration Range" loading="lazy"><figcaption><strong>Настройки Tracking &amp; IK.</strong> Снимок из документации SlimeVR. Выполните действия из списка выше.</figcaption></figure>
+      <figure class="reference-shot portrait-shot" data-zoom="Настройки Tracking &amp; IK."><img src="img/vrchat-settings.webp" alt="Раздел Tracking & IK, строки User Real Height и Calibration Range" loading="lazy"><figcaption><strong>Настройки Tracking &amp; IK.</strong> Снимок из документации SlimeVR. Выполните действия из списка выше.</figcaption></figure>
       <p class="source-note">Снимок из <a href="https://docs.slimevr.dev/tools/vrchat-config.html">документации SlimeVR</a>. Кнопка «Calibrate FBT» описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
     </div>
   </details>
@@ -720,18 +720,21 @@
     </a>
     <button type="button" class="author-copy" id="dc-copy"><span id="dc-hint">Скопировать ник</span></button>
   </div>
+
+  <div class="author-stats">
+  <div class="guide-stats" id="guide-public-stats" hidden>
+      <span class="guide-visitor-pill" title="Сколько человек открыли гайд">
+        <span id="guide-visitor-label">Посетителей</span>
+        <iframe id="guide-visit-frame" title="Счётчик посетителей" width="0" height="16" hidden></iframe>
+        <span id="guide-visit-status" role="status">…</span>
+      </span>
+      <span class="stats-ask">Гайд помог?</span><button type="button" class="like-btn" id="guide-public-like" disabled>♡ Нравится</button>
+      <span id="guide-public-likes" role="status"></span>
+    </div>
+  </div>
 </div>
 
 <footer>
-  <div class="guide-stats" id="guide-public-stats" hidden>
-    <span class="guide-visitor-pill">
-      <span id="guide-visitor-label">Посетители:</span>
-      <iframe id="guide-visit-frame" title="Счётчик посетителей" width="0" height="16" hidden></iframe>
-      <span id="guide-visit-status" role="status">…</span>
-    </span>
-    <button type="button" class="quiet-button" id="guide-public-like" disabled>♡ Нравится</button>
-    <span id="guide-public-likes" role="status"></span>
-  </div>
   <div class="guide-stats" id="guide-stats" hidden>
     <span id="visitor-total"></span>
     <button type="button" class="quiet-button" id="guide-like" aria-pressed="false" disabled>♡ Нравится</button>
@@ -757,6 +760,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=d1ff6ef2"></script>
 <script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=e25c349c"></script>
+<script src="js/nav.js?v=2f82f651"></script>
 </body>
 </html>
