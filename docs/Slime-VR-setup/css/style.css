@@ -469,7 +469,10 @@ body:has(.image-viewer[open]){overflow:hidden}
   .viewer-content.viewer-enlarged>svg{min-width:880px}
 }
 .guide-stats:not([hidden]){display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap}
-#guide-visit-frame{border:0}
+.guide-visitor-pill{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:7px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:700 14px/1.35 var(--body)}
+#guide-visit-frame{border:0;max-width:100%;mix-blend-mode:multiply}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) #guide-visit-frame{filter:invert(1);mix-blend-mode:screen}}
+:root[data-theme="dark"] #guide-visit-frame{filter:invert(1);mix-blend-mode:screen}
 #guide-like[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
 #guide-like:disabled{cursor:default;opacity:.65}
 #guide-stats-error:not(:empty){flex-basis:100%}

@@ -382,10 +382,26 @@
   }
 
   stats.hidden = false;
-  frame.src = 'visits.html';
+  const visitStatus = document.getElementById('guide-visit-status');
+  const unavailable = () => {
+    frame.hidden = true;
+    visitStatus.textContent = 'нет данных';
+    visitStatus.hidden = false;
+  };
+  const visitTimeout = setTimeout(unavailable, 8000);
   frame.addEventListener('load', () => {
-    if (!frame.contentDocument?.querySelector('img')) frame.hidden = true;
+    if (frame.contentDocument?.URL === 'about:blank') return;
+    clearTimeout(visitTimeout);
+    const digits = frame.contentDocument?.querySelector('img');
+    if (!digits?.naturalWidth || !digits.naturalHeight) {
+      unavailable();
+      return;
+    }
+    frame.width = String(Math.ceil(16 * digits.naturalWidth / digits.naturalHeight));
+    frame.hidden = false;
+    visitStatus.hidden = true;
   });
+  frame.src = 'visits.html';
 
   let voted;
   try {

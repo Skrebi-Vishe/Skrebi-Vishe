@@ -1,9 +1,27 @@
 <!doctype html>
 <html lang="ru">
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; img-src https://counter.websiteout.com; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <title>Посетители гайда</title>
-<style>body{margin:0;font:14px system-ui}img{display:block;max-height:26px}</style>
+<style>
+  html,body{margin:0;background:transparent;overflow:hidden;font-size:0}
+  img{display:block;height:16px;width:auto;max-width:100%;object-fit:contain;object-position:left;filter:grayscale(1)}
+</style>
 <body>
-<script src="https://counter.websiteout.com/js/6/0/0/1"></script>
+<script>
+  let lastVisit = '0';
+  try {
+    lastVisit = localStorage.getItem('compteurlt') || '0';
+    localStorage.setItem('compteurlt', String(Math.floor(Date.now() / 1000)));
+  } catch {
+    // Keep the counter visible when browser storage is unavailable.
+  }
+  const page = new URL(location.pathname, location.origin).href;
+  const params = new URLSearchParams({ S: page, C: '36', D: '0', N: '0', M: '1', clt: lastVisit, ca: '1' });
+  const digits = new Image();
+  digits.alt = 'Число посетителей';
+  digits.src = 'https://counter.websiteout.com/compte.php?' + params;
+  document.body.append(digits);
+</script>
 </body>
 </html>
