@@ -1,3 +1,4 @@
+var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en){return GL?en:ru;}
 (function () {
   var STEPS = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
   var TITLES = {}; document.querySelectorAll('.toc a[data-step]').forEach(function (a) { TITLES[a.dataset.step] = a.querySelector('.tt').textContent; });
@@ -9,20 +10,20 @@
     STEPS.forEach(function (id) {
       var on = !!done[id]; if (on) n++;
       var sec = document.getElementById(id); if (sec) sec.classList.toggle('is-done', on);
-      document.querySelectorAll('[data-done="' + id + '"]').forEach(function (b) { b.setAttribute('aria-pressed', String(on)); b.querySelector('.dt-label').textContent = on ? 'Выполнено' : 'Шаг выполнен'; });
+      document.querySelectorAll('[data-done="' + id + '"]').forEach(function (b) { b.setAttribute('aria-pressed', String(on)); b.querySelector('.dt-label').textContent = on ? T('Выполнено','Done') : T('Шаг выполнен','Mark step done'); });
       document.querySelectorAll('.toc a[data-step="' + id + '"]').forEach(function (a) { a.classList.toggle('done', on); });
     });
     var f = document.getElementById('tp-fill'), t = document.getElementById('tp-text');
     if (f) f.style.width = (n / STEPS.length * 100) + '%';
-    if (t) t.textContent = 'Выполнено ' + n + ' из ' + STEPS.length;
+    if (t) t.textContent = T('Выполнено ' + n + ' из ' + STEPS.length, n + ' of ' + STEPS.length + ' steps done');
     var fd = document.getElementById('fab-done');
-    if (fd) { fd.hidden = n === 0; fd.textContent = '✓ ' + n + '/' + STEPS.length; fd.title = 'Выполнено шагов: ' + n + ' из ' + STEPS.length; }
+    if (fd) { fd.hidden = n === 0; fd.textContent = '✓ ' + n + '/' + STEPS.length; fd.title = T('Выполнено шагов: ' + n + ' из ' + STEPS.length, 'Steps done: ' + n + ' of ' + STEPS.length); }
     var hs = document.getElementById('hero-start');
     if (hs) {
       var next = STEPS.filter(function (id) { return !done[id]; })[0];
-      if (n === 0) { hs.textContent = 'Начать с проверки'; hs.href = '#s1'; }
-      else if (!next) { hs.textContent = 'Все шаги выполнены · памятка перед игрой'; hs.href = '#every'; }
-      else { hs.textContent = 'Продолжить: шаг ' + next.slice(1) + ' · ' + (TITLES[next] || ''); hs.href = '#' + next; }
+      if (n === 0) { hs.textContent = T('Начать с проверки','Start with the check'); hs.href = '#s1'; }
+      else if (!next) { hs.textContent = T('Все шаги выполнены · памятка перед игрой','All steps done · before-play checklist'); hs.href = '#every'; }
+      else { hs.textContent = T('Продолжить: шаг ','Continue: step ') + next.slice(1) + ' · ' + (TITLES[next] || ''); hs.href = '#' + next; }
     }
   }
   document.querySelectorAll('.done-toggle').forEach(function (b) {
@@ -41,8 +42,8 @@
       if (a.dataset.step === id) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
     });
     if (fabStep) {
-      var num = id && /^s\d+$/.test(id) ? 'Шаг ' + id.slice(1) + '/10' : '';
-      var title = id ? TITLES[id] : 'Шаги';
+      var num = id && /^s\d+$/.test(id) ? T('Шаг ','Step ') + id.slice(1) + '/10' : '';
+      var title = id ? TITLES[id] : T('Шаги','Steps');
       fabStep.replaceChildren();
       if (num) { var a1 = document.createElement('span'); a1.className = 'fab-num'; a1.textContent = num; fabStep.appendChild(a1);
         var s1 = document.createElement('span'); s1.className = 'fab-sep'; s1.textContent = ' · '; fabStep.appendChild(s1); }
@@ -101,7 +102,7 @@
   var add = document.getElementById('tracker-add');
   var status = document.getElementById('tracker-count');
   var logKey = 'slimevr-guide-trackers';
-  var stages = ['Оси', 'Температура', 'Проверка'];
+  var stages = GL ? ['Axes', 'Temperature', 'Check'] : ['Оси', 'Температура', 'Проверка'];
   var savedTrackers = read(logKey, []);
   var trackers = Array.isArray(savedTrackers) ? savedTrackers.filter(function (row) {
     return row && typeof row.name === 'string' && Array.isArray(row.stages);
@@ -111,7 +112,7 @@
     var ready = trackers.filter(function (tracker) {
       return stages.every(function (_, index) { return tracker.stages[index] === true; });
     }).length;
-    status.textContent = trackers.length ? 'Готово ' + ready + ' из ' + trackers.length : 'Не добавлены';
+    status.textContent = trackers.length ? T('Готово ' + ready + ' из ' + trackers.length, ready + ' of ' + trackers.length + ' ready') : T('Не добавлены','None added');
   }
   function saveTrackers() {
     write(logKey, trackers);
@@ -121,13 +122,13 @@
     rows.replaceChildren();
     trackers.forEach(function (tracker, index) {
       var row = element('fieldset', 'tracker-row');
-      row.append(element('legend', '', 'Трекер ' + (index + 1)));
+      row.append(element('legend', '', T('Трекер ','Tracker ') + (index + 1)));
       var name = element('input', 'tracker-name');
       name.type = 'text';
       name.maxLength = 60;
       name.value = tracker.name;
-      name.placeholder = 'Например, левое бедро';
-      name.setAttribute('aria-label', 'Название трекера ' + (index + 1));
+      name.placeholder = T('Например, левое бедро','e.g. left thigh');
+      name.setAttribute('aria-label', T('Название трекера ','Tracker name ') + (index + 1));
       name.addEventListener('input', function () {
         tracker.name = name.value;
         saveTrackers();
@@ -145,9 +146,9 @@
         label.append(check, element('span', '', stage));
         checks.append(label);
       });
-      var remove = element('button', 'quiet-button tracker-remove', 'Убрать');
+      var remove = element('button', 'quiet-button tracker-remove', T('Убрать','Remove'));
       remove.type = 'button';
-      remove.setAttribute('aria-label', 'Убрать трекер ' + (index + 1));
+      remove.setAttribute('aria-label', T('Убрать трекер ','Remove tracker ') + (index + 1));
       remove.addEventListener('click', function () {
         trackers.splice(index, 1);
         saveTrackers();
@@ -179,16 +180,16 @@
   var title = element('h2');
   title.id = 'image-viewer-title';
   var actions = element('div', 'viewer-actions');
-  var scale = element('button', 'quiet-button', 'Крупнее');
-  var close = element('button', 'quiet-button', 'Закрыть');
+  var scale = element('button', 'quiet-button', T('Крупнее','Larger'));
+  var close = element('button', 'quiet-button', T('Закрыть','Close'));
   scale.type = close.type = 'button';
   close.autofocus = true;
-  var hint = element('p', 'viewer-hint', 'Прокрутите изображение, чтобы увидеть остальное.');
+  var hint = element('p', 'viewer-hint', T('Прокрутите изображение, чтобы увидеть остальное.','Scroll the image to see the rest.'));
   hint.hidden = true;
   var content = element('div', 'viewer-content');
   content.tabIndex = 0;
   content.setAttribute('role', 'region');
-  content.setAttribute('aria-label', 'Изображение');
+  content.setAttribute('aria-label', T('Изображение','Image'));
   actions.append(scale, close);
   toolbar.append(title, actions, hint);
   viewer.append(toolbar, content);
@@ -218,16 +219,16 @@
   document.querySelectorAll('[data-zoom]').forEach(function (figure) {
     var graphic = figure.querySelector('img, svg');
     if (!graphic) return;
-    var button = element('button', 'quiet-button zoom-trigger', 'Увеличить');
+    var button = element('button', 'quiet-button zoom-trigger', T('Увеличить','Enlarge'));
     button.type = 'button';
-    button.setAttribute('aria-label', 'Увеличить: ' + figure.dataset.zoom);
+    button.setAttribute('aria-label', T('Увеличить: ','Enlarge: ') + figure.dataset.zoom);
     figure.append(button);
     function open() {
       trigger = button;
       title.textContent = figure.dataset.zoom;
       content.replaceChildren(cloneGraphic(graphic));
       content.classList.remove('viewer-enlarged');
-      scale.textContent = 'Крупнее';
+      scale.textContent = T('Крупнее','Larger');
       scale.setAttribute('aria-pressed', 'false');
       viewer.showModal();
       hint.hidden = content.scrollWidth <= content.clientWidth;
@@ -240,7 +241,7 @@
   });
   scale.addEventListener('click', function () {
     var enlarged = content.classList.toggle('viewer-enlarged');
-    scale.textContent = enlarged ? 'Меньше' : 'Крупнее';
+    scale.textContent = enlarged ? T('Меньше','Smaller') : T('Крупнее','Larger');
     hint.hidden = content.scrollWidth <= content.clientWidth;
     scale.setAttribute('aria-pressed', String(enlarged));
   });
@@ -295,17 +296,17 @@
     if (![data.total, data.likes].every(value => Number.isSafeInteger(value) && value >= 0)) {
       throw new Error('Invalid statistics');
     }
-    visitors.textContent = 'Уникальных браузеров: ' + data.total.toLocaleString('ru-RU');
-    likes.textContent = 'Лайков: ' + data.likes.toLocaleString('ru-RU');
+    visitors.textContent = T('Уникальных браузеров: ','Unique browsers: ') + data.total.toLocaleString(GL ? 'en-US' : 'ru-RU');
+    likes.textContent = T('Лайков: ','Likes: ') + data.likes.toLocaleString(GL ? 'en-US' : 'ru-RU');
     button.setAttribute('aria-pressed', String(data.liked === true));
-    button.textContent = data.liked ? '♥ Нравится' : '♡ Нравится';
+    button.textContent = data.liked ? T('♥ Нравится','♥ Like') : T('♡ Нравится','♡ Like');
     button.disabled = !id || !data.registered || data.owner === true;
     stats.hidden = false;
     if (data.owner === true) {
       authorMode.hidden = false;
       authorForm.hidden = true;
       authorExit.hidden = false;
-      authorStatus.textContent = 'Вы — автор гайда.';
+      authorStatus.textContent = T('Вы — автор гайда.','You are the guide author.');
     }
   }
   function openAuthorForm() {
@@ -324,7 +325,7 @@
       localStorage.setItem(authorStorage, key);
       render(data);
     } catch (error) {
-      authorStatus.textContent = error.status === 401 ? 'Ключ не подошёл.' : 'Не удалось включить режим автора.';
+      authorStatus.textContent = error.status === 401 ? T('Ключ не подошёл.','Wrong key.') : T('Не удалось включить режим автора.','Could not enable author mode.');
     } finally {
       submit.disabled = false;
     }
@@ -344,7 +345,7 @@
   } catch (error) {
     if (ownerKey && error.status === 401) {
       openAuthorForm();
-      authorStatus.textContent = 'Ключ изменился. Введите новый.';
+      authorStatus.textContent = T('Ключ изменился. Введите новый.','The key has changed. Enter the new one.');
     }
   }
   button.addEventListener('click', async () => {
@@ -354,7 +355,7 @@
       const method = button.getAttribute('aria-pressed') === 'true' ? 'DELETE' : 'PUT';
       render(await request(new URL('/likes', counter.content), method));
     } catch (error) {
-      status.textContent = 'Не удалось сохранить отметку. Попробуйте ещё раз.';
+      status.textContent = T('Не удалось сохранить отметку. Попробуйте ещё раз.','Could not save. Please try again.');
       button.disabled = false;
     }
   });
@@ -387,14 +388,14 @@
 
   function showCount(count) {
     if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid like count');
-    label.textContent = 'Лайков: ' + count.toLocaleString('ru-RU');
+    label.textContent = T('Лайков: ','Likes: ') + count.toLocaleString(GL ? 'en-US' : 'ru-RU');
   }
 
   stats.hidden = false;
   const visitStatus = document.getElementById('guide-visit-status');
   const unavailable = () => {
     frame.hidden = true;
-    visitStatus.textContent = 'нет данных';
+    visitStatus.textContent = T('нет данных','no data');
     visitStatus.hidden = false;
   };
   const visitTimeout = setTimeout(unavailable, 8000);
@@ -410,16 +411,16 @@
     frame.hidden = false;
     visitStatus.hidden = true;
   });
-  frame.src = 'visits.html';
+  frame.src = (document.documentElement.getAttribute('data-base') || '') + 'visits.html';
 
   let voted;
   try {
     showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
     voted = localStorage.getItem(votedKey) === '1';
     button.disabled = voted;
-    if (voted) { button.textContent = '♥ Спасибо!'; button.classList.add('liked'); }
+    if (voted) { button.textContent = T('♥ Спасибо!','♥ Thank you!'); button.classList.add('liked'); }
   } catch {
-    label.textContent = 'Лайки пока недоступны';
+    label.textContent = T('Лайки пока недоступны','Likes are unavailable right now');
     return;
   }
 
@@ -440,17 +441,17 @@
     try {
       if (navigator.locks) await navigator.locks.request(votedKey, vote);
       else await vote();
-      button.textContent = '♥ Спасибо!';
+      button.textContent = T('♥ Спасибо!','♥ Thank you!');
       button.classList.add('liked');
     } catch {
-      label.textContent = 'Не удалось поставить лайк';
+      label.textContent = T('Не удалось поставить лайк','Could not send your like');
       button.disabled = false;
       return;
     }
     try {
       showCount((await send('get_hits', { page_slugs: [slug] }))[slug]);
     } catch {
-      label.textContent = 'Число лайков пока недоступно';
+      label.textContent = T('Число лайков пока недоступно','Like count is unavailable right now');
     }
   });
 })();

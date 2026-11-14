@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-base="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,9 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=c46ddc73">
+<meta name="description" content="Пошаговая инструкция для новичков: прошивка, калибровка по осям и температурная калибровка трекеров SlimeVR на BMI160, настройка SteamVR и VRChat.">
+<link rel="alternate" hreflang="ru" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/">
+<link rel="alternate" hreflang="en" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
+<link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
+<link rel="stylesheet" href="css/style.css?v=69da59a8">
 <meta name="guide-hosted-stats">
-<script>window.GUIDE_VERSION="281e11a900";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="ru")location.replace("en/"+location.hash);})();</script>
+<script>window.GUIDE_VERSION="1cb3112f22";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -45,6 +50,7 @@
 <div class="wrap" id="top">
 
 <header>
+  <nav class="lang-switch" aria-label="Язык гайда"><a href="#top" class="is-current" aria-current="true" lang="ru">RU</a><a href="en/" data-setlang="en" lang="en" hreflang="en">EN</a></nav>
   <div class="kicker">SlimeVR · трекеры на BMI160 · прошивка v0.5.4</div>
   <h1>Настройка трекеров SlimeVR с нуля</h1>
   <p class="lead">Настройте самодельные трекеры на BMI160 для SteamVR и VRChat. Пройдите шаги по порядку, от проверки датчика до движений аватара.</p>
@@ -707,7 +713,7 @@
 </section>
 
 <div class="author" aria-label="Автор гайда">
-  <img class="author-avatar" src="img/avatar.jpg" alt="Аватар Skrebi" width="64" height="64">
+  <span class="author-ava"><img class="author-avatar" src="img/avatar.jpg" alt="Аватар Skrebi" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">Автор гайда</span>
     <b class="author-name">Skrebi</b>
@@ -759,8 +765,8 @@
 </div><!--layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="js/hyperion.js?v=af7e6f53"></script>
-<script src="js/scenes.js?v=d1ff6ef2"></script>
-<script src="js/dl.js?v=039f23f1"></script>
-<script src="js/nav.js?v=344b31c7"></script>
+<script src="js/scenes.js?v=2470c218"></script>
+<script src="js/dl.js?v=582fd193"></script>
+<script src="js/nav.js?v=55b374c5"></script>
 </body>
 </html>

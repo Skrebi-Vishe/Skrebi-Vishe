@@ -1,3 +1,4 @@
+var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';
 (function () {
   var wraps = document.querySelectorAll('.three-wrap');
   if (!window.THREE || !window.HYP) { wraps.forEach(function (w) { w.classList.add('nogl'); }); return; }
@@ -260,13 +261,13 @@
       var STOP_Z = -9, LEFT = new T.Vector3(-28, 0, 12), RIGHT = new T.Vector3(28, 0, 12);
       // Оси коробки: X вдоль длины, Y к открытой стороне, Z к стенке с вырезом
       var poses = [
-        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: 'Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.' },
-        { q: basis([0, 0, 1], [0, 1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: 'Положение 1. Дном вниз, торец прижат к упору. Выключатель и кабель слева, кабель выходит из выреза прямо. Консоль: «Waiting for position 1».' },
-        { q: basis([0, -1, 0], [0, 0, 1], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: 'Положение 2. Стоя на торце, дном к упору, открытой стороной к вам. Кабель выходит слева и ложится на стол.' },
-        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: 'Положение 3. Вверх ногами, торцом к упору. Скотч держит трекер, кабель слева.' },
-        { q: basis([0, 1, 0], [0, 0, 1], [1, 0, 0]), c: STRAIGHT, f: RIGHT, t: 'Положение 4. Стоя на другом торце, дном к упору. Кабель теперь выходит справа.' },
-        { q: basis([-1, 0, 0], [0, 0, 1], [0, 1, 0]), c: STRAIGHT, f: LEFT, t: 'Положение 5. На длинном боку, дном к упору, вырез сверху. Кабель уходит вверх и мягко спускается на стол, не натягивая коробочку.' },
-        { q: basis([1, 0, 0], [0, 0, 1], [0, -1, 0]), c: BENT, f: LEFT, t: 'Положение 6. На другом длинном боку, вырез снизу. Подогните кабель внутри выреза и выведите через открытую сторону к себе, чтобы он не приподнимал коробочку. После этого консоль напишет «Calibration data gathered».' }
+        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: GL ? 'Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.' : 'Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.' },
+        { q: basis([0, 0, 1], [0, 1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: GL ? 'Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».' : 'Положение 1. Дном вниз, торец прижат к упору. Выключатель и кабель слева, кабель выходит из выреза прямо. Консоль: «Waiting for position 1».' },
+        { q: basis([0, -1, 0], [0, 0, 1], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: GL ? 'Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.' : 'Положение 2. Стоя на торце, дном к упору, открытой стороной к вам. Кабель выходит слева и ложится на стол.' },
+        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: GL ? 'Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.' : 'Положение 3. Вверх ногами, торцом к упору. Скотч держит трекер, кабель слева.' },
+        { q: basis([0, 1, 0], [0, 0, 1], [1, 0, 0]), c: STRAIGHT, f: RIGHT, t: GL ? 'Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.' : 'Положение 4. Стоя на другом торце, дном к упору. Кабель теперь выходит справа.' },
+        { q: basis([-1, 0, 0], [0, 0, 1], [0, 1, 0]), c: STRAIGHT, f: LEFT, t: GL ? 'Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.' : 'Положение 5. На длинном боку, дном к упору, вырез сверху. Кабель уходит вверх и мягко спускается на стол, не натягивая коробочку.' },
+        { q: basis([1, 0, 0], [0, 0, 1], [0, -1, 0]), c: BENT, f: LEFT, t: GL ? 'Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».' : 'Положение 6. На другом длинном боку, вырез снизу. Подогните кабель внутри выреза и выведите через открытую сторону к себе, чтобы он не приподнимал коробочку. После этого консоль напишет «Calibration data gathered».' }
       ];
       var box = null, cable = null, anim = null, current = 0;
       var tmp = new T.Box3();
