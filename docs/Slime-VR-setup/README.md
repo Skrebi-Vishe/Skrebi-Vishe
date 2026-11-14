@@ -2,7 +2,9 @@
 
 Пошаговый гайд для новичков по DIY‑трекерам SlimeVR первого поколения: плата **Wemos D1 Mini (ESP8266)** и датчик **BMI160**, прошивка **v0.5.4**.
 
-**[→ Открыть гайд](https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/)**
+**[→ Открыть гайд](https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/)** · **[→ English version](https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/)**
+
+Язык выбирается автоматически по языку браузера, переключатель RU / EN есть в шапке гайда.
 
 ## Что внутри
 
@@ -22,7 +24,8 @@
 ## Файлы
 
 ```
-index.html                              — страница гайда
+index.html                              — страница гайда (русский)
+en/index.html                           — английская версия (адаптирована для читателей вне России)
 css/style.css                           — оформление
 js/hyperion.js                          — 3D-модели корпусов трекера и ответвления
 js/scenes.js                            — 3D-сцены: коробочка и 6 положений калибровки
