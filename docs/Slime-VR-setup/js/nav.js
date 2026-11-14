@@ -339,8 +339,17 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
     });
   }
 
+  // скрипт проверки загружается заранее, когда карточка автора видна: лайк ставится быстрее
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((x) => x.isIntersecting)) { io.disconnect(); loadTurnstile().catch(() => {}); }
+    }, { rootMargin: '400px' });
+    io.observe(stats);
+  }
+
   button.addEventListener('click', async () => {
     button.disabled = true;
+    if (!liked) button.textContent = T('Проверяем…', 'Checking…');
     try {
       if (liked) show(await request('DELETE', '/like'));
       else show(await request('POST', '/like', { token: await humanToken() }));
@@ -350,6 +359,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
         : (e.message === 'captcha' || e.message === 'expired' || e.status === 403)
           ? T('Проверка не пройдена. Нажмите ещё раз', 'Check failed. Please try again')
           : T('Не удалось поставить лайк', 'Could not send your like');
+      if (!liked) button.textContent = T('♡ Нравится', '♡ Like');
     } finally {
       button.disabled = false;
     }
