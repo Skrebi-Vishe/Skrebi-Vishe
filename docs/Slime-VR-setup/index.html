@@ -13,11 +13,11 @@
 <link rel="alternate" hreflang="ru" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/">
 <link rel="alternate" hreflang="en" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="css/style.css?v=69da59a8">
+<link rel="stylesheet" href="css/style.css?v=29a367a8">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="ru")location.replace("en/"+location.hash);})();</script>
-<script>window.GUIDE_VERSION="294e3bea0b";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="1bd5e0bc08";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -405,7 +405,7 @@
       <circle cx="604" cy="52" r="5" style="fill:var(--warm)"/><text x="604" y="36" text-anchor="middle" class="svg-text">фен ~46°</text>
     </svg>
     </div>
-    <figcaption><span class="mobile-graph-note">Откройте график крупнее, чтобы прочитать все подписи.</span> Примерный ход температуры. Время зависит от комнаты и корпуса. Не старайтесь уложиться в 35 минут: если выйдет дольше, это даже лучше.</figcaption>
+    <figcaption><span class="mobile-graph-note">Нажмите на график, чтобы открыть его крупно и прочитать все подписи.</span> Примерный ход температуры. Время зависит от комнаты и корпуса. Не старайтесь уложиться в 35 минут: если выйдет дольше, это даже лучше.</figcaption>
   </figure>
   <h3 id="temperature-prep">Подготовка</h3>
   <ol class="do">
@@ -578,7 +578,7 @@
   </figure>
   <div class="reference-block" id="slimevr-screens">
     <h3>Где это в SlimeVR</h3>
-    <p>Откройте нужный экран крупнее. Снимки сделаны в русской версии SlimeVR Server v21.1.0 без подключённых трекеров.</p>
+    <p>Нажмите на снимок, чтобы рассмотреть его крупно. Снимки сделаны в русской версии SlimeVR Server v21.1.0 без подключённых трекеров.</p>
     <div class="reference-grid slimevr-examples">
       <figure class="reference-shot" data-zoom="Назначение трекеров."><img src="img/slimevr-21-assign.webp" alt="Страница «Привязать трекеры»" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Выберите часть тела.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.webp" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
@@ -596,17 +596,21 @@
   <div class="step-head"><div class="num">10</div><div><h2>Калибровка в VRChat</h2><p>При первом заходе</p></div></div>
   <ol class="do">
     <li><span>Не выключая SlimeVR, зайдите в <strong>VRChat</strong>.</span></li>
-    <li><span>Откройте <strong>«Tracking &amp; IK»</strong> в большом меню настроек. Встаньте ровно, смотрите прямо и нажмите <strong>«Measure Height»</strong> рядом с полем <strong>«User Real Height»</strong>.</span></li>
-    <li><span>В <strong>«Tracking &amp; IK»</strong> поставьте <strong>«Calibration Range»</strong> на <strong>0,20 м</strong>. Выключите <strong>«Legacy Calibration»</strong> и <strong>«Use Legacy IK Solving»</strong>, если эти переключатели есть в вашей версии. IK — расчёт положения суставов аватара.</span></li>
-    <li><span>Откройте быстрое меню и нажмите <strong>«Calibrate FBT»</strong> (калибровка полного тела). Встаньте как аватар, смотрите прямо и подтвердите обоими курками на контроллерах.</span></li>
+    <li><span>Откройте большое меню настроек, раздел <strong>«Отслеживание и IK»</strong> (Tracking &amp; IK). Встаньте ровно, смотрите прямо и нажмите кнопку измерения роста: крайнюю справа в строке <strong>«Реальный рост пользователя»</strong> (User Real Height).</span></li>
+    <li><span>Там же выключите <strong>«Использовать старую версию IK»</strong> (Use Legacy IK Solving). Ниже, в блоке <strong>«Калибровка и отладка»</strong> (Calibration &amp; Debug), выключите <strong>«Старый метод калибровки»</strong> (Legacy Calibration) и поставьте <strong>«Расстояние калибровки»</strong> (Calibration Range) на <strong>0,20 м</strong>. IK — расчёт положения суставов аватара.</span></li>
+    <li><span>Откройте быстрое меню, нажмите шестерёнку и затем <strong>«Калибровать FBT»</strong> (Calibrate FBT). Встаньте как аватар, смотрите прямо и подтвердите обоими курками на контроллерах.</span></li>
   </ol>
-  <details class="reference-details">
-    <summary>Где искать рост и параметры калибровки</summary>
-    <div>
-      <figure class="reference-shot portrait-shot" data-zoom="Настройки Tracking &amp; IK."><img src="img/vrchat-settings.webp" alt="Раздел Tracking & IK, строки User Real Height и Calibration Range" loading="lazy"><figcaption><strong>Настройки Tracking &amp; IK.</strong> Снимок из документации SlimeVR. Выполните действия из списка выше.</figcaption></figure>
-      <p class="source-note">Снимок из <a href="https://docs.slimevr.dev/tools/vrchat-config.html">документации SlimeVR</a>. Кнопка «Calibrate FBT» описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
+  <div class="reference-block" id="vrchat-screens">
+    <h3>Где это в VRChat</h3>
+    <p>Нажмите на снимок, чтобы рассмотреть его крупно. На снимках настройки ещё не изменены: выставляйте значения по списку выше.</p>
+    <div class="reference-grid vrchat-examples">
+      <figure class="reference-shot" data-zoom="Рост и старая версия IK"><img src="img/ru/vrc-height.webp" alt="Меню VRChat «Отслеживание и IK»: строка «Реальный рост пользователя» и переключатель «Использовать старую версию IK»" width="780" height="613" loading="lazy"><figcaption><strong>Рост и старая версия IK.</strong> Кнопка измерения роста — крайняя справа в строке роста. Переключатель старой версии IK — третья строка.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Калибровка и отладка"><img src="img/ru/vrc-calibration.webp" alt="Блок «Калибровка и отладка»: «Старый метод калибровки» и «Расстояние калибровки»" width="757" height="593" loading="lazy"><figcaption><strong>Калибровка и отладка.</strong> «Старый метод калибровки» — первая строка, «Расстояние калибровки» — ползунок ниже.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Кнопка «Калибровать FBT»"><img src="img/ru/vrc-quick-fbt.webp" alt="Быстрое меню VRChat, вкладка настроек с кнопкой «Калибровать FBT»" width="535" height="560" loading="lazy"><figcaption><strong>Быстрое меню.</strong> Шестерёнка внизу, затем кнопка «Калибровать FBT».</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Поза при калибровке"><img src="img/vrc-tpose.webp" alt="Аватар в позе калибровки, трекеры показаны цветными кругами" width="840" height="745" loading="lazy"><figcaption><strong>Поза при калибровке.</strong> Совместите своё тело с аватаром и нажмите оба курка.</figcaption></figure>
     </div>
-  </details>
+    <p class="source-note">Снимки сделаны автором гайда в VRChat (ноябрь 2026). Кнопка «Calibrate FBT» описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
+  </div>
   <div class="ok"><b>Готово</b><p>Трекеры откалиброваны и настроены. Калибровку по осям и температурную больше делать не нужно. Перед каждой игрой выполняйте короткий порядок ниже.</p></div>
   <div class="step-finish"><div><b>Проверьте результат</b><p>После подтверждения аватар повторяет движения корпуса и ног.</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
 </section>
@@ -756,6 +760,6 @@
 <script src="js/hyperion.js?v=af7e6f53"></script>
 <script src="js/scenes.js?v=2470c218"></script>
 <script src="js/dl.js?v=1d8d1f6d"></script>
-<script src="js/nav.js?v=91bbf1d9"></script>
+<script src="js/nav.js?v=dcf0d32e"></script>
 </body>
 </html>

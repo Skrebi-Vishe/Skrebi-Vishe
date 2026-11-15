@@ -13,11 +13,11 @@
 <link rel="alternate" hreflang="ru" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/">
 <link rel="alternate" hreflang="en" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=69da59a8">
+<link rel="stylesheet" href="../css/style.css?v=29a367a8">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="en")location.replace("../"+location.hash);})();</script>
-<script>window.GUIDE_VERSION="294e3bea0b";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="1bd5e0bc08";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -405,7 +405,7 @@
       <circle cx="604" cy="52" r="5" style="fill:var(--warm)"/><text x="604" y="36" text-anchor="middle" class="svg-text">dryer ~46°</text>
     </svg>
     </div>
-    <figcaption><span class="mobile-graph-note">Open the graph larger to read all the labels.</span> Approximate temperature curve. Timing depends on the room and the case. Don't try to fit into 35 minutes: if it takes longer, that is even better.</figcaption>
+    <figcaption><span class="mobile-graph-note">Tap the graph to open it larger and read all the labels.</span> Approximate temperature curve. Timing depends on the room and the case. Don't try to fit into 35 minutes: if it takes longer, that is even better.</figcaption>
   </figure>
   <h3 id="temperature-prep">Preparation</h3>
   <ol class="do">
@@ -578,7 +578,7 @@
   </figure>
   <div class="reference-block" id="slimevr-screens">
     <h3>Where to find it in SlimeVR</h3>
-    <p>Open any screen larger. The screenshots are from the Russian version of SlimeVR Server v21.1.0 without trackers connected; the English interface has the same layout and the names listed above.</p>
+    <p>Click a screenshot to see it up close. The screenshots are from the Russian version of SlimeVR Server v21.1.0 without trackers connected; the English interface has the same layout and the names listed above.</p>
     <div class="reference-grid slimevr-examples">
       <figure class="reference-shot" data-zoom="Tracker assignment."><img src="../img/slimevr-21-assign.webp" alt="The Assign trackers page" loading="lazy"><figcaption><strong>Tracker assignment.</strong> Pick a body part.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Mounting calibration."><img src="../img/slimevr-21-mounting.webp" alt="The Mounting Calibration wizard" loading="lazy"><figcaption><strong>Mounting calibration.</strong> Follow the wizard.</figcaption></figure>
@@ -596,17 +596,21 @@
   <div class="step-head"><div class="num">10</div><div><h2>Calibrate in VRChat</h2><p>The first time you join</p></div></div>
   <ol class="do">
     <li><span>Keep SlimeVR running and launch <strong>VRChat</strong>.</span></li>
-    <li><span>Open <strong>“Tracking &amp; IK”</strong> in the main settings menu. Stand straight, look ahead and click <strong>“Measure Height”</strong> next to <strong>“User Real Height”</strong>.</span></li>
-    <li><span>In <strong>“Tracking &amp; IK”</strong> set <strong>“Calibration Range”</strong> to <strong>0.20 m</strong>. Turn off <strong>“Legacy Calibration”</strong> and <strong>“Use Legacy IK Solving”</strong> if your version has these switches. IK means calculating where the avatar's joints are.</span></li>
-    <li><span>Open the quick menu and click <strong>“Calibrate FBT”</strong> (full-body calibration). Stand like the avatar, look ahead and confirm with both triggers on the controllers.</span></li>
+    <li><span>Open the main settings menu, <strong>“Tracking &amp; IK”</strong>. Stand straight, look ahead and press the height measurement button: the rightmost one in the <strong>“User Real Height”</strong> row.</span></li>
+    <li><span>On the same page turn off <strong>“Use Legacy IK Solving”</strong>. Further down, under <strong>“Calibration &amp; Debug”</strong>, turn off <strong>“Legacy Calibration”</strong> and set <strong>“Calibration Range”</strong> to <strong>0.20 m</strong>. IK means calculating where the avatar's joints are.</span></li>
+    <li><span>Open the quick menu, press the gear icon and then <strong>“Calibrate FBT”</strong> (full-body calibration). Stand like the avatar, look ahead and confirm with both triggers on the controllers.</span></li>
   </ol>
-  <details class="reference-details">
-    <summary>Where to find height and calibration settings</summary>
-    <div>
-      <figure class="reference-shot portrait-shot" data-zoom="Tracking &amp; IK settings."><img src="../img/vrchat-settings.webp" alt="Tracking & IK section with User Real Height and Calibration Range" loading="lazy"><figcaption><strong>Tracking &amp; IK settings.</strong> Screenshot from the SlimeVR documentation. Follow the steps above.</figcaption></figure>
-      <p class="source-note">Screenshot from the <a href="https://docs.slimevr.dev/tools/vrchat-config.html">SlimeVR documentation</a>. The “Calibrate FBT” button is described in the <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">VRChat documentation</a>.</p>
+  <div class="reference-block" id="vrchat-screens">
+    <h3>Where to find it in VRChat</h3>
+    <p>Click a screenshot to see it up close. The settings in the screenshots are not changed yet: use the values from the list above.</p>
+    <div class="reference-grid vrchat-examples">
+      <figure class="reference-shot" data-zoom="Height and legacy IK"><img src="../img/vrc-height.webp" alt="VRChat Tracking &amp; IK menu: User Real Height row and Use Legacy IK Solving switch" width="774" height="593" loading="lazy"><figcaption><strong>Height and legacy IK.</strong> The height measurement button is the rightmost one in the height row. The legacy IK switch is the third row.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img src="../img/vrc-calibration.webp" alt="Calibration &amp; Debug block: Legacy Calibration and Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug.</strong> “Legacy Calibration” is the first row, “Calibration Range” is the slider below.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="The Calibrate FBT button"><img src="../img/vrc-quick-fbt.webp" alt="VRChat quick menu settings tab with the Calibrate FBT button" width="492" height="523" loading="lazy"><figcaption><strong>Quick menu.</strong> The gear icon at the bottom, then “Calibrate FBT”.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration pose"><img src="../img/vrc-tpose.webp" alt="Avatar in the calibration pose, trackers shown as coloured circles" width="840" height="745" loading="lazy"><figcaption><strong>Calibration pose.</strong> Line your body up with the avatar and press both triggers.</figcaption></figure>
     </div>
-  </details>
+    <p class="source-note">Screenshots taken by the guide author in VRChat (November 2026). The “Calibrate FBT” button is described in the <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">VRChat documentation</a>.</p>
+  </div>
   <div class="ok"><b>Done</b><p>The trackers are calibrated and set up. You do not need to do the 6-point or temperature calibration again. Before every session, follow the short routine below.</p></div>
   <div class="step-finish"><div><b>Check the result</b><p>After confirming, the avatar follows your body and leg movements.</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
 </section>
@@ -756,6 +760,6 @@
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=2470c218"></script>
 <script src="../js/dl.js?v=1d8d1f6d"></script>
-<script src="../js/nav.js?v=91bbf1d9"></script>
+<script src="../js/nav.js?v=dcf0d32e"></script>
 </body>
 </html>

@@ -172,88 +172,239 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
   if (location.hash === '#tracker-log') log.open = true;
   renderTrackers();
 
-  var viewer = document.createElement('dialog');
-  if (typeof viewer.showModal !== 'function') return;
-  viewer.className = 'image-viewer';
-  viewer.setAttribute('aria-labelledby', 'image-viewer-title');
-  var toolbar = element('div', 'viewer-toolbar');
-  var title = element('h2');
-  title.id = 'image-viewer-title';
-  var actions = element('div', 'viewer-actions');
-  var scale = element('button', 'quiet-button', T('Крупнее','Larger'));
-  var close = element('button', 'quiet-button', T('Закрыть','Close'));
-  scale.type = close.type = 'button';
-  close.autofocus = true;
-  var hint = element('p', 'viewer-hint', T('Прокрутите изображение, чтобы увидеть остальное.','Scroll the image to see the rest.'));
-  hint.hidden = true;
-  var content = element('div', 'viewer-content');
-  content.tabIndex = 0;
-  content.setAttribute('role', 'region');
-  content.setAttribute('aria-label', T('Изображение','Image'));
-  actions.append(scale, close);
-  toolbar.append(title, actions, hint);
-  viewer.append(toolbar, content);
-  document.body.append(viewer);
+})();
+// Просмотр картинок: нажатие на снимок открывает его на весь экран.
+// Приближение: нажатие, колесо мыши, два пальца; перетаскивание приближенного снимка;
+// листание стрелками, клавишами ← → и свайпом в пределах одного шага.
+(function () {
+  var dlg = document.createElement('dialog');
+  if (typeof dlg.showModal !== 'function') return;
 
-  var trigger;
-  function cloneGraphic(graphic) {
-    var copy = graphic.cloneNode(true);
-    if (copy.tagName === 'IMG') copy.loading = 'eager';
-    // Сохраняем связи с градиентами и масками внутри копии SVG.
-    var ids = new Map();
-    copy.querySelectorAll('[id]').forEach(function (node) {
-      ids.set(node.id, 'zoom-' + node.id);
-      node.id = ids.get(node.id);
+  var items = [];
+  document.querySelectorAll('figure').forEach(function (fig) {
+    if (fig.closest('.author, .three-wrap')) return;
+    var list = fig.hasAttribute('data-zoom')
+      ? [fig.querySelector('img, svg')].filter(Boolean)
+      : Array.prototype.slice.call(fig.querySelectorAll('img'));
+    list.forEach(function (g) {
+      if (items.some(function (x) { return x.g === g; })) return;
+      var cap = fig.querySelector(':scope > figcaption');
+      var capText = '';
+      if (cap) { var cc = cap.cloneNode(true); cc.querySelectorAll('.mobile-graph-note').forEach(function (n) { n.remove(); }); capText = cc.textContent.replace(/\s+/g, ' ').trim(); }
+      var text = list.length === 1 && capText ? capText : (g.getAttribute('alt') || fig.dataset.zoom || '');
+      items.push({ g: g, text: text, title: fig.dataset.zoom || g.getAttribute('alt') || text, group: g.closest('section') || document.body });
     });
-    copy.querySelectorAll('*').forEach(function (node) {
-      Array.from(node.attributes).forEach(function (attr) {
-        var value = attr.value.replace(/url\(#([^)]+)\)/g, function (match, id) {
-          return ids.has(id) ? 'url(#' + ids.get(id) + ')' : match;
-        });
-        if (attr.localName === 'href' && ids.has(value.slice(1))) value = '#' + ids.get(value.slice(1));
-        if (value !== attr.value) attr.value = value;
-      });
-    });
-    return copy;
+  });
+  if (!items.length) return;
+
+  var ICON = {
+    close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+    next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>'
+  };
+  function btn(cls, label, icon) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'lb-btn ' + cls; b.setAttribute('aria-label', label); b.title = label; b.innerHTML = icon;
+    return b;
   }
-  document.querySelectorAll('[data-zoom]').forEach(function (figure) {
-    var graphic = figure.querySelector('img, svg');
-    if (!graphic) return;
-    var button = element('button', 'quiet-button zoom-trigger', T('Увеличить','Enlarge'));
-    button.type = 'button';
-    button.setAttribute('aria-label', T('Увеличить: ','Enlarge: ') + figure.dataset.zoom);
-    figure.append(button);
-    function open() {
-      trigger = button;
-      title.textContent = figure.dataset.zoom;
-      content.replaceChildren(cloneGraphic(graphic));
-      content.classList.remove('viewer-enlarged');
-      scale.textContent = T('Крупнее','Larger');
-      scale.setAttribute('aria-pressed', 'false');
-      viewer.showModal();
-      hint.hidden = content.scrollWidth <= content.clientWidth;
-      content.scrollTo(0, 0);
-      close.focus();
+  dlg.className = 'lb';
+  dlg.setAttribute('aria-label', T('Просмотр изображения', 'Image viewer'));
+  var stage = document.createElement('div'); stage.className = 'lb-stage';
+  var bar = document.createElement('div'); bar.className = 'lb-bar';
+  var cap = document.createElement('p'); cap.className = 'lb-cap'; cap.id = 'lb-cap';
+  var meta = document.createElement('p'); meta.className = 'lb-meta';
+  var count = document.createElement('span'); count.className = 'lb-count';
+  var hint = document.createElement('span'); hint.className = 'lb-hint';
+  var touch = window.matchMedia('(pointer: coarse)').matches;
+  hint.textContent = touch
+    ? T('Нажмите или разведите пальцы, чтобы приблизить', 'Tap or pinch to zoom')
+    : T('Нажмите на снимок или покрутите колесо, чтобы приблизить', 'Click the image or use the mouse wheel to zoom');
+  meta.append(count, hint);
+  bar.append(cap, meta);
+  var bClose = btn('lb-close', T('Закрыть (Esc)', 'Close (Esc)'), ICON.close);
+  var bPrev = btn('lb-prev', T('Предыдущий снимок', 'Previous image'), ICON.prev);
+  var bNext = btn('lb-next', T('Следующий снимок', 'Next image'), ICON.next);
+  dlg.setAttribute('aria-describedby', 'lb-cap');
+  dlg.append(stage, bar, bPrev, bNext, bClose);
+  document.body.append(dlg);
+
+  var group = [], idx = 0, g = null, nw = 1, nh = 1, bw = 0, bh = 0, s = 1, tx = 0, ty = 0, maxS = 4, trigger = null;
+
+  function cloneOf(src) {
+    var c = src.cloneNode(true);
+    ['class', 'tabindex', 'role', 'aria-label', 'loading', 'width', 'height', 'style'].forEach(function (a) { c.removeAttribute(a); });
+    if (c.tagName === 'IMG') { c.src = src.currentSrc || src.src; c.decoding = 'async'; c.draggable = false; }
+    else {
+      var map = new Map();
+      c.querySelectorAll('[id]').forEach(function (n) { map.set(n.id, 'lb-' + n.id); n.id = 'lb-' + n.id; });
+      c.querySelectorAll('*').forEach(function (n) {
+        Array.prototype.forEach.call(n.attributes, function (a) {
+          var v = a.value.replace(/url\(#([^)]+)\)/g, function (m, id) { return map.has(id) ? 'url(#' + map.get(id) + ')' : m; });
+          if (a.localName === 'href' && map.has(v.slice(1))) v = '#' + map.get(v.slice(1));
+          if (v !== a.value) a.value = v;
+        });
+      });
+      c.removeAttribute('id');
     }
-    button.addEventListener('click', open);
-    graphic.classList.add('zoomable');
-    graphic.addEventListener('click', open);
+    c.classList.add('lb-img');
+    return c;
+  }
+  function area() {
+    var cs = getComputedStyle(stage), r = stage.getBoundingClientRect();
+    var l = parseFloat(cs.paddingLeft), t = parseFloat(cs.paddingTop);
+    var w = stage.clientWidth - l - parseFloat(cs.paddingRight), h = stage.clientHeight - t - parseFloat(cs.paddingBottom);
+    return { w: w, h: h, cx: r.left + l + w / 2, cy: r.top + t + h / 2 };
+  }
+  function layout() {
+    if (!g) return;
+    var a = area();
+    var fit = Math.min(a.w / nw, a.h / nh);
+    if (g.tagName === 'IMG') fit = Math.min(fit, 2);
+    bw = Math.round(nw * fit); bh = Math.round(nh * fit);
+    g.style.width = bw + 'px'; g.style.height = bh + 'px';
+    var native = g.tagName === 'IMG' ? nw / bw : 1;
+    maxS = Math.max(4, native * 2);
+    setT(1, 0, 0, false);
+  }
+  function clampT() {
+    var a = area();
+    var mx = Math.max(0, (bw * s - a.w) / 2), my = Math.max(0, (bh * s - a.h) / 2);
+    tx = Math.min(mx, Math.max(-mx, tx)); ty = Math.min(my, Math.max(-my, ty));
+  }
+  function setT(ns, nx, ny, anim) {
+    s = Math.min(maxS, Math.max(1, ns)); tx = nx; ty = ny; clampT();
+    if (!g) return;
+    g.classList.toggle('lb-anim', !!anim);
+    g.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+    dlg.classList.toggle('lb-zoomed', s > 1.01);
+  }
+  function zoomAt(ns, x, y, anim) {
+    var a = area();
+    ns = Math.min(maxS, Math.max(1, ns));
+    var k = ns / s;
+    setT(ns, x - a.cx - (x - a.cx - tx) * k, y - a.cy - (y - a.cy - ty) * k, anim);
+  }
+  function toggleZoom(x, y) {
+    if (s > 1.01) { setT(1, 0, 0, true); return; }
+    var target = g.tagName === 'IMG' ? Math.max(2, nw / bw) : 2.5;
+    zoomAt(Math.min(target, maxS), x, y, true);
+  }
+
+  function show(i) {
+    idx = (i + group.length) % group.length;
+    var it = group[idx];
+    var c = cloneOf(it.g);
+    if (c.tagName === 'IMG') {
+      nw = it.g.naturalWidth || +it.g.getAttribute('width') || 800;
+      nh = it.g.naturalHeight || +it.g.getAttribute('height') || 600;
+      c.addEventListener('load', function () { if (g === c && (c.naturalWidth !== nw || c.naturalHeight !== nh)) { nw = c.naturalWidth; nh = c.naturalHeight; layout(); } });
+      c.alt = it.g.alt || '';
+    } else {
+      var vb = it.g.viewBox && it.g.viewBox.baseVal, r = it.g.getBoundingClientRect();
+      nw = (vb && vb.width) || r.width || 800; nh = (vb && vb.height) || r.height || 600;
+      c.setAttribute('role', 'img');
+    }
+    stage.replaceChildren(c); g = c;
+    cap.textContent = it.text;
+    var many = group.length > 1;
+    count.textContent = many ? (idx + 1) + ' / ' + group.length : '';
+    count.hidden = !many; bPrev.hidden = bNext.hidden = !many;
+    layout();
+    if (many) [idx + 1, idx - 1].forEach(function (j) { var n = group[(j + group.length) % group.length].g; if (n.tagName === 'IMG') { var p = new Image(); p.src = n.currentSrc || n.src; } });
+  }
+  function open(it) {
+    group = items.filter(function (x) { return x.group === it.group; });
+    trigger = it.g;
+    dlg.showModal();
+    show(group.indexOf(it));
+    bClose.focus({ preventScroll: true });
+  }
+
+  items.forEach(function (it) {
+    var el = it.g;
+    el.classList.add('zoomable');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', T('Открыть крупно: ', 'Open larger: ') + it.title);
+    el.addEventListener('click', function (e) { e.preventDefault(); open(it); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(it); }
+    });
   });
-  scale.addEventListener('click', function () {
-    var enlarged = content.classList.toggle('viewer-enlarged');
-    scale.textContent = enlarged ? T('Меньше','Smaller') : T('Крупнее','Larger');
-    hint.hidden = content.scrollWidth <= content.clientWidth;
-    scale.setAttribute('aria-pressed', String(enlarged));
-  });
-  close.addEventListener('click', function () { viewer.close(); });
-  viewer.addEventListener('click', function (event) {
-    if (event.target === viewer) viewer.close();
-  });
-  viewer.addEventListener('close', function () {
-    content.replaceChildren();
+
+  bClose.addEventListener('click', function () { dlg.close(); });
+  bPrev.addEventListener('click', function () { show(idx - 1); });
+  bNext.addEventListener('click', function () { show(idx + 1); });
+  dlg.addEventListener('close', function () {
+    stage.replaceChildren(); g = null;
     if (trigger) trigger.focus({ preventScroll: true });
   });
+  dlg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft' && group.length > 1) { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'ArrowRight' && group.length > 1) { e.preventDefault(); show(idx + 1); }
+    else if (e.key === '+' || e.key === '=') { var a = area(); zoomAt(s * 1.5, a.cx, a.cy, true); }
+    else if (e.key === '-') { var b = area(); zoomAt(s / 1.5, b.cx, b.cy, true); }
+    else if (e.key === '0') setT(1, 0, 0, true);
+  });
+  window.addEventListener('resize', function () { if (dlg.open) layout(); });
+
+  stage.addEventListener('wheel', function (e) {
+    if (!g) return;
+    e.preventDefault();
+    zoomAt(s * Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018)), e.clientX, e.clientY, false);
+  }, { passive: false });
+
+  var pts = new Map(), start = null, pinch = null;
+  stage.addEventListener('pointerdown', function (e) {
+    if (!g || e.button > 0) return;
+    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) start = { x: e.clientX, y: e.clientY, tx: tx, ty: ty, t: Date.now(), moved: false };
+    else if (pts.size === 2) {
+      var p = Array.from(pts.values());
+      pinch = { d: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y), s: s };
+      if (start) start.moved = true;
+    }
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!pts.has(e.pointerId) || !g) return;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 2 && pinch) {
+      var p = Array.from(pts.values());
+      var d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      zoomAt(pinch.s * d / pinch.d, (p[0].x + p[1].x) / 2, (p[0].y + p[1].y) / 2, false);
+      return;
+    }
+    if (!start) return;
+    var dx = e.clientX - start.x, dy = e.clientY - start.y;
+    if (Math.abs(dx) + Math.abs(dy) > 6) start.moved = true;
+    if (s > 1.01) { dlg.classList.add('lb-drag'); setT(s, start.tx + dx, start.ty + dy, false); }
+  });
+  function end(e) {
+    if (!pts.has(e.pointerId)) return;
+    pts.delete(e.pointerId);
+    dlg.classList.remove('lb-drag');
+    if (pts.size === 1) { var q = Array.from(pts.values())[0]; start = { x: q.x, y: q.y, tx: tx, ty: ty, t: Date.now(), moved: true }; pinch = null; return; }
+    if (pts.size) return;
+    pinch = null;
+    var st = start; start = null;
+    if (!st || e.type === 'pointercancel' || !g) return;
+    var dx = e.clientX - st.x, dy = e.clientY - st.y;
+    if (st.moved) {
+      if (s <= 1.01 && group.length > 1 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - st.t < 700) show(idx + (dx < 0 ? 1 : -1));
+      return;
+    }
+    var r = g.getBoundingClientRect();
+    var onImg = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (onImg) toggleZoom(e.clientX, e.clientY);
+    else if (s > 1.01) setT(1, 0, 0, true);
+    else dlg.close();
+  }
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
+  bar.addEventListener('click', function (e) { if (e.target === bar && s <= 1.01) dlg.close(); });
 })();
+
 // Свой сервер лайков и посетителей (src/visitor-counter/worker.mjs).
 // Включается, когда при сборке задан адрес сервера и ключ Turnstile (tools/stats_config.json).
 (async function () {
