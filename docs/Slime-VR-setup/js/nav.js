@@ -1,4 +1,4 @@
-var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en){return GL?en:ru;}
+var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){if(!GL)return ru;var d=window.GUIDE_I18N;return d&&d[en]||en;}
 (function () {
   var STEPS = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
   var TITLES = {}; document.querySelectorAll('.toc a[data-step]').forEach(function (a) { TITLES[a.dataset.step] = a.querySelector('.tt').textContent; });
@@ -102,7 +102,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
   var add = document.getElementById('tracker-add');
   var status = document.getElementById('tracker-count');
   var logKey = 'slimevr-guide-trackers';
-  var stages = GL ? ['Axes', 'Temperature', 'Check'] : ['Оси', 'Температура', 'Проверка'];
+  var stages = [T('Оси', 'Axes'), T('Температура', 'Temperature'), T('Проверка', 'Check')];
   var savedTrackers = read(logKey, []);
   var trackers = Array.isArray(savedTrackers) ? savedTrackers.filter(function (row) {
     return row && typeof row.name === 'string' && Array.isArray(row.stages);
@@ -413,7 +413,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
   if (!apiMeta || !keyMeta || location.origin !== 'https://skrebi-vishe.github.io') return;
   const api = apiMeta.content.replace(/\/$/, '');
   if (!/^https:\/\/[a-z0-9.-]+$/i.test(api)) return;
-  const locale = GL ? 'en-US' : 'ru-RU';
+  const locale = GLANG;
   const stats = document.getElementById('guide-public-stats');
   const frame = document.getElementById('guide-visit-frame');
   const visits = document.getElementById('guide-visit-status');
@@ -482,7 +482,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
       box.hidden = false;
       widget = window.turnstile.render(box, {
         sitekey: keyMeta.content, action: 'like', appearance: 'interaction-only',
-        language: GL ? 'en' : 'ru', theme: 'auto',
+        language: ({ 'zh-Hans': 'zh-cn', 'pt-BR': 'pt-br' })[GLANG] || GLANG.toLowerCase(), theme: 'auto',
         callback: (token) => { box.hidden = true; resolve(token); },
         'error-callback': () => { reject(new Error('captcha')); },
         'expired-callback': () => { reject(new Error('expired')); },
@@ -544,7 +544,7 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
 
   function showCount(count) {
     if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid like count');
-    label.textContent = T('Лайков: ','Likes: ') + count.toLocaleString(GL ? 'en-US' : 'ru-RU');
+    label.textContent = T('Лайков: ','Likes: ') + count.toLocaleString(GLANG);
   }
 
   stats.hidden = false;
@@ -609,5 +609,32 @@ var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en)
     } catch {
       label.textContent = T('Число лайков пока недоступно','Like count is unavailable right now');
     }
+  });
+})();
+
+// Меню выбора языка (details.lang-menu): закрывается кликом мимо и клавишей Esc, стрелки ↑ ↓ ходят по списку.
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('details.lang-menu'));
+  if (!menus.length) return;
+  menus.forEach(function (m) {
+    var summary = m.querySelector('summary');
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+    m.addEventListener('keydown', function (e) {
+      if (!m.open) return;
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); m.open = false; summary.focus(); return; }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        var links = Array.prototype.slice.call(m.querySelectorAll('.lang-pop a'));
+        var i = links.indexOf(document.activeElement);
+        i = e.key === 'ArrowDown' ? (i + 1) % links.length : (i <= 0 ? links.length - 1 : i - 1);
+        links[i].focus(); e.preventDefault();
+      }
+    });
+    var cur = m.querySelector('.lang-pop a[aria-current]');
+    if (cur) cur.addEventListener('click', function (e) { e.preventDefault(); m.open = false; summary.focus(); });
+  });
+  document.addEventListener('click', function (e) {
+    menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
   });
 })();

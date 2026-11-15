@@ -1,4 +1,4 @@
-var GL=(document.documentElement.lang||'ru').slice(0,2)==='en';function T(ru,en){return GL?en:ru;}
+var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){if(!GL)return ru;var d=window.GUIDE_I18N;return d&&d[en]||en;}
 (function () {
   var btn = document.getElementById('dl-models'), st = document.getElementById('dl-status');
   if (!btn || !window.MODELS_ZIP) return;
