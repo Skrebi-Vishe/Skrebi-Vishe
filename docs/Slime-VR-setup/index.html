@@ -17,7 +17,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="ru")location.replace("en/"+location.hash);})();</script>
-<script>window.GUIDE_VERSION="83d1faf6ba";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ff496f2afe";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -604,7 +604,7 @@
     <li><span>Не выключая SlimeVR, зайдите в <strong>VRChat</strong>.</span></li>
     <li><span>Откройте большое меню настроек, раздел <strong>«Отслеживание и IK»</strong> (Tracking &amp; IK). Встаньте ровно, смотрите прямо и нажмите кнопку измерения роста: крайнюю справа в строке <strong>«Реальный рост пользователя»</strong> (User Real Height).</span></li>
     <li><span>Там же выключите <strong>«Использовать старую версию IK»</strong> (Use Legacy IK Solving). Ниже, в блоке <strong>«Калибровка и отладка»</strong> (Calibration &amp; Debug), выключите <strong>«Старый метод калибровки»</strong> (Legacy Calibration) и поставьте <strong>«Расстояние калибровки»</strong> (Calibration Range) на <strong>0,20 м</strong>. IK — расчёт положения суставов аватара.</span></li>
-    <li><span>Откройте быстрое меню, нажмите шестерёнку и затем <strong>«Калибровать FBT»</strong> (Calibrate FBT). Встаньте как аватар, смотрите прямо и подтвердите обоими курками на контроллерах.</span></li>
+    <li><span>Откройте быстрое меню и на стартовой панели нажмите <strong>«Калибровать»</strong> (Calibrate) внизу. Встаньте как аватар, смотрите прямо и подтвердите обоими курками на контроллерах.</span></li>
   </ol>
   <div class="reference-block" id="vrchat-screens">
     <h3>Где это в VRChat</h3>
@@ -612,10 +612,10 @@
     <div class="reference-grid vrchat-examples">
       <figure class="reference-shot" data-zoom="Рост и старая версия IK"><img src="img/ru/vrc-height.webp" alt="Меню VRChat «Отслеживание и IK»: строка «Реальный рост пользователя» и переключатель «Использовать старую версию IK»" width="780" height="613" loading="lazy"><figcaption><strong>Рост и старая версия IK.</strong> Кнопка измерения роста — крайняя справа в строке роста. Переключатель старой версии IK — третья строка.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Калибровка и отладка"><img src="img/ru/vrc-calibration.webp" alt="Блок «Калибровка и отладка»: «Старый метод калибровки» и «Расстояние калибровки»" width="757" height="593" loading="lazy"><figcaption><strong>Калибровка и отладка.</strong> «Старый метод калибровки» — первая строка, «Расстояние калибровки» — ползунок ниже.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Кнопка «Калибровать FBT»"><img src="img/ru/vrc-quick-fbt.webp" alt="Быстрое меню VRChat, вкладка настроек с кнопкой «Калибровать FBT»" width="535" height="560" loading="lazy"><figcaption><strong>Быстрое меню.</strong> Шестерёнка внизу, затем кнопка «Калибровать FBT».</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Кнопка «Калибровать»"><img src="img/ru/vrc-quick-fbt.webp" alt="Стартовая панель быстрого меню VRChat, наведение на кнопку «Калибровать»" width="517" height="645" loading="lazy"><figcaption><strong>Быстрое меню.</strong> Кнопка «Калибровать» внизу стартовой панели запускает калибровку всего тела.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Поза при калибровке"><img src="img/vrc-tpose.webp" alt="Аватар в позе калибровки, трекеры показаны цветными кругами" width="840" height="745" loading="lazy"><figcaption><strong>Поза при калибровке.</strong> Совместите своё тело с аватаром и нажмите оба курка.</figcaption></figure>
     </div>
-    <p class="source-note">Снимки сделаны автором гайда в VRChat (ноябрь 2026). Кнопка «Calibrate FBT» описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
+    <p class="source-note">Снимки сделаны автором гайда в VRChat (ноябрь 2026). Калибровка всего тела описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
   </div>
   <div class="ok"><b>Готово</b><p>Трекеры откалиброваны и настроены. Калибровку по осям и температурную больше делать не нужно. Перед каждой игрой выполняйте короткий порядок ниже.</p></div>
   <div class="step-finish"><div><b>Проверьте результат</b><p>После подтверждения аватар повторяет движения корпуса и ног.</p></div><button type="button" class="done-toggle" data-done="s10" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Шаг выполнен</span></button></div>
