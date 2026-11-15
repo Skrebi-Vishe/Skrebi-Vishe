@@ -13,11 +13,11 @@
 <link rel="alternate" hreflang="ru" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/">
 <link rel="alternate" hreflang="en" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="css/style.css?v=29a367a8">
+<link rel="stylesheet" href="css/style.css?v=27a74bb8">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="ru")location.replace("en/"+location.hash);})();</script>
-<script>window.GUIDE_VERSION="1bd5e0bc08";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="83d1faf6ba";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -90,6 +90,10 @@
     <li><span>Если программы ещё нет, скачайте и установите <a href="https://slimevr.dev/download">SlimeVR Server</a>. Оставьте отмеченным драйвер SteamVR.</span></li>
     <li><span>Включите трекер, откройте SlimeVR и нажмите на карточку трекера. Найдите <strong>«Датчик IMU»</strong> и <strong>«Версия прошивки»</strong>. Если карточка не появилась, откройте справку <a href="#help">«Частые проблемы»</a>.</span></li>
   </ol>
+  <div class="reference-grid two-col">
+    <figure class="reference-shot portrait-shot" data-zoom="Карточка трекера"><img src="img/ru/sv-tracker-info.webp" alt="Карточка трекера в SlimeVR: «Версия прошивки» v0.5.4 и «Датчик IMU» BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Карточка трекера.</strong> Версия прошивки — строка Current в блоке «Версия прошивки». Датчик — строка «Датчик IMU». IP‑адрес и ID на снимке скрыты.</figcaption></figure>
+    <figure class="reference-shot" data-zoom="Язык SlimeVR"><img src="img/ru/sv-language.webp" alt="Настройки SlimeVR, раздел «Внешний вид»: открыт список языков, выбран «Русский»" width="1120" height="640" loading="lazy"><figcaption><strong>Если SlimeVR на английском.</strong> Откройте Settings внизу бокового меню, в группе Interface — третий пункт. Список языков в конце страницы, выберите «Русский».</figcaption></figure>
+  </div>
   <p class="section-note">Проверьте тип датчика и версию на каждом трекере.</p>
   <div class="fit-grid">
     <div class="fit-item ok-item"><b>Подходит: BMI160</b><span>Строка «Датчик IMU» показывает BMI160. Продолжайте.</span></div>
@@ -566,7 +570,7 @@
   <p>Оставайтесь в SteamVR и запустите SlimeVR. Пройдите настройку <strong>полностью, по порядку</strong>, ничего не пропуская.</p>
   <ol class="do">
     <li><span><strong>Назначение трекеров.</strong> В боковом меню SlimeVR откройте <strong>«Назначение трекера»</strong>. Выберите часть тела на схеме и укажите соответствующий трекер. Чтобы понять, какой где, потрясите трекер: в SlimeVR он подсветится.</span></li>
-    <li><span><strong>Расположение каждого трекера.</strong> Нажмите на трекер и выберите, где он стоит: <strong>спереди, сзади, слева или справа</strong>, ровно так, как он надет на вас. Например, трекер груди или таза на спине — это «сзади». Трекеры на конце провода (ответвления) проверьте особенно внимательно.</span></li>
+    <li><span><strong>Расположение каждого трекера.</strong> На главном экране нажмите на трекер, затем <strong>«Изменить прикрепление»</strong> и выберите, где он стоит: <strong>спереди, сзади, слева или справа</strong>, ровно так, как он надет на вас. Например, трекер груди или таза на спине — это «сзади». Трекеры на конце провода (ответвления) проверьте особенно внимательно.</span></li>
     <li><span><strong>Калибровка крепления.</strong> Откройте <strong>«Калибровка крепления»</strong> в боковом меню и запустите <strong>«Автоматическая привязка»</strong>. Повторяйте позы и действия, которые показывает мастер.</span></li>
     <li><span><strong>Пропорции тела.</strong> Откройте <strong>«Пропорции тела»</strong> в боковом меню. В SlimeVR v21.1.0 нажмите <strong>«Manual Proportions»</strong>, затем <strong>«Автоматически точно настроить пропорции»</strong>. Следуйте подсказкам мастера.</span></li>
     <li><span>Пройдите калибровку крепления и пропорций тела <strong>ещё раз</strong>, и лучше несколько раз подряд.</span></li>
@@ -578,10 +582,12 @@
   </figure>
   <div class="reference-block" id="slimevr-screens">
     <h3>Где это в SlimeVR</h3>
-    <p>Нажмите на снимок, чтобы рассмотреть его крупно. Снимки сделаны в русской версии SlimeVR Server v21.1.0 без подключённых трекеров.</p>
+    <p>Нажмите на снимок, чтобы рассмотреть его крупно. Снимки сделаны автором гайда в SlimeVR Server v21.1.0 с восемью подключёнными трекерами. Мастера калибровки сняты без трекеров.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Назначение трекеров."><img src="img/slimevr-21-assign.webp" alt="Страница «Привязать трекеры»" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Выберите часть тела.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Назначение трекеров"><img src="img/ru/sv-assign.webp" alt="Страница «Привязать трекеры»: схема тела, назначенные трекеры отмечены зелёными точками" width="1400" height="768" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Нажмите на точку на теле и выберите трекер. Зелёные точки уже назначены.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Расположение трекера"><img src="img/ru/sv-mounting-edit.webp" alt="Настройки трекера: блок «Положение крепления» и кнопка «Изменить прикрепление»" width="1400" height="620" loading="lazy"><figcaption><strong>Расположение трекера.</strong> Кнопка «Изменить прикрепление» открывает круг выбора, как на схеме выше.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.webp" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Пропорции тела"><img src="img/ru/sv-proportions.webp" alt="Экран «Пропорции тела»: рост и кнопка Manual Proportions" width="900" height="990" loading="lazy"><figcaption><strong>Пропорции тела.</strong> Кнопка «Manual Proportions» внизу слева. С неё начинается автоматическая настройка.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Автоматические пропорции."><img src="img/slimevr-21-proportions-auto.webp" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
     </div>
     <p class="source-note">Интерфейс из <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
@@ -623,16 +629,17 @@
     <li><span>Запустите <strong>SlimeVR</strong> и включите все трекеры.</span></li>
     <li><span>Положите трекеры <strong>ровно на пол</strong> (или на стол) и не трогайте <strong>минимум 15 минут, в идеале 30</strong>. За это время они прогреются и стабилизируются.</span></li>
     <li><span>Наденьте трекеры и шлем.</span></li>
-    <li><span>Встаньте ровно: <strong>стопы на ширине плеч</strong>, спина прямая, смотрите вперёд. Нажмите <strong>полный сброс</strong> (Full Reset).</span></li>
-    <li><span>Сделайте <strong>калибровку крепления в позе лыжника</strong> (Mounting calibration): чуть согните колени и наклонитесь вперёд, как показывает SlimeVR.</span></li>
-    <li><span>Если есть трекеры на стопах, сделайте <strong>калибровку стоп</strong> (сброс крепления стоп).</span></li>
+    <li><span>Встаньте ровно: <strong>стопы на ширине плеч</strong>, спина прямая, смотрите вперёд. Нажмите <strong>«Полный сброс»</strong> (Full Reset) на главном экране SlimeVR.</span></li>
+    <li><span>Сделайте <strong>калибровку крепления в позе лыжника</strong> (Mounting calibration): чуть согните колени и наклонитесь вперёд, как показывает SlimeVR. Это кнопка <strong>«Body»</strong> в блоке Mounting Calibration.</span></li>
+    <li><span>Если есть трекеры на стопах, сделайте <strong>калибровку стоп</strong> (сброс крепления стоп): кнопка <strong>«Feet»</strong>.</span></li>
     <li><span>Заходите в игру. В <strong>VRChat</strong> сделайте калибровку полного тела, то есть привязку трекеров к аватару.</span></li>
   </ol>
+  <figure class="reference-shot wide-shot" data-zoom="Главный экран SlimeVR"><img src="img/ru/sv-home.webp" alt="Главный экран SlimeVR: кнопки «Полный сброс», «Горизонтальный сброс», Body и Feet над списком трекеров" width="1400" height="566" loading="lazy"><figcaption><strong>Главный экран SlimeVR.</strong> Слева сверху «Полный сброс» и «Горизонтальный сброс». Справа калибровка крепления: «Body» для тела и «Feet» для стоп.</figcaption></figure>
   <details>
     <summary>Почему трекеры сначала нужно согреть</summary>
     <div><p>При включении ниже 15 °C трекер начинает новую температурную калибровку. Сохранённые данные остаются в памяти. Трекер снова начнёт их использовать после перезагрузки в тепле.</p></div>
   </details>
-  <div class="tip"><b>Во время игры</b><p>Если ноги или корпус постепенно «уехали» в сторону, встаньте ровно и сделайте <strong>быстрый сброс</strong> (Yaw Reset). Для IMU‑трекеров это нормально. Удобно назначить на него сочетание клавиш в настройках SlimeVR.</p></div>
+  <div class="tip"><b>Во время игры</b><p>Если ноги или корпус постепенно «уехали» в сторону, встаньте ровно и сделайте <strong>горизонтальный сброс</strong> (Yaw Reset). Для IMU‑трекеров это нормально. Удобно назначить на него сочетание клавиш в настройках SlimeVR.</p></div>
 </section>
 
 <!-- ПРОБЛЕМЫ -->

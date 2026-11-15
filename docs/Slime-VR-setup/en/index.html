@@ -13,11 +13,11 @@
 <link rel="alternate" hreflang="ru" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/">
 <link rel="alternate" hreflang="en" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=29a367a8">
+<link rel="stylesheet" href="../css/style.css?v=27a74bb8">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang";document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c)return;var first=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();var want=/^(ru|be|kk)(-|$)/.test(first)?"ru":"en";if(want!=="en")location.replace("../"+location.hash);})();</script>
-<script>window.GUIDE_VERSION="1bd5e0bc08";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="83d1faf6ba";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -90,6 +90,9 @@
     <li><span>If you don't have it yet, download and install <a href="https://slimevr.dev/download">SlimeVR Server</a>. Keep the SteamVR driver option checked.</span></li>
     <li><span>Turn the tracker on, open SlimeVR and click the tracker's card. Find <strong>“IMU Sensor”</strong> and <strong>“Firmware Version”</strong>. If no card appears, see <a href="#help">Troubleshooting</a>.</span></li>
   </ol>
+  <div class="reference-grid two-col">
+    <figure class="reference-shot portrait-shot" data-zoom="Tracker card"><img src="../img/sv-tracker-info.webp" alt="Tracker card in SlimeVR: Firmware version v0.5.4 and IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Tracker card.</strong> The firmware version is the Current line under “Firmware version”. The sensor is the “IMU Sensor” line. The IP address and ID are hidden in the screenshot.</figcaption></figure>
+  </div>
   <p class="section-note">Check the sensor type and version on every tracker.</p>
   <div class="fit-grid">
     <div class="fit-item ok-item"><b>Suitable: BMI160</b><span>The “IMU Sensor” line shows BMI160. Carry on.</span></div>
@@ -566,7 +569,7 @@
   <p>Stay in SteamVR and launch SlimeVR. Go through the setup <strong>completely, in order</strong>, without skipping anything.</p>
   <ol class="do">
     <li><span><strong>Tracker assignment.</strong> In the SlimeVR side menu open <strong>“Tracker Assignment”</strong>. Pick a body part on the diagram and choose the matching tracker. To find out which tracker is which, shake it: it lights up in SlimeVR.</span></li>
-    <li><span><strong>Mounting of each tracker.</strong> Click the tracker and choose where it sits: <strong>Front, Back, Left or Right</strong>, exactly as it is worn on you. For example, a chest or hip tracker on your back is “Back”. Check trackers on the end of a wire (extensions) especially carefully.</span></li>
+    <li><span><strong>Mounting of each tracker.</strong> On the Home screen click the tracker, then <strong>“Edit mounting”</strong> and choose where it sits: <strong>Front, Back, Left or Right</strong>, exactly as it is worn on you. For example, a chest or hip tracker on your back is “Back”. Check trackers on the end of a wire (extensions) especially carefully.</span></li>
     <li><span><strong>Mounting calibration.</strong> Open <strong>“Mounting Calibration”</strong> in the side menu and start <strong>“Automatic mounting”</strong>. Repeat the poses and actions the wizard shows.</span></li>
     <li><span><strong>Body proportions.</strong> Open <strong>“Body Proportions”</strong> in the side menu. In SlimeVR v21.1.0 click <strong>“Manual Proportions”</strong>, then <strong>“Automatically fine tune proportions”</strong>. Follow the wizard.</span></li>
     <li><span>Do the mounting calibration and body proportions <strong>once more</strong>, ideally several times in a row.</span></li>
@@ -578,10 +581,12 @@
   </figure>
   <div class="reference-block" id="slimevr-screens">
     <h3>Where to find it in SlimeVR</h3>
-    <p>Click a screenshot to see it up close. The screenshots are from the Russian version of SlimeVR Server v21.1.0 without trackers connected; the English interface has the same layout and the names listed above.</p>
+    <p>Click a screenshot to see it up close. Screenshots taken by the guide author in SlimeVR Server v21.1.0 with eight trackers connected. The two calibration wizards are shown in the Russian version without trackers; the English wizards have the same layout.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Tracker assignment."><img src="../img/slimevr-21-assign.webp" alt="The Assign trackers page" loading="lazy"><figcaption><strong>Tracker assignment.</strong> Pick a body part.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Tracker assignment"><img src="../img/sv-assign.webp" alt="Assign trackers page: body diagram with assigned trackers marked by green dots" width="1400" height="768" loading="lazy"><figcaption><strong>Tracker assignment.</strong> Click a point on the body and choose a tracker. Green dots are already assigned.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Tracker mounting"><img src="../img/sv-mounting-edit.webp" alt="Tracker settings: Mounting orientation block and the Edit mounting button" width="1400" height="620" loading="lazy"><figcaption><strong>Tracker mounting.</strong> “Edit mounting” opens the selection wheel shown above.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Mounting calibration."><img src="../img/slimevr-21-mounting.webp" alt="The Mounting Calibration wizard" loading="lazy"><figcaption><strong>Mounting calibration.</strong> Follow the wizard.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Body proportions"><img src="../img/sv-proportions.webp" alt="Body Proportions screen: height and the Manual Proportions button" width="900" height="990" loading="lazy"><figcaption><strong>Body proportions.</strong> “Manual Proportions” is at the bottom left. Automatic tuning starts from there.</figcaption></figure>
       <figure class="reference-shot" data-zoom="Automatic proportions."><img src="../img/slimevr-21-proportions-auto.webp" alt="The Measure your body wizard" loading="lazy"><figcaption><strong>Automatic proportions.</strong> Do the actions in the wizard's order.</figcaption></figure>
     </div>
     <p class="source-note">Interface from <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
@@ -623,11 +628,12 @@
     <li><span>Launch <strong>SlimeVR</strong> and turn on all trackers.</span></li>
     <li><span>Put the trackers <strong>flat on the floor</strong> (or on a table) and leave them alone for <strong>at least 15 minutes, ideally 30</strong>. In this time they warm up and settle.</span></li>
     <li><span>Put on the trackers and the headset.</span></li>
-    <li><span>Stand straight: <strong>feet shoulder-width apart</strong>, back straight, looking ahead. Press <strong>Full Reset</strong>.</span></li>
-    <li><span>Do the <strong>mounting calibration in the skier pose</strong> (Mounting Calibration): bend your knees slightly and lean forward, as SlimeVR shows.</span></li>
-    <li><span>If you have foot trackers, do the <strong>feet calibration</strong> (feet mounting reset).</span></li>
+    <li><span>Stand straight: <strong>feet shoulder-width apart</strong>, back straight, looking ahead. Press <strong>Full Reset</strong> on the SlimeVR Home screen.</span></li>
+    <li><span>Do the <strong>mounting calibration in the skier pose</strong> (Mounting Calibration): bend your knees slightly and lean forward, as SlimeVR shows. This is the <strong>Body</strong> button under Mounting Calibration.</span></li>
+    <li><span>If you have foot trackers, do the <strong>feet calibration</strong> (feet mounting reset): the <strong>Feet</strong> button.</span></li>
     <li><span>Start the game. In <strong>VRChat</strong>, do the full-body calibration, which binds the trackers to the avatar.</span></li>
   </ol>
+  <figure class="reference-shot wide-shot" data-zoom="SlimeVR Home screen"><img src="../img/sv-home.webp" alt="SlimeVR Home screen: Full Reset, Yaw Reset, Body and Feet buttons above the tracker list" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR Home screen.</strong> Full Reset and Yaw Reset at the top left. Mounting calibration on the right: Body for the body and Feet for the feet.</figcaption></figure>
   <details>
     <summary>Why the trackers have to warm up first</summary>
     <div><p>When turned on below 15 °C (59 °F), the tracker starts a new temperature calibration. The saved data stays in memory, and the tracker uses it again after a restart in the warmth.</p></div>
