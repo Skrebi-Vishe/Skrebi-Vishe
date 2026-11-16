@@ -266,15 +266,15 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     var ax = HYP.auxH[0] * 0.1, mz = 2.05;
     var CX = 0.35, CY = trY + 0.48;         // гнездо разъёма посередине стороны Y+ основного корпуса (глубокое отверстие в модели)
     // разъём на торце ответвления
-    var c1 = new T.Mesh(CONN_GEO.x || (CONN_GEO.x = keep(new T.BoxGeometry(0.45, 0.42, 0.85))), connMat); c1.position.set(ax + 0.2, auxY - 0.05, 0); c1.castShadow = true; group.add(c1);
+    var c1 = new T.Mesh(CONN_GEO.x || (CONN_GEO.x = keep(new T.BoxGeometry(0.45, 0.42, 0.85))), connMat); c1.position.set(ax - 0.05, auxY + 0.15, 0); c1.castShadow = true; group.add(c1);   // в гнезде на торце ответвления, наружу ~2 мм
     // разъём на боку основного корпуса
-    var c2 = new T.Mesh(CONN_GEO.z || (CONN_GEO.z = keep(new T.BoxGeometry(0.85, 0.42, 0.45))), connMat); c2.position.set(CX, CY, -mz - 0.2); c2.castShadow = true; group.add(c2);   // такой же разъём, как на ответвлении, и так же выступает
+    var c2 = new T.Mesh(CONN_GEO.z || (CONN_GEO.z = keep(new T.BoxGeometry(0.85, 0.42, 0.45))), connMat); c2.position.set(CX, CY, -mz + 0.05); c2.castShadow = true; group.add(c2);   // такой же разъём, как на ответвлении, и так же утоплен
     // Длина ≈13–14 см, как у настоящего кабеля: петля ложится на дно коробочки за торцом трекера
     // и возвращается к разъёму вдоль стороны Y+, не задевая скотч и ремешки корпуса.
     var fy = floorTop + 0.26;
     var path = new T.CatmullRomCurve3([
-      new T.Vector3(ax + 0.42, auxY - 0.05, 0),
-      new T.Vector3(ax + 1.1, auxY - 0.02, 0.05),
+      new T.Vector3(ax + 0.17, auxY + 0.15, 0),
+      new T.Vector3(ax + 1.1, auxY + 0.1, 0.05),
       new T.Vector3(4.9, topY + 0.05, 0.35),
       new T.Vector3(6.2, fy + 0.15, 0.9),
       new T.Vector3(7.5, fy, -0.3),
@@ -283,7 +283,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       new T.Vector3(3.4, fy, -3.75),
       new T.Vector3(1.4, fy + 0.15, -3.55),
       new T.Vector3(0.55, CY - 0.1, -3.2),
-      new T.Vector3(CX, CY, -mz - 0.42)
+      new T.Vector3(CX, CY, -mz - 0.17)
     ], false, 'centripetal');
     var L = path.getLength();
     // плотная чёрная оплётка по всей длине, вплотную к обоим разъёмам: цветных жил не видно
@@ -480,23 +480,39 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
         if (i === current && !anim) return;
         anim = { from: box.quaternion.clone(), to: poses[i].q, k: 0, fromPose: poses[current], toPose: poses[i] };
         current = i; caption.textContent = capText(i);
+        try { localStorage.setItem('slimevr-guide-pose', String(i)); } catch (e) {}
         buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.pos === i)); });
         s2.state.dirty = true;
       };
       buttons.forEach(function (b) { b.addEventListener('click', function () { go(+b.dataset.pos); }); });
-      buttons[0].setAttribute('aria-pressed', 'true');
+      // после обновления страницы показать то положение, которое было выбрано (без анимации)
+      var savedPose = 0;
+      try { savedPose = +localStorage.getItem('slimevr-guide-pose') || 0; } catch (e) {}
+      if (!(savedPose >= 0 && savedPose < poses.length)) savedPose = 0;
+      current = savedPose;
+      box.quaternion.copy(poses[current].q); settle(0); updateCable(poses[current]);
+      caption.textContent = capText(current);
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.pos === current)); });
+      s2.state.dirty = true;
     }
 
     // Переключатель «без ответвления / с ответвлением» для обеих сцен
     var toggles = document.querySelectorAll('input[name="aux-mode"], .aux-toggle input');
+    var setAux = function (on, save) {
+      withAux = on;
+      document.querySelectorAll('.aux-toggle input').forEach(function (o) { o.checked = (o.value === (on ? 'aux' : 'main')); });
+      document.querySelectorAll('.aux-note').forEach(function (n) { n.hidden = !withAux; });
+      rebuilders.forEach(function (fn) { fn(); });
+      if (save) { try { localStorage.setItem('slimevr-guide-aux', on ? 'aux' : 'main'); } catch (e) {} }
+    };
     document.querySelectorAll('.aux-toggle input').forEach(function (inp) {
-      inp.addEventListener('change', function () {
-        withAux = inp.value === 'aux';
-        document.querySelectorAll('.aux-toggle input').forEach(function (o) { o.checked = (o.value === inp.value); });
-        document.querySelectorAll('.aux-note').forEach(function (n) { n.hidden = !withAux; });
-        rebuilders.forEach(function (fn) { fn(); });
-      });
+      inp.addEventListener('change', function () { setAux(inp.value === 'aux', true); });
     });
+    // после обновления страницы: сохранённый выбор (браузер может сам восстановить отметку — сцена должна совпадать с ней)
+    var savedAux = null;
+    try { savedAux = localStorage.getItem('slimevr-guide-aux'); } catch (e) {}
+    var checkedAux = document.querySelector('.aux-toggle input[value="aux"]:checked');
+    setAux(savedAux ? savedAux === 'aux' : !!checkedAux, false);
   } catch (err) {
     console.error(err);
     wraps.forEach(function (w) { w.classList.add('nogl'); });
