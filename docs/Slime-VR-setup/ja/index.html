@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="ja")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="08923b3ebb";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="4c5ea608cb";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -623,7 +623,7 @@
 <!-- BEFORE PLAY -->
 <section class="step" id="every">
   <div class="step-head"><div class="num">▶</div><div><h2>毎回のプレイ前に</h2><p>必ずこの順番で</p></div></div>
-  <div class="warn"><b>まず寒さについて</b><p><strong>トラッカーは室温まで温まってから電源を入れてください。</strong>冷えたまま入れてしまいましたか？ 電源を切って温まるのを待ち、もう一度入れ直します。電源の入ったトラッカーは、冷たい床や開いた窓から離しておきます。</p></div>
+  <div class="warn"><b>まず寒さについて</b><p><strong>トラッカーは室温まで温まってから電源を入れてください。</strong>15 °C未満で電源を入れたトラッカーは温度キャリブレーションなしで動作し、あとで温まってもドリフトが大きくなります。冷えたまま入れてしまいましたか？ 電源を切って温まるのを待ち、もう一度入れ直します。保存済みのキャリブレーションには影響しません。このようなトラッカーを電源を入れたままヒーターやドライヤーで温めないでください。45 °Cを超えると、新しい不完全なキャリブレーションが保存されてしまいます。電源の入ったトラッカーは、冷たい床や開いた窓から離しておきます。</p></div>
   <ol class="do">
     <li><span><strong>SlimeVR</strong> を起動し、すべてのトラッカーの電源を入れます。</span></li>
     <li><span>トラッカーを<strong>床（または机）に平らに置き</strong>、<strong>少なくとも15分、できれば30分</strong>触らないでください。その間に温まって安定します。</span></li>
