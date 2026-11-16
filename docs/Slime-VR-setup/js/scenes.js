@@ -11,9 +11,9 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   var PORT_X = -1.64;                      // разъём USB‑C трекера напротив выреза
   var SLOT_X = PORT_X, SLOT_W = 1.5, SLOT_FLOOR = 0.45;
   var trY = floorTop + 0.14 + HYP.h[2] * 0.1;
-  var PORT_Z = 2.48;                       // боковая стенка корпуса с разъёмом
+  var PORT_Z = 2.04;                       // штекер вставлен до упора: металл в гнезде, корпус штекера касается стенки трекера (стенка z = 2.05)
   var PORT_Y = trY + 0.045;
-  var RELIEF_END = 5.0;                    // конец хвостовика штекера внутри выреза
+  var RELIEF_END = PORT_Z + 2.85;          // конец хвостовика штекера внутри выреза
 
   // Детерминированный генератор случайных чисел: текстуры одинаковые при каждой пересборке сцены
   function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }; }
@@ -449,6 +449,17 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       else return;
       e.preventDefault();
     });
+    // кнопка «Вернуть вид» под сценой: видна всем, не только тем, кто знает про NumPad «.» и двойной щелчок
+    var stage = canvas.parentElement;
+    if (stage && stage.parentElement) {
+      var bar = document.createElement('div'); bar.className = 'three-tools';
+      var rb = document.createElement('button'); rb.type = 'button'; rb.className = 'three-reset';
+      var ic = document.createElement('span'); ic.setAttribute('aria-hidden', 'true'); ic.textContent = '\u27F2';
+      rb.appendChild(ic); rb.appendChild(document.createTextNode(' ' + TR('Вернуть вид', 'Reset view')));
+      rb.title = TR('Вернуть камеру к коробочке (NumPad «.»)', 'Bring the camera back to the box (NumPad “.”)');
+      rb.addEventListener('click', resetView);
+      bar.appendChild(rb); stage.insertAdjacentElement('afterend', bar);
+    }
     // подсказка: на компьютере — как управлять, на телефоне остаётся «Потяните, чтобы повернуть»
     var hint = canvas.parentElement && canvas.parentElement.querySelector('.three-hint');
     if (hint && window.matchMedia && window.matchMedia('(pointer: fine)').matches)
