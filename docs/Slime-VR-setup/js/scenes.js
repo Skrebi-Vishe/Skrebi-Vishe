@@ -258,16 +258,17 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   }
   // Кабель ответвления: один цельный кабель в плотной чёрной оплётке, как на настоящем трекере.
   // Выходит из белого разъёма на торце ответвления (сторона X+), огибает край основного корпуса
-  // и входит в белый разъём на боку основного трекера (сторона Y+, напротив Type‑C).
+  // и входит в белый разъём в гнезде посередине стороны Y+ основного трекера (напротив Type‑C).
   var WIRE_MATS = null, SLEEVE_MAT = null;
   function auxCable(group, auxY, topY) {
     if (!WIRE_MATS) WIRE_MATS = [0x1b1a1e].map(function (c) { return new T.MeshStandardMaterial({ color: c, roughness: 0.45 }); });
     var connMat = new T.MeshStandardMaterial({ color: 0xf1eee6, roughness: 0.5 });
     var ax = HYP.auxH[0] * 0.1, mz = 2.05;
+    var CX = 0.73, CY = trY + 0.5;          // гнездо разъёма посередине стороны Y+ основного корпуса (отверстие в модели)
     // разъём на торце ответвления
     var c1 = new T.Mesh(new T.BoxGeometry(0.45, 0.42, 0.85), connMat); c1.position.set(ax + 0.2, auxY - 0.05, 0); c1.castShadow = true; group.add(c1);
     // разъём на боку основного корпуса
-    var c2 = new T.Mesh(new T.BoxGeometry(0.85, 0.42, 0.4), connMat); c2.position.set(3.05, trY, -mz - 0.18); c2.castShadow = true; group.add(c2);
+    var c2 = new T.Mesh(new T.BoxGeometry(0.85, 0.4, 0.36), connMat); c2.position.set(CX, CY, -mz - 0.1); c2.castShadow = true; group.add(c2);
     // Длина ≈13–14 см, как у настоящего кабеля: петля ложится на дно коробочки за торцом трекера
     // и возвращается к разъёму вдоль стороны Y+, не задевая скотч и ремешки корпуса.
     var fy = floorTop + 0.26;
@@ -278,10 +279,11 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       new T.Vector3(6.2, fy + 0.15, 0.9),
       new T.Vector3(7.5, fy, -0.3),
       new T.Vector3(7.4, fy, -2.6),
-      new T.Vector3(5.8, fy, -3.75),
-      new T.Vector3(4.2, fy + 0.1, -3.6),
-      new T.Vector3(3.3, trY - 0.05, -3.05),
-      new T.Vector3(3.06, trY, -mz - 0.38)
+      new T.Vector3(5.6, fy, -3.8),
+      new T.Vector3(3.4, fy, -3.75),
+      new T.Vector3(1.6, fy + 0.15, -3.55),
+      new T.Vector3(0.95, CY - 0.15, -3.0),
+      new T.Vector3(CX, CY, -mz - 0.28)
     ], false, 'centripetal');
     var L = path.getLength();
     // плотная чёрная оплётка по всей длине, вплотную к обоим разъёмам: цветных жил не видно
