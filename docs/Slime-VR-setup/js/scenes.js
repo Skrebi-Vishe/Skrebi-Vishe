@@ -179,10 +179,37 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   }
   function keep(g) { g.userData.keep = true; return g; }
 
+  // Доска со скруглёнными рёбрами (радиус r): сетка куба сгущается у рёбер, вершины там уводятся на скругление.
+  // Нормали задаются точно, поэтому скругление гладкое, без ступенек.
+  var ROUND_CM = 0.25;                     // ≈2.5 мм, как у настоящей коробочки
+  function roundedBoxGeo(w, h, d, r) {
+    var K = 3, n = 2 * K + 1, half = [w / 2, h / 2, d / 2];
+    r = Math.min(r, Math.min(w, h, d) * 0.45);
+    var g = new T.BoxGeometry(w, h, d, n, n, n), pos = g.attributes.position, nor = g.attributes.normal;
+    var v = new T.Vector3(), inner = new T.Vector3(), dlt = new T.Vector3();
+    for (var i = 0; i < pos.count; i++) {
+      v.fromBufferAttribute(pos, i);
+      for (var a = 0; a < 3; a++) {
+        var hh = half[a], x = v.getComponent(a), idx = Math.round((x + hh) / (2 * hh) * n);
+        var q = idx <= K ? -hh + r * idx / K : (idx >= n - K ? hh - r * (n - idx) / K : x);
+        v.setComponent(a, q);
+        inner.setComponent(a, Math.max(-hh + r, Math.min(hh - r, q)));
+      }
+      dlt.subVectors(v, inner);
+      if (dlt.lengthSq() > 1e-12) {
+        dlt.normalize(); v.copy(inner).addScaledVector(dlt, r);
+        nor.setXYZ(i, dlt.x, dlt.y, dlt.z);
+      }
+      pos.setXYZ(i, v.x, v.y, v.z);
+    }
+    pos.needsUpdate = nor.needsUpdate = true;
+    return g;
+  }
+
   function buildBox(withAux) {
     var group = new T.Group(), wood = woodMat();
     function slab(w, h, d, x, y, z) {
-      var g = new T.BoxGeometry(w, h, d); woodUV(g, w, h, d, x, y, z);
+      var g = roundedBoxGeo(w, h, d, ROUND_CM); woodUV(g, w, h, d, x, y, z);
       var m = new T.Mesh(g, wood);
       m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; group.add(m); return m;
     }
@@ -210,6 +237,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       tape2.position.set(0, topY + 0.07, 0); group.add(tape2);
       var auxY = topY + 0.14 + HYP.auxH[2] * 0.1;
       part(hypGeo('aux', HYP.auxB64, HYP.auxH), auxY);
+      auxCable(group, auxY, topY);
     }
 
     // штекер в разъёме трекера, хвостовик уходит в вырез
@@ -220,7 +248,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       m.position.copy(pos); m.rotation.set(rot[0], rot[1], rot[2]); group.add(m);
     }
     // Знаки осей относительно трекера: X+ — по стрелке, Y− — стенка с вырезом (там Type‑C), Z+ — вверх из коробочки
-    letter('Z+', new T.Vector3(6.4, floorTop + 0.01, -2.4), [-Math.PI / 2, 0, 0]);
+    letter('Z+', new T.Vector3(-6.4, floorTop + 0.01, -2.4), [-Math.PI / 2, 0, 0]);
     letter('Z\u2212', new T.Vector3(0, -H / 2 - 0.01, 0), [Math.PI / 2, 0, 0]);
     letter('X+', new T.Vector3(W / 2 + 0.01, 0, 0), [0, Math.PI / 2, 0]);
     letter('X\u2212', new T.Vector3(-W / 2 - 0.01, 0, 0), [0, -Math.PI / 2, 0]);
@@ -228,11 +256,57 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     letter('Y\u2212', new T.Vector3(5.5, 0, D / 2 + 0.01), [0, 0, 0]);
     return group;
   }
+  // Кабель ответвления: один цельный кабель в плотной чёрной оплётке, как на настоящем трекере.
+  // Выходит из белого разъёма на торце ответвления (сторона X+), огибает край основного корпуса
+  // и входит в белый разъём на боку основного трекера (сторона Y+, напротив Type‑C).
+  var WIRE_MATS = null, SLEEVE_MAT = null;
+  function auxCable(group, auxY, topY) {
+    if (!WIRE_MATS) WIRE_MATS = [0x1b1a1e].map(function (c) { return new T.MeshStandardMaterial({ color: c, roughness: 0.45 }); });
+    var connMat = new T.MeshStandardMaterial({ color: 0xf1eee6, roughness: 0.5 });
+    var ax = HYP.auxH[0] * 0.1, mz = 2.05;
+    // разъём на торце ответвления
+    var c1 = new T.Mesh(new T.BoxGeometry(0.45, 0.42, 0.85), connMat); c1.position.set(ax + 0.2, auxY - 0.05, 0); c1.castShadow = true; group.add(c1);
+    // разъём на боку основного корпуса
+    var c2 = new T.Mesh(new T.BoxGeometry(0.85, 0.42, 0.4), connMat); c2.position.set(3.05, trY, -mz - 0.18); c2.castShadow = true; group.add(c2);
+    // Длина ≈13–14 см, как у настоящего кабеля: петля ложится на дно коробочки за торцом трекера
+    // и возвращается к разъёму вдоль стороны Y+, не задевая скотч и ремешки корпуса.
+    var fy = floorTop + 0.26;
+    var path = new T.CatmullRomCurve3([
+      new T.Vector3(ax + 0.42, auxY - 0.05, 0),
+      new T.Vector3(ax + 1.1, auxY - 0.02, 0.05),
+      new T.Vector3(4.9, topY + 0.05, 0.35),
+      new T.Vector3(6.2, fy + 0.15, 0.9),
+      new T.Vector3(7.5, fy, -0.3),
+      new T.Vector3(7.4, fy, -2.6),
+      new T.Vector3(5.8, fy, -3.75),
+      new T.Vector3(4.2, fy + 0.1, -3.6),
+      new T.Vector3(3.3, trY - 0.05, -3.05),
+      new T.Vector3(3.06, trY, -mz - 0.38)
+    ], false, 'centripetal');
+    var L = path.getLength();
+    // плотная чёрная оплётка по всей длине, вплотную к обоим разъёмам: цветных жил не видно
+    var u0 = 0.02 / L, u1 = 1 - 0.02 / L, sp = [];
+    for (var k = 0; k <= 120; k++) sp.push(path.getPointAt(u0 + (u1 - u0) * k / 120));
+    if (!SLEEVE_MAT) {
+      var bt = braidTexture(); bt.repeat.set(1, 1);
+      SLEEVE_MAT = new T.MeshStandardMaterial({ map: bt, roughness: 0.8 });
+    }
+    var sleeveGeo = new T.TubeGeometry(new T.CatmullRomCurve3(sp), 160, 0.21, 14, false);
+    var uv = sleeveGeo.attributes.uv, rep = (u1 - u0) * L * 3.2;   // шаг плетения одинаковый при любой длине
+    for (var j = 0; j < uv.count; j++) uv.setXY(j, uv.getX(j) * rep, uv.getY(j) * 2);
+    var sleeve = new T.Mesh(sleeveGeo, SLEEVE_MAT); sleeve.castShadow = true; sleeve.receiveShadow = true; group.add(sleeve);
+    // термоусадка на концах оплётки
+    [0.2 / L, 1 - 0.2 / L].forEach(function (uu) {
+      var c = path.getPointAt(uu), tg = path.getTangentAt(uu);
+      var ring = new T.Mesh(new T.CylinderGeometry(0.245, 0.245, 0.35, 16), WIRE_MATS[0]);
+      ring.position.copy(c); ring.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), tg); ring.castShadow = true; group.add(ring);
+    });
+  }
   // Убрать старую коробку из сцены и освободить память (общие текстуры и модели не трогаем)
   function disposeBox(g) {
     g.traverse(function (o) {
       if (o.geometry && !o.geometry.userData.keep) o.geometry.dispose();
-      if (o.material && o.material !== WOOD && o.material !== PLASTIC && !o.material.map) o.material.dispose();
+      if (o.material && o.material !== WOOD && o.material !== PLASTIC && !o.material.map && !(WIRE_MATS && WIRE_MATS.indexOf(o.material) >= 0) && o.material !== SLEEVE_MAT) o.material.dispose();
       if (o.material && o.material.map && o.material.transparent) o.material.dispose();
     });
   }
