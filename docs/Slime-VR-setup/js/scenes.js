@@ -179,11 +179,12 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   }
   function keep(g) { g.userData.keep = true; return g; }
 
-  // Доска со скруглёнными рёбрами (радиус r): сетка куба сгущается у рёбер, вершины там уводятся на скругление.
-  // Нормали задаются точно, поэтому скругление гладкое, без ступенек.
-  var ROUND_CM = 0.25;                     // ≈2.5 мм, как у настоящей коробочки
-  function roundedBoxGeo(w, h, d, r) {
-    var K = 3, n = 2 * K + 1, half = [w / 2, h / 2, d / 2];
+  // Доска коробочки. Коробочка выглядит цельной: скругляются только рёбра на её внешнем контуре
+  // (вертикальные углы, нижние рёбра, внешний край верха стенок). Стыки досок и внутренние рёбра остаются прямыми.
+  // outer[a] = [мин. сторона, макс. сторона] оси a лежит на внешней поверхности коробочки.
+  var ROUND_CM = 0.3;                      // ≈3 мм, как у настоящей коробочки
+  function roundedBoxGeo(w, h, d, r, outer) {
+    var K = 4, n = 2 * K + 1, half = [w / 2, h / 2, d / 2];
     r = Math.min(r, Math.min(w, h, d) * 0.45);
     var g = new T.BoxGeometry(w, h, d, n, n, n), pos = g.attributes.position, nor = g.attributes.normal;
     var v = new T.Vector3(), inner = new T.Vector3(), dlt = new T.Vector3();
@@ -191,9 +192,13 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       v.fromBufferAttribute(pos, i);
       for (var a = 0; a < 3; a++) {
         var hh = half[a], x = v.getComponent(a), idx = Math.round((x + hh) / (2 * hh) * n);
-        var q = idx <= K ? -hh + r * idx / K : (idx >= n - K ? hh - r * (n - idx) / K : x);
+        var lo = outer[a][0] ? -hh + r : -hh, hi = outer[a][1] ? hh - r : hh;
+        // сетка сгущается только у скругляемых сторон; остальное — ровная грань
+        var q = x;
+        if (outer[a][0] && idx <= K) q = -hh + r * idx / K;
+        else if (outer[a][1] && idx >= n - K) q = hh - r * (n - idx) / K;
         v.setComponent(a, q);
-        inner.setComponent(a, Math.max(-hh + r, Math.min(hh - r, q)));
+        inner.setComponent(a, Math.max(lo, Math.min(hi, q)));
       }
       dlt.subVectors(v, inner);
       if (dlt.lengthSq() > 1e-12) {
@@ -209,7 +214,8 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   function buildBox(withAux) {
     var group = new T.Group(), wood = woodMat();
     function slab(w, h, d, x, y, z) {
-      var g = roundedBoxGeo(w, h, d, ROUND_CM); woodUV(g, w, h, d, x, y, z);
+      var e = 1e-3, outer = [[x - w / 2 < -W / 2 + e, x + w / 2 > W / 2 - e], [y - h / 2 < -H / 2 + e, y + h / 2 > H / 2 - e], [z - d / 2 < -D / 2 + e, z + d / 2 > D / 2 - e]];
+      var g = roundedBoxGeo(w, h, d, ROUND_CM, outer); woodUV(g, w, h, d, x, y, z);
       var m = new T.Mesh(g, wood);
       m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; group.add(m); return m;
     }
@@ -365,16 +371,88 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       camera.position.set(t.x + r * Math.sin(st.phi) * Math.sin(st.theta), t.y + r * Math.cos(st.phi), t.z + r * Math.sin(st.phi) * Math.cos(st.theta));
       camera.lookAt(t);
     }
-    var drag = null;
-    canvas.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, y: e.clientY }; st.auto = false; canvas.setPointerCapture(e.pointerId); });
+    // Управление камерой как во вьюпорте Blender:
+    //   зажатое колёсико — вращение, Shift + колёсико — сдвиг, Ctrl + колёсико — масштаб;
+    //   прокрутка колёсика — масштаб (страница при этом не листается);
+    //   левая кнопка — вращение, Shift + левая — сдвиг (для тачпада и мыши без колёсика);
+    //   NumPad 1/3/7 — вид спереди/справа/сверху (с Ctrl — с обратной стороны), 2/4/6/8 — поворот на 15°,
+    //   9 — вид с обратной стороны, NumPad «.» или Home — исходный вид, +/− — масштаб.
+    var home = { theta: st.theta, phi: st.phi, r: st.r, target: st.target.clone() };
+    var PHI_MIN = 0.02, PHI_MAX = Math.PI - 0.02, R_MIN = opts.r * 0.25, R_MAX = opts.r * 3;
+    function zoom(k) { st.r = Math.min(R_MAX, Math.max(R_MIN, st.r * k)); st.auto = false; st.dirty = true; }
+    function pan(dx, dy) {
+      var h = canvas.clientHeight || 1, dist = st.r * st.fit;
+      var k = 2 * dist * Math.tan(camera.fov * Math.PI / 360) / h;
+      camera.updateMatrixWorld();
+      var right = new T.Vector3().setFromMatrixColumn(camera.matrixWorld, 0), up = new T.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
+      st.target.addScaledVector(right, -dx * k).addScaledVector(up, dy * k);
+      st.auto = false; st.dirty = true;
+    }
+    function orbit(dx, dy) {
+      st.theta -= dx * 0.008;
+      st.phi = Math.min(PHI_MAX, Math.max(PHI_MIN, st.phi - dy * 0.006));
+      st.auto = false; st.dirty = true;
+    }
+    function view(theta, phi) { st.theta = theta; st.phi = Math.min(PHI_MAX, Math.max(PHI_MIN, phi)); st.auto = false; st.dirty = true; }
+    function resetView() { st.theta = home.theta; st.phi = home.phi; st.r = home.r; st.target.copy(home.target); st.auto = false; st.dirty = true; }
+
+    var drag = null, hover = false;
+    canvas.addEventListener('pointerenter', function () { hover = true; });
+    canvas.addEventListener('pointerleave', function () { hover = false; });
+    canvas.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button === 2) return;
+      if (e.button === 1) e.preventDefault();          // без «автопрокрутки» страницы от колёсика
+      var mode = 'orbit';
+      if (e.shiftKey) mode = 'pan';
+      else if (e.ctrlKey && e.button === 1) mode = 'zoom';
+      drag = { x: e.clientX, y: e.clientY, mode: mode, id: e.pointerId };
+      st.auto = false;
+      try { canvas.setPointerCapture(e.pointerId); } catch (x) {}
+    });
+    canvas.addEventListener('mousedown', function (e) { if (e.button === 1) e.preventDefault(); });
+    canvas.addEventListener('auxclick', function (e) { if (e.button === 1) e.preventDefault(); });
     canvas.addEventListener('pointermove', function (e) {
-      if (!drag) return;
-      st.theta -= (e.clientX - drag.x) * 0.008;
-      st.phi = Math.min(1.45, Math.max(0.25, st.phi - (e.clientY - drag.y) * 0.006));
-      drag = { x: e.clientX, y: e.clientY }; st.dirty = true;
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      drag.x = e.clientX; drag.y = e.clientY;
+      if (drag.mode === 'pan') pan(dx, dy);
+      else if (drag.mode === 'zoom') zoom(Math.exp(dy * 0.005));
+      else if (e.pointerType === 'touch') orbit(dx, 0);     // на телефоне вертикальный жест листает страницу
+      else orbit(dx, dy);
     });
     function end() { drag = null; }
     canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+    // колёсико над сценой: масштаб (страница не листается); вне сцены страница листается как обычно
+    canvas.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      var d = e.deltaY * (e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? 400 : 1);
+      if (e.shiftKey && !e.ctrlKey) pan(0, -d * 0.5);
+      else zoom(Math.exp(d * (e.ctrlKey ? 0.01 : 0.0012)));
+    }, { passive: false });
+    canvas.addEventListener('contextmenu', function (e) { if (drag) e.preventDefault(); });
+    canvas.addEventListener('dblclick', resetView);
+    canvas.tabIndex = 0;
+    document.addEventListener('keydown', function (e) {
+      if (!hover && document.activeElement !== canvas) return;
+      var c = e.code, step = Math.PI / 12, back = e.ctrlKey;
+      if (c === 'Numpad1') view(back ? Math.PI : 0, Math.PI / 2);
+      else if (c === 'Numpad3') view(back ? -Math.PI / 2 : Math.PI / 2, Math.PI / 2);
+      else if (c === 'Numpad7') view(back ? Math.PI : 0, back ? PHI_MAX : PHI_MIN);
+      else if (c === 'Numpad9') view(st.theta + Math.PI, Math.PI - st.phi);
+      else if (c === 'Numpad4') view(st.theta + step, st.phi);
+      else if (c === 'Numpad6') view(st.theta - step, st.phi);
+      else if (c === 'Numpad8') view(st.theta, st.phi - step);
+      else if (c === 'Numpad2') view(st.theta, st.phi + step);
+      else if (c === 'NumpadAdd' || (c === 'Equal' && document.activeElement === canvas)) zoom(1 / 1.2);
+      else if (c === 'NumpadSubtract' || (c === 'Minus' && document.activeElement === canvas)) zoom(1.2);
+      else if (c === 'NumpadDecimal' || c === 'Home') resetView();
+      else return;
+      e.preventDefault();
+    });
+    // подсказка: на компьютере — как управлять, на телефоне остаётся «Потяните, чтобы повернуть»
+    var hint = canvas.parentElement && canvas.parentElement.querySelector('.three-hint');
+    if (hint && window.matchMedia && window.matchMedia('(pointer: fine)').matches)
+      hint.textContent = TR('Колёсико: масштаб · зажать колёсико: вращать, с Shift — сдвигать · двойной щелчок: сброс', 'Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset');
     function resize() {
       var w = canvas.clientWidth, h = canvas.clientHeight;
       if (!w || !h) return;
