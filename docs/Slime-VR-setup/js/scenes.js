@@ -5,8 +5,8 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   var T = window.THREE;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Коробка, см: снаружи 20.3 × 10.3 × 6.0, внутри 18.2 × 9.1 × 5.3
-  var W = 20.3, D = 10.3, H = 6.0, TE = (20.3 - 18.2) / 2, TL = (10.3 - 9.1) / 2, TB = 6.0 - 5.3;
+  // Коробка, см: снаружи 20.3 × 10.3 × 6.0, все стенки и дно одной толщины 6 мм → внутри 19.1 × 9.1 × 5.4
+  var W = 20.3, D = 10.3, H = 6.0, WALL = 0.6, TE = WALL, TL = WALL, TB = WALL;
   var floorTop = -H / 2 + TB;
   var PORT_X = -1.64;                      // разъём USB‑C трекера напротив выреза
   var SLOT_X = PORT_X, SLOT_W = 1.5, SLOT_FLOOR = 0.45;
@@ -182,10 +182,10 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   // Доска коробочки. Коробочка выглядит цельной: скругляются только рёбра на её внешнем контуре
   // (вертикальные углы, нижние рёбра, внешний край верха стенок). Стыки досок и внутренние рёбра остаются прямыми.
   // outer[a] = [мин. сторона, макс. сторона] оси a лежит на внешней поверхности коробочки.
-  var ROUND_CM = 0.3;                      // ≈3 мм, как у настоящей коробочки
+  var ROUND_CM = 0.28;                     // ≈3 мм на всех внешних рёбрах (меньше половины толщины стенки 6 мм — радиус везде одинаковый)
   function roundedBoxGeo(w, h, d, r, outer) {
     var K = 4, n = 2 * K + 1, half = [w / 2, h / 2, d / 2];
-    r = Math.min(r, Math.min(w, h, d) * 0.45);
+    r = Math.min(r, Math.min(w, h, d) * 0.5);
     var g = new T.BoxGeometry(w, h, d, n, n, n), pos = g.attributes.position, nor = g.attributes.normal;
     var v = new T.Vector3(), inner = new T.Vector3(), dlt = new T.Vector3();
     for (var i = 0; i < pos.count; i++) {

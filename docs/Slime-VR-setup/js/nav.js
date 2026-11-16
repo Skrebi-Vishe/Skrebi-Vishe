@@ -490,7 +490,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){
       box.hidden = false;
       widget = window.turnstile.render(box, {
         sitekey: keyMeta.content, action: 'like', appearance: 'interaction-only',
-        language: ({ 'zh-Hans': 'zh-cn', 'pt-BR': 'pt-br' })[GLANG] || GLANG.toLowerCase(), theme: 'auto',
+        language: ({ 'zh-Hans': 'zh-cn', 'pt-BR': 'pt-br' })[GLANG] || GLANG.toLowerCase(), theme: document.documentElement.getAttribute('data-theme') || 'auto',
         callback: (token) => { box.hidden = true; resolve(token); },
         'error-callback': () => { reject(new Error('captcha')); },
         'expired-callback': () => { reject(new Error('expired')); },
@@ -706,4 +706,28 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){
   window.addEventListener('load', restore);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
   setTimeout(restore, 600);
+})();
+
+
+// Светлая / тёмная тема. По умолчанию — как в системе; выбор вручную запоминается (localStorage slimevr-guide-theme)
+// и применяется ещё до отрисовки страницы (скрипт в <head>).
+(function () {
+  var KEY = 'slimevr-guide-theme', root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function current() { var t = root.getAttribute('data-theme'); return t === 'dark' || t === 'light' ? t : (mq && mq.matches ? 'dark' : 'light'); }
+  function sync() {
+    var dark = current() === 'dark';
+    var label = dark ? T('Включить светлую тему', 'Switch to light theme') : T('Включить тёмную тему', 'Switch to dark theme');
+    document.querySelectorAll('.theme-toggle').forEach(function (b) { b.setAttribute('aria-label', label); b.title = label; b.setAttribute('aria-pressed', String(dark)); });
+  }
+  document.querySelectorAll('.theme-toggle').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      sync();
+    });
+  });
+  if (mq && mq.addEventListener) mq.addEventListener('change', sync);
+  sync();
 })();
