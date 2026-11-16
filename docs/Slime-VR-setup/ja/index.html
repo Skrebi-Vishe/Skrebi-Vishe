@@ -21,11 +21,11 @@
 <link rel="alternate" hreflang="ja" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/zh/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=5719abd8">
+<link rel="stylesheet" href="../css/style.css?v=43800bf5">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="ja")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="5ef3f0bdb3";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="c3089a4e53";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -68,6 +68,16 @@
   <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">確認から始める</a><a href="#every">プレイ前のチェックリスト</a></div>
 </header>
 
+<section class="howto" aria-labelledby="howto-h">
+  <h2 id="howto-h">このガイドの使い方</h2>
+  <ol>
+    <li><span><b>ステップを上から順に進めてください。</b>各ステップの最後には結果の確認と、次のステップへのリンクがあります。</span></li>
+    <li><span><b>終わったステップには</b>「ステップ完了」ボタンでチェックを入れます。チェックはこのブラウザーに保存され、次に開いたときは続きから再開できます。</span></li>
+    <li><span><b>ステップ4〜6は、トラッカー1台ずつ順番に行います。</b>混乱しないよう、ステップ4のチェックリストに自分のトラッカーを追加してください。</span></li>
+    <li><span><b>うまくいかないときは</b><a href="#help">よくある問題</a>を開いてください。スクリーンショットや図はタップすると拡大できます。</span></li>
+  </ol>
+</section>
+
 <div class="road" id="road">
   <h2 style="font-size:19px">全体の流れ</h2>
   <ol>
@@ -98,7 +108,7 @@
     <li><span>トラッカーの電源を入れ、SlimeVRを開いてトラッカーのカードをクリックします。<strong>「IMU Sensor」</strong>と<strong>「Firmware Version」</strong>を探してください。カードが表示されない場合は<a href="#help">よくある問題</a>を見てください。</span></li>
   </ol>
   <div class="reference-grid two-col">
-    <figure class="reference-shot portrait-shot" data-zoom="トラッカーのカード"><img src="../img/sv-tracker-info.webp" alt="SlimeVRのトラッカーカード：Firmware version v0.5.4、IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>トラッカーのカード。</strong>ファームウェアのバージョンは「Firmware version」の中のCurrentの行です。センサーは「IMU Sensor」の行です。スクリーンショットではIPアドレスとIDを隠しています。</figcaption></figure>
+    <figure class="reference-shot portrait-shot" data-zoom="トラッカーのカード"><img style="--ar:auto 327/880" src="../img/sv-tracker-info.webp" alt="SlimeVRのトラッカーカード：Firmware version v0.5.4、IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>トラッカーのカード。</strong>ファームウェアのバージョンは「Firmware version」の中のCurrentの行です。センサーは「IMU Sensor」の行です。スクリーンショットではIPアドレスとIDを隠しています。</figcaption></figure>
   </div>
   <p class="section-note">すべてのトラッカーでセンサーの種類とバージョンを確認してください。このガイドのボタン名やメニュー名は、SlimeVRとVRChatの英語版の画面やスクリーンショットに合わせて英語で書いています。日本語表示にしている場合は名前が異なりますが、場所は同じです。</p>
   <div class="fit-grid">
@@ -131,7 +141,7 @@
       <div class="aux-toggle" role="radiogroup" aria-label="トラッカーの種類"><label><input type="radio" name="aux1" value="main" checked> 拡張センサーなし</label><label><input type="radio" name="aux1" value="aux"> 拡張センサーあり</label></div>
       <div class="three-stage"><canvas id="box3d" aria-label="Hyperionケースのトラッカーを入れたキャリブレーション用の箱の3Dモデル"></canvas><span class="three-hint">ドラッグで回転</span></div>
       <p class="three-fallback">3Dモデルを読み込めませんでした。インターネット接続が必要です。箱の見た目は下の写真で確認できます。</p>
-      <figcaption>Hyperionケース（Type‑C用の穴を開けた改良版）のトラッカーを、底のちょうど中央に貼り付けています。Type‑Cプラグはトラッカーに挿したままで、ケーブルは箱の中で曲がらずに切り欠きへまっすぐ出ています。X、Y、Zの文字は面を取り違えないための目印です。</figcaption>
+      <figcaption>Hyperionケース（Type‑C用の穴を開けた改良版）のトラッカーを、底のちょうど中央に貼り付けています。Type‑Cプラグはトラッカーに挿したままで、ケーブルは箱の中で曲がらずに切り欠きへまっすぐ出ています。面の印はトラッカーの軸です。X+はトラッカーのふたの矢印が指す側、Y−は切り欠きのある壁（Type‑Cの差し込み口の側）、Z+は箱の内側の底です。反対側の面には、同じ軸を逆の符号で書きます。</figcaption>
     </figure>
     <table class="dims">
       <thead><tr><th></th><th>幅</th><th>奥行き</th><th>高さ</th></tr></thead>
@@ -146,11 +156,11 @@
       <li><span>長い側の壁に、底の近くまで<strong>USBケーブル用の切り欠き</strong>を入れます。位置は<strong>トラッカーのコネクタの真正面</strong>です。ケーブルはトラッカーから切り欠きへまっすぐ出て、箱の中で曲がらないようにします。切り欠きはプラグの根元のカバーより少し広くしてください。必要なときにケーブルを切り欠きの中で曲げ、箱の開いた側から外へ出せるようにするためです。これは箱を切り欠きが下になるように置くときに必要になります。</span></li>
       <li><span>底の中央に<strong>クッションタイプの両面テープ</strong>を1枚貼ります（例：3M / スコッチやGorillaの強力両面テープ）。</span></li>
       <li><span>トラッカーをテープの<strong>ちょうど中央</strong>に、USBコネクタを切り欠きに向け、辺を壁と平行にして貼ります。箱を裏返している間はテープがトラッカーを支えるので、しっかり固定されてずれないようにしてください。</span></li>
-      <li><span>鉛筆で面に印を付けます。短い側面にX、長い側面にY、底にZ。こうすると、箱をどの面で置いたかを覚えやすくなります。</span></li>
+      <li><span>3Dモデルと同じように、鉛筆で面に印を付けます。トラッカーの矢印が指す短い側面に<strong>X+</strong>、反対の短い側面に<strong>X−</strong>。切り欠きのある壁（Type‑Cの差し込み口の側）に<strong>Y−</strong>、反対の壁に<strong>Y+</strong>。底の内側に<strong>Z+</strong>、底の外側に<strong>Z−</strong>。こうすると、箱をどの面で置いたかを覚えやすくなります。</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inbox.jpg" alt="木箱の底の中央に貼り付けたトラッカー" width="900" height="506" loading="lazy"><figcaption>実物はこのようになります：中央にトラッカー、壁にケーブル用の切り欠き。</figcaption></figure>
-      <figure><img src="../img/tape.jpg" alt="クッションタイプの両面テープのロール" width="420" height="746" loading="lazy"><figcaption>このようなクッションタイプの両面テープが使えます。メーカーは問いません。発泡タイプの強力両面テープなら何でも大丈夫です。</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inbox.jpg" alt="木箱の底の中央に貼り付けたトラッカー" width="900" height="506" loading="lazy"><figcaption>実物はこのようになります：中央にトラッカー、壁にケーブル用の切り欠き。</figcaption></figure>
+      <figure><img style="--ar:auto 420/746" src="../img/tape.jpg" alt="クッションタイプの両面テープのロール" width="420" height="746" loading="lazy"><figcaption>このようなクッションタイプの両面テープが使えます。メーカーは問いません。発泡タイプの強力両面テープなら何でも大丈夫です。</figcaption></figure>
     </div>
     <h3>机の上のストッパー</h3>
     <p>箱を<strong>平らな机</strong>に置き、横にストッパーを置くか固定します。まっすぐな板、角材、厚い本などで構いません。箱を裏返すたびに、<strong>ストッパーに押し当ててください</strong>。こうすると箱はいつも同じ場所・同じ角度に置かれ、キャリブレーションがより正確になります。どのようになるかはステップ4で見られます。</p>
@@ -188,7 +198,7 @@
   <div class="warn"><b>重要</b><p><strong>なぜv0.5.4なのか。</strong>BMI160の温度キャリブレーションがあるのは、ファームウェア <strong>v0.3.3からv0.5.4まで</strong>です。v0.6.2以降、BMI160は新しいドライバーで動作し、そこには温度キャリブレーションが<strong>ありません</strong>。コンソールには「Temperature calibration not supported for IMU BMI160」と表示されます。v0.3.2以前にはまだありません。そのためv0.5.4を書き込みます。</p><p><strong>SlimeVRからではなく、サイトから書き込んでください。</strong>新しいバージョンのSlimeVR Serverでは、これらのトラッカーに古いファームウェアを書き込めません。そのため、ChromeまたはEdgeで別のサイトを使って書き込みます。</p></div>
 
   <div class="card" id="rotation">
-    <h3 id="rotation" style="margin-top:0">3.1 · センサーの向き（IMU Rotation）を調べる</h3>
+    <h3 style="margin-top:0">3.1 · センサーの向き（IMU Rotation）を調べる</h3>
     <p>書き込みのときに、BMI160モジュールがケースの中でどの向きに付いているかを指定する必要があります。間違えると、トラッカーが違う方向に動きます。モジュールや組み方は人によって違うので、自分のトラッカーを見て判断してください。</p>
     <ol class="do">
       <li><span>トラッカーのケースを開け、<strong>BMI160</strong> と書かれた紫色のモジュールを探します。</span></li>
@@ -197,8 +207,8 @@
       <li><span>その図の上にある数字（0、90、180、270のいずれか）が <strong>IMU Rotation (DEG)</strong> 欄の値です。メモしてください。トラッカーに拡張センサーがある場合は、そのセンサーの向きも同じ方法で調べます。</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inside.jpg" alt="開けたトラッカー：Wemos D1 Mini基板、BMI160モジュール、充電基板" width="900" height="506" loading="lazy"><figcaption>トラッカーの中身の例です。真ん中にあるのがBMI160モジュールです。このトラッカーを装着すると、写真の右側が天井を向きます。</figcaption></figure>
-      <figure data-zoom="センサーの向きの表"><img class="contain" src="../img/rotation.webp" alt="IMUの向きの表：BNOとBMI160それぞれのDEG_0、DEG_90、DEG_180、DEG_270" width="593" height="337" loading="lazy"><figcaption>向きの表。BMI160は<strong>一番下の行</strong>を見てください。「Ceiling when on body」は、トラッカーを装着したときの天井の方向という意味です。</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inside.jpg" alt="開けたトラッカー：Wemos D1 Mini基板、BMI160モジュール、充電基板" width="900" height="506" loading="lazy"><figcaption>トラッカーの中身の例です。真ん中にあるのがBMI160モジュールです。このトラッカーを装着すると、写真の右側が天井を向きます。</figcaption></figure>
+      <figure data-zoom="センサーの向きの表"><img style="--ar:auto 593/337" class="contain" src="../img/rotation.webp" alt="IMUの向きの表：BNOとBMI160それぞれのDEG_0、DEG_90、DEG_180、DEG_270" width="593" height="337" loading="lazy"><figcaption>向きの表。BMI160は<strong>一番下の行</strong>を見てください。「Ceiling when on body」は、トラッカーを装着したときの天井の方向という意味です。</figcaption></figure>
     </div>
     <div class="tip"><b>モジュールがどの図とも合わない場合</b><p>部品の配置が違うモジュールもあります。いちばん近い値を選び、書き込み後に確認してください。トラッカーを前に傾けたとき、SlimeVRの3Dモデルも前に傾けば正解です。横や後ろに傾く場合は、別の値で書き込み直してください。</p></div>
   </div>
@@ -357,12 +367,12 @@
 
   <figure>
     <div class="frames">
-      <div><img src="../img/v1.jpg" alt="姿勢1：箱の底が下" loading="lazy"><span>1</span></div>
-      <div><img src="../img/v2.jpg" alt="姿勢2：箱を短い側面で立てる" loading="lazy"><span>2</span></div>
-      <div><img src="../img/v3.jpg" alt="姿勢3：箱が逆さま" loading="lazy"><span>3</span></div>
-      <div><img src="../img/v4.jpg" alt="姿勢4：箱を反対の短い側面で立てる" loading="lazy"><span>4</span></div>
-      <div><img src="../img/v5.jpg" alt="姿勢5：箱を長い側面で置く" loading="lazy"><span>5</span></div>
-      <div><img src="../img/v6.jpg" alt="姿勢6：箱を反対の長い側面で置く" loading="lazy"><span>6</span></div>
+      <div><img style="--ar:auto 360/477" width="360" height="477" src="../img/v1.jpg" alt="姿勢1：箱の底が下" loading="lazy"><span>1</span></div>
+      <div><img style="--ar:auto 360/366" width="360" height="366" src="../img/v2.jpg" alt="姿勢2：箱を短い側面で立てる" loading="lazy"><span>2</span></div>
+      <div><img style="--ar:auto 360/299" width="360" height="299" src="../img/v3.jpg" alt="姿勢3：箱が逆さま" loading="lazy"><span>3</span></div>
+      <div><img style="--ar:auto 360/415" width="360" height="415" src="../img/v4.jpg" alt="姿勢4：箱を反対の短い側面で立てる" loading="lazy"><span>4</span></div>
+      <div><img style="--ar:auto 360/239" width="360" height="239" src="../img/v5.jpg" alt="姿勢5：箱を長い側面で置く" loading="lazy"><span>5</span></div>
+      <div><img style="--ar:auto 360/252" width="360" height="252" src="../img/v6.jpg" alt="姿勢6：箱を反対の長い側面で置く" loading="lazy"><span>6</span></div>
     </div>
     <figcaption>実際の6つの姿勢。BANANKA Groupの動画からの場面です。どの姿勢でも、箱は奥の木製ストッパーに押し当てられています。</figcaption>
   </figure>
@@ -408,7 +418,7 @@
       <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45 °C キャリブレーション保存</text>
       <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">冷蔵庫から出す</text>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="68" y="290" class="svg-text">冷蔵庫から出す</text>
       <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="120" y="140" class="svg-text">自然に温まる</text>
       <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">ドライヤー ~43°</text>
       <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="440" y="166" class="svg-text">冷ます ~30°</text>
@@ -479,9 +489,9 @@
     <h3>TCAL Checkerの例と比べる</h3>
     <p>青い点は測定値です。オレンジの線は、ファームウェアが計算した補正です。3つのグラフすべてで見比べてください。</p>
     <div class="reference-grid tcal-examples">
-      <figure class="reference-shot curve-good" data-zoom="良い結果。"><img src="../img/tcal-good.png" alt="オレンジの線が、ほぼ全範囲で青い点の間を通っている" loading="lazy"><figcaption><strong>良い結果。</strong>測定値がほぼ全範囲をカバーしています。線は点の間を通っています。</figcaption></figure>
-      <figure class="reference-shot curve-partial" data-zoom="不完全な結果。"><img src="../img/tcal-partial.png" alt="青い点は約33 °Cで途切れ、線はその先も続いている" loading="lazy"><figcaption><strong>不完全な結果。</strong>この例では33 °Cより上の測定値がありません。プレイ中のトラッカーの温度と、カバーされている範囲を比べてください。</figcaption></figure>
-      <figure class="reference-shot curve-bad" data-zoom="悪い結果。"><img src="../img/tcal-bad.png" alt="動作温度のあたりで、青い点の間に大きな抜けがある" loading="lazy"><figcaption><strong>悪い結果。</strong>測定値が少なく、この例では動作温度のあたりに抜けがあります。そこの補正は測定データなしで計算されています。</figcaption></figure>
+      <figure class="reference-shot curve-good" data-zoom="良い結果。"><img style="--ar:auto 497/301" width="497" height="301" src="../img/tcal-good.png" alt="オレンジの線が、ほぼ全範囲で青い点の間を通っている" loading="lazy"><figcaption><strong>良い結果。</strong>測定値がほぼ全範囲をカバーしています。線は点の間を通っています。</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="不完全な結果。"><img style="--ar:auto 496/302" width="496" height="302" src="../img/tcal-partial.png" alt="青い点は約33 °Cで途切れ、線はその先も続いている" loading="lazy"><figcaption><strong>不完全な結果。</strong>この例では33 °Cより上の測定値がありません。プレイ中のトラッカーの温度と、カバーされている範囲を比べてください。</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="悪い結果。"><img style="--ar:auto 502/302" width="502" height="302" src="../img/tcal-bad.png" alt="動作温度のあたりで、青い点の間に大きな抜けがある" loading="lazy"><figcaption><strong>悪い結果。</strong>測定値が少なく、この例では動作温度のあたりに抜けがあります。そこの補正は測定データなしで計算されています。</figcaption></figure>
     </div>
     <p class="source-note"><a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a> の「What do these graphs mean?」セクションからの例です。</p>
   </div>
@@ -590,11 +600,11 @@
     <h3>SlimeVRでの場所</h3>
     <p>スクリーンショットをクリックすると拡大して見られます。スクリーンショットは、ガイドの作者がトラッカー8台を接続したSlimeVR Server v21.1.0で撮影しました。2つのキャリブレーションウィザードは、トラッカーなしのロシア語版の画面です。英語版でも配置は同じです。</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="トラッカーの割り当て"><img src="../img/sv-assign.webp" alt="Assign trackersページ：体の図。割り当て済みのトラッカーは緑の点で表示" width="1400" height="768" loading="lazy"><figcaption><strong>トラッカーの割り当て。</strong>体の点をクリックしてトラッカーを選びます。緑の点は割り当て済みです。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="トラッカーの位置"><img src="../img/sv-mounting-edit.webp" alt="トラッカーの設定：Mounting orientationの欄とEdit mountingボタン" width="1400" height="620" loading="lazy"><figcaption><strong>トラッカーの位置。</strong>「Edit mounting」を押すと、上の図のような選択用の円が開きます。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="装着キャリブレーション。"><img src="../img/slimevr-21-mounting.webp" alt="Mounting Calibrationウィザード" loading="lazy"><figcaption><strong>装着キャリブレーション。</strong>ウィザードに従ってください。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="体のプロポーション"><img src="../img/sv-proportions.webp" alt="Body Proportions画面：身長とManual Proportionsボタン" width="900" height="990" loading="lazy"><figcaption><strong>体のプロポーション。</strong>「Manual Proportions」は左下にあります。自動調整はここから始まります。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="自動プロポーション。"><img src="../img/slimevr-21-proportions-auto.webp" alt="Measure your bodyウィザード" loading="lazy"><figcaption><strong>自動プロポーション。</strong>ウィザードの順番どおりに操作してください。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="トラッカーの割り当て"><img style="--ar:auto 1400/768" src="../img/sv-assign.webp" alt="Assign trackersページ：体の図。割り当て済みのトラッカーは緑の点で表示" width="1400" height="768" loading="lazy"><figcaption><strong>トラッカーの割り当て。</strong>体の点をクリックしてトラッカーを選びます。緑の点は割り当て済みです。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="トラッカーの位置"><img style="--ar:auto 1400/620" src="../img/sv-mounting-edit.webp" alt="トラッカーの設定：Mounting orientationの欄とEdit mountingボタン" width="1400" height="620" loading="lazy"><figcaption><strong>トラッカーの位置。</strong>「Edit mounting」を押すと、上の図のような選択用の円が開きます。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="装着キャリブレーション。"><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-mounting.webp" alt="Mounting Calibrationウィザード" loading="lazy"><figcaption><strong>装着キャリブレーション。</strong>ウィザードに従ってください。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="体のプロポーション"><img style="--ar:auto 900/990" src="../img/sv-proportions.webp" alt="Body Proportions画面：身長とManual Proportionsボタン" width="900" height="990" loading="lazy"><figcaption><strong>体のプロポーション。</strong>「Manual Proportions」は左下にあります。自動調整はここから始まります。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="自動プロポーション。"><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-proportions-auto.webp" alt="Measure your bodyウィザード" loading="lazy"><figcaption><strong>自動プロポーション。</strong>ウィザードの順番どおりに操作してください。</figcaption></figure>
     </div>
     <p class="source-note">画面は <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a> のものです。</p>
   </div>
@@ -616,10 +626,10 @@
     <h3>VRChatでの場所</h3>
     <p>スクリーンショットをクリックすると拡大して見られます。スクリーンショットの設定はまだ変更していない状態です。値は上のリストのとおりに設定してください。</p>
     <div class="reference-grid vrchat-examples">
-      <figure class="reference-shot" data-zoom="身長と古いIK"><img src="../img/vrc-height.webp" alt="VRChatのTracking &amp; IKメニュー：User Real Heightの行とUse Legacy IK Solvingのスイッチ" width="774" height="593" loading="lazy"><figcaption><strong>身長と古いIK。</strong>身長を測るボタンは、身長の行のいちばん右です。古いIKのスイッチは3行目です。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img src="../img/vrc-calibration.webp" alt="Calibration &amp; Debugの欄：Legacy CalibrationとCalibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug。</strong>「Legacy Calibration」は1行目、「Calibration Range」はその下のスライダーです。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibrateボタン"><img src="../img/vrc-quick-fbt.webp" alt="VRChatのクイックメニューのLaunch Pad。Calibrateボタンをポイントしたところ" width="550" height="675" loading="lazy"><figcaption><strong>クイックメニュー。</strong>Launch Padの下にある「Calibrate」ボタンで、フルボディキャリブレーションが始まります。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="キャリブレーションの姿勢"><img src="../img/vrc-tpose.webp" alt="キャリブレーションの姿勢をとるアバター。トラッカーは色付きの円で表示" width="840" height="745" loading="lazy"><figcaption><strong>キャリブレーションの姿勢。</strong>自分の体をアバターに合わせ、両方のトリガーを押します。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="身長と古いIK"><img style="--ar:auto 774/593" src="../img/vrc-height.webp" alt="VRChatのTracking &amp; IKメニュー：User Real Heightの行とUse Legacy IK Solvingのスイッチ" width="774" height="593" loading="lazy"><figcaption><strong>身長と古いIK。</strong>身長を測るボタンは、身長の行のいちばん右です。古いIKのスイッチは3行目です。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img style="--ar:auto 738/572" src="../img/vrc-calibration.webp" alt="Calibration &amp; Debugの欄：Legacy CalibrationとCalibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug。</strong>「Legacy Calibration」は1行目、「Calibration Range」はその下のスライダーです。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibrateボタン"><img style="--ar:auto 550/675" src="../img/vrc-quick-fbt.webp" alt="VRChatのクイックメニューのLaunch Pad。Calibrateボタンをポイントしたところ" width="550" height="675" loading="lazy"><figcaption><strong>クイックメニュー。</strong>Launch Padの下にある「Calibrate」ボタンで、フルボディキャリブレーションが始まります。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="キャリブレーションの姿勢"><img style="--ar:auto 840/745" src="../img/vrc-tpose.webp" alt="キャリブレーションの姿勢をとるアバター。トラッカーは色付きの円で表示" width="840" height="745" loading="lazy"><figcaption><strong>キャリブレーションの姿勢。</strong>自分の体をアバターに合わせ、両方のトリガーを押します。</figcaption></figure>
     </div>
     <p class="source-note">スクリーンショットは、ガイドの作者がVRChatで撮影しました（2026年11月）。フルボディキャリブレーションについては <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">VRChatのドキュメント</a> に説明があります。</p>
   </div>
@@ -640,7 +650,7 @@
     <li><span>足にトラッカーがある場合は、<strong>足のキャリブレーション</strong>（足の装着リセット）を行います。<strong>Feet</strong> ボタンです。</span></li>
     <li><span>ゲームに入ります。<strong>VRChat</strong> でフルボディキャリブレーション、つまりトラッカーとアバターの対応付けを行います。</span></li>
   </ol>
-  <figure class="reference-shot wide-shot" data-zoom="SlimeVRのホーム画面"><img src="../img/sv-home.webp" alt="SlimeVRのホーム画面：トラッカー一覧の上にFull Reset、Yaw Reset、Body、Feetのボタン" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVRのホーム画面。</strong>左上にFull ResetとYaw Reset。右側は装着キャリブレーションで、Bodyが体用、Feetが足用です。</figcaption></figure>
+  <figure class="reference-shot wide-shot" data-zoom="SlimeVRのホーム画面"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVRのホーム画面：トラッカー一覧の上にFull Reset、Yaw Reset、Body、Feetのボタン" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVRのホーム画面。</strong>左上にFull ResetとYaw Reset。右側は装着キャリブレーションで、Bodyが体用、Feetが足用です。</figcaption></figure>
   <details>
     <summary>最初にトラッカーを温めておく理由</summary>
     <div><p>15 °C未満で電源を入れると、トラッカーは新しい温度キャリブレーションを始めます。保存済みのデータはメモリに残っていて、暖かい場所で再起動すれば、トラッカーは再びそれを使います。</p></div>
@@ -733,7 +743,7 @@
 </section>
 
 <div class="author" aria-label="ガイドの作者">
-  <span class="author-ava"><img class="author-avatar" src="../img/avatar.jpg" alt="Skrebiのアバター" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
+  <span class="author-ava"><img style="--ar:auto 64/64" class="author-avatar" src="../img/avatar.jpg" alt="Skrebiのアバター" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">ガイドの作者</span>
     <b class="author-name">Skrebi</b>
@@ -769,11 +779,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "完了", "Mark step done": "ステップ完了", "Start with the check": "確認から始める", "All steps done · before-play checklist": "すべてのステップが完了 · プレイ前のチェックリスト", "Continue: step ": "続きから：ステップ ", "Step ": "ステップ ", "Steps": "ステップ", "Axes": "軸", "Temperature": "温度", "Check": "確認", "None added": "未追加", "Tracker ": "トラッカー ", "e.g. left thigh": "例：左太もも", "Tracker name ": "トラッカー名 ", "Remove": "削除", "Remove tracker ": "トラッカーを削除 ", "Image viewer": "画像ビューアー", "Tap or pinch to zoom": "タップまたはピンチで拡大", "Click the image or use the mouse wheel to zoom": "画像をクリックするか、マウスホイールで拡大", "Close (Esc)": "閉じる（Esc）", "Previous image": "前の画像", "Next image": "次の画像", "Open larger: ": "拡大して開く： ", "Likes: ": "いいね： ", "♥ Thank you!": "♥ ありがとう！", "♡ Like": "♡ いいね", "Click again to remove your like": "もう一度クリックすると、いいねを取り消せます", "no data": "データなし", "Likes are unavailable right now": "現在いいねは利用できません", "Checking…": "確認中…", "Too many attempts. Try again in a minute.": "操作が多すぎます。1分後にもう一度お試しください。", "Check failed. Please try again": "確認に失敗しました。もう一度お試しください", "Could not send your like": "いいねを送信できませんでした", "Like count is unavailable right now": "現在いいねの数を表示できません", "Done.": "完了しました。", "Download cancelled.": "ダウンロードをキャンセルしました。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "ここではダウンロードできません。ガイドのHTMLファイルをブラウザーで開き、そこでボタンを押してください。", "Copied": "コピーしました", "Copy nickname": "ユーザー名をコピー", "Nickname: ": "ユーザー名： ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "開始。箱は逆さま、短い側面をストッパーに押し当て、ケーブルの切り欠きは左。ここでトラッカーを再起動します。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿勢1。底が下、短い側面をストッパーに押し当てる。スイッチとケーブルは左で、ケーブルは切り欠きからまっすぐ出る。コンソール：「Waiting for position 1」。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿勢2。短い側面で立て、底をストッパーに向け、開いた面を自分に向ける。ケーブルは左から出て机に置かれる。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿勢3。逆さまで、短い側面をストッパーに当てる。テープがトラッカーを支え、ケーブルは左。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿勢4。反対の短い側面で立て、底をストッパーに向ける。ケーブルは今度は右から出る。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿勢5。長い側面で置き、底をストッパーに向け、切り欠きは上。ケーブルは上に出て、箱を引っ張らずにゆるやかに机へ下りる。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿勢6。反対の長い側面で置き、切り欠きは下。ケーブルを切り欠きの中で曲げ、箱を持ち上げないように開いた面から手前へ出す。このあとコンソールに「Calibration data gathered」と表示される。"};</script>
+<script>window.GUIDE_I18N={"Done": "完了", "Mark step done": "ステップ完了", "Start with the check": "確認から始める", "All steps done · before-play checklist": "すべてのステップが完了 · プレイ前のチェックリスト", "Continue: step ": "続きから：ステップ ", "Step ": "ステップ ", "Steps": "ステップ", "Axes": "軸", "Temperature": "温度", "Check": "確認", "None added": "未追加", "Tracker ": "トラッカー ", "e.g. left thigh": "例：左太もも", "Tracker name ": "トラッカー名 ", "Remove": "削除", "Remove tracker ": "トラッカーを削除 ", "Image viewer": "画像ビューアー", "Tap or pinch to zoom": "タップまたはピンチで拡大", "Click the image or use the mouse wheel to zoom": "画像をクリックするか、マウスホイールで拡大", "Close (Esc)": "閉じる（Esc）", "Previous image": "前の画像", "Next image": "次の画像", "Open larger: ": "拡大して開く： ", "Likes: ": "いいね： ", "♥ Thank you!": "♥ ありがとう！", "♡ Like": "♡ いいね", "Click again to remove your like": "もう一度クリックすると、いいねを取り消せます", "no data": "データなし", "Likes are unavailable right now": "現在いいねは利用できません", "Checking…": "確認中…", "Too many attempts. Try again in a minute.": "操作が多すぎます。1分後にもう一度お試しください。", "Check failed. Please try again": "確認に失敗しました。もう一度お試しください", "Could not send your like": "いいねを送信できませんでした", "Like count is unavailable right now": "現在いいねの数を表示できません", "Done.": "完了しました。", "Download cancelled.": "ダウンロードをキャンセルしました。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "ここではダウンロードできません。ガイドのHTMLファイルをブラウザーで開き、そこでボタンを押してください。", "Copied": "コピーしました", "Copy nickname": "ユーザー名をコピー", "Nickname: ": "ユーザー名： ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "開始。箱は逆さま、短い側面をストッパーに押し当て、ケーブルの切り欠きは左。ここでトラッカーを再起動します。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿勢1。底が下、短い側面をストッパーに押し当てる。スイッチとケーブルは左で、ケーブルは切り欠きからまっすぐ出る。コンソール：「Waiting for position 1」。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿勢2。短い側面で立て、底をストッパーに向け、開いた面を自分に向ける。ケーブルは左から出て机に置かれる。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿勢3。逆さまで、短い側面をストッパーに当てる。テープがトラッカーを支え、ケーブルは左。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿勢4。反対の短い側面で立て、底をストッパーに向ける。ケーブルは今度は右から出る。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿勢5。長い側面で置き、底をストッパーに向け、切り欠きは上。ケーブルは上に出て、箱を引っ張らずにゆるやかに机へ下りる。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿勢6。反対の長い側面で置き、切り欠きは下。ケーブルを切り欠きの中で曲げ、箱を持ち上げないように開いた面から手前へ出す。このあとコンソールに「Calibration data gathered」と表示される。", "Face down:": "下を向いている面："};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
-<script src="../js/scenes.js?v=ed7d7737"></script>
+<script src="../js/scenes.js?v=8d7ae98a"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=4af4fa2b"></script>
+<script src="../js/nav.js?v=904409a3"></script>
 </body>
 </html>

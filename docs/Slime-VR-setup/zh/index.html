@@ -21,11 +21,11 @@
 <link rel="alternate" hreflang="ja" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/zh/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=5719abd8">
+<link rel="stylesheet" href="../css/style.css?v=43800bf5">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="zh-Hans")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="5ef3f0bdb3";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="c3089a4e53";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -68,6 +68,16 @@
   <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">从检查开始</a><a href="#every">游玩前检查清单</a></div>
 </header>
 
+<section class="howto" aria-labelledby="howto-h">
+  <h2 id="howto-h">如何使用本指南</h2>
+  <ol>
+    <li><span><b>按从上到下的顺序完成各个步骤。</b>每一步最后都有结果检查和进入下一步的链接。</span></li>
+    <li><span><b>完成的步骤要做标记：</b>点击“标记此步已完成”按钮。标记会保存在这个浏览器中，下次打开时，指南会提示你从上次的位置继续。</span></li>
+    <li><span><b>第 4–6 步需要对每个追踪器依次进行。</b>为免混乱，请在第 4 步的检查清单中添加你的追踪器。</span></li>
+    <li><span><b>遇到问题？</b>请打开<a href="#help">常见问题</a>。点击截图和示意图可以放大查看。</span></li>
+  </ol>
+</section>
+
 <div class="road" id="road">
   <h2 style="font-size:19px">完整流程</h2>
   <ol>
@@ -98,7 +108,7 @@
     <li><span>打开追踪器，启动 SlimeVR，点击该追踪器的卡片。找到 <strong>“IMU Sensor”</strong> 和 <strong>“Firmware Version”</strong>。如果没有出现卡片，请参阅<a href="#help">常见问题</a>。</span></li>
   </ol>
   <div class="reference-grid two-col">
-    <figure class="reference-shot portrait-shot" data-zoom="追踪器卡片"><img src="../img/sv-tracker-info.webp" alt="SlimeVR 中的追踪器卡片：固件版本 v0.5.4，IMU 传感器 BMI160" width="327" height="880" loading="lazy"><figcaption><strong>追踪器卡片。</strong>固件版本是“Firmware version”下的 Current 一行，传感器是“IMU Sensor”一行。截图中的 IP 地址和 ID 已隐藏。</figcaption></figure>
+    <figure class="reference-shot portrait-shot" data-zoom="追踪器卡片"><img style="--ar:auto 327/880" src="../img/sv-tracker-info.webp" alt="SlimeVR 中的追踪器卡片：固件版本 v0.5.4，IMU 传感器 BMI160" width="327" height="880" loading="lazy"><figcaption><strong>追踪器卡片。</strong>固件版本是“Firmware version”下的 Current 一行，传感器是“IMU Sensor”一行。截图中的 IP 地址和 ID 已隐藏。</figcaption></figure>
   </div>
   <p class="section-note">请检查每个追踪器的传感器型号和固件版本。本指南中的按钮和菜单名称以 SlimeVR 和 VRChat 的英文界面为准，与截图一致。如果你使用的是中文界面，名称会有所不同，但位置相同。</p>
   <div class="fit-grid">
@@ -131,7 +141,7 @@
       <div class="aux-toggle" role="radiogroup" aria-label="追踪器类型"><label><input type="radio" name="aux1" value="main" checked> 无扩展传感器</label><label><input type="radio" name="aux1" value="aux"> 带扩展传感器</label></div>
       <div class="three-stage"><canvas id="box3d" aria-label="校准盒的 3D 模型，内有 Hyperion 外壳的追踪器"></canvas><span class="three-hint">拖动可旋转</span></div>
       <p class="three-fallback">3D 模型未能加载：需要联网。下面的照片展示了盒子的样子。</p>
-      <figcaption>Hyperion 外壳的追踪器（带 Type‑C 开口的改良版）正好粘在盒底中央。Type‑C 插头插在追踪器上，线直接进入切口，在盒内不弯折。字母 X、Y、Z 帮你分清各个面。</figcaption>
+      <figcaption>Hyperion 外壳的追踪器（带 Type‑C 开口的改良版）正好粘在盒底中央。Type‑C 插头插在追踪器上，线直接进入切口，在盒内不弯折。各个面上的标记就是追踪器的轴：X+ 是追踪器盖子上箭头所指的方向，Y− 是带线槽的那面盒壁（Type‑C 接口一侧），Z+ 在盒内底面。相对的面标同一个轴，符号相反。</figcaption>
     </figure>
     <table class="dims">
       <thead><tr><th></th><th>宽</th><th>深</th><th>高</th></tr></thead>
@@ -146,11 +156,11 @@
       <li><span>在一面长侧壁上开一个<strong>USB 线槽</strong>，几乎开到底部，<strong>正对追踪器的接口</strong>。线从追踪器出来后应直接进入槽中，在盒内不弯折。槽要比插头的护线套稍宽一些，这样需要时可以把线在槽内弯折，从盒子的敞口一侧引出：盒子以槽口朝下放置时会用到。</span></li>
       <li><span>在盒底中央贴一块<strong>泡棉双面胶</strong>（例如 3M 或 Gorilla 的泡棉双面胶）。</span></li>
       <li><span>把追踪器<strong>正好粘在中央</strong>，USB 接口朝向线槽，边缘与盒壁平行。翻转盒子时靠双面胶固定追踪器，所以追踪器必须粘牢，不能移动。</span></li>
-      <li><span>用铅笔标记各个面：两端写 X，长侧面写 Y，底面写 Z。这样更容易记住盒子已经用过哪些面。</span></li>
+      <li><span>参照 3D 模型，用铅笔标记各个面：追踪器箭头所指的那一端写 <strong>X+</strong>，另一端写 <strong>X−</strong>；带线槽的盒壁（Type‑C 接口一侧）写 <strong>Y−</strong>，对面写 <strong>Y+</strong>；盒内底面写 <strong>Z+</strong>，盒外底面写 <strong>Z−</strong>。这样更容易记住盒子已经用过哪些面。</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inbox.jpg" alt="粘在木盒底部中央的追踪器" width="900" height="506" loading="lazy"><figcaption>实物效果：追踪器在中央，盒壁上有线槽。</figcaption></figure>
-      <figure><img src="../img/tape.jpg" alt="一卷泡棉双面胶" width="420" height="746" loading="lazy"><figcaption>这种泡棉双面胶就可以。任何品牌的泡棉双面胶都行。</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inbox.jpg" alt="粘在木盒底部中央的追踪器" width="900" height="506" loading="lazy"><figcaption>实物效果：追踪器在中央，盒壁上有线槽。</figcaption></figure>
+      <figure><img style="--ar:auto 420/746" src="../img/tape.jpg" alt="一卷泡棉双面胶" width="420" height="746" loading="lazy"><figcaption>这种泡棉双面胶就可以。任何品牌的泡棉双面胶都行。</figcaption></figure>
     </div>
     <h3>桌上的挡块</h3>
     <p>把盒子放在<strong>平整的桌面</strong>上，在旁边放置或固定一个挡块：一块平直的木板、一个木块或一本厚书。每次翻转盒子后，<strong>都把它推靠到挡块上</strong>。这样盒子每次都在同一位置、同一角度，校准也更准确。第 4 步展示了具体做法。</p>
@@ -188,7 +198,7 @@
   <div class="warn"><b>重要</b><p><strong>为什么必须是 v0.5.4。</strong>BMI160 的温度校准只存在于固件 <strong>v0.3.3 至 v0.5.4</strong> 中。从 v0.6.2 开始，BMI160 使用了新驱动，其中<strong>没有</strong>温度校准：控制台会显示“Temperature calibration not supported for IMU BMI160”。v0.3.2 及更早版本中还没有这项功能。所以我们安装 v0.5.4。</p><p><strong>通过网站刷写，而不是通过 SlimeVR。</strong>新版 SlimeVR Server 无法给这些追踪器安装旧固件。所以我们在 Chrome 或 Edge 中通过一个单独的网站刷写。</p></div>
 
   <div class="card" id="rotation">
-    <h3 id="rotation" style="margin-top:0">3.1 · 确定传感器方向（IMU Rotation）</h3>
+    <h3 style="margin-top:0">3.1 · 确定传感器方向（IMU Rotation）</h3>
     <p>刷写时需要指定 BMI160 模块在外壳内的旋转方向。如果设错，追踪器会朝错误的方向运动。模块和组装方式各不相同，所以请以你自己的追踪器为准。</p>
     <ol class="do">
       <li><span>打开追踪器外壳，找到标有 <strong>BMI160</strong> 的紫色模块。</span></li>
@@ -197,8 +207,8 @@
       <li><span>这张图上方标签中的数字（0、90、180 或 270）就是 <strong>IMU Rotation (DEG)</strong> 字段的值。把它记下来。如果追踪器带有扩展传感器，用同样的方法找出它的传感器方向。</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inside.jpg" alt="打开的追踪器：Wemos D1 Mini 板、BMI160 模块和充电板" width="900" height="506" loading="lazy"><figcaption>追踪器内部示例。BMI160 模块在中间。佩戴这个追踪器时，照片的右侧朝向天花板。</figcaption></figure>
-      <figure data-zoom="传感器方向图"><img class="contain" src="../img/rotation.webp" alt="IMU 方向图：BNO 和 BMI160 的 DEG_0、DEG_90、DEG_180、DEG_270" width="593" height="337" loading="lazy"><figcaption>方向图。BMI160 请看<strong>最下面一行</strong>。“Ceiling when on body”指的是佩戴追踪器时天花板的方向。</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inside.jpg" alt="打开的追踪器：Wemos D1 Mini 板、BMI160 模块和充电板" width="900" height="506" loading="lazy"><figcaption>追踪器内部示例。BMI160 模块在中间。佩戴这个追踪器时，照片的右侧朝向天花板。</figcaption></figure>
+      <figure data-zoom="传感器方向图"><img style="--ar:auto 593/337" class="contain" src="../img/rotation.webp" alt="IMU 方向图：BNO 和 BMI160 的 DEG_0、DEG_90、DEG_180、DEG_270" width="593" height="337" loading="lazy"><figcaption>方向图。BMI160 请看<strong>最下面一行</strong>。“Ceiling when on body”指的是佩戴追踪器时天花板的方向。</figcaption></figure>
     </div>
     <div class="tip"><b>如果模块与所有图都不符</b><p>有些模块的布局不同。选择最接近的值，刷写后检查：把追踪器向前倾，它在 SlimeVR 中的 3D 模型也应该向前倾，而不是向侧面或向后。如果倾斜方向不对，就换一个值重新刷写。</p></div>
   </div>
@@ -357,12 +367,12 @@
 
   <figure>
     <div class="frames">
-      <div><img src="../img/v1.jpg" alt="姿势 1：盒子底面朝下" loading="lazy"><span>1</span></div>
-      <div><img src="../img/v2.jpg" alt="姿势 2：盒子端面立起" loading="lazy"><span>2</span></div>
-      <div><img src="../img/v3.jpg" alt="姿势 3：盒子倒置" loading="lazy"><span>3</span></div>
-      <div><img src="../img/v4.jpg" alt="姿势 4：盒子另一端面立起" loading="lazy"><span>4</span></div>
-      <div><img src="../img/v5.jpg" alt="姿势 5：盒子长侧面朝下" loading="lazy"><span>5</span></div>
-      <div><img src="../img/v6.jpg" alt="姿势 6：盒子另一长侧面朝下" loading="lazy"><span>6</span></div>
+      <div><img style="--ar:auto 360/477" width="360" height="477" src="../img/v1.jpg" alt="姿势 1：盒子底面朝下" loading="lazy"><span>1</span></div>
+      <div><img style="--ar:auto 360/366" width="360" height="366" src="../img/v2.jpg" alt="姿势 2：盒子端面立起" loading="lazy"><span>2</span></div>
+      <div><img style="--ar:auto 360/299" width="360" height="299" src="../img/v3.jpg" alt="姿势 3：盒子倒置" loading="lazy"><span>3</span></div>
+      <div><img style="--ar:auto 360/415" width="360" height="415" src="../img/v4.jpg" alt="姿势 4：盒子另一端面立起" loading="lazy"><span>4</span></div>
+      <div><img style="--ar:auto 360/239" width="360" height="239" src="../img/v5.jpg" alt="姿势 5：盒子长侧面朝下" loading="lazy"><span>5</span></div>
+      <div><img style="--ar:auto 360/252" width="360" height="252" src="../img/v6.jpg" alt="姿势 6：盒子另一长侧面朝下" loading="lazy"><span>6</span></div>
     </div>
     <figcaption>实际的六个姿势，截自 BANANKA Group 的视频。每个姿势下盒子都推靠在后面的木制挡块上。</figcaption>
   </figure>
@@ -408,7 +418,7 @@
       <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45 °C 保存校准</text>
       <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">从冰箱取出</text>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="68" y="290" class="svg-text">从冰箱取出</text>
       <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="120" y="140" class="svg-text">自然回温</text>
       <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">吹风机 ~43°</text>
       <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="440" y="166" class="svg-text">冷却 ~30°</text>
@@ -479,9 +489,9 @@
     <h3>与 TCAL Checker 的示例对比</h3>
     <p>蓝色点是测量值。橙色线是固件计算出的修正曲线。请在三张图表上分别对比。</p>
     <div class="reference-grid tcal-examples">
-      <figure class="reference-shot curve-good" data-zoom="好的结果。"><img src="../img/tcal-good.png" alt="橙色线几乎在整个范围内都穿行于蓝色点之间" loading="lazy"><figcaption><strong>好的结果。</strong>测量值几乎覆盖了整个范围，线穿行于点之间。</figcaption></figure>
-      <figure class="reference-shot curve-partial" data-zoom="不完整的结果。"><img src="../img/tcal-partial.png" alt="蓝色点在约 33 °C 处结束，线仍继续延伸" loading="lazy"><figcaption><strong>不完整的结果。</strong>在这个示例中，33 °C 以上没有测量值。请把覆盖范围与你的追踪器在游玩时的温度进行对比。</figcaption></figure>
-      <figure class="reference-shot curve-bad" data-zoom="差的结果。"><img src="../img/tcal-bad.png" alt="在工作温度附近，蓝色点之间有大段空缺" loading="lazy"><figcaption><strong>差的结果。</strong>测量值很少，在这个示例中工作温度附近还有空缺。那里的修正是在没有数据的情况下计算出来的。</figcaption></figure>
+      <figure class="reference-shot curve-good" data-zoom="好的结果。"><img style="--ar:auto 497/301" width="497" height="301" src="../img/tcal-good.png" alt="橙色线几乎在整个范围内都穿行于蓝色点之间" loading="lazy"><figcaption><strong>好的结果。</strong>测量值几乎覆盖了整个范围，线穿行于点之间。</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="不完整的结果。"><img style="--ar:auto 496/302" width="496" height="302" src="../img/tcal-partial.png" alt="蓝色点在约 33 °C 处结束，线仍继续延伸" loading="lazy"><figcaption><strong>不完整的结果。</strong>在这个示例中，33 °C 以上没有测量值。请把覆盖范围与你的追踪器在游玩时的温度进行对比。</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="差的结果。"><img style="--ar:auto 502/302" width="502" height="302" src="../img/tcal-bad.png" alt="在工作温度附近，蓝色点之间有大段空缺" loading="lazy"><figcaption><strong>差的结果。</strong>测量值很少，在这个示例中工作温度附近还有空缺。那里的修正是在没有数据的情况下计算出来的。</figcaption></figure>
     </div>
     <p class="source-note">示例来自 <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a> 的“What do these graphs mean?”部分。</p>
   </div>
@@ -590,11 +600,11 @@
     <h3>在 SlimeVR 中的位置</h3>
     <p>点击截图可放大查看。截图由本指南作者在连接了八个追踪器的 SlimeVR Server v21.1.0 中拍摄。两个校准向导展示的是未连接追踪器的俄语界面；英文界面的布局相同。</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="分配追踪器"><img src="../img/sv-assign.webp" alt="Assign trackers 页面：身体图，已分配的追踪器以绿点标出" width="1400" height="768" loading="lazy"><figcaption><strong>分配追踪器。</strong>点击身体上的点，然后选择追踪器。绿点表示已分配。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="追踪器安装位置"><img src="../img/sv-mounting-edit.webp" alt="追踪器设置：Mounting orientation 区域和 Edit mounting 按钮" width="1400" height="620" loading="lazy"><figcaption><strong>追踪器安装位置。</strong>“Edit mounting”会打开上图所示的选择圆盘。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="安装校准。"><img src="../img/slimevr-21-mounting.webp" alt="Mounting Calibration 向导" loading="lazy"><figcaption><strong>安装校准。</strong>按照向导操作。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="身体比例"><img src="../img/sv-proportions.webp" alt="Body Proportions 界面：身高和 Manual Proportions 按钮" width="900" height="990" loading="lazy"><figcaption><strong>身体比例。</strong>“Manual Proportions”在左下角。自动调整从这里开始。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="自动比例。"><img src="../img/slimevr-21-proportions-auto.webp" alt="Measure your body 向导" loading="lazy"><figcaption><strong>自动比例。</strong>按照向导的顺序完成各个动作。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="分配追踪器"><img style="--ar:auto 1400/768" src="../img/sv-assign.webp" alt="Assign trackers 页面：身体图，已分配的追踪器以绿点标出" width="1400" height="768" loading="lazy"><figcaption><strong>分配追踪器。</strong>点击身体上的点，然后选择追踪器。绿点表示已分配。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="追踪器安装位置"><img style="--ar:auto 1400/620" src="../img/sv-mounting-edit.webp" alt="追踪器设置：Mounting orientation 区域和 Edit mounting 按钮" width="1400" height="620" loading="lazy"><figcaption><strong>追踪器安装位置。</strong>“Edit mounting”会打开上图所示的选择圆盘。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="安装校准。"><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-mounting.webp" alt="Mounting Calibration 向导" loading="lazy"><figcaption><strong>安装校准。</strong>按照向导操作。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="身体比例"><img style="--ar:auto 900/990" src="../img/sv-proportions.webp" alt="Body Proportions 界面：身高和 Manual Proportions 按钮" width="900" height="990" loading="lazy"><figcaption><strong>身体比例。</strong>“Manual Proportions”在左下角。自动调整从这里开始。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="自动比例。"><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-proportions-auto.webp" alt="Measure your body 向导" loading="lazy"><figcaption><strong>自动比例。</strong>按照向导的顺序完成各个动作。</figcaption></figure>
     </div>
     <p class="source-note">界面来自 <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>。</p>
   </div>
@@ -616,10 +626,10 @@
     <h3>在 VRChat 中的位置</h3>
     <p>点击截图可放大查看。截图中的设置尚未修改：请使用上面列表中的值。</p>
     <div class="reference-grid vrchat-examples">
-      <figure class="reference-shot" data-zoom="身高和旧版 IK"><img src="../img/vrc-height.webp" alt="VRChat 的 Tracking &amp; IK 菜单：User Real Height 一行和 Use Legacy IK Solving 开关" width="774" height="593" loading="lazy"><figcaption><strong>身高和旧版 IK。</strong>测量身高的按钮在身高一行的最右边。旧版 IK 开关在第三行。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img src="../img/vrc-calibration.webp" alt="Calibration &amp; Debug 区域：Legacy Calibration 和 Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug。</strong>“Legacy Calibration”在第一行，“Calibration Range”是下面的滑块。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibrate 按钮"><img src="../img/vrc-quick-fbt.webp" alt="VRChat 快捷菜单的 Launch Pad，指针悬停在 Calibrate 按钮上" width="550" height="675" loading="lazy"><figcaption><strong>快捷菜单。</strong>Launch Pad 底部的“Calibrate”按钮用于开始全身校准。</figcaption></figure>
-      <figure class="reference-shot" data-zoom="校准姿势"><img src="../img/vrc-tpose.webp" alt="处于校准姿势的虚拟形象，追踪器显示为彩色圆圈" width="840" height="745" loading="lazy"><figcaption><strong>校准姿势。</strong>让身体与虚拟形象对齐，然后同时按下两个扳机键。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="身高和旧版 IK"><img style="--ar:auto 774/593" src="../img/vrc-height.webp" alt="VRChat 的 Tracking &amp; IK 菜单：User Real Height 一行和 Use Legacy IK Solving 开关" width="774" height="593" loading="lazy"><figcaption><strong>身高和旧版 IK。</strong>测量身高的按钮在身高一行的最右边。旧版 IK 开关在第三行。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img style="--ar:auto 738/572" src="../img/vrc-calibration.webp" alt="Calibration &amp; Debug 区域：Legacy Calibration 和 Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug。</strong>“Legacy Calibration”在第一行，“Calibration Range”是下面的滑块。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibrate 按钮"><img style="--ar:auto 550/675" src="../img/vrc-quick-fbt.webp" alt="VRChat 快捷菜单的 Launch Pad，指针悬停在 Calibrate 按钮上" width="550" height="675" loading="lazy"><figcaption><strong>快捷菜单。</strong>Launch Pad 底部的“Calibrate”按钮用于开始全身校准。</figcaption></figure>
+      <figure class="reference-shot" data-zoom="校准姿势"><img style="--ar:auto 840/745" src="../img/vrc-tpose.webp" alt="处于校准姿势的虚拟形象，追踪器显示为彩色圆圈" width="840" height="745" loading="lazy"><figcaption><strong>校准姿势。</strong>让身体与虚拟形象对齐，然后同时按下两个扳机键。</figcaption></figure>
     </div>
     <p class="source-note">截图由本指南作者在 VRChat 中拍摄（2026 年 11 月）。全身校准的说明见 <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">VRChat 文档</a>。</p>
   </div>
@@ -640,7 +650,7 @@
     <li><span>如果脚上有追踪器，进行<strong>脚部校准</strong>（脚部安装重置）：即 <strong>Feet</strong> 按钮。</span></li>
     <li><span>进入游戏。在 <strong>VRChat</strong> 中进行全身校准，把追踪器绑定到虚拟形象上。</span></li>
   </ol>
-  <figure class="reference-shot wide-shot" data-zoom="SlimeVR 主页"><img src="../img/sv-home.webp" alt="SlimeVR 主页：追踪器列表上方的 Full Reset、Yaw Reset、Body 和 Feet 按钮" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR 主页。</strong>左上方是 Full Reset 和 Yaw Reset。右侧是安装校准：Body 用于身体，Feet 用于双脚。</figcaption></figure>
+  <figure class="reference-shot wide-shot" data-zoom="SlimeVR 主页"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVR 主页：追踪器列表上方的 Full Reset、Yaw Reset、Body 和 Feet 按钮" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR 主页。</strong>左上方是 Full Reset 和 Yaw Reset。右侧是安装校准：Body 用于身体，Feet 用于双脚。</figcaption></figure>
   <details>
     <summary>为什么追踪器要先回温</summary>
     <div><p>在低于 15 °C 时开机，追踪器会开始新的温度校准。已保存的数据仍留在存储中，在温暖环境下重启后，追踪器会重新使用它。</p></div>
@@ -733,7 +743,7 @@
 </section>
 
 <div class="author" aria-label="指南作者">
-  <span class="author-ava"><img class="author-avatar" src="../img/avatar.jpg" alt="Skrebi 的头像" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
+  <span class="author-ava"><img style="--ar:auto 64/64" class="author-avatar" src="../img/avatar.jpg" alt="Skrebi 的头像" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">指南作者</span>
     <b class="author-name">Skrebi</b>
@@ -769,11 +779,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "完成", "Mark step done": "标记此步已完成", "Start with the check": "从检查开始", "All steps done · before-play checklist": "所有步骤已完成 · 游玩前检查清单", "Continue: step ": "继续：第 ", "Step ": "第 ", "Steps": "步骤", "Axes": "轴", "Temperature": "温度", "Check": "检查", "None added": "尚未添加", "Tracker ": "追踪器 ", "e.g. left thigh": "例如：左大腿", "Tracker name ": "追踪器名称 ", "Remove": "删除", "Remove tracker ": "删除追踪器 ", "Image viewer": "图片查看器", "Tap or pinch to zoom": "点击或双指捏合可缩放", "Click the image or use the mouse wheel to zoom": "点击图片或滚动鼠标滚轮可缩放", "Close (Esc)": "关闭（Esc）", "Previous image": "上一张图片", "Next image": "下一张图片", "Open larger: ": "放大查看： ", "Likes: ": "点赞数： ", "♥ Thank you!": "♥ 谢谢！", "♡ Like": "♡ 点赞", "Click again to remove your like": "再次点击可取消点赞", "no data": "暂无数据", "Likes are unavailable right now": "点赞功能暂时不可用", "Checking…": "正在验证…", "Too many attempts. Try again in a minute.": "尝试次数过多，请一分钟后再试。", "Check failed. Please try again": "验证失败，请重试", "Could not send your like": "点赞发送失败", "Like count is unavailable right now": "暂时无法显示点赞数", "Done.": "完成。", "Download cancelled.": "下载已取消。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "此处无法下载。请在浏览器中打开本指南的 HTML 文件，然后在那里点击按钮。", "Copied": "已复制", "Copy nickname": "复制用户名", "Nickname: ": "用户名： ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "开始。盒子倒置，端面紧靠挡块，线槽在左侧。现在重启追踪器。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿势 1。底面朝下，端面紧靠挡块。开关和线在左侧，线从切口直接引出。控制台：“Waiting for position 1”。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿势 2。以端面立起，底面朝向挡块，敞口朝向你。线从左侧引出，放在桌上。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿势 3。倒置，端面靠在挡块上。双面胶固定着追踪器，线在左侧。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿势 4。以另一端面立起，底面朝向挡块。这次线从右侧引出。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿势 5。以长侧面放置，底面朝向挡块，切口朝上。线向上引出，再平缓地垂到桌上，不拉扯盒子。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿势 6。以另一长侧面放置，切口朝下。把线在切口内弯折，从敞口一侧朝你引出，以免把盒子抬起。之后控制台会显示“Calibration data gathered”。"};</script>
+<script>window.GUIDE_I18N={"Done": "完成", "Mark step done": "标记此步已完成", "Start with the check": "从检查开始", "All steps done · before-play checklist": "所有步骤已完成 · 游玩前检查清单", "Continue: step ": "继续：第 ", "Step ": "第 ", "Steps": "步骤", "Axes": "轴", "Temperature": "温度", "Check": "检查", "None added": "尚未添加", "Tracker ": "追踪器 ", "e.g. left thigh": "例如：左大腿", "Tracker name ": "追踪器名称 ", "Remove": "删除", "Remove tracker ": "删除追踪器 ", "Image viewer": "图片查看器", "Tap or pinch to zoom": "点击或双指捏合可缩放", "Click the image or use the mouse wheel to zoom": "点击图片或滚动鼠标滚轮可缩放", "Close (Esc)": "关闭（Esc）", "Previous image": "上一张图片", "Next image": "下一张图片", "Open larger: ": "放大查看： ", "Likes: ": "点赞数： ", "♥ Thank you!": "♥ 谢谢！", "♡ Like": "♡ 点赞", "Click again to remove your like": "再次点击可取消点赞", "no data": "暂无数据", "Likes are unavailable right now": "点赞功能暂时不可用", "Checking…": "正在验证…", "Too many attempts. Try again in a minute.": "尝试次数过多，请一分钟后再试。", "Check failed. Please try again": "验证失败，请重试", "Could not send your like": "点赞发送失败", "Like count is unavailable right now": "暂时无法显示点赞数", "Done.": "完成。", "Download cancelled.": "下载已取消。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "此处无法下载。请在浏览器中打开本指南的 HTML 文件，然后在那里点击按钮。", "Copied": "已复制", "Copy nickname": "复制用户名", "Nickname: ": "用户名： ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "开始。盒子倒置，端面紧靠挡块，线槽在左侧。现在重启追踪器。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿势 1。底面朝下，端面紧靠挡块。开关和线在左侧，线从切口直接引出。控制台：“Waiting for position 1”。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿势 2。以端面立起，底面朝向挡块，敞口朝向你。线从左侧引出，放在桌上。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿势 3。倒置，端面靠在挡块上。双面胶固定着追踪器，线在左侧。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿势 4。以另一端面立起，底面朝向挡块。这次线从右侧引出。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿势 5。以长侧面放置，底面朝向挡块，切口朝上。线向上引出，再平缓地垂到桌上，不拉扯盒子。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿势 6。以另一长侧面放置，切口朝下。把线在切口内弯折，从敞口一侧朝你引出，以免把盒子抬起。之后控制台会显示“Calibration data gathered”。", "Face down:": "朝下的面："};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
-<script src="../js/scenes.js?v=ed7d7737"></script>
+<script src="../js/scenes.js?v=8d7ae98a"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=4af4fa2b"></script>
+<script src="../js/nav.js?v=904409a3"></script>
 </body>
 </html>

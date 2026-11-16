@@ -15,23 +15,98 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   var PORT_Y = trY + 0.045;
   var RELIEF_END = 5.0;                    // конец хвостовика штекера внутри выреза
 
-  function woodTexture(vertical) {
-    var c = document.createElement('canvas'); c.width = 512; c.height = 256;
-    var g = c.getContext('2d');
-    g.fillStyle = '#d8b383'; g.fillRect(0, 0, 512, 256);
-    for (var i = 0; i < 70; i++) {
-      var y = Math.random() * 256, a = 0.08 + Math.random() * 0.18;
-      g.strokeStyle = 'rgba(150,96,48,' + a + ')';
-      g.lineWidth = 0.6 + Math.random() * 2.2;
-      g.beginPath(); g.moveTo(0, y);
-      for (var x = 0; x <= 512; x += 32) g.lineTo(x, y + Math.sin(x / 90 + i) * 2.5);
-      g.stroke();
+  // Детерминированный генератор случайных чисел: текстуры одинаковые при каждой пересборке сцены
+  function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }; }
+
+  // Дерево: бесшовная текстура (повторяется без стыков), волокна вдоль оси u.
+  // Один размер в сантиметрах на все детали, поэтому рисунок нигде не растягивается.
+  var WOOD_CM = 14;
+  function woodTexture() {
+    var N = 512, c = document.createElement('canvas'); c.width = c.height = N;
+    var g = c.getContext('2d'), R = rng(20251116), TAU = Math.PI * 2;
+    var img = g.createImageData(N, N), d = img.data;
+    for (var y = 0; y < N; y++) {
+      for (var x = 0; x < N; x++) {
+        var t = y / N, sx = x / N;
+        // широкие тёплые полосы годовых колец, слегка волнистые; все функции периодичны — швов нет
+        var band = Math.sin(TAU * (t * 9 + 0.18 * Math.sin(TAU * sx) + 0.07 * Math.sin(TAU * (sx * 2 + t)))) * 0.5 + 0.5;
+        var slow = Math.sin(TAU * (t * 2 + sx)) * 0.5 + 0.5;
+        var k = 0.55 * band + 0.25 * slow;
+        var i = (y * N + x) * 4;
+        d[i] = 222 - 30 * k; d[i + 1] = 187 - 34 * k; d[i + 2] = 142 - 36 * k; d[i + 3] = 255;
+      }
+    }
+    for (var n = 0; n < d.length; n += 4) { var j = (R() - 0.5) * 10; d[n] += j; d[n + 1] += j; d[n + 2] += j; }
+    g.putImageData(img, 0, 0);
+    // тонкие волокна: периодичны по горизонтали, по вертикали дублируются со сдвигом на высоту — бесшовно
+    for (var l = 0; l < 140; l++) {
+      var y0 = R() * N, amp = 1 + R() * 3, ph = R() * TAU, k2 = 1 + Math.floor(R() * 2);
+      g.strokeStyle = 'rgba(128,82,40,' + (0.05 + R() * 0.13).toFixed(3) + ')';
+      g.lineWidth = 0.5 + R() * 1.4;
+      for (var off = -N; off <= N; off += N) {
+        g.beginPath();
+        for (var x2 = 0; x2 <= N; x2 += 8) {
+          var yy = y0 + off + amp * Math.sin(TAU * k2 * x2 / N + ph);
+          if (x2) g.lineTo(x2, yy); else g.moveTo(x2, yy);
+        }
+        g.stroke();
+      }
     }
     var tex = new T.CanvasTexture(c);
     tex.encoding = T.sRGBEncoding;
     tex.wrapS = tex.wrapT = T.RepeatWrapping;
-    if (vertical) tex.rotation = Math.PI / 2;
+    tex.anisotropy = 4;
     return tex;
+  }
+  var WOOD = null;
+  function woodMat() { return WOOD || (WOOD = new T.MeshStandardMaterial({ map: woodTexture(), roughness: 0.82 })); }
+  // Развёртка доски по её реальным размерам: волокна вдоль самой длинной стороны, масштаб везде один.
+  function woodUV(geo, w, h, d, cx, cy, cz) {
+    var pos = geo.attributes.position, nor = geo.attributes.normal, uv = geo.attributes.uv;
+    var size = [w, h, d], c = [cx, cy, cz];
+    var grain = size.indexOf(Math.max(w, h, d));
+    for (var i = 0; i < pos.count; i++) {
+      var n = [Math.abs(nor.getX(i)), Math.abs(nor.getY(i)), Math.abs(nor.getZ(i))];
+      var na = n.indexOf(Math.max(n[0], n[1], n[2]));
+      var axes = [0, 1, 2].filter(function (a) { return a !== na; });
+      var ua = axes.indexOf(grain) >= 0 ? grain : (size[axes[0]] >= size[axes[1]] ? axes[0] : axes[1]);
+      var va = axes[0] === ua ? axes[1] : axes[0];
+      var p = [pos.getX(i) + c[0], pos.getY(i) + c[1], pos.getZ(i) + c[2]];
+      uv.setXY(i, p[ua] / WOOD_CM + 0.37 * ua, p[va] / WOOD_CM + 0.21 * va);
+    }
+    uv.needsUpdate = true;
+  }
+
+  // Чёрный пластик 3D‑печати: тонкие линии слоёв (по бокам — горизонтальные, сверху — диагональные, как на фото)
+  function printTexture() {
+    var N = 256, c = document.createElement('canvas'); c.width = c.height = N;
+    var g = c.getContext('2d'), R = rng(77);
+    g.fillStyle = '#808080'; g.fillRect(0, 0, N, N);
+    for (var y = 0; y < N; y += 4) {
+      g.fillStyle = 'rgba(255,255,255,0.32)'; g.fillRect(0, y, N, 2);
+      g.fillStyle = 'rgba(0,0,0,0.22)'; g.fillRect(0, y + 2, N, 1);
+    }
+    var img = g.getImageData(0, 0, N, N), d = img.data;
+    for (var n = 0; n < d.length; n += 4) { var j = (R() - 0.5) * 26; d[n] += j; d[n + 1] += j; d[n + 2] += j; }
+    g.putImageData(img, 0, 0);
+    var t = new T.CanvasTexture(c); t.wrapS = t.wrapT = T.RepeatWrapping; t.anisotropy = 4; return t;
+  }
+  var PLASTIC = null;
+  function plasticMat() {
+    if (PLASTIC) return PLASTIC;
+    var bump = printTexture();
+    PLASTIC = new T.MeshStandardMaterial({ color: 0x141317, roughness: 0.78, metalness: 0.0, roughnessMap: bump, bumpMap: bump, bumpScale: 0.03 });
+    return PLASTIC;
+  }
+  var LAYER_CM = 4;                       // один повтор текстуры = 4 см (64 линии, шаг ≈ 0.6 мм — видно, но без ряби)
+  function plasticUV(geo) {
+    var pos = geo.attributes.position, nor = geo.attributes.normal, uv = new Float32Array(pos.count * 2), s = 1 / LAYER_CM;
+    for (var i = 0; i < pos.count; i++) {
+      var x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+      if (Math.abs(nor.getY(i)) > 0.7) { uv[2 * i] = (x + z) * 0.7071 * s; uv[2 * i + 1] = (x - z) * 0.7071 * s; }
+      else { uv[2 * i] = (x + z) * s; uv[2 * i + 1] = y * s; }
+    }
+    geo.setAttribute('uv', new T.BufferAttribute(uv, 2));
   }
   function braidTexture() {
     var c = document.createElement('canvas'); c.width = 64; c.height = 64;
@@ -46,15 +121,18 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
   }
   var cableMat = new T.MeshStandardMaterial({ map: braidTexture(), roughness: 0.75 });
 
-  function letterTexture(ch) {
-    var c = document.createElement('canvas'); c.width = 128; c.height = 128;
+  // Подпись грани: ось и знак относительно трекера (X+ — куда смотрит стрелка, Y− — сторона с Type‑C, Z+ — вверх)
+  var LETTERS = {};
+  function letterTexture(txt) {
+    if (LETTERS[txt]) return LETTERS[txt];
+    var c = document.createElement('canvas'); c.width = 256; c.height = 128;
     var g = c.getContext('2d');
-    g.fillStyle = 'rgba(70,60,55,0.75)';
-    g.font = '300 92px Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText(ch, 64, 68);
-    return new T.CanvasTexture(c);
+    g.fillStyle = 'rgba(52,40,32,0.9)';
+    g.font = '600 96px Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(txt, 128, 70);
+    var t = new T.CanvasTexture(c); t.anisotropy = 4;
+    return (LETTERS[txt] = t);
   }
-
   function roundedRect(w, h, r) {
     var s = new T.Shape(), x = -w / 2, y = -h / 2;
     s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
@@ -86,63 +164,77 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     var m = new T.Mesh(g, cableMat); m.castShadow = true; return m;
   }
 
+  var GEO = {};
+  function hypGeo(key, b64, half) {
+    if (GEO[key]) return GEO[key];
+    var raw = atob(b64), n = raw.length / 2, out = new Float32Array(n), tmp = [0, 0, 0];
+    for (var i = 0; i < n; i++) {
+      var v = raw.charCodeAt(2 * i) | (raw.charCodeAt(2 * i + 1) << 8); if (v > 32767) v -= 65536;
+      tmp[i % 3] = v / 32767 * half[i % 3] * 0.1;
+      if (i % 3 === 2) { out[i - 2] = tmp[0]; out[i - 1] = tmp[2]; out[i] = -tmp[1]; }
+    }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(out, 3)); g.computeVertexNormals();
+    plasticUV(g); g.userData.keep = true;
+    return (GEO[key] = g);
+  }
+  function keep(g) { g.userData.keep = true; return g; }
+
   function buildBox(withAux) {
-    var group = new T.Group();
-    var wood = new T.MeshStandardMaterial({ map: woodTexture(false), roughness: 0.85 });
-    var woodV = new T.MeshStandardMaterial({ map: woodTexture(true), roughness: 0.85 });
-    function slab(w, h, d, x, y, z, mat) {
-      var m = new T.Mesh(new T.BoxGeometry(w, h, d), mat || wood);
+    var group = new T.Group(), wood = woodMat();
+    function slab(w, h, d, x, y, z) {
+      var g = new T.BoxGeometry(w, h, d); woodUV(g, w, h, d, x, y, z);
+      var m = new T.Mesh(g, wood);
       m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; group.add(m); return m;
     }
     var wallH = H - TB, wallY = floorTop + wallH / 2;
     slab(W, TB, D, 0, -H / 2 + TB / 2, 0);
-    slab(TE, wallH, D, -W / 2 + TE / 2, wallY, 0, woodV);
-    slab(TE, wallH, D, W / 2 - TE / 2, wallY, 0, woodV);
+    slab(TE, wallH, D, -W / 2 + TE / 2, wallY, 0);
+    slab(TE, wallH, D, W / 2 - TE / 2, wallY, 0);
     slab(W - 2 * TE, wallH, TL, 0, wallY, -D / 2 + TL / 2);
     var x0 = -W / 2 + TE, x1 = W / 2 - TE, s0 = SLOT_X - SLOT_W / 2, s1 = SLOT_X + SLOT_W / 2;
     slab(s0 - x0, wallH, TL, (x0 + s0) / 2, wallY, D / 2 - TL / 2);
     slab(x1 - s1, wallH, TL, (s1 + x1) / 2, wallY, D / 2 - TL / 2);
     slab(SLOT_W, SLOT_FLOOR, TL, SLOT_X, floorTop + SLOT_FLOOR / 2, D / 2 - TL / 2);
 
-    var tape = new T.Mesh(new T.BoxGeometry(7.2, 0.14, 3.7), new T.MeshStandardMaterial({ color: 0x1d1c20, roughness: 0.95 }));
+    var foam = new T.MeshStandardMaterial({ color: 0x1d1c20, roughness: 0.95 });
+    var tape = new T.Mesh(new T.BoxGeometry(7.2, 0.14, 3.7), foam);
     tape.position.set(0, floorTop + 0.07, 0); tape.receiveShadow = true; group.add(tape);
 
-    // трекер в корпусе Hyperion (модель Guide_models1), разъёмом к вырезу
-    function hypMesh(b64, half, mat) {
-      var raw = atob(b64), n = raw.length / 2, out = new Float32Array(n), tmp = [0, 0, 0];
-      for (var i = 0; i < n; i++) {
-        var v = raw.charCodeAt(2 * i) | (raw.charCodeAt(2 * i + 1) << 8); if (v > 32767) v -= 65536;
-        tmp[i % 3] = v / 32767 * half[i % 3] * 0.1;
-        if (i % 3 === 2) { out[i - 2] = tmp[0]; out[i - 1] = tmp[2]; out[i] = -tmp[1]; }
-      }
-      var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(out, 3)); g.computeVertexNormals();
-      var m = new T.Mesh(g, mat); m.castShadow = true; m.receiveShadow = true; return m;
-    }
-    var tr = new T.Group();
-    tr.add(hypMesh(HYP.caseB64, HYP.h, new T.MeshStandardMaterial({ color: 0x34323b, roughness: 0.55 })));
-    tr.rotation.y = Math.PI; tr.position.set(0, trY, 0); group.add(tr);
+    // трекер в корпусе Hyperion (модель Guide_models1), разъёмом к вырезу; рельефная стрелка на крышке модели смотрит в +x (X+)
+    var plastic = plasticMat();
+    function part(geo, y) { var m = new T.Mesh(geo, plastic); m.castShadow = true; m.receiveShadow = true; m.rotation.y = Math.PI; m.position.set(0, y, 0); group.add(m); return m; }
+    part(hypGeo('case', HYP.caseB64, HYP.h), trY);
+    var topY = trY + HYP.h[2] * 0.1;
     if (withAux) {
-      var topY = trY + HYP.h[2] * 0.1;
-      var tape2 = new T.Mesh(new T.BoxGeometry(3.6, 0.14, 3.0), new T.MeshStandardMaterial({ color: 0x1d1c20, roughness: 0.95 }));
+      var tape2 = new T.Mesh(new T.BoxGeometry(3.6, 0.14, 3.0), foam);
       tape2.position.set(0, topY + 0.07, 0); group.add(tape2);
-      var aux = new T.Group();
-      aux.add(hypMesh(HYP.auxB64, HYP.auxH, new T.MeshStandardMaterial({ color: 0x5e8f7a, roughness: 0.55 })));
-      aux.rotation.y = Math.PI; aux.position.set(0, topY + 0.14 + HYP.auxH[2] * 0.1, 0); group.add(aux);
+      var auxY = topY + 0.14 + HYP.auxH[2] * 0.1;
+      part(hypGeo('aux', HYP.auxB64, HYP.auxH), auxY);
     }
 
     // штекер в разъёме трекера, хвостовик уходит в вырез
     var plug = buildPlug(); plug.position.set(PORT_X, PORT_Y, PORT_Z); group.add(plug);
 
-    function letter(ch, pos, rot) {
-      var m = new T.Mesh(new T.PlaneGeometry(1.6, 1.6), new T.MeshBasicMaterial({ map: letterTexture(ch), transparent: true, depthWrite: false }));
+    function letter(txt, pos, rot) {
+      var m = new T.Mesh(GEO.letter || (GEO.letter = keep(new T.PlaneGeometry(3.4, 1.7))), new T.MeshBasicMaterial({ map: letterTexture(txt), transparent: true, depthWrite: false }));
       m.position.copy(pos); m.rotation.set(rot[0], rot[1], rot[2]); group.add(m);
     }
-    letter('Z', new T.Vector3(6.6, floorTop + 0.01, -2.4), [-Math.PI / 2, 0, 0]);
-    letter('X', new T.Vector3(W / 2 + 0.01, 0, 0), [0, Math.PI / 2, 0]);
-    letter('X', new T.Vector3(-W / 2 - 0.01, 0, 0), [0, -Math.PI / 2, 0]);
-    letter('Y', new T.Vector3(5.5, 0, -D / 2 - 0.01), [0, Math.PI, 0]);
-    letter('Y', new T.Vector3(5.5, 0, D / 2 + 0.01), [0, 0, 0]);
+    // Знаки осей относительно трекера: X+ — по стрелке, Y− — стенка с вырезом (там Type‑C), Z+ — вверх из коробочки
+    letter('Z+', new T.Vector3(6.4, floorTop + 0.01, -2.4), [-Math.PI / 2, 0, 0]);
+    letter('Z\u2212', new T.Vector3(0, -H / 2 - 0.01, 0), [Math.PI / 2, 0, 0]);
+    letter('X+', new T.Vector3(W / 2 + 0.01, 0, 0), [0, Math.PI / 2, 0]);
+    letter('X\u2212', new T.Vector3(-W / 2 - 0.01, 0, 0), [0, -Math.PI / 2, 0]);
+    letter('Y+', new T.Vector3(5.5, 0, -D / 2 - 0.01), [0, Math.PI, 0]);
+    letter('Y\u2212', new T.Vector3(5.5, 0, D / 2 + 0.01), [0, 0, 0]);
     return group;
+  }
+  // Убрать старую коробку из сцены и освободить память (общие текстуры и модели не трогаем)
+  function disposeBox(g) {
+    g.traverse(function (o) {
+      if (o.geometry && !o.geometry.userData.keep) o.geometry.dispose();
+      if (o.material && o.material !== WOOD && o.material !== PLASTIC && !o.material.map) o.material.dispose();
+      if (o.material && o.material.map && o.material.transparent) o.material.dispose();
+    });
   }
 
   // Кабель: ближняя часть задана в координатах коробки, хвост ложится на стол к компьютеру.
@@ -191,10 +283,10 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     var ground = new T.Mesh(new T.PlaneGeometry(200, 200), new T.ShadowMaterial({ opacity: 0.18 }));
     ground.rotation.x = -Math.PI / 2; ground.position.y = opts.groundY; ground.receiveShadow = true; scene.add(ground);
 
-    var st = { theta: opts.theta, phi: opts.phi, r: opts.r, target: opts.target, auto: !reduce && opts.auto, dirty: true };
+    var st = { theta: opts.theta, phi: opts.phi, r: opts.r, fit: 1, target: opts.target, auto: !reduce && opts.auto, dirty: true };
     function placeCamera() {
-      var t = st.target;
-      camera.position.set(t.x + st.r * Math.sin(st.phi) * Math.sin(st.theta), t.y + st.r * Math.cos(st.phi), t.z + st.r * Math.sin(st.phi) * Math.cos(st.theta));
+      var t = st.target, r = st.r * st.fit;
+      camera.position.set(t.x + r * Math.sin(st.phi) * Math.sin(st.theta), t.y + r * Math.cos(st.phi), t.z + r * Math.sin(st.phi) * Math.cos(st.theta));
       camera.lookAt(t);
     }
     var drag = null;
@@ -211,7 +303,8 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       var w = canvas.clientWidth, h = canvas.clientHeight;
       if (!w || !h) return;
       renderer.setSize(w, h, false); camera.aspect = w / h;
-      camera.fov = (opts.fov || 34) * (w < 520 ? 1.35 : 1);
+      // узкий экран (телефон): камера отъезжает, чтобы коробочка целиком помещалась по ширине, а не обрезалась
+      st.fit = Math.max(1, (opts.fitAspect || 0) / camera.aspect);
       camera.updateProjectionMatrix(); st.dirty = true;
     }
     if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
@@ -241,10 +334,10 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     // Сцена 1: коробочка крупно, кабель ровно уходит в вырез
     var c1 = document.getElementById('box3d');
     if (c1) {
-      var s1 = makeScene(c1, { theta: 0.38, phi: 0.74, r: 29, target: new T.Vector3(0, -1.2, 2.5), groundY: -H / 2, auto: true });
+      var s1 = makeScene(c1, { theta: 0.38, phi: 0.74, r: 29, target: new T.Vector3(0, -1.2, 2.5), groundY: -H / 2, auto: true, fitAspect: 1.45 });
       var box1 = null, cable1 = null;
       var build1 = function () {
-        if (box1) s1.scene.remove(box1);
+        if (box1) { s1.scene.remove(box1); disposeBox(box1); }
         box1 = buildBox(withAux); s1.scene.add(box1);
         var first = !cable1;
         cable1 = tube(cablePoints(box1, STRAIGHT, new T.Vector3(-16, 0, 16), -H / 2), cable1);
@@ -261,13 +354,13 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       var STOP_Z = -9, LEFT = new T.Vector3(-28, 0, 12), RIGHT = new T.Vector3(28, 0, 12);
       // Оси коробки: X вдоль длины, Y к открытой стороне, Z к стенке с вырезом
       var poses = [
-        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.', 'Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.') },
-        { q: basis([0, 0, 1], [0, 1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 1. Дном вниз, торец прижат к упору. Выключатель и кабель слева, кабель выходит из выреза прямо. Консоль: «Waiting for position 1».', 'Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».') },
-        { q: basis([0, -1, 0], [0, 0, 1], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 2. Стоя на торце, дном к упору, открытой стороной к вам. Кабель выходит слева и ложится на стол.', 'Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.') },
-        { q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 3. Вверх ногами, торцом к упору. Скотч держит трекер, кабель слева.', 'Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.') },
-        { q: basis([0, 1, 0], [0, 0, 1], [1, 0, 0]), c: STRAIGHT, f: RIGHT, t: TR('Положение 4. Стоя на другом торце, дном к упору. Кабель теперь выходит справа.', 'Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.') },
-        { q: basis([-1, 0, 0], [0, 0, 1], [0, 1, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 5. На длинном боку, дном к упору, вырез сверху. Кабель уходит вверх и мягко спускается на стол, не натягивая коробочку.', 'Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.') },
-        { q: basis([1, 0, 0], [0, 0, 1], [0, -1, 0]), c: BENT, f: LEFT, t: TR('Положение 6. На другом длинном боку, вырез снизу. Подогните кабель внутри выреза и выведите через открытую сторону к себе, чтобы он не приподнимал коробочку. После этого консоль напишет «Calibration data gathered».', 'Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».') }
+        { d: 'Z+', q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Старт. Коробочка вверх ногами, торцом прижата к упору, вырез с кабелем слева. Теперь перезагрузите трекер.', 'Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.') },
+        { d: 'Z\u2212', q: basis([0, 0, 1], [0, 1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 1. Дном вниз, торец прижат к упору. Выключатель и кабель слева, кабель выходит из выреза прямо. Консоль: «Waiting for position 1».', 'Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».') },
+        { d: 'X+', q: basis([0, -1, 0], [0, 0, 1], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 2. Стоя на торце, дном к упору, открытой стороной к вам. Кабель выходит слева и ложится на стол.', 'Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.') },
+        { d: 'Z+', q: basis([0, 0, -1], [0, -1, 0], [-1, 0, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 3. Вверх ногами, торцом к упору. Скотч держит трекер, кабель слева.', 'Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.') },
+        { d: 'X\u2212', q: basis([0, 1, 0], [0, 0, 1], [1, 0, 0]), c: STRAIGHT, f: RIGHT, t: TR('Положение 4. Стоя на другом торце, дном к упору. Кабель теперь выходит справа.', 'Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.') },
+        { d: 'Y+', q: basis([-1, 0, 0], [0, 0, 1], [0, 1, 0]), c: STRAIGHT, f: LEFT, t: TR('Положение 5. На длинном боку, дном к упору, вырез сверху. Кабель уходит вверх и мягко спускается на стол, не натягивая коробочку.', 'Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.') },
+        { d: 'Y\u2212', q: basis([1, 0, 0], [0, 0, 1], [0, -1, 0]), c: BENT, f: LEFT, t: TR('Положение 6. На другом длинном боку, вырез снизу. Подогните кабель внутри выреза и выведите через открытую сторону к себе, чтобы он не приподнимал коробочку. После этого консоль напишет «Calibration data gathered».', 'Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».') }
       ];
       var box = null, cable = null, anim = null, current = 0;
       var tmp = new T.Box3();
@@ -278,7 +371,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       };
       var updateCable = function (pose) { var first = !cable; cable = tube(cablePoints(box, pose.c, pose.f, 0), cable); if (first) s2.scene.add(cable); };
       var s2 = makeScene(c2, {
-        theta: 0.3, phi: 0.95, r: 58, target: new T.Vector3(-3, 4, -2), groundY: -1.02, auto: false,
+        theta: 0.3, phi: 0.95, r: 58, target: new T.Vector3(-3, 4, -2), groundY: -1.02, auto: false, fitAspect: 1.35,
         tick: function (dt) {
           if (!anim) return false;
           anim.k = Math.min(1, anim.k + dt / (reduce ? 0.01 : 0.9));
@@ -292,7 +385,7 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       });
       var build2 = function () {
         var q = box ? box.quaternion.clone() : poses[0].q.clone();
-        if (box) s2.scene.remove(box);
+        if (box) { s2.scene.remove(box); disposeBox(box); }
         box = buildBox(withAux); box.quaternion.copy(q); settle(0); s2.scene.add(box);
         updateCable(poses[current]); s2.state.dirty = true;
       };
@@ -305,10 +398,12 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
 
       var caption = document.getElementById('pos-caption');
       var buttons = document.querySelectorAll('.pos-buttons button');
+      var capText = function (i) { return poses[i].t + ' ' + TR('Вниз смотрит грань', 'Face down:') + ' ' + poses[i].d + '.'; };
+      caption.textContent = capText(0);
       var go = function (i) {
         if (i === current && !anim) return;
         anim = { from: box.quaternion.clone(), to: poses[i].q, k: 0, fromPose: poses[current], toPose: poses[i] };
-        current = i; caption.textContent = poses[i].t;
+        current = i; caption.textContent = capText(i);
         buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.pos === i)); });
         s2.state.dirty = true;
       };

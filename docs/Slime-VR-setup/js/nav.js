@@ -56,13 +56,21 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){
     setCurrent(best);
     var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
     var bar = document.getElementById('readbar'); if (bar) bar.style.width = (max > 0 ? h.scrollTop / max * 100 : 0) + '%';
+    // кнопка «Шаги» на телефоне: прячется, пока читаешь вниз (не закрывает текст), и возвращается при прокрутке вверх, у начала и в конце страницы
+    if (fab) {
+      var top = h.scrollTop, down = top > lastY + 4, up = top < lastY - 4;
+      if (down && top > 300 && top < max - 200 && !(toc && toc.classList.contains('open')) && document.activeElement !== fab) fab.classList.add('fab-hide');
+      else if (up || top <= 300 || top >= max - 200) fab.classList.remove('fab-hide');
+      if (down || up) lastY = top;
+    }
   }
+  var lastY = 0;
   var ticking = false;
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; spy(); }); } }, { passive: true });
   window.addEventListener('resize', spy); spy();
 
   // мобильное оглавление
-  function openToc(v) { if (!toc || !fab) return; toc.classList.toggle('open', v); fab.setAttribute('aria-expanded', String(v)); }
+  function openToc(v) { if (!toc || !fab) return; toc.classList.toggle('open', v); if (v) fab.classList.remove('fab-hide'); fab.setAttribute('aria-expanded', String(v)); }
   if (fab) fab.addEventListener('click', function () { openToc(!toc.classList.contains('open')); });
   var close = document.getElementById('toc-close'); if (close) close.addEventListener('click', function () { openToc(false); fab.focus(); });
   document.querySelectorAll('.toc a').forEach(function (a) { a.addEventListener('click', function () { openToc(false); }); });

@@ -21,11 +21,11 @@
 <link rel="alternate" hreflang="ja" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/zh/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="css/style.css?v=5719abd8">
+<link rel="stylesheet" href="css/style.css?v=43800bf5">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "./", "en": "en/", "uk": "uk/", "de": "de/", "es": "es/", "fr": "fr/", "pl": "pl/", "pt-BR": "pt-br/", "ja": "ja/", "zh-Hans": "zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="ru")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="5ef3f0bdb3";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="c3089a4e53";(function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -68,6 +68,16 @@
   <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">Начать с проверки</a><a href="#every">Памятка перед игрой</a></div>
 </header>
 
+<section class="howto" aria-labelledby="howto-h">
+  <h2 id="howto-h">Как пользоваться гайдом</h2>
+  <ol>
+    <li><span><b>Идите по шагам сверху вниз.</b> В конце каждого шага есть проверка результата и ссылка на следующий шаг.</span></li>
+    <li><span><b>Отмечайте сделанное</b> кнопкой «Шаг выполнен». Отметки сохраняются в этом браузере, и в следующий раз гайд предложит продолжить с того же места.</span></li>
+    <li><span><b>Шаги 4–6 делаются для каждого трекера по очереди.</b> Чтобы не запутаться, добавьте свои трекеры в отметки на шаге 4.</span></li>
+    <li><span><b>Что-то не получается?</b> Откройте <a href="#help">частые проблемы</a>. Снимки и схемы увеличиваются по нажатию.</span></li>
+  </ol>
+</section>
+
 <div class="road" id="road">
   <h2 style="font-size:19px">Весь путь целиком</h2>
   <ol>
@@ -98,8 +108,8 @@
     <li><span>Включите трекер, откройте SlimeVR и нажмите на карточку трекера. Найдите <strong>«Датчик IMU»</strong> и <strong>«Версия прошивки»</strong>. Если карточка не появилась, откройте справку <a href="#help">«Частые проблемы»</a>.</span></li>
   </ol>
   <div class="reference-grid two-col">
-    <figure class="reference-shot portrait-shot" data-zoom="Карточка трекера"><img src="img/ru/sv-tracker-info.webp" alt="Карточка трекера в SlimeVR: «Версия прошивки» v0.5.4 и «Датчик IMU» BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Карточка трекера.</strong> Версия прошивки — строка Current в блоке «Версия прошивки». Датчик — строка «Датчик IMU». IP‑адрес и ID на снимке скрыты.</figcaption></figure>
-    <figure class="reference-shot" data-zoom="Язык SlimeVR"><img src="img/ru/sv-language.webp" alt="Настройки SlimeVR, раздел «Внешний вид»: открыт список языков, выбран «Русский»" width="1120" height="640" loading="lazy"><figcaption><strong>Если SlimeVR на английском.</strong> Откройте Settings внизу бокового меню, в группе Interface — третий пункт. Список языков в конце страницы, выберите «Русский».</figcaption></figure>
+    <figure class="reference-shot portrait-shot" data-zoom="Карточка трекера"><img style="--ar:auto 327/880" src="img/ru/sv-tracker-info.webp" alt="Карточка трекера в SlimeVR: «Версия прошивки» v0.5.4 и «Датчик IMU» BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Карточка трекера.</strong> Версия прошивки — строка Current в блоке «Версия прошивки». Датчик — строка «Датчик IMU». IP‑адрес и ID на снимке скрыты.</figcaption></figure>
+    <figure class="reference-shot" data-zoom="Язык SlimeVR"><img style="--ar:auto 1120/640" src="img/ru/sv-language.webp" alt="Настройки SlimeVR, раздел «Внешний вид»: открыт список языков, выбран «Русский»" width="1120" height="640" loading="lazy"><figcaption><strong>Если SlimeVR на английском.</strong> Откройте Settings внизу бокового меню, в группе Interface — третий пункт. Список языков в конце страницы, выберите «Русский».</figcaption></figure>
   </div>
   <p class="section-note">Проверьте тип датчика и версию на каждом трекере.</p>
   <div class="fit-grid">
@@ -132,7 +142,7 @@
       <div class="aux-toggle" role="radiogroup" aria-label="Вариант трекера"><label><input type="radio" name="aux1" value="main" checked> Без ответвления</label><label><input type="radio" name="aux1" value="aux"> С ответвлением</label></div>
       <div class="three-stage"><canvas id="box3d" aria-label="3D-модель калибровочной коробочки с трекером в корпусе Hyperion"></canvas><span class="three-hint">Потяните, чтобы повернуть</span></div>
       <p class="three-fallback">3D‑модель не загрузилась: для неё нужен интернет. Как выглядит коробочка вживую, видно на фото ниже.</p>
-      <figcaption>Трекер в корпусе Hyperion (переработанная версия с отверстием под Type‑C) приклеен скотчем точно по центру дна. Штекер Type‑C вставлен в трекер, и кабель уходит прямо в вырез, не сгибаясь внутри коробки. Буквы X, Y, Z помогают не перепутать грани.</figcaption>
+      <figcaption>Трекер в корпусе Hyperion (переработанная версия с отверстием под Type‑C) приклеен скотчем точно по центру дна. Штекер Type‑C вставлен в трекер, и кабель уходит прямо в вырез, не сгибаясь внутри коробки. Подписи на гранях — оси трекера: X+ там, куда указывает стрелка на крышке трекера, Y− у стенки с вырезом (сторона разъёма Type‑C), Z+ внутри на дне. На противоположных гранях — те же оси со знаком минус или плюс.</figcaption>
     </figure>
     <table class="dims">
       <thead><tr><th></th><th>Ширина</th><th>Глубина</th><th>Высота</th></tr></thead>
@@ -147,11 +157,11 @@
       <li><span>Сделайте в длинной стенке <strong>вырез под USB‑кабель</strong> почти до дна, <strong>точно напротив разъёма трекера</strong>. Кабель должен выходить из трекера ровно в вырез, без изгиба внутри коробки. Ширину выреза сделайте чуть больше хвостовика штекера, чтобы кабель при необходимости можно было подогнуть внутри выреза и вывести через открытую сторону коробки: это понадобится, когда коробка лежит вырезом вниз.</span></li>
       <li><span>Наклейте в центр дна кусок <strong>двустороннего вспененного скотча</strong>.</span></li>
       <li><span>Приклейте трекер на скотч <strong>точно по центру</strong>, разъёмом USB к вырезу, краями параллельно стенкам коробки. Скотч держит трекер, когда коробку переворачивают, поэтому трекер должен сидеть крепко и не сдвигаться.</span></li>
-      <li><span>Подпишите грани карандашом: X на торцах, Y на длинных боках, Z на дне. Так легче запомнить, на каких сторонах коробка уже стояла.</span></li>
+      <li><span>Подпишите грани карандашом, как на 3D-модели: <strong>X+</strong> на торце, куда указывает стрелка на трекере, <strong>X−</strong> на другом торце; <strong>Y−</strong> на стенке с вырезом (там разъём Type‑C), <strong>Y+</strong> на противоположной; <strong>Z+</strong> внутри на дне, <strong>Z−</strong> снаружи на дне. Так легче запомнить, на каких сторонах коробка уже стояла.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="img/inbox.jpg" alt="Трекер, приклеенный по центру дна деревянной коробочки" width="900" height="506" loading="lazy"><figcaption>Так это выглядит вживую: трекер по центру, вырез под кабель в стенке.</figcaption></figure>
-      <figure><img src="img/tape.jpg" alt="Рулон двустороннего вспененного скотча" width="420" height="746" loading="lazy"><figcaption>Подойдёт такой двусторонний вспененный скотч.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="img/inbox.jpg" alt="Трекер, приклеенный по центру дна деревянной коробочки" width="900" height="506" loading="lazy"><figcaption>Так это выглядит вживую: трекер по центру, вырез под кабель в стенке.</figcaption></figure>
+      <figure><img style="--ar:auto 420/746" src="img/tape.jpg" alt="Рулон двустороннего вспененного скотча" width="420" height="746" loading="lazy"><figcaption>Подойдёт такой двусторонний вспененный скотч.</figcaption></figure>
     </div>
     <h3>Упор на столе</h3>
     <p>Поставьте коробку на <strong>ровный стол</strong> и положите или закрепите рядом упор: ровную доску, брусок или толстую книгу. Каждый раз, переворачивая коробку, <strong>прижимайте её к упору</strong>. Тогда она всегда стоит на одном и том же месте и под одним углом, а калибровка получается точнее. Как это выглядит, показано на шаге 4.</p>
@@ -186,10 +196,10 @@
   <div class="step-head"><div class="num">3</div><div><h2>Установите прошивку v0.5.4</h2><p>Через сайт прошивки · именно эту версию, не новее</p></div></div>
   <div class="tip"><b>Можно пропустить</b><p>Если на шаге 1 вы увидели <strong>v0.5.4</strong>, этот шаг пропустите и переходите к шагу 4. Перепрошивать трекер на ту же версию не нужно.</p></div>
   <nav class="step-links" aria-label="В шаге 3"><a href="#rotation">Поворот датчика</a><a href="#erase">Сброс данных</a><a href="#flash">Прошивка</a></nav>
-  <div class="warn"><b>Важно</b><p><strong>Почему именно v0.5.4.</strong> Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и старше её ещё нет. Поэтому ставим v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
+  <div class="warn"><b>Важно</b><p><strong>Почему именно v0.5.4.</strong> Температурная калибровка для BMI160 есть в прошивках <strong>от v0.3.3 до v0.5.4</strong>. Начиная с v0.6.2 BMI160 работает через новый драйвер, в котором её <strong>нет</strong>: консоль напишет «Temperature calibration not supported for IMU BMI160». В v0.3.2 и более ранних версиях её ещё нет. Поэтому ставим v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Новые версии SlimeVR Server не умеют ставить старую прошивку на такие трекеры. Поэтому прошиваем через отдельный сайт в браузере Chrome или Edge.</p></div>
 
   <div class="card" id="rotation">
-    <h3 id="rotation" style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
+    <h3 style="margin-top:0">3.1 · Определите поворот датчика (IMU Rotation)</h3>
     <p>При прошивке нужно указать, как модуль BMI160 повёрнут внутри корпуса. Если указать неправильно, трекер будет двигаться не в ту сторону. Модули и сборки у всех разные, поэтому смотрите именно на свой трекер.</p>
     <ol class="do">
       <li><span>Откройте корпус трекера и найдите фиолетовый модуль с надписью <strong>BMI160</strong>.</span></li>
@@ -198,8 +208,8 @@
       <li><span>Число в подписи над этой картинкой (0, 90, 180 или 270) и есть значение для поля <strong>IMU Rotation (DEG)</strong>. Запишите его. Если у трекера есть ответвление, так же определите поворот его датчика.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
-      <figure data-zoom="Таблица поворотов датчика"><img class="contain" src="img/rotation.webp" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="img/inside.jpg" alt="Открытый трекер: плата Wemos D1 Mini, модуль BMI160 и плата зарядки" width="900" height="506" loading="lazy"><figcaption>Пример трекера изнутри. Посередине модуль BMI160. Когда этот трекер надет, правая сторона на фото смотрит в потолок.</figcaption></figure>
+      <figure data-zoom="Таблица поворотов датчика"><img style="--ar:auto 593/337" class="contain" src="img/rotation.webp" alt="Таблица поворотов IMU: DEG_0, DEG_90, DEG_180, DEG_270 для BNO и для BMI160" width="593" height="337" loading="lazy"><figcaption>Таблица поворотов. Для BMI160 смотрите <strong>нижний ряд</strong>. «Ceiling when on body» означает потолок, когда трекер надет.</figcaption></figure>
     </div>
     <div class="tip"><b>Если модуль не похож ни на одну картинку</b><p>Бывают модули другой разводки. Выберите самое похожее значение, а после прошивки проверьте: наклоните трекер вперёд, и его 3D‑модель в SlimeVR тоже должна наклониться вперёд, а не вбок или назад. Если наклоняется не туда, перепрошейте с другим значением.</p></div>
   </div>
@@ -358,12 +368,12 @@
 
   <figure>
     <div class="frames">
-      <div><img src="img/v1.jpg" alt="Положение 1: коробочка дном вниз" loading="lazy"><span>1</span></div>
-      <div><img src="img/v2.jpg" alt="Положение 2: коробочка на торце" loading="lazy"><span>2</span></div>
-      <div><img src="img/v3.jpg" alt="Положение 3: коробочка вверх ногами" loading="lazy"><span>3</span></div>
-      <div><img src="img/v4.jpg" alt="Положение 4: коробочка на другом торце" loading="lazy"><span>4</span></div>
-      <div><img src="img/v5.jpg" alt="Положение 5: коробочка на длинном боку" loading="lazy"><span>5</span></div>
-      <div><img src="img/v6.jpg" alt="Положение 6: коробочка на другом длинном боку" loading="lazy"><span>6</span></div>
+      <div><img style="--ar:auto 360/477" width="360" height="477" src="img/v1.jpg" alt="Положение 1: коробочка дном вниз" loading="lazy"><span>1</span></div>
+      <div><img style="--ar:auto 360/366" width="360" height="366" src="img/v2.jpg" alt="Положение 2: коробочка на торце" loading="lazy"><span>2</span></div>
+      <div><img style="--ar:auto 360/299" width="360" height="299" src="img/v3.jpg" alt="Положение 3: коробочка вверх ногами" loading="lazy"><span>3</span></div>
+      <div><img style="--ar:auto 360/415" width="360" height="415" src="img/v4.jpg" alt="Положение 4: коробочка на другом торце" loading="lazy"><span>4</span></div>
+      <div><img style="--ar:auto 360/239" width="360" height="239" src="img/v5.jpg" alt="Положение 5: коробочка на длинном боку" loading="lazy"><span>5</span></div>
+      <div><img style="--ar:auto 360/252" width="360" height="252" src="img/v6.jpg" alt="Положение 6: коробочка на другом длинном боку" loading="lazy"><span>6</span></div>
     </div>
     <figcaption>Шесть положений вживую, кадры из видео BANANKA Group. В каждом положении коробочка прижата к деревянному упору сзади.</figcaption>
   </figure>
@@ -409,7 +419,7 @@
       <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45° калибровка сохраняется</text>
       <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">из холодильника</text>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="68" y="290" class="svg-text">из холодильника</text>
       <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="140" y="140" class="svg-text">прогрелся сам</text>
       <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">фен ~43°</text>
       <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="446" y="166" class="svg-text">остыл ~30°</text>
@@ -480,9 +490,9 @@
     <h3>Сравните с примерами TCAL Checker</h3>
     <p>Синие точки показывают замеры. Оранжевая линия показывает поправку, которую рассчитала прошивка. Сравните их на всех трёх графиках.</p>
     <div class="reference-grid tcal-examples">
-      <figure class="reference-shot curve-good" data-zoom="Хороший результат."><img src="img/tcal-good.png" alt="Оранжевая линия проходит среди синих точек почти по всему диапазону" loading="lazy"><figcaption><strong>Хороший результат.</strong> Замеры покрывают почти весь диапазон. Линия идёт среди точек.</figcaption></figure>
-      <figure class="reference-shot curve-partial" data-zoom="Неполный результат."><img src="img/tcal-partial.png" alt="Синие точки заканчиваются примерно при 33 °C, линия идёт дальше" loading="lazy"><figcaption><strong>Неполный результат.</strong> На этом примере выше 33 °C замеров нет. Сверьте покрытие с температурой ваших трекеров во время игры.</figcaption></figure>
-      <figure class="reference-shot curve-bad" data-zoom="Плохой результат."><img src="img/tcal-bad.png" alt="Между синими точками большой пробел в области рабочей температуры" loading="lazy"><figcaption><strong>Плохой результат.</strong> Мало замеров, а около рабочей температуры в этом примере есть пробел. Поправка в нём рассчитана без замеров.</figcaption></figure>
+      <figure class="reference-shot curve-good" data-zoom="Хороший результат."><img style="--ar:auto 497/301" width="497" height="301" src="img/tcal-good.png" alt="Оранжевая линия проходит среди синих точек почти по всему диапазону" loading="lazy"><figcaption><strong>Хороший результат.</strong> Замеры покрывают почти весь диапазон. Линия идёт среди точек.</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="Неполный результат."><img style="--ar:auto 496/302" width="496" height="302" src="img/tcal-partial.png" alt="Синие точки заканчиваются примерно при 33 °C, линия идёт дальше" loading="lazy"><figcaption><strong>Неполный результат.</strong> На этом примере выше 33 °C замеров нет. Сверьте покрытие с температурой ваших трекеров во время игры.</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="Плохой результат."><img style="--ar:auto 502/302" width="502" height="302" src="img/tcal-bad.png" alt="Между синими точками большой пробел в области рабочей температуры" loading="lazy"><figcaption><strong>Плохой результат.</strong> Мало замеров, а около рабочей температуры в этом примере есть пробел. Поправка в нём рассчитана без замеров.</figcaption></figure>
     </div>
     <p class="source-note">Примеры из раздела «What do these graphs mean?» в <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>.</p>
   </div>
@@ -591,11 +601,11 @@
     <h3>Где это в SlimeVR</h3>
     <p>Нажмите на снимок, чтобы рассмотреть его крупно. Снимки сделаны автором гайда в SlimeVR Server v21.1.0 с восемью подключёнными трекерами. Мастера калибровки сняты без трекеров.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Назначение трекеров"><img src="img/ru/sv-assign.webp" alt="Страница «Привязать трекеры»: схема тела, назначенные трекеры отмечены зелёными точками" width="1400" height="768" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Нажмите на точку на теле и выберите трекер. Зелёные точки уже назначены.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Расположение трекера"><img src="img/ru/sv-mounting-edit.webp" alt="Настройки трекера: блок «Положение крепления» и кнопка «Изменить прикрепление»" width="1400" height="620" loading="lazy"><figcaption><strong>Расположение трекера.</strong> Кнопка «Изменить прикрепление» открывает круг выбора, как на схеме выше.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Калибровка крепления."><img src="img/slimevr-21-mounting.webp" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Пропорции тела"><img src="img/ru/sv-proportions.webp" alt="Экран «Пропорции тела»: рост и кнопка Manual Proportions" width="900" height="990" loading="lazy"><figcaption><strong>Пропорции тела.</strong> Кнопка «Manual Proportions» внизу слева. С неё начинается автоматическая настройка.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Автоматические пропорции."><img src="img/slimevr-21-proportions-auto.webp" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Назначение трекеров"><img style="--ar:auto 1400/768" src="img/ru/sv-assign.webp" alt="Страница «Привязать трекеры»: схема тела, назначенные трекеры отмечены зелёными точками" width="1400" height="768" loading="lazy"><figcaption><strong>Назначение трекеров.</strong> Нажмите на точку на теле и выберите трекер. Зелёные точки уже назначены.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Расположение трекера"><img style="--ar:auto 1400/620" src="img/ru/sv-mounting-edit.webp" alt="Настройки трекера: блок «Положение крепления» и кнопка «Изменить прикрепление»" width="1400" height="620" loading="lazy"><figcaption><strong>Расположение трекера.</strong> Кнопка «Изменить прикрепление» открывает круг выбора, как на схеме выше.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Калибровка крепления."><img style="--ar:auto 1360/900" width="1360" height="900" src="img/slimevr-21-mounting.webp" alt="Мастер «Калибровка привязки»" loading="lazy"><figcaption><strong>Калибровка крепления.</strong> Следуйте подсказкам мастера.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Пропорции тела"><img style="--ar:auto 900/990" src="img/ru/sv-proportions.webp" alt="Экран «Пропорции тела»: рост и кнопка Manual Proportions" width="900" height="990" loading="lazy"><figcaption><strong>Пропорции тела.</strong> Кнопка «Manual Proportions» внизу слева. С неё начинается автоматическая настройка.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Автоматические пропорции."><img style="--ar:auto 1360/900" width="1360" height="900" src="img/slimevr-21-proportions-auto.webp" alt="Мастер «Измерьте своё тело»" loading="lazy"><figcaption><strong>Автоматические пропорции.</strong> Пройдите действия в порядке мастера.</figcaption></figure>
     </div>
     <p class="source-note">Интерфейс из <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
   </div>
@@ -617,10 +627,10 @@
     <h3>Где это в VRChat</h3>
     <p>Нажмите на снимок, чтобы рассмотреть его крупно. На снимках настройки ещё не изменены: выставляйте значения по списку выше.</p>
     <div class="reference-grid vrchat-examples">
-      <figure class="reference-shot" data-zoom="Рост и старая версия IK"><img src="img/ru/vrc-height.webp" alt="Меню VRChat «Отслеживание и IK»: строка «Реальный рост пользователя» и переключатель «Использовать старую версию IK»" width="780" height="613" loading="lazy"><figcaption><strong>Рост и старая версия IK.</strong> Кнопка измерения роста — крайняя справа в строке роста. Переключатель старой версии IK — третья строка.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Калибровка и отладка"><img src="img/ru/vrc-calibration.webp" alt="Блок «Калибровка и отладка»: «Старый метод калибровки» и «Расстояние калибровки»" width="757" height="593" loading="lazy"><figcaption><strong>Калибровка и отладка.</strong> «Старый метод калибровки» — первая строка, «Расстояние калибровки» — ползунок ниже.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Кнопка «Калибровать»"><img src="img/ru/vrc-quick-fbt.webp" alt="Стартовая панель быстрого меню VRChat, наведение на кнопку «Калибровать»" width="517" height="645" loading="lazy"><figcaption><strong>Быстрое меню.</strong> Кнопка «Калибровать» внизу стартовой панели запускает калибровку всего тела.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Поза при калибровке"><img src="img/vrc-tpose.webp" alt="Аватар в позе калибровки, трекеры показаны цветными кругами" width="840" height="745" loading="lazy"><figcaption><strong>Поза при калибровке.</strong> Совместите своё тело с аватаром и нажмите оба курка.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Рост и старая версия IK"><img style="--ar:auto 780/613" src="img/ru/vrc-height.webp" alt="Меню VRChat «Отслеживание и IK»: строка «Реальный рост пользователя» и переключатель «Использовать старую версию IK»" width="780" height="613" loading="lazy"><figcaption><strong>Рост и старая версия IK.</strong> Кнопка измерения роста — крайняя справа в строке роста. Переключатель старой версии IK — третья строка.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Калибровка и отладка"><img style="--ar:auto 757/593" src="img/ru/vrc-calibration.webp" alt="Блок «Калибровка и отладка»: «Старый метод калибровки» и «Расстояние калибровки»" width="757" height="593" loading="lazy"><figcaption><strong>Калибровка и отладка.</strong> «Старый метод калибровки» — первая строка, «Расстояние калибровки» — ползунок ниже.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Кнопка «Калибровать»"><img style="--ar:auto 517/645" src="img/ru/vrc-quick-fbt.webp" alt="Стартовая панель быстрого меню VRChat, наведение на кнопку «Калибровать»" width="517" height="645" loading="lazy"><figcaption><strong>Быстрое меню.</strong> Кнопка «Калибровать» внизу стартовой панели запускает калибровку всего тела.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Поза при калибровке"><img style="--ar:auto 840/745" src="img/vrc-tpose.webp" alt="Аватар в позе калибровки, трекеры показаны цветными кругами" width="840" height="745" loading="lazy"><figcaption><strong>Поза при калибровке.</strong> Совместите своё тело с аватаром и нажмите оба курка.</figcaption></figure>
     </div>
     <p class="source-note">Снимки сделаны автором гайда в VRChat (ноябрь 2026). Калибровка всего тела описана в <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">документации VRChat</a>.</p>
   </div>
@@ -641,7 +651,7 @@
     <li><span>Если есть трекеры на стопах, сделайте <strong>калибровку стоп</strong> (сброс крепления стоп): кнопка <strong>«Feet»</strong>.</span></li>
     <li><span>Заходите в игру. В <strong>VRChat</strong> сделайте калибровку полного тела, то есть привязку трекеров к аватару.</span></li>
   </ol>
-  <figure class="reference-shot wide-shot" data-zoom="Главный экран SlimeVR"><img src="img/ru/sv-home.webp" alt="Главный экран SlimeVR: кнопки «Полный сброс», «Горизонтальный сброс», Body и Feet над списком трекеров" width="1400" height="566" loading="lazy"><figcaption><strong>Главный экран SlimeVR.</strong> Слева сверху «Полный сброс» и «Горизонтальный сброс». Справа калибровка крепления: «Body» для тела и «Feet» для стоп.</figcaption></figure>
+  <figure class="reference-shot wide-shot" data-zoom="Главный экран SlimeVR"><img style="--ar:auto 1400/566" src="img/ru/sv-home.webp" alt="Главный экран SlimeVR: кнопки «Полный сброс», «Горизонтальный сброс», Body и Feet над списком трекеров" width="1400" height="566" loading="lazy"><figcaption><strong>Главный экран SlimeVR.</strong> Слева сверху «Полный сброс» и «Горизонтальный сброс». Справа калибровка крепления: «Body» для тела и «Feet» для стоп.</figcaption></figure>
   <details>
     <summary>Почему трекеры сначала нужно согреть</summary>
     <div><p>При включении ниже 15 °C трекер начинает новую температурную калибровку. Сохранённые данные остаются в памяти. Трекер снова начнёт их использовать после перезагрузки в тепле.</p></div>
@@ -734,7 +744,7 @@
 </section>
 
 <div class="author" aria-label="Автор гайда">
-  <span class="author-ava"><img class="author-avatar" src="img/avatar.jpg" alt="Аватар Skrebi" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
+  <span class="author-ava"><img style="--ar:auto 64/64" class="author-avatar" src="img/avatar.jpg" alt="Аватар Skrebi" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">Автор гайда</span>
     <b class="author-name">Skrebi</b>
@@ -772,8 +782,8 @@
 </div><!--layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/hyperion.js?v=af7e6f53"></script>
-<script src="js/scenes.js?v=ed7d7737"></script>
+<script src="js/scenes.js?v=8d7ae98a"></script>
 <script src="js/dl.js?v=c12138a0"></script>
-<script src="js/nav.js?v=4af4fa2b"></script>
+<script src="js/nav.js?v=904409a3"></script>
 </body>
 </html>

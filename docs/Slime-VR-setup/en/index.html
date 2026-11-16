@@ -21,11 +21,11 @@
 <link rel="alternate" hreflang="ja" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/zh/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=5719abd8">
+<link rel="stylesheet" href="../css/style.css?v=43800bf5">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="en")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="5ef3f0bdb3";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="c3089a4e53";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -68,6 +68,16 @@
   <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">Start with the check</a><a href="#every">Before-play checklist</a></div>
 </header>
 
+<section class="howto" aria-labelledby="howto-h">
+  <h2 id="howto-h">How to use this guide</h2>
+  <ol>
+    <li><span><b>Go through the steps from top to bottom.</b> Each step ends with a result check and a link to the next step.</span></li>
+    <li><span><b>Mark what you have done</b> with the “Mark step done” button. Your marks are saved in this browser, and next time the guide will offer to continue where you left off.</span></li>
+    <li><span><b>Steps 4–6 are done for each tracker in turn.</b> To keep track, add your trackers to the checklist in step 4.</span></li>
+    <li><span><b>Something not working?</b> Open <a href="#help">troubleshooting</a>. Screenshots and diagrams open larger when you tap them.</span></li>
+  </ol>
+</section>
+
 <div class="road" id="road">
   <h2 style="font-size:19px">The whole path</h2>
   <ol>
@@ -98,7 +108,7 @@
     <li><span>Turn the tracker on, open SlimeVR and click the tracker's card. Find <strong>“IMU Sensor”</strong> and <strong>“Firmware Version”</strong>. If no card appears, see <a href="#help">Troubleshooting</a>.</span></li>
   </ol>
   <div class="reference-grid two-col">
-    <figure class="reference-shot portrait-shot" data-zoom="Tracker card"><img src="../img/sv-tracker-info.webp" alt="Tracker card in SlimeVR: Firmware version v0.5.4 and IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Tracker card.</strong> The firmware version is the Current line under “Firmware version”. The sensor is the “IMU Sensor” line. The IP address and ID are hidden in the screenshot.</figcaption></figure>
+    <figure class="reference-shot portrait-shot" data-zoom="Tracker card"><img style="--ar:auto 327/880" src="../img/sv-tracker-info.webp" alt="Tracker card in SlimeVR: Firmware version v0.5.4 and IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Tracker card.</strong> The firmware version is the Current line under “Firmware version”. The sensor is the “IMU Sensor” line. The IP address and ID are hidden in the screenshot.</figcaption></figure>
   </div>
   <p class="section-note">Check the sensor type and version on every tracker.</p>
   <div class="fit-grid">
@@ -131,7 +141,7 @@
       <div class="aux-toggle" role="radiogroup" aria-label="Tracker variant"><label><input type="radio" name="aux1" value="main" checked> Without extension</label><label><input type="radio" name="aux1" value="aux"> With extension</label></div>
       <div class="three-stage"><canvas id="box3d" aria-label="3D model of the calibration box with a tracker in a Hyperion case"></canvas><span class="three-hint">Drag to rotate</span></div>
       <p class="three-fallback">The 3D model did not load: it needs an internet connection. The photos below show what the box looks like.</p>
-      <figcaption>The tracker in a Hyperion case (a reworked version with a Type‑C opening) is taped exactly in the centre of the bottom. The Type‑C plug is in the tracker and the cable goes straight into the cut-out without bending inside the box. The letters X, Y, Z help you not to mix up the sides.</figcaption>
+      <figcaption>The tracker in a Hyperion case (a reworked version with a Type‑C opening) is taped exactly in the centre of the bottom. The Type‑C plug is in the tracker and the cable goes straight into the cut-out without bending inside the box. The labels on the sides are the tracker axes: X+ where the arrow on the tracker lid points, Y− at the wall with the slot (the Type‑C side), Z+ inside on the bottom. The opposite sides have the same axes with the opposite sign.</figcaption>
     </figure>
     <table class="dims">
       <thead><tr><th></th><th>Width</th><th>Depth</th><th>Height</th></tr></thead>
@@ -146,11 +156,11 @@
       <li><span>Cut a <strong>slot for the USB cable</strong> in a long wall, almost down to the bottom, <strong>exactly opposite the tracker's connector</strong>. The cable should go out of the tracker straight into the slot without bending inside the box. Make the slot a little wider than the plug's strain relief, so the cable can be bent inside the slot and led out through the open side of the box when needed: you will need this when the box lies slot-down.</span></li>
       <li><span>Stick a piece of <strong>double-sided foam mounting tape</strong> in the centre of the bottom (for example 3M / Scotch or Gorilla mounting tape).</span></li>
       <li><span>Stick the tracker onto the tape <strong>exactly in the centre</strong>, USB connector towards the slot, edges parallel to the walls. The tape holds the tracker while you flip the box, so the tracker must sit firmly and not move.</span></li>
-      <li><span>Label the sides with a pencil: X on the ends, Y on the long sides, Z on the bottom. This makes it easier to remember which sides the box has already been on.</span></li>
+      <li><span>Label the sides with a pencil, as on the 3D model: <strong>X+</strong> on the end the tracker arrow points to, <strong>X−</strong> on the other end; <strong>Y−</strong> on the wall with the slot (the Type‑C side), <strong>Y+</strong> on the opposite wall; <strong>Z+</strong> inside on the bottom, <strong>Z−</strong> outside on the bottom. This makes it easier to remember which sides the box has already been on.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inbox.jpg" alt="A tracker taped to the centre of the bottom of a wooden box" width="900" height="506" loading="lazy"><figcaption>What it looks like in real life: tracker in the centre, cable slot in the wall.</figcaption></figure>
-      <figure><img src="../img/tape.jpg" alt="A roll of double-sided foam tape" width="420" height="746" loading="lazy"><figcaption>Double-sided foam tape like this works. Any brand of foam mounting tape will do.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inbox.jpg" alt="A tracker taped to the centre of the bottom of a wooden box" width="900" height="506" loading="lazy"><figcaption>What it looks like in real life: tracker in the centre, cable slot in the wall.</figcaption></figure>
+      <figure><img style="--ar:auto 420/746" src="../img/tape.jpg" alt="A roll of double-sided foam tape" width="420" height="746" loading="lazy"><figcaption>Double-sided foam tape like this works. Any brand of foam mounting tape will do.</figcaption></figure>
     </div>
     <h3>A stop on the table</h3>
     <p>Put the box on a <strong>flat table</strong> and place or fix a stop next to it: a straight board, a block of wood or a thick book. Every time you flip the box, <strong>push it against the stop</strong>. That way it always stands in the same place at the same angle, and the calibration is more accurate. Step 4 shows what this looks like.</p>
@@ -188,7 +198,7 @@
   <div class="warn"><b>Important</b><p><strong>Why exactly v0.5.4.</strong> Temperature calibration for BMI160 exists in firmware <strong>v0.3.3 to v0.5.4</strong>. Starting with v0.6.2, BMI160 uses a new driver that does <strong>not</strong> have it: the console prints “Temperature calibration not supported for IMU BMI160”. v0.3.2 and older do not have it yet. That is why we install v0.5.4.</p><p><strong>Flash through the website, not through SlimeVR.</strong> New versions of SlimeVR Server cannot install old firmware on these trackers. So we flash through a separate website in Chrome or Edge.</p></div>
 
   <div class="card" id="rotation">
-    <h3 id="rotation" style="margin-top:0">3.1 · Find the sensor rotation (IMU Rotation)</h3>
+    <h3 style="margin-top:0">3.1 · Find the sensor rotation (IMU Rotation)</h3>
     <p>When flashing you have to say how the BMI160 module is rotated inside the case. If you get it wrong, the tracker will move the wrong way. Modules and builds differ, so look at your own tracker.</p>
     <ol class="do">
       <li><span>Open the tracker case and find the purple module labelled <strong>BMI160</strong>.</span></li>
@@ -197,8 +207,8 @@
       <li><span>The number in the label above that picture (0, 90, 180 or 270) is the value for the <strong>IMU Rotation (DEG)</strong> field. Write it down. If the tracker has an extension, find the rotation of its sensor the same way.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inside.jpg" alt="An opened tracker: Wemos D1 Mini board, BMI160 module and charging board" width="900" height="506" loading="lazy"><figcaption>An example tracker from the inside. The BMI160 module is in the middle. When this tracker is worn, the right side of the photo faces the ceiling.</figcaption></figure>
-      <figure data-zoom="Sensor rotation chart"><img class="contain" src="../img/rotation.webp" alt="IMU rotation chart: DEG_0, DEG_90, DEG_180, DEG_270 for BNO and for BMI160" width="593" height="337" loading="lazy"><figcaption>Rotation chart. For BMI160 look at the <strong>bottom row</strong>. “Ceiling when on body” means the ceiling while the tracker is worn.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inside.jpg" alt="An opened tracker: Wemos D1 Mini board, BMI160 module and charging board" width="900" height="506" loading="lazy"><figcaption>An example tracker from the inside. The BMI160 module is in the middle. When this tracker is worn, the right side of the photo faces the ceiling.</figcaption></figure>
+      <figure data-zoom="Sensor rotation chart"><img style="--ar:auto 593/337" class="contain" src="../img/rotation.webp" alt="IMU rotation chart: DEG_0, DEG_90, DEG_180, DEG_270 for BNO and for BMI160" width="593" height="337" loading="lazy"><figcaption>Rotation chart. For BMI160 look at the <strong>bottom row</strong>. “Ceiling when on body” means the ceiling while the tracker is worn.</figcaption></figure>
     </div>
     <div class="tip"><b>If the module does not match any picture</b><p>Some modules have a different layout. Pick the closest value and check after flashing: tilt the tracker forward, and its 3D model in SlimeVR should also tilt forward, not sideways or backwards. If it tilts the wrong way, reflash with another value.</p></div>
   </div>
@@ -357,12 +367,12 @@
 
   <figure>
     <div class="frames">
-      <div><img src="../img/v1.jpg" alt="Position 1: box bottom down" loading="lazy"><span>1</span></div>
-      <div><img src="../img/v2.jpg" alt="Position 2: box on its end" loading="lazy"><span>2</span></div>
-      <div><img src="../img/v3.jpg" alt="Position 3: box upside down" loading="lazy"><span>3</span></div>
-      <div><img src="../img/v4.jpg" alt="Position 4: box on its other end" loading="lazy"><span>4</span></div>
-      <div><img src="../img/v5.jpg" alt="Position 5: box on its long side" loading="lazy"><span>5</span></div>
-      <div><img src="../img/v6.jpg" alt="Position 6: box on its other long side" loading="lazy"><span>6</span></div>
+      <div><img style="--ar:auto 360/477" width="360" height="477" src="../img/v1.jpg" alt="Position 1: box bottom down" loading="lazy"><span>1</span></div>
+      <div><img style="--ar:auto 360/366" width="360" height="366" src="../img/v2.jpg" alt="Position 2: box on its end" loading="lazy"><span>2</span></div>
+      <div><img style="--ar:auto 360/299" width="360" height="299" src="../img/v3.jpg" alt="Position 3: box upside down" loading="lazy"><span>3</span></div>
+      <div><img style="--ar:auto 360/415" width="360" height="415" src="../img/v4.jpg" alt="Position 4: box on its other end" loading="lazy"><span>4</span></div>
+      <div><img style="--ar:auto 360/239" width="360" height="239" src="../img/v5.jpg" alt="Position 5: box on its long side" loading="lazy"><span>5</span></div>
+      <div><img style="--ar:auto 360/252" width="360" height="252" src="../img/v6.jpg" alt="Position 6: box on its other long side" loading="lazy"><span>6</span></div>
     </div>
     <figcaption>The six positions in real life, frames from the BANANKA Group video. In every position the box is pushed against the wooden stop at the back.</figcaption>
   </figure>
@@ -408,7 +418,7 @@
       <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45 °C (113 °F) calibration saves</text>
       <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">out of the fridge</text>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="68" y="290" class="svg-text">out of the fridge</text>
       <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="120" y="140" class="svg-text">warmed up itself</text>
       <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">dryer ~43°</text>
       <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="440" y="166" class="svg-text">cooled ~30°</text>
@@ -479,9 +489,9 @@
     <h3>Compare with the TCAL Checker examples</h3>
     <p>Blue dots are measurements. The orange line is the correction the firmware calculated. Compare them on all three graphs.</p>
     <div class="reference-grid tcal-examples">
-      <figure class="reference-shot curve-good" data-zoom="Good result."><img src="../img/tcal-good.png" alt="The orange line runs among the blue dots across almost the whole range" loading="lazy"><figcaption><strong>Good result.</strong> The measurements cover almost the whole range. The line runs among the dots.</figcaption></figure>
-      <figure class="reference-shot curve-partial" data-zoom="Partial result."><img src="../img/tcal-partial.png" alt="The blue dots end at about 33 °C, the line continues" loading="lazy"><figcaption><strong>Partial result.</strong> In this example there are no measurements above 33 °C (91 °F). Compare the coverage with your trackers' temperature while playing.</figcaption></figure>
-      <figure class="reference-shot curve-bad" data-zoom="Bad result."><img src="../img/tcal-bad.png" alt="A large gap between the blue dots around the working temperature" loading="lazy"><figcaption><strong>Bad result.</strong> Few measurements, and in this example there is a gap around the working temperature. The correction there was calculated without data.</figcaption></figure>
+      <figure class="reference-shot curve-good" data-zoom="Good result."><img style="--ar:auto 497/301" width="497" height="301" src="../img/tcal-good.png" alt="The orange line runs among the blue dots across almost the whole range" loading="lazy"><figcaption><strong>Good result.</strong> The measurements cover almost the whole range. The line runs among the dots.</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="Partial result."><img style="--ar:auto 496/302" width="496" height="302" src="../img/tcal-partial.png" alt="The blue dots end at about 33 °C, the line continues" loading="lazy"><figcaption><strong>Partial result.</strong> In this example there are no measurements above 33 °C (91 °F). Compare the coverage with your trackers' temperature while playing.</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="Bad result."><img style="--ar:auto 502/302" width="502" height="302" src="../img/tcal-bad.png" alt="A large gap between the blue dots around the working temperature" loading="lazy"><figcaption><strong>Bad result.</strong> Few measurements, and in this example there is a gap around the working temperature. The correction there was calculated without data.</figcaption></figure>
     </div>
     <p class="source-note">Examples from the “What do these graphs mean?” section of <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>.</p>
   </div>
@@ -590,11 +600,11 @@
     <h3>Where to find it in SlimeVR</h3>
     <p>Click a screenshot to see it up close. Screenshots taken by the guide author in SlimeVR Server v21.1.0 with eight trackers connected. The two calibration wizards are shown in the Russian version without trackers; the English wizards have the same layout.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Tracker assignment"><img src="../img/sv-assign.webp" alt="Assign trackers page: body diagram with assigned trackers marked by green dots" width="1400" height="768" loading="lazy"><figcaption><strong>Tracker assignment.</strong> Click a point on the body and choose a tracker. Green dots are already assigned.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Tracker mounting"><img src="../img/sv-mounting-edit.webp" alt="Tracker settings: Mounting orientation block and the Edit mounting button" width="1400" height="620" loading="lazy"><figcaption><strong>Tracker mounting.</strong> “Edit mounting” opens the selection wheel shown above.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Mounting calibration."><img src="../img/slimevr-21-mounting.webp" alt="The Mounting Calibration wizard" loading="lazy"><figcaption><strong>Mounting calibration.</strong> Follow the wizard.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Body proportions"><img src="../img/sv-proportions.webp" alt="Body Proportions screen: height and the Manual Proportions button" width="900" height="990" loading="lazy"><figcaption><strong>Body proportions.</strong> “Manual Proportions” is at the bottom left. Automatic tuning starts from there.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Automatic proportions."><img src="../img/slimevr-21-proportions-auto.webp" alt="The Measure your body wizard" loading="lazy"><figcaption><strong>Automatic proportions.</strong> Do the actions in the wizard's order.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Tracker assignment"><img style="--ar:auto 1400/768" src="../img/sv-assign.webp" alt="Assign trackers page: body diagram with assigned trackers marked by green dots" width="1400" height="768" loading="lazy"><figcaption><strong>Tracker assignment.</strong> Click a point on the body and choose a tracker. Green dots are already assigned.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Tracker mounting"><img style="--ar:auto 1400/620" src="../img/sv-mounting-edit.webp" alt="Tracker settings: Mounting orientation block and the Edit mounting button" width="1400" height="620" loading="lazy"><figcaption><strong>Tracker mounting.</strong> “Edit mounting” opens the selection wheel shown above.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Mounting calibration."><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-mounting.webp" alt="The Mounting Calibration wizard" loading="lazy"><figcaption><strong>Mounting calibration.</strong> Follow the wizard.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Body proportions"><img style="--ar:auto 900/990" src="../img/sv-proportions.webp" alt="Body Proportions screen: height and the Manual Proportions button" width="900" height="990" loading="lazy"><figcaption><strong>Body proportions.</strong> “Manual Proportions” is at the bottom left. Automatic tuning starts from there.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Automatic proportions."><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-proportions-auto.webp" alt="The Measure your body wizard" loading="lazy"><figcaption><strong>Automatic proportions.</strong> Do the actions in the wizard's order.</figcaption></figure>
     </div>
     <p class="source-note">Interface from <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
   </div>
@@ -616,10 +626,10 @@
     <h3>Where to find it in VRChat</h3>
     <p>Click a screenshot to see it up close. The settings in the screenshots are not changed yet: use the values from the list above.</p>
     <div class="reference-grid vrchat-examples">
-      <figure class="reference-shot" data-zoom="Height and legacy IK"><img src="../img/vrc-height.webp" alt="VRChat Tracking &amp; IK menu: User Real Height row and Use Legacy IK Solving switch" width="774" height="593" loading="lazy"><figcaption><strong>Height and legacy IK.</strong> The height measurement button is the rightmost one in the height row. The legacy IK switch is the third row.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img src="../img/vrc-calibration.webp" alt="Calibration &amp; Debug block: Legacy Calibration and Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug.</strong> “Legacy Calibration” is the first row, “Calibration Range” is the slider below.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="The Calibrate button"><img src="../img/vrc-quick-fbt.webp" alt="VRChat quick menu Launch Pad with the pointer on the Calibrate button" width="550" height="675" loading="lazy"><figcaption><strong>Quick menu.</strong> The “Calibrate” button at the bottom of the Launch Pad starts full-body calibration.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibration pose"><img src="../img/vrc-tpose.webp" alt="Avatar in the calibration pose, trackers shown as coloured circles" width="840" height="745" loading="lazy"><figcaption><strong>Calibration pose.</strong> Line your body up with the avatar and press both triggers.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Height and legacy IK"><img style="--ar:auto 774/593" src="../img/vrc-height.webp" alt="VRChat Tracking &amp; IK menu: User Real Height row and Use Legacy IK Solving switch" width="774" height="593" loading="lazy"><figcaption><strong>Height and legacy IK.</strong> The height measurement button is the rightmost one in the height row. The legacy IK switch is the third row.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img style="--ar:auto 738/572" src="../img/vrc-calibration.webp" alt="Calibration &amp; Debug block: Legacy Calibration and Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug.</strong> “Legacy Calibration” is the first row, “Calibration Range” is the slider below.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="The Calibrate button"><img style="--ar:auto 550/675" src="../img/vrc-quick-fbt.webp" alt="VRChat quick menu Launch Pad with the pointer on the Calibrate button" width="550" height="675" loading="lazy"><figcaption><strong>Quick menu.</strong> The “Calibrate” button at the bottom of the Launch Pad starts full-body calibration.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration pose"><img style="--ar:auto 840/745" src="../img/vrc-tpose.webp" alt="Avatar in the calibration pose, trackers shown as coloured circles" width="840" height="745" loading="lazy"><figcaption><strong>Calibration pose.</strong> Line your body up with the avatar and press both triggers.</figcaption></figure>
     </div>
     <p class="source-note">Screenshots taken by the guide author in VRChat (November 2026). Full-body calibration is described in the <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">VRChat documentation</a>.</p>
   </div>
@@ -640,7 +650,7 @@
     <li><span>If you have foot trackers, do the <strong>feet calibration</strong> (feet mounting reset): the <strong>Feet</strong> button.</span></li>
     <li><span>Start the game. In <strong>VRChat</strong>, do the full-body calibration, which binds the trackers to the avatar.</span></li>
   </ol>
-  <figure class="reference-shot wide-shot" data-zoom="SlimeVR Home screen"><img src="../img/sv-home.webp" alt="SlimeVR Home screen: Full Reset, Yaw Reset, Body and Feet buttons above the tracker list" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR Home screen.</strong> Full Reset and Yaw Reset at the top left. Mounting calibration on the right: Body for the body and Feet for the feet.</figcaption></figure>
+  <figure class="reference-shot wide-shot" data-zoom="SlimeVR Home screen"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVR Home screen: Full Reset, Yaw Reset, Body and Feet buttons above the tracker list" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR Home screen.</strong> Full Reset and Yaw Reset at the top left. Mounting calibration on the right: Body for the body and Feet for the feet.</figcaption></figure>
   <details>
     <summary>Why the trackers have to warm up first</summary>
     <div><p>When turned on below 15 °C (59 °F), the tracker starts a new temperature calibration. The saved data stays in memory, and the tracker uses it again after a restart in the warmth.</p></div>
@@ -733,7 +743,7 @@
 </section>
 
 <div class="author" aria-label="Guide author">
-  <span class="author-ava"><img class="author-avatar" src="../img/avatar.jpg" alt="Skrebi's avatar" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
+  <span class="author-ava"><img style="--ar:auto 64/64" class="author-avatar" src="../img/avatar.jpg" alt="Skrebi's avatar" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">Guide author</span>
     <b class="author-name">Skrebi</b>
@@ -771,8 +781,8 @@
 </div><!--layout-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
-<script src="../js/scenes.js?v=ed7d7737"></script>
+<script src="../js/scenes.js?v=8d7ae98a"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=4af4fa2b"></script>
+<script src="../js/nav.js?v=904409a3"></script>
 </body>
 </html>

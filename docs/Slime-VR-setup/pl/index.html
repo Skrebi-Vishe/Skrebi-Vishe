@@ -21,11 +21,11 @@
 <link rel="alternate" hreflang="ja" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/zh/">
 <link rel="alternate" hreflang="x-default" href="https://skrebi-vishe.github.io/Skrebi-Vishe/Slime-VR-setup/en/">
-<link rel="stylesheet" href="../css/style.css?v=5719abd8">
+<link rel="stylesheet" href="../css/style.css?v=43800bf5">
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="pl")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="5ef3f0bdb3";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="c3089a4e53";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -68,6 +68,16 @@
   <div class="intro-actions"><a class="btn-link" id="hero-start" href="#s1">Zacznij od sprawdzenia</a><a href="#every">Lista przed grą</a></div>
 </header>
 
+<section class="howto" aria-labelledby="howto-h">
+  <h2 id="howto-h">Jak korzystać z poradnika</h2>
+  <ol>
+    <li><span><b>Przechodź kroki od góry do dołu.</b> Każdy krok kończy się sprawdzeniem wyniku i linkiem do następnego kroku.</span></li>
+    <li><span><b>Zaznaczaj to, co zrobione,</b> przyciskiem „Krok wykonany”. Zaznaczenia zapisują się w tej przeglądarce, a przy następnej wizycie poradnik zaproponuje kontynuowanie od tego samego miejsca.</span></li>
+    <li><span><b>Kroki 4–6 wykonuje się dla każdego trackera po kolei.</b> Żeby się nie pogubić, dodaj swoje trackery do listy w kroku 4.</span></li>
+    <li><span><b>Coś nie działa?</b> Otwórz <a href="#help">częste problemy</a>. Zrzuty ekranu i schematy powiększają się po dotknięciu.</span></li>
+  </ol>
+</section>
+
 <div class="road" id="road">
   <h2 style="font-size:19px">Cała droga</h2>
   <ol>
@@ -98,7 +108,7 @@
     <li><span>Włącz tracker, otwórz SlimeVR i kliknij kartę trackera. Znajdź <strong>„IMU Sensor”</strong> i <strong>„Firmware Version”</strong>. Jeśli karta się nie pojawiła, zajrzyj do sekcji <a href="#help">Częste problemy</a>.</span></li>
   </ol>
   <div class="reference-grid two-col">
-    <figure class="reference-shot portrait-shot" data-zoom="Karta trackera"><img src="../img/sv-tracker-info.webp" alt="Karta trackera w SlimeVR: Firmware version v0.5.4 i IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Karta trackera.</strong> Wersja firmware'u to wiersz Current w bloku „Firmware version”. Czujnik to wiersz „IMU Sensor”. Adres IP i ID są na zrzucie ukryte.</figcaption></figure>
+    <figure class="reference-shot portrait-shot" data-zoom="Karta trackera"><img style="--ar:auto 327/880" src="../img/sv-tracker-info.webp" alt="Karta trackera w SlimeVR: Firmware version v0.5.4 i IMU Sensor BMI160" width="327" height="880" loading="lazy"><figcaption><strong>Karta trackera.</strong> Wersja firmware'u to wiersz Current w bloku „Firmware version”. Czujnik to wiersz „IMU Sensor”. Adres IP i ID są na zrzucie ukryte.</figcaption></figure>
   </div>
   <p class="section-note">Sprawdź typ czujnika i wersję na każdym trackerze. Nazwy przycisków i menu podano w poradniku po angielsku, tak jak w angielskim interfejsie SlimeVR i VRChat oraz na zrzutach ekranu. Jeśli masz program po polsku, opcje nazywają się inaczej, ale są w tym samym miejscu.</p>
   <div class="fit-grid">
@@ -131,7 +141,7 @@
       <div class="aux-toggle" role="radiogroup" aria-label="Wariant trackera"><label><input type="radio" name="aux1" value="main" checked> Bez rozszerzenia</label><label><input type="radio" name="aux1" value="aux"> Z rozszerzeniem</label></div>
       <div class="three-stage"><canvas id="box3d" aria-label="Model 3D pudełka do kalibracji z trackerem w obudowie Hyperion"></canvas><span class="three-hint">Przeciągnij, aby obrócić</span></div>
       <p class="three-fallback">Model 3D się nie wczytał: potrzebne jest połączenie z internetem. Jak wygląda pudełko, widać na zdjęciach poniżej.</p>
-      <figcaption>Tracker w obudowie Hyperion (przerobiona wersja z otworem na Type‑C) jest przyklejony dokładnie na środku dna. Wtyczka Type‑C tkwi w trackerze, a kabel biegnie prosto do wycięcia, nie zginając się w pudełku. Litery X, Y, Z pomagają nie pomylić ścianek.</figcaption>
+      <figcaption>Tracker w obudowie Hyperion (przerobiona wersja z otworem na Type‑C) jest przyklejony dokładnie na środku dna. Wtyczka Type‑C tkwi w trackerze, a kabel biegnie prosto do wycięcia, nie zginając się w pudełku. Oznaczenia na ściankach to osie trackera: X+ tam, gdzie wskazuje strzałka na pokrywce trackera, Y− przy ściance z wycięciem (strona złącza Type‑C), Z+ w środku na dnie. Na przeciwległych ściankach są te same osie z przeciwnym znakiem.</figcaption>
     </figure>
     <table class="dims">
       <thead><tr><th></th><th>Szerokość</th><th>Głębokość</th><th>Wysokość</th></tr></thead>
@@ -146,11 +156,11 @@
       <li><span>Wytnij w dłuższej ściance <strong>szczelinę na kabel USB</strong>, prawie do samego dna, <strong>dokładnie naprzeciwko gniazda trackera</strong>. Kabel ma wychodzić z trackera prosto w szczelinę, nie zginając się w pudełku. Zrób szczelinę nieco szerszą niż osłonka wtyczki, żeby w razie potrzeby dało się zgiąć kabel w szczelinie i wyprowadzić go przez otwartą stronę pudełka: przyda się to, gdy pudełko leży szczeliną w dół.</span></li>
       <li><span>Naklej na środek dna kawałek <strong>dwustronnej taśmy piankowej</strong> (np. taśmy montażowej 3M / Scotch lub Gorilla).</span></li>
       <li><span>Przyklej tracker do taśmy <strong>dokładnie na środku</strong>, gniazdem USB do szczeliny, krawędziami równolegle do ścianek. Taśma trzyma tracker, gdy obracasz pudełko, więc tracker musi siedzieć mocno i się nie przesuwać.</span></li>
-      <li><span>Podpisz ścianki ołówkiem: X na krótkich bokach, Y na długich bokach, Z na dnie. Łatwiej wtedy zapamiętać, na których ściankach pudełko już stało.</span></li>
+      <li><span>Podpisz ścianki ołówkiem, tak jak na modelu 3D: <strong>X+</strong> na krótkim boku, w który wskazuje strzałka trackera, <strong>X−</strong> na drugim krótkim boku; <strong>Y−</strong> na ściance z wycięciem (tam jest złącze Type‑C), <strong>Y+</strong> na przeciwległej; <strong>Z+</strong> w środku na dnie, <strong>Z−</strong> na zewnątrz na dnie. Łatwiej wtedy zapamiętać, na których ściankach pudełko już stało.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inbox.jpg" alt="Tracker przyklejony na środku dna drewnianego pudełka" width="900" height="506" loading="lazy"><figcaption>Tak to wygląda na żywo: tracker na środku, szczelina na kabel w ściance.</figcaption></figure>
-      <figure><img src="../img/tape.jpg" alt="Rolka dwustronnej taśmy piankowej" width="420" height="746" loading="lazy"><figcaption>Nada się taka dwustronna taśma piankowa. Marka nie ma znaczenia, wystarczy dowolna piankowa taśma montażowa.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inbox.jpg" alt="Tracker przyklejony na środku dna drewnianego pudełka" width="900" height="506" loading="lazy"><figcaption>Tak to wygląda na żywo: tracker na środku, szczelina na kabel w ściance.</figcaption></figure>
+      <figure><img style="--ar:auto 420/746" src="../img/tape.jpg" alt="Rolka dwustronnej taśmy piankowej" width="420" height="746" loading="lazy"><figcaption>Nada się taka dwustronna taśma piankowa. Marka nie ma znaczenia, wystarczy dowolna piankowa taśma montażowa.</figcaption></figure>
     </div>
     <h3>Ogranicznik na stole</h3>
     <p>Postaw pudełko na <strong>równym stole</strong> i połóż lub przymocuj obok ogranicznik: prostą deskę, klocek drewna albo grubą książkę. Za każdym razem, gdy obracasz pudełko, <strong>dosuwaj je do ogranicznika</strong>. Dzięki temu zawsze stoi w tym samym miejscu i pod tym samym kątem, a kalibracja jest dokładniejsza. Jak to wygląda, pokazuje krok 4.</p>
@@ -188,7 +198,7 @@
   <div class="warn"><b>Ważne</b><p><strong>Dlaczego akurat v0.5.4.</strong> Kalibracja temperaturowa dla BMI160 jest w firmware'ach <strong>od v0.3.3 do v0.5.4</strong>. Od v0.6.2 BMI160 działa przez nowy sterownik, w którym jej <strong>nie ma</strong>: konsola napisze „Temperature calibration not supported for IMU BMI160”. W v0.3.2 i starszych jeszcze jej nie ma. Dlatego wgrywamy v0.5.4.</p><p><strong>Wgrywaj przez stronę, a nie przez SlimeVR.</strong> Nowe wersje SlimeVR Server nie potrafią wgrać starego firmware'u na takie trackery. Dlatego wgrywamy przez osobną stronę w przeglądarce Chrome lub Edge.</p></div>
 
   <div class="card" id="rotation">
-    <h3 id="rotation" style="margin-top:0">3.1 · Ustal obrót czujnika (IMU Rotation)</h3>
+    <h3 style="margin-top:0">3.1 · Ustal obrót czujnika (IMU Rotation)</h3>
     <p>Przy wgrywaniu trzeba podać, jak moduł BMI160 jest obrócony w obudowie. Jeśli się pomylisz, tracker będzie poruszał się w złą stronę. Moduły i konstrukcje bywają różne, więc patrz na swój tracker.</p>
     <ol class="do">
       <li><span>Otwórz obudowę trackera i znajdź fioletowy moduł z napisem <strong>BMI160</strong>.</span></li>
@@ -197,8 +207,8 @@
       <li><span>Liczba w podpisie nad tym rysunkiem (0, 90, 180 lub 270) to wartość pola <strong>IMU Rotation (DEG)</strong>. Zapisz ją. Jeśli tracker ma rozszerzenie, w ten sam sposób ustal obrót jego czujnika.</span></li>
     </ol>
     <div class="photo-row">
-      <figure><img src="../img/inside.jpg" alt="Otwarty tracker: płytka Wemos D1 Mini, moduł BMI160 i płytka ładowania" width="900" height="506" loading="lazy"><figcaption>Przykładowy tracker od środka. Pośrodku jest moduł BMI160. Gdy ten tracker jest założony, prawa strona zdjęcia jest skierowana do sufitu.</figcaption></figure>
-      <figure data-zoom="Tabela obrotów czujnika"><img class="contain" src="../img/rotation.webp" alt="Tabela obrotów IMU: DEG_0, DEG_90, DEG_180, DEG_270 dla BNO i dla BMI160" width="593" height="337" loading="lazy"><figcaption>Tabela obrotów. Dla BMI160 patrz na <strong>dolny rząd</strong>. „Ceiling when on body” oznacza sufit, gdy tracker jest założony.</figcaption></figure>
+      <figure><img style="--ar:auto 900/506" src="../img/inside.jpg" alt="Otwarty tracker: płytka Wemos D1 Mini, moduł BMI160 i płytka ładowania" width="900" height="506" loading="lazy"><figcaption>Przykładowy tracker od środka. Pośrodku jest moduł BMI160. Gdy ten tracker jest założony, prawa strona zdjęcia jest skierowana do sufitu.</figcaption></figure>
+      <figure data-zoom="Tabela obrotów czujnika"><img style="--ar:auto 593/337" class="contain" src="../img/rotation.webp" alt="Tabela obrotów IMU: DEG_0, DEG_90, DEG_180, DEG_270 dla BNO i dla BMI160" width="593" height="337" loading="lazy"><figcaption>Tabela obrotów. Dla BMI160 patrz na <strong>dolny rząd</strong>. „Ceiling when on body” oznacza sufit, gdy tracker jest założony.</figcaption></figure>
     </div>
     <div class="tip"><b>Jeśli moduł nie pasuje do żadnego rysunku</b><p>Niektóre moduły mają inny układ elementów. Wybierz najbliższą wartość i sprawdź po wgraniu: pochyl tracker do przodu — jego model 3D w SlimeVR też powinien pochylić się do przodu, a nie na bok czy do tyłu. Jeśli pochyla się w złą stronę, wgraj firmware ponownie z inną wartością.</p></div>
   </div>
@@ -357,12 +367,12 @@
 
   <figure>
     <div class="frames">
-      <div><img src="../img/v1.jpg" alt="Pozycja 1: pudełko dnem w dół" loading="lazy"><span>1</span></div>
-      <div><img src="../img/v2.jpg" alt="Pozycja 2: pudełko na krótkim boku" loading="lazy"><span>2</span></div>
-      <div><img src="../img/v3.jpg" alt="Pozycja 3: pudełko do góry dnem" loading="lazy"><span>3</span></div>
-      <div><img src="../img/v4.jpg" alt="Pozycja 4: pudełko na drugim krótkim boku" loading="lazy"><span>4</span></div>
-      <div><img src="../img/v5.jpg" alt="Pozycja 5: pudełko na długim boku" loading="lazy"><span>5</span></div>
-      <div><img src="../img/v6.jpg" alt="Pozycja 6: pudełko na drugim długim boku" loading="lazy"><span>6</span></div>
+      <div><img style="--ar:auto 360/477" width="360" height="477" src="../img/v1.jpg" alt="Pozycja 1: pudełko dnem w dół" loading="lazy"><span>1</span></div>
+      <div><img style="--ar:auto 360/366" width="360" height="366" src="../img/v2.jpg" alt="Pozycja 2: pudełko na krótkim boku" loading="lazy"><span>2</span></div>
+      <div><img style="--ar:auto 360/299" width="360" height="299" src="../img/v3.jpg" alt="Pozycja 3: pudełko do góry dnem" loading="lazy"><span>3</span></div>
+      <div><img style="--ar:auto 360/415" width="360" height="415" src="../img/v4.jpg" alt="Pozycja 4: pudełko na drugim krótkim boku" loading="lazy"><span>4</span></div>
+      <div><img style="--ar:auto 360/239" width="360" height="239" src="../img/v5.jpg" alt="Pozycja 5: pudełko na długim boku" loading="lazy"><span>5</span></div>
+      <div><img style="--ar:auto 360/252" width="360" height="252" src="../img/v6.jpg" alt="Pozycja 6: pudełko na drugim długim boku" loading="lazy"><span>6</span></div>
     </div>
     <figcaption>Sześć pozycji na żywo, kadry z filmu BANANKA Group. W każdej pozycji pudełko jest dosunięte do drewnianego ogranicznika z tyłu.</figcaption>
   </figure>
@@ -408,7 +418,7 @@
       <line x1="60" y1="57.5" x2="700" y2="57.5" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="66" y="51" class="svg-small" style="fill:var(--warm)">45 °C kalibracja się zapisuje</text>
       <path d="M60,250 C90,240 110,228 124,228 C160,215 190,155 220,151 C255,130 290,82 316,69.5 C360,90 450,135 508,140 C540,120 580,62 604,52 C640,62 670,80 700,90" fill="none" stroke="var(--warm)" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="76" y="242" class="svg-text">z lodówki</text>
+      <circle cx="60" cy="250" r="5" style="fill:var(--cold)"/><text x="68" y="290" class="svg-text">z lodówki</text>
       <circle cx="220" cy="151" r="5" class="svg-acc"/><text x="120" y="140" class="svg-text">nagrzał się sam</text>
       <circle cx="316" cy="69.5" r="5" style="fill:var(--warm)"/><text x="316" y="44" text-anchor="middle" class="svg-text">suszarka ~43°</text>
       <circle cx="508" cy="140" r="5" class="svg-acc"/><text x="440" y="166" class="svg-text">ostygł ~30°</text>
@@ -479,9 +489,9 @@
     <h3>Porównaj z przykładami z TCAL Checker</h3>
     <p>Niebieskie punkty to pomiary. Pomarańczowa linia to poprawka obliczona przez firmware. Porównuj je na wszystkich trzech wykresach.</p>
     <div class="reference-grid tcal-examples">
-      <figure class="reference-shot curve-good" data-zoom="Dobry wynik."><img src="../img/tcal-good.png" alt="Pomarańczowa linia biegnie wśród niebieskich punktów niemal w całym zakresie" loading="lazy"><figcaption><strong>Dobry wynik.</strong> Pomiary obejmują niemal cały zakres. Linia biegnie wśród punktów.</figcaption></figure>
-      <figure class="reference-shot curve-partial" data-zoom="Niepełny wynik."><img src="../img/tcal-partial.png" alt="Niebieskie punkty kończą się w okolicy 33 °C, linia biegnie dalej" loading="lazy"><figcaption><strong>Niepełny wynik.</strong> W tym przykładzie powyżej 33 °C nie ma pomiarów. Porównaj pokrycie z temperaturą swoich trackerów podczas gry.</figcaption></figure>
-      <figure class="reference-shot curve-bad" data-zoom="Zły wynik."><img src="../img/tcal-bad.png" alt="Duża luka między niebieskimi punktami w zakresie temperatury pracy" loading="lazy"><figcaption><strong>Zły wynik.</strong> Mało pomiarów, a w tym przykładzie przy temperaturze pracy jest luka. Poprawkę obliczono tam bez pomiarów.</figcaption></figure>
+      <figure class="reference-shot curve-good" data-zoom="Dobry wynik."><img style="--ar:auto 497/301" width="497" height="301" src="../img/tcal-good.png" alt="Pomarańczowa linia biegnie wśród niebieskich punktów niemal w całym zakresie" loading="lazy"><figcaption><strong>Dobry wynik.</strong> Pomiary obejmują niemal cały zakres. Linia biegnie wśród punktów.</figcaption></figure>
+      <figure class="reference-shot curve-partial" data-zoom="Niepełny wynik."><img style="--ar:auto 496/302" width="496" height="302" src="../img/tcal-partial.png" alt="Niebieskie punkty kończą się w okolicy 33 °C, linia biegnie dalej" loading="lazy"><figcaption><strong>Niepełny wynik.</strong> W tym przykładzie powyżej 33 °C nie ma pomiarów. Porównaj pokrycie z temperaturą swoich trackerów podczas gry.</figcaption></figure>
+      <figure class="reference-shot curve-bad" data-zoom="Zły wynik."><img style="--ar:auto 502/302" width="502" height="302" src="../img/tcal-bad.png" alt="Duża luka między niebieskimi punktami w zakresie temperatury pracy" loading="lazy"><figcaption><strong>Zły wynik.</strong> Mało pomiarów, a w tym przykładzie przy temperaturze pracy jest luka. Poprawkę obliczono tam bez pomiarów.</figcaption></figure>
     </div>
     <p class="source-note">Przykłady z sekcji „What do these graphs mean?” na stronie <a href="https://ilyasnow.github.io/TCAL-Checker/">TCAL Checker</a>.</p>
   </div>
@@ -590,11 +600,11 @@
     <h3>Gdzie to jest w SlimeVR</h3>
     <p>Kliknij zrzut ekranu, aby obejrzeć go w powiększeniu. Zrzuty zrobił autor poradnika w SlimeVR Server v21.1.0 z ośmioma podłączonymi trackerami. Dwa kreatory kalibracji pokazano w wersji rosyjskiej bez trackerów; w wersji angielskiej wyglądają tak samo.</p>
     <div class="reference-grid slimevr-examples">
-      <figure class="reference-shot" data-zoom="Przypisanie trackerów"><img src="../img/sv-assign.webp" alt="Strona Assign trackers: schemat ciała, przypisane trackery oznaczone zielonymi punktami" width="1400" height="768" loading="lazy"><figcaption><strong>Przypisanie trackerów.</strong> Kliknij punkt na ciele i wybierz tracker. Zielone punkty są już przypisane.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Położenie trackera"><img src="../img/sv-mounting-edit.webp" alt="Ustawienia trackera: blok Mounting orientation i przycisk Edit mounting" width="1400" height="620" loading="lazy"><figcaption><strong>Położenie trackera.</strong> Przycisk „Edit mounting” otwiera koło wyboru pokazane wyżej.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Kalibracja mocowania."><img src="../img/slimevr-21-mounting.webp" alt="Kreator Mounting Calibration" loading="lazy"><figcaption><strong>Kalibracja mocowania.</strong> Postępuj według kreatora.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Proporcje ciała"><img src="../img/sv-proportions.webp" alt="Ekran Body Proportions: wzrost i przycisk Manual Proportions" width="900" height="990" loading="lazy"><figcaption><strong>Proporcje ciała.</strong> „Manual Proportions” jest w lewym dolnym rogu. Od niego zaczyna się automatyczne dopasowanie.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Automatyczne proporcje."><img src="../img/slimevr-21-proportions-auto.webp" alt="Kreator Measure your body" loading="lazy"><figcaption><strong>Automatyczne proporcje.</strong> Wykonuj czynności w kolejności kreatora.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Przypisanie trackerów"><img style="--ar:auto 1400/768" src="../img/sv-assign.webp" alt="Strona Assign trackers: schemat ciała, przypisane trackery oznaczone zielonymi punktami" width="1400" height="768" loading="lazy"><figcaption><strong>Przypisanie trackerów.</strong> Kliknij punkt na ciele i wybierz tracker. Zielone punkty są już przypisane.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Położenie trackera"><img style="--ar:auto 1400/620" src="../img/sv-mounting-edit.webp" alt="Ustawienia trackera: blok Mounting orientation i przycisk Edit mounting" width="1400" height="620" loading="lazy"><figcaption><strong>Położenie trackera.</strong> Przycisk „Edit mounting” otwiera koło wyboru pokazane wyżej.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Kalibracja mocowania."><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-mounting.webp" alt="Kreator Mounting Calibration" loading="lazy"><figcaption><strong>Kalibracja mocowania.</strong> Postępuj według kreatora.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Proporcje ciała"><img style="--ar:auto 900/990" src="../img/sv-proportions.webp" alt="Ekran Body Proportions: wzrost i przycisk Manual Proportions" width="900" height="990" loading="lazy"><figcaption><strong>Proporcje ciała.</strong> „Manual Proportions” jest w lewym dolnym rogu. Od niego zaczyna się automatyczne dopasowanie.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Automatyczne proporcje."><img style="--ar:auto 1360/900" width="1360" height="900" src="../img/slimevr-21-proportions-auto.webp" alt="Kreator Measure your body" loading="lazy"><figcaption><strong>Automatyczne proporcje.</strong> Wykonuj czynności w kolejności kreatora.</figcaption></figure>
     </div>
     <p class="source-note">Interfejs z <a href="https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v21.1.0">SlimeVR Server v21.1.0</a>.</p>
   </div>
@@ -616,10 +626,10 @@
     <h3>Gdzie to jest w VRChat</h3>
     <p>Kliknij zrzut ekranu, aby obejrzeć go w powiększeniu. Na zrzutach ustawienia nie są jeszcze zmienione: ustaw wartości według listy powyżej.</p>
     <div class="reference-grid vrchat-examples">
-      <figure class="reference-shot" data-zoom="Wzrost i stara wersja IK"><img src="../img/vrc-height.webp" alt="Menu Tracking &amp; IK w VRChat: wiersz User Real Height i przełącznik Use Legacy IK Solving" width="774" height="593" loading="lazy"><figcaption><strong>Wzrost i stara wersja IK.</strong> Przycisk pomiaru wzrostu to skrajny z prawej w wierszu wzrostu. Przełącznik starej wersji IK to trzeci wiersz.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img src="../img/vrc-calibration.webp" alt="Blok Calibration &amp; Debug: Legacy Calibration i Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug.</strong> „Legacy Calibration” to pierwszy wiersz, „Calibration Range” to suwak niżej.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Przycisk Calibrate"><img src="../img/vrc-quick-fbt.webp" alt="Launch Pad szybkiego menu VRChat, wskaźnik na przycisku Calibrate" width="550" height="675" loading="lazy"><figcaption><strong>Szybkie menu.</strong> Przycisk „Calibrate” na dole Launch Pad uruchamia kalibrację całego ciała.</figcaption></figure>
-      <figure class="reference-shot" data-zoom="Poza do kalibracji"><img src="../img/vrc-tpose.webp" alt="Awatar w pozie do kalibracji, trackery pokazane jako kolorowe koła" width="840" height="745" loading="lazy"><figcaption><strong>Poza do kalibracji.</strong> Dopasuj swoje ciało do awatara i naciśnij oba spusty.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Wzrost i stara wersja IK"><img style="--ar:auto 774/593" src="../img/vrc-height.webp" alt="Menu Tracking &amp; IK w VRChat: wiersz User Real Height i przełącznik Use Legacy IK Solving" width="774" height="593" loading="lazy"><figcaption><strong>Wzrost i stara wersja IK.</strong> Przycisk pomiaru wzrostu to skrajny z prawej w wierszu wzrostu. Przełącznik starej wersji IK to trzeci wiersz.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Calibration &amp; Debug"><img style="--ar:auto 738/572" src="../img/vrc-calibration.webp" alt="Blok Calibration &amp; Debug: Legacy Calibration i Calibration Range" width="738" height="572" loading="lazy"><figcaption><strong>Calibration &amp; Debug.</strong> „Legacy Calibration” to pierwszy wiersz, „Calibration Range” to suwak niżej.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Przycisk Calibrate"><img style="--ar:auto 550/675" src="../img/vrc-quick-fbt.webp" alt="Launch Pad szybkiego menu VRChat, wskaźnik na przycisku Calibrate" width="550" height="675" loading="lazy"><figcaption><strong>Szybkie menu.</strong> Przycisk „Calibrate” na dole Launch Pad uruchamia kalibrację całego ciała.</figcaption></figure>
+      <figure class="reference-shot" data-zoom="Poza do kalibracji"><img style="--ar:auto 840/745" src="../img/vrc-tpose.webp" alt="Awatar w pozie do kalibracji, trackery pokazane jako kolorowe koła" width="840" height="745" loading="lazy"><figcaption><strong>Poza do kalibracji.</strong> Dopasuj swoje ciało do awatara i naciśnij oba spusty.</figcaption></figure>
     </div>
     <p class="source-note">Zrzuty zrobił autor poradnika w VRChat (listopad 2026). Kalibrację całego ciała opisano w <a href="https://docs.vrchat.com/docs/full-body-tracking#using-full-body-tracking-in-vrchat">dokumentacji VRChat</a>.</p>
   </div>
@@ -640,7 +650,7 @@
     <li><span>Jeśli masz trackery na stopach, wykonaj <strong>kalibrację stóp</strong> (reset mocowania stóp): przycisk <strong>Feet</strong>.</span></li>
     <li><span>Wejdź do gry. W <strong>VRChat</strong> wykonaj kalibrację całego ciała, czyli przypisanie trackerów do awatara.</span></li>
   </ol>
-  <figure class="reference-shot wide-shot" data-zoom="Ekran główny SlimeVR"><img src="../img/sv-home.webp" alt="Ekran główny SlimeVR: przyciski Full Reset, Yaw Reset, Body i Feet nad listą trackerów" width="1400" height="566" loading="lazy"><figcaption><strong>Ekran główny SlimeVR.</strong> W lewym górnym rogu Full Reset i Yaw Reset. Po prawej kalibracja mocowania: Body dla ciała i Feet dla stóp.</figcaption></figure>
+  <figure class="reference-shot wide-shot" data-zoom="Ekran główny SlimeVR"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="Ekran główny SlimeVR: przyciski Full Reset, Yaw Reset, Body i Feet nad listą trackerów" width="1400" height="566" loading="lazy"><figcaption><strong>Ekran główny SlimeVR.</strong> W lewym górnym rogu Full Reset i Yaw Reset. Po prawej kalibracja mocowania: Body dla ciała i Feet dla stóp.</figcaption></figure>
   <details>
     <summary>Dlaczego trackery muszą się najpierw nagrzać</summary>
     <div><p>Tracker włączony w temperaturze poniżej 15 °C zaczyna nową kalibrację temperaturową. Zapisane dane zostają w pamięci, a tracker znów zacznie z nich korzystać po ponownym uruchomieniu w cieple.</p></div>
@@ -733,7 +743,7 @@
 </section>
 
 <div class="author" aria-label="Autor poradnika">
-  <span class="author-ava"><img class="author-avatar" src="../img/avatar.jpg" alt="Awatar Skrebi" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
+  <span class="author-ava"><img style="--ar:auto 64/64" class="author-avatar" src="../img/avatar.jpg" alt="Awatar Skrebi" width="64" height="64"><img class="author-deco" alt="" aria-hidden="true" hidden></span>
   <div class="author-info">
     <span class="author-kicker">Autor poradnika</span>
     <b class="author-name">Skrebi</b>
@@ -769,11 +779,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "Gotowe", "Mark step done": "Krok wykonany", "Start with the check": "Zacznij od sprawdzenia", "All steps done · before-play checklist": "Wszystkie kroki wykonane · lista przed grą", "Continue: step ": "Kontynuuj: krok ", "Step ": "Krok ", "Steps": "Kroki", "Axes": "Osie", "Temperature": "Temperaturowa", "Check": "Sprawdzenie", "None added": "Nie dodano", "Tracker ": "Tracker ", "e.g. left thigh": "np. lewe udo", "Tracker name ": "Nazwa trackera ", "Remove": "Usuń", "Remove tracker ": "Usuń tracker ", "Image viewer": "Podgląd obrazu", "Tap or pinch to zoom": "Dotknij lub rozsuń palce, aby powiększyć", "Click the image or use the mouse wheel to zoom": "Kliknij obraz lub użyj kółka myszy, aby powiększyć", "Close (Esc)": "Zamknij (Esc)", "Previous image": "Poprzedni obraz", "Next image": "Następny obraz", "Open larger: ": "Otwórz w powiększeniu: ", "Likes: ": "Polubienia: ", "♥ Thank you!": "♥ Dziękuję!", "♡ Like": "♡ Lubię to", "Click again to remove your like": "Kliknij ponownie, aby cofnąć polubienie", "no data": "brak danych", "Likes are unavailable right now": "Polubienia są teraz niedostępne", "Checking…": "Sprawdzanie…", "Too many attempts. Try again in a minute.": "Za często. Spróbuj za minutę.", "Check failed. Please try again": "Weryfikacja nie powiodła się. Spróbuj ponownie", "Could not send your like": "Nie udało się dodać polubienia", "Like count is unavailable right now": "Liczba polubień jest teraz niedostępna", "Done.": "Gotowe.", "Download cancelled.": "Pobieranie anulowane.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Tutaj nie da się pobrać pliku. Otwórz plik HTML poradnika w przeglądarce i naciśnij tam przycisk.", "Copied": "Skopiowano", "Copy nickname": "Skopiuj nick", "Nickname: ": "Nick: ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Start. Pudełko do góry dnem, krótszym bokiem dosunięte do ogranicznika, wycięcie na kabel po lewej. Teraz uruchom tracker ponownie.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Pozycja 1. Dnem w dół, krótszym bokiem dosunięte do ogranicznika. Włącznik i kabel po lewej, kabel wychodzi z wycięcia prosto. Konsola: „Waiting for position 1”.", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Pozycja 2. Na krótkim boku, dnem do ogranicznika, otwartą stroną do ciebie. Kabel wychodzi z lewej i kładzie się na stole.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Pozycja 3. Do góry dnem, krótszym bokiem do ogranicznika. Taśma trzyma tracker, kabel po lewej.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Pozycja 4. Na drugim krótkim boku, dnem do ogranicznika. Kabel wychodzi teraz z prawej.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Pozycja 5. Na długim boku, dnem do ogranicznika, wycięcie u góry. Kabel idzie w górę i łagodnie opada na stół, nie naciągając pudełka.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Pozycja 6. Na drugim długim boku, wycięcie na dole. Zegnij kabel w wycięciu i wyprowadź przez otwartą stronę do siebie, żeby nie unosił pudełka. Potem konsola napisze „Calibration data gathered”."};</script>
+<script>window.GUIDE_I18N={"Done": "Gotowe", "Mark step done": "Krok wykonany", "Start with the check": "Zacznij od sprawdzenia", "All steps done · before-play checklist": "Wszystkie kroki wykonane · lista przed grą", "Continue: step ": "Kontynuuj: krok ", "Step ": "Krok ", "Steps": "Kroki", "Axes": "Osie", "Temperature": "Temperaturowa", "Check": "Sprawdzenie", "None added": "Nie dodano", "Tracker ": "Tracker ", "e.g. left thigh": "np. lewe udo", "Tracker name ": "Nazwa trackera ", "Remove": "Usuń", "Remove tracker ": "Usuń tracker ", "Image viewer": "Podgląd obrazu", "Tap or pinch to zoom": "Dotknij lub rozsuń palce, aby powiększyć", "Click the image or use the mouse wheel to zoom": "Kliknij obraz lub użyj kółka myszy, aby powiększyć", "Close (Esc)": "Zamknij (Esc)", "Previous image": "Poprzedni obraz", "Next image": "Następny obraz", "Open larger: ": "Otwórz w powiększeniu: ", "Likes: ": "Polubienia: ", "♥ Thank you!": "♥ Dziękuję!", "♡ Like": "♡ Lubię to", "Click again to remove your like": "Kliknij ponownie, aby cofnąć polubienie", "no data": "brak danych", "Likes are unavailable right now": "Polubienia są teraz niedostępne", "Checking…": "Sprawdzanie…", "Too many attempts. Try again in a minute.": "Za często. Spróbuj za minutę.", "Check failed. Please try again": "Weryfikacja nie powiodła się. Spróbuj ponownie", "Could not send your like": "Nie udało się dodać polubienia", "Like count is unavailable right now": "Liczba polubień jest teraz niedostępna", "Done.": "Gotowe.", "Download cancelled.": "Pobieranie anulowane.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Tutaj nie da się pobrać pliku. Otwórz plik HTML poradnika w przeglądarce i naciśnij tam przycisk.", "Copied": "Skopiowano", "Copy nickname": "Skopiuj nick", "Nickname: ": "Nick: ", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Start. Pudełko do góry dnem, krótszym bokiem dosunięte do ogranicznika, wycięcie na kabel po lewej. Teraz uruchom tracker ponownie.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Pozycja 1. Dnem w dół, krótszym bokiem dosunięte do ogranicznika. Włącznik i kabel po lewej, kabel wychodzi z wycięcia prosto. Konsola: „Waiting for position 1”.", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Pozycja 2. Na krótkim boku, dnem do ogranicznika, otwartą stroną do ciebie. Kabel wychodzi z lewej i kładzie się na stole.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Pozycja 3. Do góry dnem, krótszym bokiem do ogranicznika. Taśma trzyma tracker, kabel po lewej.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Pozycja 4. Na drugim krótkim boku, dnem do ogranicznika. Kabel wychodzi teraz z prawej.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Pozycja 5. Na długim boku, dnem do ogranicznika, wycięcie u góry. Kabel idzie w górę i łagodnie opada na stół, nie naciągając pudełka.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Pozycja 6. Na drugim długim boku, wycięcie na dole. Zegnij kabel w wycięciu i wyprowadź przez otwartą stronę do siebie, żeby nie unosił pudełka. Potem konsola napisze „Calibration data gathered”.", "Face down:": "W dół skierowana ścianka"};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
-<script src="../js/scenes.js?v=ed7d7737"></script>
+<script src="../js/scenes.js?v=8d7ae98a"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=4af4fa2b"></script>
+<script src="../js/nav.js?v=904409a3"></script>
 </body>
 </html>
