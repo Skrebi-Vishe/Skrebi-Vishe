@@ -270,17 +270,17 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     if (!WIRE_MATS) WIRE_MATS = [0x1b1a1e].map(function (c) { return new T.MeshStandardMaterial({ color: c, roughness: 0.45 }); });
     var connMat = new T.MeshStandardMaterial({ color: 0xf1eee6, roughness: 0.5 });
     var ax = HYP.auxH[0] * 0.1, mz = 2.05;
-    var CX = 0.35, CY = trY + 0.48;         // гнездо разъёма посередине стороны Y+ основного корпуса (глубокое отверстие в модели)
+    var CX = 0.26, CY = trY + 0.44;         // гнездо разъёма посередине стороны Y+ основного корпуса: отверстие 12 × 5.6 мм, разъём заполняет его целиком
     // разъём на торце ответвления
-    var c1 = new T.Mesh(CONN_GEO.x || (CONN_GEO.x = keep(new T.BoxGeometry(0.45, 0.42, 0.85))), connMat); c1.position.set(ax - 0.05, auxY + 0.15, 0); c1.castShadow = true; group.add(c1);   // в гнезде на торце ответвления, наружу ~2 мм
+    var c1 = new T.Mesh(CONN_GEO.x || (CONN_GEO.x = keep(new T.BoxGeometry(0.45, 0.56, 1.2))), connMat); c1.position.set(ax - 0.05, auxY + 0.13, 0.05); c1.castShadow = true; group.add(c1);   // в гнезде на торце ответвления, наружу ~2 мм
     // разъём на боку основного корпуса
-    var c2 = new T.Mesh(CONN_GEO.z || (CONN_GEO.z = keep(new T.BoxGeometry(0.85, 0.42, 0.45))), connMat); c2.position.set(CX, CY, -mz + 0.05); c2.castShadow = true; group.add(c2);   // такой же разъём, как на ответвлении, и так же утоплен
+    var c2 = new T.Mesh(CONN_GEO.z || (CONN_GEO.z = keep(new T.BoxGeometry(1.2, 0.56, 0.45))), connMat); c2.position.set(CX, CY, -mz + 0.05); c2.castShadow = true; group.add(c2);   // такой же разъём, как на ответвлении, и так же утоплен
     // Длина ≈13–14 см, как у настоящего кабеля: петля ложится на дно коробочки за торцом трекера
     // и возвращается к разъёму вдоль стороны Y+, не задевая скотч и ремешки корпуса.
     var fy = floorTop + 0.26;
     var path = new T.CatmullRomCurve3([
-      new T.Vector3(ax + 0.17, auxY + 0.15, 0),
-      new T.Vector3(ax + 1.1, auxY + 0.1, 0.05),
+      new T.Vector3(ax + 0.17, auxY + 0.13, 0.05),
+      new T.Vector3(ax + 1.1, auxY + 0.1, 0.1),
       new T.Vector3(4.9, topY + 0.05, 0.35),
       new T.Vector3(6.2, fy + 0.15, 0.9),
       new T.Vector3(7.5, fy, -0.3),
