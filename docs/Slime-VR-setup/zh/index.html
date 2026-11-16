@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="zh-Hans")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="f1c2481c2c";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ba15ef6a98";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -74,7 +74,7 @@
   <ol>
     <li><span><b>按从上到下的顺序完成各个步骤。</b>每一步最后都有结果检查和进入下一步的链接。</span></li>
     <li><span><b>完成的步骤要做标记：</b>点击“标记此步已完成”按钮。标记会保存在这个浏览器中，下次打开时，指南会提示你从上次的位置继续。</span></li>
-    <li><span><b>第 4–6 步需要对每个追踪器依次进行。</b>为免混乱，请在第 4 步的检查清单中添加你的追踪器。</span></li>
+    <li><span><b>第 4–6 步需要对每个追踪器依次进行。</b>所有追踪器都完成该步后，再标记此步已完成。</span></li>
     <li><span><b>遇到问题？</b>请打开<a href="#help">常见问题</a>。点击截图和示意图可以放大查看。</span></li>
   </ol>
 </section>
@@ -101,7 +101,7 @@
 
 <!-- STEP 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>检查你的追踪器是否适用</h2><p>本指南仅适用于支持温度校准的追踪器</p></div></div>
+  <div class="step-head"><div class="num">1</div><div><h2>检查你的追踪器是否适用</h2><p>需要 BMI160 传感器</p></div></div>
   <p>本指南针对 <strong>BMI160</strong> 和 <strong>Wemos D1 Mini (ESP8266)</strong> 编写。IMU 是追踪器用来判断自身旋转方向的传感器。
   </p>
   <ol class="do">
@@ -168,7 +168,7 @@
   </div>
 
   <div class="card dl-card">
-    <h3 style="margin-top:0">可 3D 打印的外壳：8+2 套件</h3>
+    <h3 style="margin-top:0">可 3D 打印的外壳：8+2 套件（可选）</h3>
     <p>如果需要新外壳，这里有一套基于 Hyperion、为本指南改良的现成套件：外壳带 Type‑C 开口，盖子上标有身体部位（胸部、髋部、左右大腿、左右小腿、左右脚）。套件中还包括扩展传感器用的带盖外壳。盖子上的文字是俄语。</p>
     <div class="dl-row">
       <a class="dl-btn" id="dl-models" href="../models/SlimeVR_Hyperion_models.zip" download>
@@ -196,7 +196,7 @@
   <div class="step-head"><div class="num">3</div><div><h2>安装固件 v0.5.4</h2><p>通过固件网站 · 必须是这个版本，不能更新</p></div></div>
   <div class="tip"><b>可以跳过</b><p>如果第 1 步显示的是 <strong>v0.5.4</strong>，请跳过此步，直接进入第 4 步。不需要重新刷写同一版本。</p></div>
   <nav class="step-links" aria-label="第 3 步内容"><a href="#rotation">传感器方向</a><a href="#erase">清除数据</a><a href="#flash">刷写</a></nav>
-  <div class="warn"><b>重要</b><p><strong>为什么必须是 v0.5.4。</strong>BMI160 的温度校准只存在于固件 <strong>v0.3.3 至 v0.5.4</strong> 中。从 v0.6.2 开始，BMI160 使用了新驱动，其中<strong>没有</strong>温度校准：控制台会显示“Temperature calibration not supported for IMU BMI160”。v0.3.2 及更早版本中还没有这项功能。所以我们安装 v0.5.4。</p><p><strong>通过网站刷写，而不是通过 SlimeVR。</strong>新版 SlimeVR Server 无法给这些追踪器安装旧固件。所以我们在 Chrome 或 Edge 中通过一个单独的网站刷写。</p></div>
+  <div class="warn"><b>重要</b><p><strong>只能用 v0.5.4。</strong>更新的固件中没有 BMI160 的温度校准，所以必须安装这个版本。</p><p><strong>通过网站刷写，而不是通过 SlimeVR。</strong>新版 SlimeVR Server 无法给这些追踪器安装旧固件。所以我们在 Chrome 或 Edge 中通过一个单独的网站刷写。</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · 确定传感器方向（IMU Rotation）</h3>
@@ -238,7 +238,7 @@
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>你的数值</strong></td><td>在 3.1 中找到的值。</td></tr>
         <tr><td>Secondary IMU</td><td>视情况而定</td><td>带扩展传感器：勾选，选择 IMU_BMI160 并设置其方向。无扩展传感器：不勾选。</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>开启</strong></td><td>这就是温度校准。没有它，第 5 步无法进行。</td></tr>
-        <tr><td>BMI160 Tempcal Debug</td><td><strong>关闭</strong></td><td>见下文说明。</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>关闭</strong></td><td>不要开启。</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>你的网络</strong></td><td>仅支持 2.4 GHz，不支持 WPA3。区分大小写。</td></tr>
       </tbody>
     </table>
@@ -263,13 +263,6 @@
       <li><span>等待刷写和 Wi‑Fi 设置完成。过程中不要拔掉追踪器。</span></li>
       <li><span>打开 SlimeVR，确认追踪器已出现，且信息中显示 <strong>v0.5.4</strong>。确认后再刷写下一个追踪器。</span></li>
     </ol>
-    <details>
-      <summary>需要开启“BMI160 Tempcal Debug”吗？</summary>
-      <div>
-        <p>不需要，保持关闭。开启后，SlimeVR 会一直显示类似 <code>AXXYY</code> 的代码，而不是正常温度：校准进行中时 A = 2；XX = 进度，从 0 到 60；YY = 温度。完全校准好的追踪器显示 <code>160YY</code>。</p>
-        <p>这个代码会一直存在，要去掉它就必须重新刷写追踪器并重新校准。SlimeVR 中的正常温度显示和第 6 步的检查就足够了。</p>
-      </div>
-    </details>
   </div>
   <div class="warn"><b>校准完成后，不要再动固件</b><p>重新刷写会使已保存的温度校准失效。如果 SlimeVR 提示更新固件，请拒绝。如果确实需要重新刷写，请重新执行 3.2 和所有校准。</p></div>
   <div class="step-finish"><div><b>检查结果</b><p>所有追踪器都在 SlimeVR 中可见，并且每个都显示 v0.5.4。</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
@@ -281,22 +274,13 @@
   <p>拿起第一个追踪器，依次完成第 4、5、6 步。完成后，拿下一个追踪器，再从第 4 步开始。对每个追踪器依次这样做。</p>
 </div>
 
-<details class="tracker-log" id="tracker-log">
-  <summary>追踪器检查清单 <span id="tracker-count" aria-live="polite">尚未添加</span></summary>
-  <div>
-    <p>添加你所有的主追踪器。扩展传感器与它的主追踪器一起勾选。目录中的步骤要等整套追踪器都完成该步后再勾选。</p>
-    <div id="tracker-rows"></div>
-    <button type="button" class="quiet-button" id="tracker-add">添加追踪器</button>
-    <noscript>每个追踪器要勾选三项：轴、温度和检查。</noscript>
-  </div>
-</details>
 
 <!-- STEP 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>六面校准</h2><p>通过 SlimeVR 控制台 · 单个追踪器 · 约 5 分钟</p></div></div>
   <p>追踪器会学习在六个姿势下“水平”是什么样子。它粘在盒子里：你每次翻转盒子并推靠到挡块上。</p>
-  <nav class="step-links" aria-label="第 4 步内容"><a href="#axis-console">控制台消息</a><a href="#axis-positions">盒子的姿势</a><a href="#axis-tips">提示</a><a href="#tracker-log">追踪器检查清单</a></nav>
-  <div class="tip"><b>两种传感器校准</b><p>传感器有两种校准方式：<strong>六面校准</strong>（本步）和<strong>温度校准</strong>（第 5 步）。下面的视频中还演示了把追踪器顺时针旋转 10 圈。<strong>这一步你不需要做。</strong>那是另一种灵敏度校准，其结果需要手动写入固件。</p></div>
+  <nav class="step-links" aria-label="第 4 步内容"><a href="#axis-console">控制台消息</a><a href="#axis-positions">盒子的姿势</a><a href="#axis-tips">提示</a></nav>
+  <div class="tip"><b>跳过视频中的一部分</b><p>下面的视频中还演示了把追踪器顺时针旋转 10 圈。<strong>这一步不需要做</strong>：它不属于本指南的步骤。</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -381,11 +365,10 @@
   <div class="tip tip-list" id="axis-tips"><b>提示</b>
     <dl>
       <dt>线的摆放方式</dt><dd>线不能拉扯、抬起或推动盒子，否则盒子放不平，校准就会不准确。大多数姿势下，线只需从槽中引出，松松地放在桌上。当盒子以槽口朝下放置时，小心地把线在槽内弯折，从盒子的敞口一侧引出。每次翻转前，都给线留出一些余量。</dd>
-      <dt>为什么追踪器在盒中的位置很重要</dt><dd>固件需要追踪器在平放状态下，让六个面分别朝下一次。第一个姿势之后顺序无所谓，但照着视频做最简单。重要的是追踪器要粘得<strong>端正，并与盒壁平行</strong>：这样盒子的各个面就与外壳内传感器的轴对齐，校准才准确。</dd>
       <dt>如果控制台没有任何变化</dt><dd>追踪器会等待被移动、然后再次静止。如果没有出现“Recorded”一行，请检查盒子是否在晃动、你是否还扶着它。如果不小心让盒子以同一个面放了两次，校准会不准确：把盒子倒过来，重启追踪器，重新开始校准。</dd>
     </dl>
   </div>
-  <div class="step-finish"><div><b>检查结果</b><p>控制台显示了“Calibration data gathered”。在<a href="#tracker-log">追踪器检查清单</a>中为这个追踪器勾选“轴”。所有追踪器都完成后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
+  <div class="step-finish"><div><b>检查结果</b><p>控制台显示了“Calibration data gathered”。所有追踪器都完成后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
   <p class="next">看到“Calibration data gathered”了吗？用同一个追踪器进入第 5 步</p>
 </section>
 
@@ -394,7 +377,7 @@
   <div class="step-head"><div class="num">5</div><div><h2>温度校准</h2><p>同一个追踪器 · 35 分钟以上 · 明显减少漂移</p></div></div>
   <p>BMI160 在升温过程中，即使追踪器不动，读数也会慢慢“飘”。这种现象叫作漂移。温度校准有助于减少漂移。<strong>当传感器通电且温度低于 15 °C 时，它会自动开始</strong>，<strong>温度升到 45 °C 以上后会自动保存</strong>。不需要按任何按钮：你只需要把追踪器充分冷却，然后平缓地加热。</p>
   <div class="tip"><b>不需要连线</b><p>这项校准可以不接 USB 线进行：追踪器使用自身电池供电，并通过 Wi‑Fi 把温度发送给 SlimeVR。电池必须充好电。第 6 步再通过数据线检查结果。</p></div>
-  <nav class="step-links" aria-label="第 5 步内容"><a href="#temperature-prep">准备工作</a><a href="#temperature-run">校准</a><a href="#temperature-save">保存消息</a><a href="#tracker-log">追踪器检查清单</a></nav>
+  <nav class="step-links" aria-label="第 5 步内容"><a href="#temperature-prep">准备工作</a><a href="#temperature-run">校准</a><a href="#temperature-save">保存消息</a></nav>
   <figure class="temperature-figure" data-zoom="校准过程中的温度">
     <ol class="temperature-stages" aria-label="关键温度点">
       <li><b>低于 15 °C</b><span>打开追踪器</span></li>
@@ -431,7 +414,7 @@
   <h3 id="temperature-prep">准备工作</h3>
   <ol class="do">
     <li><span>在 SlimeVR 中开启温度显示（与第 2 步相同）。</span></li>
-    <li><span><strong>在冷却之前，先把追踪器的盖子取下</strong>。没有盖子，热风能直接吹到传感器上，温度会更准确地跟随吹风机变化：关掉吹风机后，外壳不会继续散发余热，追踪器也就不会过热。之后就不能再取盖子了，因为追踪器必须保持不动。</span></li>
+    <li><span><strong>在冷却之前，先把追踪器的盖子取下</strong>：这样吹风机的热风能直接吹到传感器上。之后就不能再取盖子了，因为追踪器必须保持不动。</span></li>
     <li><span><strong>关闭追踪器</strong>，放进冰箱冷藏室或冷冻室，<strong>约 10 分钟</strong>。只能在追踪器关机时放进冰箱。</span></li>
   </ol>
   <h3 id="temperature-run">校准</h3>
@@ -461,7 +444,7 @@
       <li><strong>两个不带扩展传感器的普通追踪器</strong>，只要加热均匀，可以同时校准。</li>
     </ul>
   </div>
-  <div class="step-finish"><div><b>检查结果</b><p>传感器温度已超过 45 °C。让追踪器冷却。在<a href="#tracker-log">追踪器检查清单</a>中勾选“温度”，并在第 6 步检查记录。所有追踪器都完成后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
+  <div class="step-finish"><div><b>检查结果</b><p>传感器温度已超过 45 °C。让追踪器冷却，并在第 6 步检查记录。所有追踪器都完成后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
   <p class="next">校准已保存？进入第 6 步</p>
 </section>
 
@@ -501,7 +484,7 @@
     <b>循环 · 结果良好？</b>
     <p>这个追踪器已经完成。如果还有未校准的追踪器，拿起下一个，从第 4 步开始。全部完成后，进入第 7 步。</p>
   </div>
-  <div class="step-finish"><div><b>检查结果</b><p>在<a href="#tracker-log">追踪器检查清单</a>中为完成的追踪器勾选“检查”。整套都检查完后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
+  <div class="step-finish"><div><b>检查结果</b><p>整套都检查完后，再勾选整个步骤。</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
 </section>
 
 <!-- STEP 7 -->
@@ -576,7 +559,6 @@
     <li><label><input type="checkbox" data-prep="s8-3"><span><strong>记住</strong>每个追踪器戴在身体部位的哪一侧：前、后、左还是右。第 9 步会用到。</span></label></li>
   </ul>
   <div class="warn"><b>在 SlimeVR 中按实际佩戴方式设置</b><p>SlimeVR Server 中追踪器的安装位置必须与实际佩戴方式一致。胸部或髋部追踪器戴在背后？那就在第 9 步中为它选择 <strong>“Back”</strong>（背面）。大腿追踪器戴在侧面：选择 <strong>“Left”</strong> 或 <strong>“Right”</strong>（左或右）。如果程序中的设置与你身上的不一致，骨架就会朝错误的方向倾斜和转动。</p></div>
-  <div class="tip"><b>多尝试不同的方案</b><p>理想的位置因人而异。如果你对追踪效果不满意，试着把追踪器往上或往下、往前或往侧面挪一挪，每次挪动后都重新进行第 9 步的设置。稍微移动一点，效果往往就会明显改善。</p></div>
   <div class="step-finish"><div><b>检查结果</b><p>追踪器戴得很牢。你知道每个追踪器固定在哪个身体部位、哪一侧。</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">标记此步已完成</span></button></div>
   <p class="next">追踪器戴好了？戴上头显，进入第 9 步</p>
 </section>
@@ -652,10 +634,6 @@
     <li><span>进入游戏。在 <strong>VRChat</strong> 中进行全身校准，把追踪器绑定到虚拟形象上。</span></li>
   </ol>
   <figure class="reference-shot wide-shot" data-zoom="SlimeVR 主页"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVR 主页：追踪器列表上方的 Full Reset、Yaw Reset、Body 和 Feet 按钮" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR 主页。</strong>左上方是 Full Reset 和 Yaw Reset。右侧是安装校准：Body 用于身体，Feet 用于双脚。</figcaption></figure>
-  <details>
-    <summary>为什么追踪器要先回温</summary>
-    <div><p>在低于 15 °C 时开机，追踪器会开始新的温度校准。已保存的数据仍留在存储中，在温暖环境下重启后，追踪器会重新使用它。</p></div>
-  </details>
   <div class="tip"><b>游玩过程中</b><p>如果双腿或身体逐渐向一侧“漂移”，站直并执行 <strong>Yaw Reset</strong>。这对 IMU 追踪器来说是正常现象。可以在 SlimeVR 设置中为它设置一个快捷键，使用起来更方便。</p></div>
 </section>
 
@@ -780,11 +758,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "完成", "Mark step done": "标记此步已完成", "Start with the check": "从检查开始", "All steps done · before-play checklist": "所有步骤已完成 · 游玩前检查清单", "Continue: step ": "继续：第 ", "Step ": "第 ", "Steps": "步骤", "Axes": "轴", "Temperature": "温度", "Check": "检查", "None added": "尚未添加", "Tracker ": "追踪器 ", "e.g. left thigh": "例如：左大腿", "Tracker name ": "追踪器名称 ", "Remove": "删除", "Remove tracker ": "删除追踪器 ", "Image viewer": "图片查看器", "Tap or pinch to zoom": "点击或双指捏合可缩放", "Click the image or use the mouse wheel to zoom": "点击图片或滚动鼠标滚轮可缩放", "Close (Esc)": "关闭（Esc）", "Previous image": "上一张图片", "Next image": "下一张图片", "Open larger: ": "放大查看： ", "Likes: ": "点赞数： ", "♥ Thank you!": "♥ 谢谢！", "♡ Like": "♡ 点赞", "Click again to remove your like": "再次点击可取消点赞", "no data": "暂无数据", "Likes are unavailable right now": "点赞功能暂时不可用", "Checking…": "正在验证…", "Too many attempts. Try again in a minute.": "尝试次数过多，请一分钟后再试。", "Check failed. Please try again": "验证失败，请重试", "Could not send your like": "点赞发送失败", "Like count is unavailable right now": "暂时无法显示点赞数", "Switch to light theme": "切换到浅色主题", "Switch to dark theme": "切换到深色主题", "Done.": "完成。", "Download cancelled.": "下载已取消。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "此处无法下载。请在浏览器中打开本指南的 HTML 文件，然后在那里点击按钮。", "Copied": "已复制", "Copy nickname": "复制用户名", "Nickname: ": "用户名： ", "Reset view": "重置视角", "Bring the camera back to the box (NumPad “.”)": "让镜头回到盒子（小键盘“.”）", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "滚轮：缩放 · 按住滚轮拖动：旋转，配合 Shift：平移 · 双击：重置视图", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "开始。盒子倒置，端面紧靠挡块，线槽在左侧。现在重启追踪器。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿势 1。底面朝下，端面紧靠挡块。开关和线在左侧，线从切口直接引出。控制台：“Waiting for position 1”。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿势 2。以端面立起，底面朝向挡块，敞口朝向你。线从左侧引出，放在桌上。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿势 3。倒置，端面靠在挡块上。双面胶固定着追踪器，线在左侧。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿势 4。以另一端面立起，底面朝向挡块。这次线从右侧引出。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿势 5。以长侧面放置，底面朝向挡块，切口朝上。线向上引出，再平缓地垂到桌上，不拉扯盒子。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿势 6。以另一长侧面放置，切口朝下。把线在切口内弯折，从敞口一侧朝你引出，以免把盒子抬起。之后控制台会显示“Calibration data gathered”。", "Face down:": "朝下的面："};</script>
+<script>window.GUIDE_I18N={"Done": "完成", "Mark step done": "标记此步已完成", "Start with the check": "从检查开始", "All steps done · before-play checklist": "所有步骤已完成 · 游玩前检查清单", "Continue: step ": "继续：第 ", "Step ": "第 ", "Steps": "步骤", "Image viewer": "图片查看器", "Tap or pinch to zoom": "点击或双指捏合可缩放", "Click the image or use the mouse wheel to zoom": "点击图片或滚动鼠标滚轮可缩放", "Close (Esc)": "关闭（Esc）", "Previous image": "上一张图片", "Next image": "下一张图片", "Open larger: ": "放大查看： ", "Likes: ": "点赞数： ", "♥ Thank you!": "♥ 谢谢！", "♡ Like": "♡ 点赞", "Click again to remove your like": "再次点击可取消点赞", "no data": "暂无数据", "Likes are unavailable right now": "点赞功能暂时不可用", "Checking…": "正在验证…", "Too many attempts. Try again in a minute.": "尝试次数过多，请一分钟后再试。", "Check failed. Please try again": "验证失败，请重试", "Could not send your like": "点赞发送失败", "Like count is unavailable right now": "暂时无法显示点赞数", "Switch to light theme": "切换到浅色主题", "Switch to dark theme": "切换到深色主题", "Done.": "完成。", "Download cancelled.": "下载已取消。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "此处无法下载。请在浏览器中打开本指南的 HTML 文件，然后在那里点击按钮。", "Copied": "已复制", "Copy nickname": "复制用户名", "Nickname: ": "用户名： ", "Reset view": "重置视角", "Bring the camera back to the box (NumPad “.”)": "让镜头回到盒子（小键盘“.”）", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "滚轮：缩放 · 按住滚轮拖动：旋转，配合 Shift：平移 · 双击：重置视图", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "开始。盒子倒置，端面紧靠挡块，线槽在左侧。现在重启追踪器。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿势 1。底面朝下，端面紧靠挡块。开关和线在左侧，线从切口直接引出。控制台：“Waiting for position 1”。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿势 2。以端面立起，底面朝向挡块，敞口朝向你。线从左侧引出，放在桌上。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿势 3。倒置，端面靠在挡块上。双面胶固定着追踪器，线在左侧。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿势 4。以另一端面立起，底面朝向挡块。这次线从右侧引出。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿势 5。以长侧面放置，底面朝向挡块，切口朝上。线向上引出，再平缓地垂到桌上，不拉扯盒子。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿势 6。以另一长侧面放置，切口朝下。把线在切口内弯折，从敞口一侧朝你引出，以免把盒子抬起。之后控制台会显示“Calibration data gathered”。", "Face down:": "朝下的面："};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=faccd82e"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=c7609ea3"></script>
+<script src="../js/nav.js?v=aedf3834"></script>
 </body>
 </html>

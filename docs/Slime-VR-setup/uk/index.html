@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="uk")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="f1c2481c2c";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ba15ef6a98";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -74,7 +74,7 @@
   <ol>
     <li><span><b>Ідіть кроками згори донизу.</b> Кожен крок закінчується перевіркою результату та посиланням на наступний крок.</span></li>
     <li><span><b>Позначайте зроблене</b> кнопкою «Крок виконано». Позначки зберігаються в цьому браузері, і наступного разу гайд запропонує продовжити з того самого місця.</span></li>
-    <li><span><b>Кроки 4–6 робляться для кожного трекера по черзі.</b> Щоб не заплутатися, додайте свої трекери до позначок на кроці 4.</span></li>
+    <li><span><b>Кроки 4–6 робляться для кожного трекера по черзі.</b> Позначайте такий крок виконаним, коли він пройдений на всіх трекерах.</span></li>
     <li><span><b>Щось не виходить?</b> Відкрийте <a href="#help">часті проблеми</a>. Знімки та схеми збільшуються натисканням.</span></li>
   </ol>
 </section>
@@ -101,7 +101,7 @@
 
 <!-- STEP 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>Перевірте, чи підходять трекери</h2><p>Інструкція лише для трекерів із температурним калібруванням</p></div></div>
+  <div class="step-head"><div class="num">1</div><div><h2>Перевірте, чи підходять трекери</h2><p>Потрібен датчик BMI160</p></div></div>
   <p>Цей посібник розрахований на <strong>BMI160</strong> і <strong>Wemos D1 Mini (ESP8266)</strong>. IMU — датчик, за яким трекер визначає, як він повернутий.
   </p>
   <ol class="do">
@@ -168,7 +168,7 @@
   </div>
 
   <div class="card dl-card">
-    <h3 style="margin-top:0">Корпуси для 3D-друку: набір 8+2</h3>
+    <h3 style="margin-top:0">Корпуси для 3D‑друку: комплект 8+2 (за бажанням)</h3>
     <p>Якщо потрібні нові корпуси, є готовий набір на основі Hyperion, доопрацьований для цього посібника: у корпусах є отвір під Type‑C, а на кришках підписано частину тіла (груди, таз, ліве і праве стегно, ліва і права гомілка, ліва і права стопа). У набір також входять корпуси з кришками для розширень. Підписи на кришках російською.</p>
     <div class="dl-row">
       <a class="dl-btn" id="dl-models" href="../models/SlimeVR_Hyperion_models.zip" download>
@@ -196,7 +196,7 @@
   <div class="step-head"><div class="num">3</div><div><h2>Встановіть прошивку v0.5.4</h2><p>Через сайт прошивки · саме ця версія, не новіша</p></div></div>
   <div class="tip"><b>Можна пропустити</b><p>Якщо на кроці 1 було <strong>v0.5.4</strong>, пропустіть цей крок і переходьте до кроку 4. Перепрошивати ту саму версію не потрібно.</p></div>
   <nav class="step-links" aria-label="На кроці 3"><a href="#rotation">Поворот датчика</a><a href="#erase">Стирання даних</a><a href="#flash">Прошивка</a></nav>
-  <div class="warn"><b>Важливо</b><p><strong>Чому саме v0.5.4.</strong> Температурне калібрування для BMI160 є в прошивках <strong>від v0.3.3 до v0.5.4</strong>. Починаючи з v0.6.2, BMI160 працює через новий драйвер, у якому його <strong>немає</strong>: консоль напише «Temperature calibration not supported for IMU BMI160». У v0.3.2 і старіших його ще немає. Тому ставимо v0.5.4.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Нові версії SlimeVR Server не вміють ставити стару прошивку на такі трекери. Тому прошиваємо через окремий сайт у браузері Chrome або Edge.</p></div>
+  <div class="warn"><b>Важливо</b><p><strong>Тільки v0.5.4.</strong> У нових прошивках температурного калібрування для BMI160 немає, тому ставимо саме цю версію.</p><p><strong>Прошивайте через сайт, а не через SlimeVR.</strong> Нові версії SlimeVR Server не вміють ставити стару прошивку на такі трекери. Тому прошиваємо через окремий сайт у браузері Chrome або Edge.</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · Визначте поворот датчика (IMU Rotation)</h3>
@@ -238,7 +238,7 @@
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>ваше число</strong></td><td>Значення, яке ви визначили в 3.1.</td></tr>
         <tr><td>Secondary IMU</td><td>залежно від трекера</td><td>З розширенням: увімкніть позначку, IMU_BMI160 і його поворот. Без розширення: позначка вимкнена.</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>увімкнено</strong></td><td>Це і є температурне калібрування. Без нього крок 5 не спрацює.</td></tr>
-        <tr><td>BMI160 Tempcal Debug</td><td><strong>вимкнено</strong></td><td>Пояснення нижче.</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>вимкнено</strong></td><td>Не вмикайте.</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>ваша мережа</strong></td><td>Лише 2,4 ГГц, без WPA3. Великі й малі літери мають значення.</td></tr>
       </tbody>
     </table>
@@ -263,13 +263,6 @@
       <li><span>Дочекайтеся кінця прошивки і налаштування Wi‑Fi. Не від'єднуйте трекер під час процесу.</span></li>
       <li><span>Відкрийте SlimeVR і переконайтеся, що трекер з'явився, а в його інформації вказано <strong>v0.5.4</strong>. Лише після цього прошивайте наступний трекер.</span></li>
     </ol>
-    <details>
-      <summary>Чи потрібен «BMI160 Tempcal Debug»?</summary>
-      <div>
-        <p>Ні, залиште вимкненим. З ним SlimeVR замість звичайної температури постійно показує код на кшталт <code>AXXYY</code>: A = 2, поки йде калібрування; XX = прогрес від 0 до 60; YY = температура. Повністю відкалібрований трекер показує <code>160YY</code>.</p>
-        <p>Код залишається назавжди, і щоб його прибрати, доведеться перепрошити трекер і калібрувати заново. Звичайної температури в SlimeVR і перевірки на кроці 6 цілком достатньо.</p>
-      </div>
-    </details>
   </div>
   <div class="warn"><b>Після калібрування прошивку не чіпайте</b><p>Перепрошивка скасовує збережене температурне калібрування. Якщо SlimeVR пропонує оновити прошивку, відмовтеся. Якщо перепрошити все ж доведеться, повторіть 3.2 і всі калібрування заново.</p></div>
   <div class="step-finish"><div><b>Перевірте результат</b><p>Усі трекери видно в SlimeVR, і на кожному вказано v0.5.4.</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
@@ -281,22 +274,13 @@
   <p>Візьміть перший трекер і пройдіть із ним кроки 4, 5 і 6. Коли закінчите, візьміть наступний і знову почніть із кроку 4. Так по черзі з кожним трекером.</p>
 </div>
 
-<details class="tracker-log" id="tracker-log">
-  <summary>Список трекерів <span id="tracker-count" aria-live="polite">None added</span></summary>
-  <div>
-    <p>Додайте всі основні трекери. Розширення позначайте разом з його основним трекером. Кроки у змісті позначайте лише тоді, коли крок виконано для всього комплекту.</p>
-    <div id="tracker-rows"></div>
-    <button type="button" class="quiet-button" id="tracker-add">Додати трекер</button>
-    <noscript>Для кожного трекера три позначки: осі, температура і перевірка.</noscript>
-  </div>
-</details>
 
 <!-- STEP 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>Калібрування за осями</h2><p>Через консоль SlimeVR · один трекер · ~5 хвилин</p></div></div>
   <p>Трекер запам'ятовує, як виглядає «рівно» в кожному з шести положень. Він приклеєний усередині коробочки: ви перевертаєте коробочку і щоразу притискаєте її до упору.</p>
-  <nav class="step-links" aria-label="На кроці 4"><a href="#axis-console">Повідомлення консолі</a><a href="#axis-positions">Положення коробочки</a><a href="#axis-tips">Поради</a><a href="#tracker-log">Список трекерів</a></nav>
-  <div class="tip"><b>Два калібрування датчика</b><p>Датчик калібрують двома способами: <strong>за осями</strong> (цей крок) і <strong>за температурою</strong> (крок 5). У відео нижче трекер ще й крутять 10 разів за годинниковою стрілкою. <strong>Цього робити не потрібно.</strong> Це окреме калібрування чутливості, результати якого доводиться вписувати в прошивку вручну.</p></div>
+  <nav class="step-links" aria-label="На кроці 4"><a href="#axis-console">Повідомлення консолі</a><a href="#axis-positions">Положення коробочки</a><a href="#axis-tips">Поради</a></nav>
+  <div class="tip"><b>Одну частину відео пропустіть</b><p>У відео нижче трекер ще обертають за годинниковою стрілкою 10 разів. <strong>Цього робити не потрібно</strong>: для цього гайду це зайве.</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -381,11 +365,10 @@
   <div class="tip tip-list" id="axis-tips"><b>Поради</b>
     <dl>
       <dt>Як укладати кабель</dt><dd>Кабель не повинен тягнути, піднімати чи зсувати коробочку: інакше вона стоїть нерівно, і калібрування буде неточним. У більшості положень кабель просто виходить із прорізу і вільно лежить на столі. Коли коробочка лежить прорізом донизу, обережно підігніть кабель усередині прорізу і виведіть через відкриту сторону коробочки. Перед кожним перевертанням залишайте кабелю запас.</dd>
-      <dt>Чому важливо, як трекер сидить у коробочці</dt><dd>Прошивці потрібно, щоб трекер по черзі лежав рівно кожною з шести сторін донизу. Після першого положення порядок не важливий, але найпростіше повторювати за відео. Важливо, щоб трекер був приклеєний <strong>рівно і паралельно стінкам</strong>: тоді сторони коробочки збігаються з осями датчика в корпусі, і калібрування точне.</dd>
       <dt>Якщо в консолі нічого не змінюється</dt><dd>Трекер чекає, поки його зрушать, а потім знову залишать нерухомим. Якщо рядок «Recorded» не з'являється, перевірте, що коробочка не рухається і ви її не тримаєте. Якщо випадково поставили коробочку на ту саму сторону двічі, калібрування буде неточним: переверніть догори дном, перезапустіть трекер і почніть калібрування заново.</dd>
     </dl>
   </div>
-  <div class="step-finish"><div><b>Перевірте результат</b><p>Консоль написала «Calibration data gathered». Позначте «Осі» для цього трекера в <a href="#tracker-log">списку трекерів</a>. Увесь крок позначте після всіх трекерів.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
+  <div class="step-finish"><div><b>Перевірте результат</b><p>Консоль написала «Calibration data gathered». Увесь крок позначте після всіх трекерів.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
   <p class="next">Побачили «Calibration data gathered»? Переходьте до кроку 5 з тим самим трекером</p>
 </section>
 
@@ -394,7 +377,7 @@
   <div class="step-head"><div class="num">5</div><div><h2>Температурне калібрування</h2><p>Той самий трекер · 35+ хвилин · помітно зменшує дрейф</p></div></div>
   <p>Коли BMI160 нагрівається, його показання можуть повільно «пливти», навіть якщо трекер нерухомий. Це називається дрейфом. Температурне калібрування допомагає його зменшити. Воно <strong>починається саме, коли датчик увімкнений і холодніший за 15 °C</strong>, і <strong>зберігається саме, щойно він нагріється вище 45 °C</strong>. Натискати нічого не потрібно: треба лише правильно охолодити трекер і плавно його нагріти.</p>
   <div class="tip"><b>Кабель не потрібен</b><p>Це калібрування можна робити без USB-кабелю: трекер працює від власного акумулятора і передає температуру в SlimeVR через Wi‑Fi. Акумулятор має бути заряджений. Результат потім перевірите через кабель на кроці 6.</p></div>
-  <nav class="step-links" aria-label="На кроці 5"><a href="#temperature-prep">Підготовка</a><a href="#temperature-run">Калібрування</a><a href="#temperature-save">Повідомлення про збереження</a><a href="#tracker-log">Список трекерів</a></nav>
+  <nav class="step-links" aria-label="На кроці 5"><a href="#temperature-prep">Підготовка</a><a href="#temperature-run">Калібрування</a><a href="#temperature-save">Повідомлення про збереження</a></nav>
   <figure class="temperature-figure" data-zoom="Температура під час калібрування">
     <ol class="temperature-stages" aria-label="Ключові точки температури">
       <li><b>Нижче 15 °C</b><span>Увімкніть трекер</span></li>
@@ -431,7 +414,7 @@
   <h3 id="temperature-prep">Підготовка</h3>
   <ol class="do">
     <li><span>Увімкніть показ температури в SlimeVR (як на кроці 2).</span></li>
-    <li><span><strong>Зніміть кришку трекера заздалегідь</strong>, ще до охолодження. Без кришки тепле повітря потрапляє на датчик напряму, і температура точніше йде за феном: коли фен вимкнено, корпус не продовжує віддавати тепло, і трекер не перегрівається. Знімати кришку пізніше не можна: трекер має лежати нерухомо.</span></li>
+    <li><span><strong>Зніміть кришку корпусу заздалегідь</strong>, до охолодження: тоді тепле повітря від фена одразу доходить до датчика. Пізніше знімати не можна: трекер має лежати нерухомо.</span></li>
     <li><span><strong>Вимкніть трекер</strong> і покладіть у холодильник або морозилку <strong>приблизно на 10 хвилин</strong>. Кладіть трекер у холодильник лише вимкненим.</span></li>
   </ol>
   <h3 id="temperature-run">Калібрування</h3>
@@ -461,7 +444,7 @@
       <li><strong>Два звичайні трекери без розширень</strong> можна калібрувати одночасно, якщо гріти їх рівномірно.</li>
     </ul>
   </div>
-  <div class="step-finish"><div><b>Перевірте результат</b><p>Температура датчика перейшла 45 °C. Дайте трекеру охолонути. Позначте «Температура» в <a href="#tracker-log">списку трекерів</a> і перевірте запис на кроці 6. Увесь крок позначте після всіх трекерів.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
+  <div class="step-finish"><div><b>Перевірте результат</b><p>Температура датчика перейшла 45 °C. Дайте трекеру охолонути й перевірте запис на кроці 6. Увесь крок позначте після всіх трекерів.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
   <p class="next">Калібрування збережено? Переходьте до кроку 6</p>
 </section>
 
@@ -501,7 +484,7 @@
     <b>Цикл · результат добрий?</b>
     <p>Цей трекер готовий. Якщо залишилися невідкалібровані трекери, візьміть наступний і почніть із кроку 4. Коли готові всі, переходьте до кроку 7.</p>
   </div>
-  <div class="step-finish"><div><b>Перевірте результат</b><p>Позначте «Перевірка» для готового трекера в <a href="#tracker-log">списку трекерів</a>. Увесь крок позначте, коли перевірите весь комплект.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
+  <div class="step-finish"><div><b>Перевірте результат</b><p>Увесь крок позначте, коли перевірите весь комплект.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
 </section>
 
 <!-- STEP 7 -->
@@ -576,7 +559,6 @@
     <li><label><input type="checkbox" data-prep="s8-3"><span><strong>Запам'ятайте</strong>, де на кожній частині тіла стоїть трекер: спереду, ззаду, ліворуч чи праворуч. Це знадобиться на кроці 9.</span></label></li>
   </ul>
   <div class="warn"><b>Як надягли, так і вказуєте в SlimeVR</b><p>Розташування трекера в SlimeVR Server має збігатися з тим, як він справді надягнутий. Носите трекер грудей або таза на спині? На кроці 9 виберіть для нього <strong>«Back»</strong> (ззаду). Трекер стегна збоку — <strong>«Left»</strong> або <strong>«Right»</strong> (ліворуч чи праворуч). Якщо в програмі вказано не так, як на тілі, скелет нахилятиметься і повертатиметься неправильно.</p></div>
-  <div class="tip"><b>Пробуйте різні варіанти</b><p>Ідеальне місце в кожного своє. Якщо відстеження не подобається, спробуйте перемістити трекер вище чи нижче, вперед чи вбік і щоразу заново проходьте налаштування на кроці 9. Невеликий зсув часто помітно покращує результат.</p></div>
   <div class="step-finish"><div><b>Перевірте результат</b><p>Трекери сидять щільно. Ви знаєте, на якій частині тіла і з якого боку закріплено кожен.</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Крок виконано</span></button></div>
   <p class="next">Трекери надягнуто? Надягніть шолом і переходьте до кроку 9</p>
 </section>
@@ -652,10 +634,6 @@
     <li><span>Заходьте в гру. У <strong>VRChat</strong> зробіть калібрування всього тіла, тобто прив'язку трекерів до аватара.</span></li>
   </ol>
   <figure class="reference-shot wide-shot" data-zoom="Головний екран SlimeVR"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="Головний екран SlimeVR: кнопки Full Reset, Yaw Reset, Body і Feet над списком трекерів" width="1400" height="566" loading="lazy"><figcaption><strong>Головний екран SlimeVR.</strong> Ліворуч угорі Full Reset і Yaw Reset. Праворуч калібрування кріплення: Body для тіла і Feet для стоп.</figcaption></figure>
-  <details>
-    <summary>Чому трекери спершу мають прогрітися</summary>
-    <div><p>Якщо увімкнути трекер при температурі нижче 15 °C, він почне нове температурне калібрування. Збережені дані залишаються в пам'яті, і трекер знову почне їх використовувати після перезавантаження в теплі.</p></div>
-  </details>
   <div class="tip"><b>Під час гри</b><p>Якщо ноги чи корпус поступово «з'їхали» вбік, станьте рівно і зробіть <strong>Yaw Reset</strong> (горизонтальне скидання). Для IMU-трекерів це нормально. Зручно призначити на нього сполучення клавіш у налаштуваннях SlimeVR.</p></div>
 </section>
 
@@ -780,11 +758,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "Готово", "Mark step done": "Крок виконано", "Start with the check": "Почати з перевірки", "All steps done · before-play checklist": "Усі кроки виконано · пам'ятка перед грою", "Continue: step ": "Продовжити: крок ", "Step ": "Крок ", "Steps": "Кроки", "Axes": "Осі", "Temperature": "Температурне", "Check": "Перевірка", "None added": "Не додано", "Tracker ": "Трекер ", "e.g. left thigh": "напр., ліве стегно", "Tracker name ": "Назва трекера ", "Remove": "Прибрати", "Remove tracker ": "Прибрати трекер ", "Image viewer": "Перегляд зображення", "Tap or pinch to zoom": "Натисніть або розведіть пальці, щоб наблизити", "Click the image or use the mouse wheel to zoom": "Натисніть на знімок або покрутіть коліщатко, щоб наблизити", "Close (Esc)": "Закрити (Esc)", "Previous image": "Попередній знімок", "Next image": "Наступний знімок", "Open larger: ": "Відкрити великим: ", "Likes: ": "Вподобань: ", "♥ Thank you!": "♥ Дякую!", "♡ Like": "♡ Подобається", "Click again to remove your like": "Натисніть ще раз, щоб прибрати вподобання", "no data": "немає даних", "Likes are unavailable right now": "Вподобання зараз недоступні", "Checking…": "Перевіряємо…", "Too many attempts. Try again in a minute.": "Надто часто. Спробуйте за хвилину.", "Check failed. Please try again": "Перевірку не пройдено. Натисніть ще раз", "Could not send your like": "Не вдалося поставити вподобання", "Like count is unavailable right now": "Кількість вподобань зараз недоступна", "Switch to light theme": "Увімкнути світлу тему", "Switch to dark theme": "Увімкнути темну тему", "Done.": "Готово.", "Download cancelled.": "Завантаження скасовано.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Завантажити тут не вийшло. Відкрийте HTML-файл посібника в браузері і натисніть кнопку там.", "Copied": "Скопійовано", "Copy nickname": "Скопіювати нік", "Nickname: ": "Нік: ", "Reset view": "Повернути вигляд", "Bring the camera back to the box (NumPad “.”)": "Повернути камеру до коробочки (NumPad «.»)", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "Коліщатко: масштаб · затиснути коліщатко: обертати, з Shift — зсувати · подвійне клацання: скидання", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Старт. Коробочка догори дном, торцем притиснута до упору, виріз із кабелем ліворуч. Тепер перезапустіть трекер.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Положення 1. Дном донизу, торець притиснутий до упору. Вимикач і кабель ліворуч, кабель виходить із вирізу прямо. Консоль: «Waiting for position 1».", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Положення 2. Стоячи на торці, дном до упору, відкритою стороною до вас. Кабель виходить ліворуч і лягає на стіл.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Положення 3. Догори дном, торцем до упору. Скотч тримає трекер, кабель ліворуч.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Положення 4. Стоячи на іншому торці, дном до упору. Кабель тепер виходить праворуч.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Положення 5. На довгому боці, дном до упору, виріз згори. Кабель іде вгору і м'яко спускається на стіл, не натягуючи коробочку.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Положення 6. На іншому довгому боці, виріз знизу. Підігніть кабель усередині вирізу і виведіть через відкриту сторону до себе, щоб він не піднімав коробочку. Після цього консоль напише «Calibration data gathered».", "Face down:": "Донизу дивиться сторона"};</script>
+<script>window.GUIDE_I18N={"Done": "Готово", "Mark step done": "Крок виконано", "Start with the check": "Почати з перевірки", "All steps done · before-play checklist": "Усі кроки виконано · пам'ятка перед грою", "Continue: step ": "Продовжити: крок ", "Step ": "Крок ", "Steps": "Кроки", "Image viewer": "Перегляд зображення", "Tap or pinch to zoom": "Натисніть або розведіть пальці, щоб наблизити", "Click the image or use the mouse wheel to zoom": "Натисніть на знімок або покрутіть коліщатко, щоб наблизити", "Close (Esc)": "Закрити (Esc)", "Previous image": "Попередній знімок", "Next image": "Наступний знімок", "Open larger: ": "Відкрити великим: ", "Likes: ": "Вподобань: ", "♥ Thank you!": "♥ Дякую!", "♡ Like": "♡ Подобається", "Click again to remove your like": "Натисніть ще раз, щоб прибрати вподобання", "no data": "немає даних", "Likes are unavailable right now": "Вподобання зараз недоступні", "Checking…": "Перевіряємо…", "Too many attempts. Try again in a minute.": "Надто часто. Спробуйте за хвилину.", "Check failed. Please try again": "Перевірку не пройдено. Натисніть ще раз", "Could not send your like": "Не вдалося поставити вподобання", "Like count is unavailable right now": "Кількість вподобань зараз недоступна", "Switch to light theme": "Увімкнути світлу тему", "Switch to dark theme": "Увімкнути темну тему", "Done.": "Готово.", "Download cancelled.": "Завантаження скасовано.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Завантажити тут не вийшло. Відкрийте HTML-файл посібника в браузері і натисніть кнопку там.", "Copied": "Скопійовано", "Copy nickname": "Скопіювати нік", "Nickname: ": "Нік: ", "Reset view": "Повернути вигляд", "Bring the camera back to the box (NumPad “.”)": "Повернути камеру до коробочки (NumPad «.»)", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "Коліщатко: масштаб · затиснути коліщатко: обертати, з Shift — зсувати · подвійне клацання: скидання", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Старт. Коробочка догори дном, торцем притиснута до упору, виріз із кабелем ліворуч. Тепер перезапустіть трекер.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Положення 1. Дном донизу, торець притиснутий до упору. Вимикач і кабель ліворуч, кабель виходить із вирізу прямо. Консоль: «Waiting for position 1».", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Положення 2. Стоячи на торці, дном до упору, відкритою стороною до вас. Кабель виходить ліворуч і лягає на стіл.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Положення 3. Догори дном, торцем до упору. Скотч тримає трекер, кабель ліворуч.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Положення 4. Стоячи на іншому торці, дном до упору. Кабель тепер виходить праворуч.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Положення 5. На довгому боці, дном до упору, виріз згори. Кабель іде вгору і м'яко спускається на стіл, не натягуючи коробочку.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Положення 6. На іншому довгому боці, виріз знизу. Підігніть кабель усередині вирізу і виведіть через відкриту сторону до себе, щоб він не піднімав коробочку. Після цього консоль напише «Calibration data gathered».", "Face down:": "Донизу дивиться сторона"};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=faccd82e"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=c7609ea3"></script>
+<script src="../js/nav.js?v=aedf3834"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="en")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="f1c2481c2c";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ba15ef6a98";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -74,7 +74,7 @@
   <ol>
     <li><span><b>Go through the steps from top to bottom.</b> Each step ends with a result check and a link to the next step.</span></li>
     <li><span><b>Mark what you have done</b> with the “Mark step done” button. Your marks are saved in this browser, and next time the guide will offer to continue where you left off.</span></li>
-    <li><span><b>Steps 4–6 are done for each tracker in turn.</b> To keep track, add your trackers to the checklist in step 4.</span></li>
+    <li><span><b>Steps 4–6 are done for each tracker in turn.</b> Mark such a step done once it is finished on all trackers.</span></li>
     <li><span><b>Something not working?</b> Open <a href="#help">troubleshooting</a>. Screenshots and diagrams open larger when you tap them.</span></li>
   </ol>
 </section>
@@ -101,7 +101,7 @@
 
 <!-- STEP 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>Check that your trackers are suitable</h2><p>This guide is only for trackers with temperature calibration</p></div></div>
+  <div class="step-head"><div class="num">1</div><div><h2>Check that your trackers are suitable</h2><p>You need the BMI160 sensor</p></div></div>
   <p>This guide is written for <strong>BMI160</strong> and <strong>Wemos D1 Mini (ESP8266)</strong>. The IMU is the sensor the tracker uses to know how it is rotated.
   </p>
   <ol class="do">
@@ -168,7 +168,7 @@
   </div>
 
   <div class="card dl-card">
-    <h3 style="margin-top:0">3D-printable cases: 8+2 set</h3>
+    <h3 style="margin-top:0">3D-printable cases: 8+2 set (optional)</h3>
     <p>If you need new cases, there is a ready-made set based on Hyperion, reworked for this guide: the cases have an opening for Type‑C, and the lids are labelled with the body part (chest, hip, left and right thigh, left and right shin, left and right foot). The set also includes cases with lids for extensions. The lid labels are in Russian.</p>
     <div class="dl-row">
       <a class="dl-btn" id="dl-models" href="../models/SlimeVR_Hyperion_models.zip" download>
@@ -196,7 +196,7 @@
   <div class="step-head"><div class="num">3</div><div><h2>Install firmware v0.5.4</h2><p>Through the firmware website · exactly this version, not newer</p></div></div>
   <div class="tip"><b>You can skip this</b><p>If step 1 showed <strong>v0.5.4</strong>, skip this step and go to step 4. There is no need to reflash the same version.</p></div>
   <nav class="step-links" aria-label="In step 3"><a href="#rotation">Sensor rotation</a><a href="#erase">Erase data</a><a href="#flash">Flashing</a></nav>
-  <div class="warn"><b>Important</b><p><strong>Why exactly v0.5.4.</strong> Temperature calibration for BMI160 exists in firmware <strong>v0.3.3 to v0.5.4</strong>. Starting with v0.6.2, BMI160 uses a new driver that does <strong>not</strong> have it: the console prints “Temperature calibration not supported for IMU BMI160”. v0.3.2 and older do not have it yet. That is why we install v0.5.4.</p><p><strong>Flash through the website, not through SlimeVR.</strong> New versions of SlimeVR Server cannot install old firmware on these trackers. So we flash through a separate website in Chrome or Edge.</p></div>
+  <div class="warn"><b>Important</b><p><strong>Only v0.5.4.</strong> Newer firmware has no temperature calibration for BMI160, so install exactly this version.</p><p><strong>Flash through the website, not through SlimeVR.</strong> New versions of SlimeVR Server cannot install old firmware on these trackers. So we flash through a separate website in Chrome or Edge.</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · Find the sensor rotation (IMU Rotation)</h3>
@@ -238,7 +238,7 @@
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>your number</strong></td><td>The value you found in 3.1.</td></tr>
         <tr><td>Secondary IMU</td><td>depends</td><td>With an extension: tick the box, IMU_BMI160 and its rotation. Without an extension: box unticked.</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>on</strong></td><td>This is the temperature calibration. Step 5 will not work without it.</td></tr>
-        <tr><td>BMI160 Tempcal Debug</td><td><strong>off</strong></td><td>Explained below.</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>off</strong></td><td>Do not turn it on.</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>your network</strong></td><td>2.4 GHz only, no WPA3. Case-sensitive.</td></tr>
       </tbody>
     </table>
@@ -263,13 +263,6 @@
       <li><span>Wait until flashing and Wi‑Fi setup are finished. Do not unplug the tracker during the process.</span></li>
       <li><span>Open SlimeVR and make sure the tracker appears and its info shows <strong>v0.5.4</strong>. Only then flash the next tracker.</span></li>
     </ol>
-    <details>
-      <summary>Do I need “BMI160 Tempcal Debug”?</summary>
-      <div>
-        <p>No, leave it off. With it, SlimeVR permanently shows a code like <code>AXXYY</code> instead of the normal temperature: A = 2 while calibration is running; XX = progress from 0 to 60; YY = temperature. A fully calibrated tracker shows <code>160YY</code>.</p>
-        <p>The code stays forever, and to remove it you have to reflash the tracker and calibrate again. The normal temperature in SlimeVR and the check in step 6 are enough.</p>
-      </div>
-    </details>
   </div>
   <div class="warn"><b>After calibration, leave the firmware alone</b><p>Reflashing invalidates the saved temperature calibration. If SlimeVR offers a firmware update, decline it. If you do have to reflash, repeat 3.2 and all calibrations again.</p></div>
   <div class="step-finish"><div><b>Check the result</b><p>All trackers are visible in SlimeVR, and each one shows v0.5.4.</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
@@ -281,22 +274,13 @@
   <p>Take the first tracker and go through steps 4, 5 and 6 with it. When it is done, take the next one and start again from step 4. Do this with every tracker in turn.</p>
 </div>
 
-<details class="tracker-log" id="tracker-log">
-  <summary>Tracker checklist <span id="tracker-count" aria-live="polite">None added</span></summary>
-  <div>
-    <p>Add all your main trackers. Tick an extension together with its main tracker. Tick the steps in the contents only after the step is done on the whole set.</p>
-    <div id="tracker-rows"></div>
-    <button type="button" class="quiet-button" id="tracker-add">Add tracker</button>
-    <noscript>For each tracker, note three marks: axes, temperature and check.</noscript>
-  </div>
-</details>
 
 <!-- STEP 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>6-point calibration</h2><p>Through the SlimeVR console · one tracker · ~5 minutes</p></div></div>
   <p>The tracker learns what “level” looks like in each of six positions. It is taped inside the box: you flip the box and push it against the stop every time.</p>
-  <nav class="step-links" aria-label="In step 4"><a href="#axis-console">Console messages</a><a href="#axis-positions">Box positions</a><a href="#axis-tips">Tips</a><a href="#tracker-log">Tracker checklist</a></nav>
-  <div class="tip"><b>Two sensor calibrations</b><p>The sensor is calibrated in two ways: <strong>6-point</strong> (this step) and <strong>temperature</strong> (step 5). The video below also shows spinning the tracker clockwise 10 times. <strong>You do not need to do that.</strong> It is a separate sensitivity calibration whose results have to be written into the firmware by hand.</p></div>
+  <nav class="step-links" aria-label="In step 4"><a href="#axis-console">Console messages</a><a href="#axis-positions">Box positions</a><a href="#axis-tips">Tips</a></nav>
+  <div class="tip"><b>Skip one part of the video</b><p>The video below also shows spinning the tracker clockwise 10 times. <strong>You do not need to do that</strong>: it is not part of this guide.</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -381,11 +365,10 @@
   <div class="tip tip-list" id="axis-tips"><b>Tips</b>
     <dl>
       <dt>How to lay the cable</dt><dd>The cable must not pull, lift or shift the box: otherwise it does not sit flat and the calibration will be inaccurate. In most positions the cable simply comes out of the slot and lies loosely on the table. When the box lies slot-down, carefully bend the cable inside the slot and lead it out through the open side of the box. Leave some slack in the cable before each flip.</dd>
-      <dt>Why it matters how the tracker sits in the box</dt><dd>The firmware needs the tracker to have each of its six sides facing down while lying flat. After the first position the order does not matter, but it is easiest to copy the video. What matters is that the tracker is taped <strong>straight and parallel to the walls</strong>: then the sides of the box match the axes of the sensor inside the case and the calibration is accurate.</dd>
       <dt>If nothing changes in the console</dt><dd>The tracker waits until it is moved and then left still again. If the “Recorded” line does not appear, check that the box is not moving and you are not holding it. If you accidentally put the box on the same side twice, the calibration will be inaccurate: turn it upside down, restart the tracker and start the calibration again.</dd>
     </dl>
   </div>
-  <div class="step-finish"><div><b>Check the result</b><p>The console showed “Calibration data gathered”. Tick “Axes” for this tracker in the <a href="#tracker-log">tracker checklist</a>. Mark the whole step after all trackers.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
+  <div class="step-finish"><div><b>Check the result</b><p>The console showed “Calibration data gathered”. Mark the whole step after all trackers.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
   <p class="next">Saw “Calibration data gathered”? Go to step 5 with the same tracker</p>
 </section>
 
@@ -394,7 +377,7 @@
   <div class="step-head"><div class="num">5</div><div><h2>Temperature calibration</h2><p>Same tracker · 35+ minutes · noticeably reduces drift</p></div></div>
   <p>As BMI160 warms up, its readings can slowly “float” even when the tracker is not moving. This is called drift. Temperature calibration helps reduce it. It <strong>starts by itself when the sensor is on and colder than 15 °C (59 °F)</strong>, and <strong>saves by itself once it warms above 45 °C (113 °F)</strong>. There are no buttons to press: you only need to cool the tracker properly and warm it up smoothly.</p>
   <div class="tip"><b>No cable needed</b><p>You can do this calibration without the USB cable: the tracker runs on its own battery and sends its temperature to SlimeVR over Wi‑Fi. The battery must be charged. You will check the result over the cable in step 6.</p></div>
-  <nav class="step-links" aria-label="In step 5"><a href="#temperature-prep">Preparation</a><a href="#temperature-run">Calibration</a><a href="#temperature-save">Save message</a><a href="#tracker-log">Tracker checklist</a></nav>
+  <nav class="step-links" aria-label="In step 5"><a href="#temperature-prep">Preparation</a><a href="#temperature-run">Calibration</a><a href="#temperature-save">Save message</a></nav>
   <figure class="temperature-figure" data-zoom="Temperature during calibration">
     <ol class="temperature-stages" aria-label="Key temperature points">
       <li><b>Below 15 °C / 59 °F</b><span>Turn the tracker on</span></li>
@@ -431,7 +414,7 @@
   <h3 id="temperature-prep">Preparation</h3>
   <ol class="do">
     <li><span>Turn on the temperature display in SlimeVR (as in step 2).</span></li>
-    <li><span><strong>Take the tracker's lid off in advance</strong>, before cooling. Without the lid, warm air reaches the sensor directly and the temperature follows the dryer more precisely: once the dryer is off, the case does not keep releasing heat and the tracker does not overheat. You cannot remove the lid later: the tracker has to stay still.</span></li>
+    <li><span><strong>Take the tracker's lid off in advance</strong>, before cooling: then warm air from the dryer reaches the sensor directly. You cannot remove it later: the tracker has to stay still.</span></li>
     <li><span><strong>Turn the tracker off</strong> and put it in the fridge or freezer <strong>for about 10 minutes</strong>. Only put the tracker in the fridge when it is off.</span></li>
   </ol>
   <h3 id="temperature-run">Calibration</h3>
@@ -461,7 +444,7 @@
       <li><strong>Two ordinary trackers without extensions</strong> can be calibrated at the same time if you warm them evenly.</li>
     </ul>
   </div>
-  <div class="step-finish"><div><b>Check the result</b><p>The sensor temperature passed 45 °C (113 °F). Let the tracker cool down. Tick “Temperature” in the <a href="#tracker-log">tracker checklist</a> and check the recording in step 6. Mark the whole step after all trackers.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
+  <div class="step-finish"><div><b>Check the result</b><p>The sensor temperature passed 45 °C (113 °F). Let the tracker cool down and check the recording in step 6. Mark the whole step after all trackers.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
   <p class="next">Calibration saved? Go to step 6</p>
 </section>
 
@@ -501,7 +484,7 @@
     <b>Loop · good result?</b>
     <p>This tracker is ready. If there are uncalibrated trackers left, take the next one and start from step 4. When all are ready, go to step 7.</p>
   </div>
-  <div class="step-finish"><div><b>Check the result</b><p>Tick “Check” for the finished tracker in the <a href="#tracker-log">tracker checklist</a>. Mark the whole step once you have checked the whole set.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
+  <div class="step-finish"><div><b>Check the result</b><p>Mark the whole step once you have checked the whole set.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
 </section>
 
 <!-- STEP 7 -->
@@ -576,7 +559,6 @@
     <li><label><input type="checkbox" data-prep="s8-3"><span><strong>Remember</strong> where each tracker sits on its body part: front, back, left or right. You will need this in step 9.</span></label></li>
   </ul>
   <div class="warn"><b>Set it in SlimeVR the way you wear it</b><p>The tracker's mounting in SlimeVR Server must match how it is actually worn. Wearing a chest or hip tracker on your back? In step 9 choose <strong>“Back”</strong> for it. A thigh tracker on the side: <strong>“Left”</strong> or <strong>“Right”</strong>. If the program says something different from your body, the skeleton will lean and turn the wrong way.</p></div>
-  <div class="tip"><b>Try different options</b><p>The ideal spot is different for everyone. If you don't like the tracking, try moving a tracker higher or lower, to the front or the side, and redo the setup in step 9 each time. A small shift often improves the result noticeably.</p></div>
   <div class="step-finish"><div><b>Check the result</b><p>The trackers sit tightly. You know on which body part and on which side each one is fixed.</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Mark step done</span></button></div>
   <p class="next">Trackers on? Put on the headset and go to step 9</p>
 </section>
@@ -652,10 +634,6 @@
     <li><span>Start the game. In <strong>VRChat</strong>, do the full-body calibration, which binds the trackers to the avatar.</span></li>
   </ol>
   <figure class="reference-shot wide-shot" data-zoom="SlimeVR Home screen"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVR Home screen: Full Reset, Yaw Reset, Body and Feet buttons above the tracker list" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVR Home screen.</strong> Full Reset and Yaw Reset at the top left. Mounting calibration on the right: Body for the body and Feet for the feet.</figcaption></figure>
-  <details>
-    <summary>Why the trackers have to warm up first</summary>
-    <div><p>When turned on below 15 °C (59 °F), the tracker starts a new temperature calibration. The saved data stays in memory, and the tracker uses it again after a restart in the warmth.</p></div>
-  </details>
   <div class="tip"><b>While playing</b><p>If your legs or body gradually “drift” to the side, stand straight and do a <strong>Yaw Reset</strong>. This is normal for IMU trackers. It is handy to assign a keyboard shortcut to it in the SlimeVR settings.</p></div>
 </section>
 
@@ -784,6 +762,6 @@
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=faccd82e"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=c7609ea3"></script>
+<script src="../js/nav.js?v=aedf3834"></script>
 </body>
 </html>

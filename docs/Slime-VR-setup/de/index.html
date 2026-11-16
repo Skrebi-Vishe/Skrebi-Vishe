@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="de")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="f1c2481c2c";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ba15ef6a98";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -74,7 +74,7 @@
   <ol>
     <li><span><b>Geh die Schritte von oben nach unten durch.</b> Jeder Schritt endet mit einer Ergebnisprüfung und einem Link zum nächsten Schritt.</span></li>
     <li><span><b>Markiere Erledigtes</b> mit der Schaltfläche „Schritt erledigt“. Die Markierungen werden in diesem Browser gespeichert, und beim nächsten Mal bietet dir die Anleitung an, an derselben Stelle weiterzumachen.</span></li>
-    <li><span><b>Die Schritte 4–6 machst du für jeden Tracker nacheinander.</b> Damit du den Überblick behältst, trag deine Tracker in Schritt 4 in die Checkliste ein.</span></li>
+    <li><span><b>Die Schritte 4–6 machst du für jeden Tracker nacheinander.</b> Hake einen solchen Schritt erst ab, wenn er an allen Trackern erledigt ist.</span></li>
     <li><span><b>Etwas klappt nicht?</b> Öffne die <a href="#help">häufigen Probleme</a>. Screenshots und Schaubilder werden durch Antippen vergrößert.</span></li>
   </ol>
 </section>
@@ -101,7 +101,7 @@
 
 <!-- STEP 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>Prüfe, ob deine Tracker geeignet sind</h2><p>Diese Anleitung gilt nur für Tracker mit Temperaturkalibrierung</p></div></div>
+  <div class="step-head"><div class="num">1</div><div><h2>Prüfe, ob deine Tracker geeignet sind</h2><p>Du brauchst den Sensor BMI160</p></div></div>
   <p>Diese Anleitung ist für <strong>BMI160</strong> und <strong>Wemos D1 Mini (ESP8266)</strong> geschrieben. Die IMU ist der Sensor, mit dem der Tracker erkennt, wie er gedreht ist.
   </p>
   <ol class="do">
@@ -168,7 +168,7 @@
   </div>
 
   <div class="card dl-card">
-    <h3 style="margin-top:0">Gehäuse für den 3D-Druck: Set 8+2</h3>
+    <h3 style="margin-top:0">Gehäuse für den 3D-Druck: Set 8+2 (optional)</h3>
     <p>Wenn du neue Gehäuse brauchst, gibt es ein fertiges, für diese Anleitung überarbeitetes Set auf Basis von Hyperion: Die Gehäuse haben eine Öffnung für Type‑C, und auf den Deckeln steht das Körperteil (Brust, Hüfte, linker und rechter Oberschenkel, linkes und rechtes Schienbein, linker und rechter Fuß). Zum Set gehören auch Gehäuse mit Deckeln für Erweiterungen. Die Beschriftungen auf den Deckeln sind auf Russisch.</p>
     <div class="dl-row">
       <a class="dl-btn" id="dl-models" href="../models/SlimeVR_Hyperion_models.zip" download>
@@ -196,7 +196,7 @@
   <div class="step-head"><div class="num">3</div><div><h2>Firmware v0.5.4 installieren</h2><p>Über die Firmware-Website · genau diese Version, keine neuere</p></div></div>
   <div class="tip"><b>Kannst du überspringen</b><p>Wenn Schritt 1 <strong>v0.5.4</strong> gezeigt hat, überspring diesen Schritt und mach mit Schritt 4 weiter. Dieselbe Version musst du nicht neu flashen.</p></div>
   <nav class="step-links" aria-label="In Schritt 3"><a href="#rotation">Sensordrehung</a><a href="#erase">Daten löschen</a><a href="#flash">Flashen</a></nav>
-  <div class="warn"><b>Wichtig</b><p><strong>Warum genau v0.5.4.</strong> Die Temperaturkalibrierung für BMI160 gibt es in den Firmware-Versionen <strong>v0.3.3 bis v0.5.4</strong>. Ab v0.6.2 nutzt BMI160 einen neuen Treiber, in dem sie <strong>fehlt</strong>: Die Konsole meldet dann „Temperature calibration not supported for IMU BMI160“. In v0.3.2 und älter gibt es sie noch nicht. Deshalb installieren wir v0.5.4.</p><p><strong>Flashe über die Website, nicht über SlimeVR.</strong> Neue Versionen von SlimeVR Server können auf diese Tracker keine alte Firmware aufspielen. Deshalb flashen wir über eine separate Website in Chrome oder Edge.</p></div>
+  <div class="warn"><b>Wichtig</b><p><strong>Nur v0.5.4.</strong> Neuere Firmware hat keine Temperaturkalibrierung für BMI160, deshalb installierst du genau diese Version.</p><p><strong>Flashe über die Website, nicht über SlimeVR.</strong> Neue Versionen von SlimeVR Server können auf diese Tracker keine alte Firmware aufspielen. Deshalb flashen wir über eine separate Website in Chrome oder Edge.</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · Sensordrehung bestimmen (IMU Rotation)</h3>
@@ -238,7 +238,7 @@
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>deine Zahl</strong></td><td>Der Wert, den du in 3.1 bestimmt hast.</td></tr>
         <tr><td>Secondary IMU</td><td>je nach Tracker</td><td>Mit Erweiterung: Häkchen setzen, IMU_BMI160 und ihre Drehung. Ohne Erweiterung: kein Häkchen.</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>an</strong></td><td>Das ist die Temperaturkalibrierung. Ohne sie funktioniert Schritt 5 nicht.</td></tr>
-        <tr><td>BMI160 Tempcal Debug</td><td><strong>aus</strong></td><td>Erklärung unten.</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>aus</strong></td><td>Nicht einschalten.</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>dein Netzwerk</strong></td><td>Nur 2,4 GHz, kein WPA3. Groß- und Kleinschreibung beachten.</td></tr>
       </tbody>
     </table>
@@ -263,13 +263,6 @@
       <li><span>Warte, bis das Flashen und die WLAN-Einrichtung abgeschlossen sind. Zieh den Tracker währenddessen nicht ab.</span></li>
       <li><span>Öffne SlimeVR und prüfe, ob der Tracker erscheint und in seinen Infos <strong>v0.5.4</strong> steht. Erst dann flashst du den nächsten Tracker.</span></li>
     </ol>
-    <details>
-      <summary>Brauche ich „BMI160 Tempcal Debug“?</summary>
-      <div>
-        <p>Nein, lass es aus. Damit zeigt SlimeVR statt der normalen Temperatur dauerhaft einen Code wie <code>AXXYY</code> an: A = 2, solange die Kalibrierung läuft; XX = Fortschritt von 0 bis 60; YY = Temperatur. Ein vollständig kalibrierter Tracker zeigt <code>160YY</code>.</p>
-        <p>Der Code bleibt für immer. Um ihn loszuwerden, musst du den Tracker neu flashen und erneut kalibrieren. Die normale Temperatur in SlimeVR und die Prüfung in Schritt 6 reichen völlig aus.</p>
-      </div>
-    </details>
   </div>
   <div class="warn"><b>Nach der Kalibrierung die Firmware nicht mehr anfassen</b><p>Neues Flashen macht die gespeicherte Temperaturkalibrierung ungültig. Wenn SlimeVR ein Firmware-Update anbietet, lehne es ab. Musst du doch neu flashen, wiederhole 3.2 und alle Kalibrierungen.</p></div>
   <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Alle Tracker sind in SlimeVR sichtbar, und jeder zeigt v0.5.4.</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
@@ -281,22 +274,13 @@
   <p>Nimm den ersten Tracker und geh mit ihm die Schritte 4, 5 und 6 durch. Wenn er fertig ist, nimm den nächsten und fang wieder bei Schritt 4 an. So machst du es nacheinander mit jedem Tracker.</p>
 </div>
 
-<details class="tracker-log" id="tracker-log">
-  <summary>Tracker-Checkliste <span id="tracker-count" aria-live="polite">None added</span></summary>
-  <div>
-    <p>Füge alle deine Haupttracker hinzu. Hake eine Erweiterung zusammen mit ihrem Haupttracker ab. Hake die Schritte im Inhalt erst ab, wenn der Schritt für das ganze Set erledigt ist.</p>
-    <div id="tracker-rows"></div>
-    <button type="button" class="quiet-button" id="tracker-add">Tracker hinzufügen</button>
-    <noscript>Für jeden Tracker drei Häkchen: Achsen, Temperatur und Prüfung.</noscript>
-  </div>
-</details>
 
 <!-- STEP 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>6-Punkt-Kalibrierung</h2><p>Über die SlimeVR-Konsole · ein Tracker · ~5 Minuten</p></div></div>
   <p>Der Tracker lernt, wie „waagerecht“ in jeder von sechs Lagen aussieht. Er ist in die Box geklebt: Du drehst die Box und drückst sie jedes Mal an den Anschlag.</p>
-  <nav class="step-links" aria-label="In Schritt 4"><a href="#axis-console">Konsolenmeldungen</a><a href="#axis-positions">Lagen der Box</a><a href="#axis-tips">Tipps</a><a href="#tracker-log">Tracker-Checkliste</a></nav>
-  <div class="tip"><b>Zwei Kalibrierungen des Sensors</b><p>Der Sensor wird auf zwei Arten kalibriert: <strong>6-Punkt</strong> (dieser Schritt) und <strong>Temperatur</strong> (Schritt 5). Im Video unten wird der Tracker außerdem 10-mal im Uhrzeigersinn gedreht. <strong>Das musst du nicht machen.</strong> Das ist eine separate Empfindlichkeitskalibrierung, deren Ergebnisse von Hand in die Firmware eingetragen werden müssen.</p></div>
+  <nav class="step-links" aria-label="In Schritt 4"><a href="#axis-console">Konsolenmeldungen</a><a href="#axis-positions">Lagen der Box</a><a href="#axis-tips">Tipps</a></nav>
+  <div class="tip"><b>Einen Teil des Videos überspringen</b><p>Im Video unten wird der Tracker außerdem 10-mal im Uhrzeigersinn gedreht. <strong>Das musst du nicht machen</strong>: es gehört nicht zu dieser Anleitung.</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -381,11 +365,10 @@
   <div class="tip tip-list" id="axis-tips"><b>Tipps</b>
     <dl>
       <dt>So verlegst du das Kabel</dt><dd>Das Kabel darf die Box nicht ziehen, anheben oder verschieben: Sonst liegt sie nicht flach, und die Kalibrierung wird ungenau. In den meisten Lagen kommt das Kabel einfach aus dem Schlitz und liegt locker auf dem Tisch. Wenn die Box mit dem Schlitz nach unten liegt, bieg das Kabel vorsichtig im Schlitz um und führ es durch die offene Seite der Box heraus. Lass vor jedem Drehen etwas Kabel locker.</dd>
-      <dt>Warum es wichtig ist, wie der Tracker in der Box sitzt</dt><dd>Die Firmware braucht den Tracker flach liegend mit jeder seiner sechs Seiten nach unten. Nach der ersten Lage ist die Reihenfolge egal, am einfachsten ist es aber, das Video nachzumachen. Wichtig ist, dass der Tracker <strong>gerade und parallel zu den Wänden</strong> festgeklebt ist: Dann entsprechen die Seiten der Box den Achsen des Sensors im Gehäuse, und die Kalibrierung ist genau.</dd>
       <dt>Wenn sich in der Konsole nichts tut</dt><dd>Der Tracker wartet, bis er bewegt und dann wieder ruhig liegen gelassen wird. Erscheint die Zeile „Recorded“ nicht, prüfe, ob die Box sich nicht bewegt und du sie nicht festhältst. Hast du die Box versehentlich zweimal auf dieselbe Seite gelegt, wird die Kalibrierung ungenau: Dreh sie auf den Kopf, starte den Tracker neu und beginne die Kalibrierung von vorn.</dd>
     </dl>
   </div>
-  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Die Konsole hat „Calibration data gathered“ gemeldet. Hake für diesen Tracker „Achsen“ in der <a href="#tracker-log">Tracker-Checkliste</a> ab. Den ganzen Schritt hakst du nach allen Trackern ab.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
+  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Die Konsole hat „Calibration data gathered“ gemeldet. Den ganzen Schritt hakst du nach allen Trackern ab.</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
   <p class="next">„Calibration data gathered“ gesehen? Weiter zu Schritt 5 mit demselben Tracker</p>
 </section>
 
@@ -394,7 +377,7 @@
   <div class="step-head"><div class="num">5</div><div><h2>Temperaturkalibrierung</h2><p>Derselbe Tracker · 35+ Minuten · verringert den Drift deutlich</p></div></div>
   <p>Wenn sich der BMI160 erwärmt, können seine Werte langsam „wandern“, selbst wenn der Tracker stillliegt. Das nennt man Drift. Die Temperaturkalibrierung hilft, ihn zu verringern. Sie <strong>startet von selbst, wenn der Sensor eingeschaltet und kälter als 15 °C ist</strong>, und <strong>speichert sich von selbst, sobald er sich über 45 °C erwärmt</strong>. Es gibt keine Knöpfe zu drücken: Du musst den Tracker nur richtig abkühlen und gleichmäßig erwärmen.</p>
   <div class="tip"><b>Kein Kabel nötig</b><p>Diese Kalibrierung geht auch ohne USB-Kabel: Der Tracker läuft mit seinem eigenen Akku und sendet seine Temperatur per WLAN an SlimeVR. Der Akku muss geladen sein. Das Ergebnis prüfst du in Schritt 6 über das Kabel.</p></div>
-  <nav class="step-links" aria-label="In Schritt 5"><a href="#temperature-prep">Vorbereitung</a><a href="#temperature-run">Kalibrierung</a><a href="#temperature-save">Speichermeldung</a><a href="#tracker-log">Tracker-Checkliste</a></nav>
+  <nav class="step-links" aria-label="In Schritt 5"><a href="#temperature-prep">Vorbereitung</a><a href="#temperature-run">Kalibrierung</a><a href="#temperature-save">Speichermeldung</a></nav>
   <figure class="temperature-figure" data-zoom="Temperatur während der Kalibrierung">
     <ol class="temperature-stages" aria-label="Wichtige Temperaturpunkte">
       <li><b>Unter 15 °C</b><span>Tracker einschalten</span></li>
@@ -431,7 +414,7 @@
   <h3 id="temperature-prep">Vorbereitung</h3>
   <ol class="do">
     <li><span>Schalte in SlimeVR die Temperaturanzeige ein (wie in Schritt 2).</span></li>
-    <li><span><strong>Nimm den Deckel des Trackers vorher ab</strong>, noch vor dem Abkühlen. Ohne Deckel trifft die warme Luft direkt auf den Sensor, und die Temperatur folgt dem Föhn genauer: Ist der Föhn aus, gibt das Gehäuse keine Wärme mehr nach, und der Tracker überhitzt nicht. Später kannst du den Deckel nicht mehr abnehmen: Der Tracker muss stillliegen.</span></li>
+    <li><span><strong>Nimm den Deckel des Trackers vorher ab</strong>, vor dem Kühlen: Dann erreicht die warme Luft des Föhns den Sensor direkt. Später darfst du ihn nicht mehr abnehmen: Der Tracker muss stillliegen.</span></li>
     <li><span><strong>Schalte den Tracker aus</strong> und leg ihn <strong>für etwa 10 Minuten</strong> in den Kühlschrank oder ins Gefrierfach. Leg den Tracker nur ausgeschaltet in den Kühlschrank.</span></li>
   </ol>
   <h3 id="temperature-run">Kalibrierung</h3>
@@ -461,7 +444,7 @@
       <li><strong>Zwei normale Tracker ohne Erweiterung</strong> kannst du gleichzeitig kalibrieren, wenn du sie gleichmäßig erwärmst.</li>
     </ul>
   </div>
-  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Die Sensortemperatur hat 45 °C überschritten. Lass den Tracker abkühlen. Hake „Temperatur“ in der <a href="#tracker-log">Tracker-Checkliste</a> ab und prüfe die Aufzeichnung in Schritt 6. Den ganzen Schritt hakst du nach allen Trackern ab.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
+  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Die Sensortemperatur hat 45 °C überschritten. Lass den Tracker abkühlen und prüfe die Aufzeichnung in Schritt 6. Den ganzen Schritt hakst du nach allen Trackern ab.</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
   <p class="next">Kalibrierung gespeichert? Weiter zu Schritt 6</p>
 </section>
 
@@ -501,7 +484,7 @@
     <b>Schleife · gutes Ergebnis?</b>
     <p>Dieser Tracker ist fertig. Sind noch unkalibrierte Tracker übrig, nimm den nächsten und fang bei Schritt 4 an. Wenn alle fertig sind, mach mit Schritt 7 weiter.</p>
   </div>
-  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Hake „Prüfung“ für den fertigen Tracker in der <a href="#tracker-log">Tracker-Checkliste</a> ab. Den ganzen Schritt hakst du ab, wenn du das ganze Set geprüft hast.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
+  <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Den ganzen Schritt hakst du ab, wenn du das ganze Set geprüft hast.</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
 </section>
 
 <!-- STEP 7 -->
@@ -576,7 +559,6 @@
     <li><label><input type="checkbox" data-prep="s8-3"><span><strong>Merk dir</strong>, wo jeder Tracker an seinem Körperteil sitzt: vorne, hinten, links oder rechts. Das brauchst du in Schritt 9.</span></label></li>
   </ul>
   <div class="warn"><b>In SlimeVR so einstellen, wie du ihn trägst</b><p>Die Befestigung des Trackers in SlimeVR Server muss dazu passen, wie er tatsächlich getragen wird. Trägst du einen Brust- oder Hüfttracker auf dem Rücken? Dann wähle für ihn in Schritt 9 <strong>„Back“</strong> (hinten). Ein Oberschenkeltracker an der Seite: <strong>„Left“</strong> oder <strong>„Right“</strong> (links oder rechts). Steht im Programm etwas anderes als an deinem Körper, neigt und dreht sich das Skelett falsch.</p></div>
-  <div class="tip"><b>Probier verschiedene Varianten</b><p>Die ideale Stelle ist bei jedem anders. Gefällt dir das Tracking nicht, setz einen Tracker höher oder tiefer, nach vorne oder zur Seite, und wiederhole jedes Mal die Einrichtung in Schritt 9. Eine kleine Verschiebung verbessert das Ergebnis oft deutlich.</p></div>
   <div class="step-finish"><div><b>Prüfe das Ergebnis</b><p>Die Tracker sitzen fest. Du weißt, an welchem Körperteil und auf welcher Seite jeder befestigt ist.</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">Schritt erledigt</span></button></div>
   <p class="next">Tracker angelegt? Setz das Headset auf und mach mit Schritt 9 weiter</p>
 </section>
@@ -652,10 +634,6 @@
     <li><span>Starte das Spiel. Mach in <strong>VRChat</strong> die Ganzkörperkalibrierung, also das Zuordnen der Tracker zum Avatar.</span></li>
   </ol>
   <figure class="reference-shot wide-shot" data-zoom="Startbildschirm von SlimeVR"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="Startbildschirm von SlimeVR: Schaltflächen Full Reset, Yaw Reset, Body und Feet über der Trackerliste" width="1400" height="566" loading="lazy"><figcaption><strong>Startbildschirm von SlimeVR.</strong> Oben links Full Reset und Yaw Reset. Rechts die Befestigungskalibrierung: Body für den Körper und Feet für die Füße.</figcaption></figure>
-  <details>
-    <summary>Warum sich die Tracker zuerst erwärmen müssen</summary>
-    <div><p>Wird der Tracker unter 15 °C eingeschaltet, beginnt er eine neue Temperaturkalibrierung. Die gespeicherten Daten bleiben im Speicher, und der Tracker nutzt sie nach einem Neustart im Warmen wieder.</p></div>
-  </details>
   <div class="tip"><b>Während des Spielens</b><p>Wenn deine Beine oder dein Oberkörper allmählich zur Seite „wegdriften“, stell dich gerade hin und mach einen <strong>Yaw Reset</strong>. Bei IMU-Trackern ist das normal. Praktisch ist eine Tastenkombination dafür in den Einstellungen von SlimeVR.</p></div>
 </section>
 
@@ -780,11 +758,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "Fertig", "Mark step done": "Schritt erledigt", "Start with the check": "Mit der Prüfung beginnen", "All steps done · before-play checklist": "Alle Schritte erledigt · Checkliste vor dem Spielen", "Continue: step ": "Weiter: Schritt ", "Step ": "Schritt ", "Steps": "Schritte", "Axes": "Achsen", "Temperature": "Temperatur", "Check": "Prüfung", "None added": "Noch keine", "Tracker ": "Tracker ", "e.g. left thigh": "z. B. linker Oberschenkel", "Tracker name ": "Name des Trackers ", "Remove": "Entfernen", "Remove tracker ": "Tracker entfernen ", "Image viewer": "Bildansicht", "Tap or pinch to zoom": "Tippen oder mit zwei Fingern vergrößern", "Click the image or use the mouse wheel to zoom": "Zum Vergrößern auf das Bild klicken oder das Mausrad benutzen", "Close (Esc)": "Schließen (Esc)", "Previous image": "Vorheriges Bild", "Next image": "Nächstes Bild", "Open larger: ": "Groß öffnen: ", "Likes: ": "Likes: ", "♥ Thank you!": "♥ Danke!", "♡ Like": "♡ Gefällt mir", "Click again to remove your like": "Klicke noch einmal, um dein Like zu entfernen", "no data": "keine Daten", "Likes are unavailable right now": "Likes sind gerade nicht verfügbar", "Checking…": "Wird geprüft…", "Too many attempts. Try again in a minute.": "Zu viele Versuche. Versuch es in einer Minute noch einmal.", "Check failed. Please try again": "Prüfung fehlgeschlagen. Bitte noch einmal versuchen", "Could not send your like": "Like konnte nicht gesendet werden", "Like count is unavailable right now": "Die Anzahl der Likes ist gerade nicht verfügbar", "Switch to light theme": "Helles Design einschalten", "Switch to dark theme": "Dunkles Design einschalten", "Done.": "Fertig.", "Download cancelled.": "Download abgebrochen.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Herunterladen ist hier nicht möglich. Öffne die HTML-Datei der Anleitung im Browser und drück dort auf die Schaltfläche.", "Copied": "Kopiert", "Copy nickname": "Nickname kopieren", "Nickname: ": "Nickname: ", "Reset view": "Ansicht zurücksetzen", "Bring the camera back to the box (NumPad “.”)": "Kamera zurück zur Box (NumPad „.“)", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "Mausrad: Zoom · Mausrad gedrückt halten: drehen, mit Shift: verschieben · Doppelklick: zurücksetzen", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Start. Box kopfüber, Stirnseite an den Anschlag gedrückt, Kabelausschnitt links. Starte jetzt den Tracker neu.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Lage 1. Boden unten, Stirnseite an den Anschlag gedrückt. Schalter und Kabel links, das Kabel kommt gerade aus dem Ausschnitt. Konsole: „Waiting for position 1“.", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Lage 2. Auf der Stirnseite stehend, Boden zum Anschlag, offene Seite zu dir. Das Kabel kommt links heraus und liegt auf dem Tisch.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Lage 3. Kopfüber, Stirnseite zum Anschlag. Das Klebeband hält den Tracker, Kabel links.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Lage 4. Auf der anderen Stirnseite stehend, Boden zum Anschlag. Das Kabel kommt jetzt rechts heraus.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Lage 5. Auf der langen Seite, Boden zum Anschlag, Ausschnitt oben. Das Kabel geht nach oben und fällt sanft auf den Tisch, ohne an der Box zu ziehen.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Lage 6. Auf der anderen langen Seite, Ausschnitt unten. Bieg das Kabel im Ausschnitt um und führ es durch die offene Seite zu dir heraus, damit es die Box nicht anhebt. Danach meldet die Konsole „Calibration data gathered“.", "Face down:": "Unten liegt die Seite"};</script>
+<script>window.GUIDE_I18N={"Done": "Fertig", "Mark step done": "Schritt erledigt", "Start with the check": "Mit der Prüfung beginnen", "All steps done · before-play checklist": "Alle Schritte erledigt · Checkliste vor dem Spielen", "Continue: step ": "Weiter: Schritt ", "Step ": "Schritt ", "Steps": "Schritte", "Image viewer": "Bildansicht", "Tap or pinch to zoom": "Tippen oder mit zwei Fingern vergrößern", "Click the image or use the mouse wheel to zoom": "Zum Vergrößern auf das Bild klicken oder das Mausrad benutzen", "Close (Esc)": "Schließen (Esc)", "Previous image": "Vorheriges Bild", "Next image": "Nächstes Bild", "Open larger: ": "Groß öffnen: ", "Likes: ": "Likes: ", "♥ Thank you!": "♥ Danke!", "♡ Like": "♡ Gefällt mir", "Click again to remove your like": "Klicke noch einmal, um dein Like zu entfernen", "no data": "keine Daten", "Likes are unavailable right now": "Likes sind gerade nicht verfügbar", "Checking…": "Wird geprüft…", "Too many attempts. Try again in a minute.": "Zu viele Versuche. Versuch es in einer Minute noch einmal.", "Check failed. Please try again": "Prüfung fehlgeschlagen. Bitte noch einmal versuchen", "Could not send your like": "Like konnte nicht gesendet werden", "Like count is unavailable right now": "Die Anzahl der Likes ist gerade nicht verfügbar", "Switch to light theme": "Helles Design einschalten", "Switch to dark theme": "Dunkles Design einschalten", "Done.": "Fertig.", "Download cancelled.": "Download abgebrochen.", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "Herunterladen ist hier nicht möglich. Öffne die HTML-Datei der Anleitung im Browser und drück dort auf die Schaltfläche.", "Copied": "Kopiert", "Copy nickname": "Nickname kopieren", "Nickname: ": "Nickname: ", "Reset view": "Ansicht zurücksetzen", "Bring the camera back to the box (NumPad “.”)": "Kamera zurück zur Box (NumPad „.“)", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "Mausrad: Zoom · Mausrad gedrückt halten: drehen, mit Shift: verschieben · Doppelklick: zurücksetzen", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "Start. Box kopfüber, Stirnseite an den Anschlag gedrückt, Kabelausschnitt links. Starte jetzt den Tracker neu.", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "Lage 1. Boden unten, Stirnseite an den Anschlag gedrückt. Schalter und Kabel links, das Kabel kommt gerade aus dem Ausschnitt. Konsole: „Waiting for position 1“.", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "Lage 2. Auf der Stirnseite stehend, Boden zum Anschlag, offene Seite zu dir. Das Kabel kommt links heraus und liegt auf dem Tisch.", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "Lage 3. Kopfüber, Stirnseite zum Anschlag. Das Klebeband hält den Tracker, Kabel links.", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "Lage 4. Auf der anderen Stirnseite stehend, Boden zum Anschlag. Das Kabel kommt jetzt rechts heraus.", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "Lage 5. Auf der langen Seite, Boden zum Anschlag, Ausschnitt oben. Das Kabel geht nach oben und fällt sanft auf den Tisch, ohne an der Box zu ziehen.", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "Lage 6. Auf der anderen langen Seite, Ausschnitt unten. Bieg das Kabel im Ausschnitt um und führ es durch die offene Seite zu dir heraus, damit es die Box nicht anhebt. Danach meldet die Konsole „Calibration data gathered“.", "Face down:": "Unten liegt die Seite"};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=faccd82e"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=c7609ea3"></script>
+<script src="../js/nav.js?v=aedf3834"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@
 <meta name="guide-stats-api" content="https://slimevr-guide-stats.zombatii63.workers.dev">
 <meta name="guide-turnstile-sitekey" content="0x4AAAAAAGBGNd4fstNTYg4G">
 <script>(function(){var K="slimevr-guide-lang",H={"ru": "../", "en": "../en/", "uk": "../uk/", "de": "../de/", "es": "../es/", "fr": "../fr/", "pl": "../pl/", "pt-BR": "../pt-br/", "ja": "../ja/", "zh-Hans": "../zh/"},R=[["ru", "^(ru|be|kk)(-|$)"], ["uk", "^(uk)(-|$)"], ["de", "^(de)(-|$)"], ["es", "^(es)(-|$)"], ["fr", "^(fr)(-|$)"], ["pl", "^(pl)(-|$)"], ["pt-BR", "^(pt)(-|$)"], ["ja", "^(ja)(-|$)"], ["zh-Hans", "^(zh)(-|$)"], ["en", "^(en)(-|$)"]];document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-setlang]");if(a){try{localStorage.setItem(K,a.getAttribute("data-setlang"));}catch(x){}}});var c=null;try{c=localStorage.getItem(K);}catch(x){}if(c&&H[c])return;var want=null;{var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length&&!want;i++){var v=String(ls[i]).toLowerCase();for(var j=0;j<R.length;j++){if(new RegExp(R[j][1]).test(v)){want=R[j][0];break;}}}}want=want||"en";if(want!=="ja")location.replace(H[want]+location.hash);})();</script>
-<script>window.GUIDE_VERSION="f1c2481c2c";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
+<script>window.GUIDE_VERSION="ba15ef6a98";(function(){try{fetch("../version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(!j||!j.v||j.v===window.GUIDE_VERSION)return;var k="guide-reloaded-"+j.v;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}catch(e){}fetch(location.pathname,{cache:"reload"}).then(function(){location.reload();},function(){location.reload();});})["catch"](function(){});}catch(e){}})();</script>
 </head>
 <body>
 <div class="readbar" aria-hidden="true"><span id="readbar"></span></div>
@@ -74,7 +74,7 @@
   <ol>
     <li><span><b>ステップを上から順に進めてください。</b>各ステップの最後には結果の確認と、次のステップへのリンクがあります。</span></li>
     <li><span><b>終わったステップには</b>「ステップ完了」ボタンでチェックを入れます。チェックはこのブラウザーに保存され、次に開いたときは続きから再開できます。</span></li>
-    <li><span><b>ステップ4〜6は、トラッカー1台ずつ順番に行います。</b>混乱しないよう、ステップ4のチェックリストに自分のトラッカーを追加してください。</span></li>
+    <li><span><b>ステップ4〜6は、トラッカー1台ずつ順番に行います。</b>このようなステップは、すべてのトラッカーで終わってから完了にチェックを入れてください。</span></li>
     <li><span><b>うまくいかないときは</b><a href="#help">よくある問題</a>を開いてください。スクリーンショットや図はタップすると拡大できます。</span></li>
   </ol>
 </section>
@@ -101,7 +101,7 @@
 
 <!-- STEP 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="num">1</div><div><h2>トラッカーが対応しているか確認する</h2><p>このガイドは温度キャリブレーションに対応したトラッカー専用です</p></div></div>
+  <div class="step-head"><div class="num">1</div><div><h2>トラッカーが対応しているか確認する</h2><p>BMI160センサーが必要です</p></div></div>
   <p>このガイドは <strong>BMI160</strong> と <strong>Wemos D1 Mini（ESP8266）</strong> 向けです。IMUとは、トラッカーが自分の向きを知るためのセンサーです。
   </p>
   <ol class="do">
@@ -168,7 +168,7 @@
   </div>
 
   <div class="card dl-card">
-    <h3 style="margin-top:0">3Dプリント用ケース：8+2セット</h3>
+    <h3 style="margin-top:0">3Dプリント用ケース：8+2セット（任意）</h3>
     <p>新しいケースが必要なら、Hyperionをもとにこのガイド用に改良したセットがあります。ケースにはType‑C用の穴があり、ふたには体の部位（胸、腰、左右の太もも、左右のすね、左右の足）が刻まれています。拡張センサー用のふた付きケースもセットに含まれています。ふたの文字はロシア語です。</p>
     <div class="dl-row">
       <a class="dl-btn" id="dl-models" href="../models/SlimeVR_Hyperion_models.zip" download>
@@ -196,7 +196,7 @@
   <div class="step-head"><div class="num">3</div><div><h2>ファームウェア v0.5.4 を書き込む</h2><p>ファームウェアのサイトから · 必ずこのバージョンで、新しいものは不可</p></div></div>
   <div class="tip"><b>スキップできます</b><p>ステップ1で <strong>v0.5.4</strong> と表示されていたら、このステップは飛ばしてステップ4へ進んでください。同じバージョンを書き込み直す必要はありません。</p></div>
   <nav class="step-links" aria-label="ステップ3の内容"><a href="#rotation">センサーの向き</a><a href="#erase">データの消去</a><a href="#flash">書き込み</a></nav>
-  <div class="warn"><b>重要</b><p><strong>なぜv0.5.4なのか。</strong>BMI160の温度キャリブレーションがあるのは、ファームウェア <strong>v0.3.3からv0.5.4まで</strong>です。v0.6.2以降、BMI160は新しいドライバーで動作し、そこには温度キャリブレーションが<strong>ありません</strong>。コンソールには「Temperature calibration not supported for IMU BMI160」と表示されます。v0.3.2以前にはまだありません。そのためv0.5.4を書き込みます。</p><p><strong>SlimeVRからではなく、サイトから書き込んでください。</strong>新しいバージョンのSlimeVR Serverでは、これらのトラッカーに古いファームウェアを書き込めません。そのため、ChromeまたはEdgeで別のサイトを使って書き込みます。</p></div>
+  <div class="warn"><b>重要</b><p><strong>v0.5.4のみ。</strong>新しいファームウェアにはBMI160の温度キャリブレーションがないため、必ずこのバージョンを入れます。</p><p><strong>SlimeVRからではなく、サイトから書き込んでください。</strong>新しいバージョンのSlimeVR Serverでは、これらのトラッカーに古いファームウェアを書き込めません。そのため、ChromeまたはEdgeで別のサイトを使って書き込みます。</p></div>
 
   <div class="card" id="rotation">
     <h3 style="margin-top:0">3.1 · センサーの向き（IMU Rotation）を調べる</h3>
@@ -238,7 +238,7 @@
         <tr class="must"><td>Primary IMU → IMU Rotation (DEG)</td><td><strong>調べた数字</strong></td><td>3.1で調べた値。</td></tr>
         <tr><td>Secondary IMU</td><td>トラッカーによる</td><td>拡張センサーあり：チェックを入れ、IMU_BMI160とその向きを指定。拡張センサーなし：チェックを外す。</td></tr>
         <tr class="must"><td>BMI160 Use Tempcal</td><td><strong>オン</strong></td><td>これが温度キャリブレーションです。これがないとステップ5は機能しません。</td></tr>
-        <tr><td>BMI160 Tempcal Debug</td><td><strong>オフ</strong></td><td>下で説明します。</td></tr>
+        <tr><td>BMI160 Tempcal Debug</td><td><strong>オフ</strong></td><td>オンにしないでください。</td></tr>
         <tr class="must"><td>WiFi SSID, WiFi Password</td><td><strong>自宅のネットワーク</strong></td><td>2.4 GHzのみ、WPA3は不可。大文字と小文字は区別されます。</td></tr>
       </tbody>
     </table>
@@ -263,13 +263,6 @@
       <li><span>書き込みとWi‑Fiの設定が終わるまで待ちます。途中でトラッカーを抜かないでください。</span></li>
       <li><span>SlimeVRを開き、トラッカーが表示され、その情報に <strong>v0.5.4</strong> と出ていることを確認します。確認できてから次のトラッカーに書き込んでください。</span></li>
     </ol>
-    <details>
-      <summary>「BMI160 Tempcal Debug」は必要ですか？</summary>
-      <div>
-        <p>いいえ、オフのままにしてください。オンにすると、SlimeVRには通常の温度の代わりに <code>AXXYY</code> のようなコードがずっと表示されます。A = キャリブレーション中は2、XX = 0から60までの進捗、YY = 温度です。キャリブレーションが完了したトラッカーは <code>160YY</code> と表示されます。</p>
-        <p>このコードは表示されたままになり、消すにはトラッカーに書き込み直してキャリブレーションをやり直すしかありません。SlimeVRの通常の温度表示とステップ6の確認で十分です。</p>
-      </div>
-    </details>
   </div>
   <div class="warn"><b>キャリブレーション後はファームウェアに触れない</b><p>書き込み直すと、保存された温度キャリブレーションが無効になります。SlimeVRがファームウェアの更新をすすめてきても断ってください。どうしても書き込み直す場合は、3.2とすべてのキャリブレーションをやり直してください。</p></div>
   <div class="step-finish"><div><b>結果を確認する</b><p>すべてのトラッカーがSlimeVRに表示され、どれも v0.5.4 です。</p></div><button type="button" class="done-toggle" data-done="s3" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
@@ -281,22 +274,13 @@
   <p>最初のトラッカーで、ステップ4、5、6を行います。終わったら次のトラッカーを取り、またステップ4から始めます。これをトラッカー1台ずつ順番に行います。</p>
 </div>
 
-<details class="tracker-log" id="tracker-log">
-  <summary>トラッカーのチェックリスト <span id="tracker-count" aria-live="polite">None added</span></summary>
-  <div>
-    <p>メインのトラッカーをすべて追加してください。拡張センサーは、そのメインのトラッカーと一緒にチェックします。目次のステップには、セット全体でそのステップが終わってからチェックを入れてください。</p>
-    <div id="tracker-rows"></div>
-    <button type="button" class="quiet-button" id="tracker-add">トラッカーを追加</button>
-    <noscript>トラッカーごとに、軸・温度・確認の3つのチェックを付けます。</noscript>
-  </div>
-</details>
 
 <!-- STEP 4 -->
 <section class="step" id="s4">
   <div class="step-head"><div class="num">4</div><div><h2>6面キャリブレーション</h2><p>SlimeVRのコンソールで · トラッカー1台 · 約5分</p></div></div>
   <p>トラッカーは、6つの姿勢それぞれで「水平」がどう見えるかを覚えます。トラッカーは箱の中に貼り付けてあり、あなたは箱を裏返すたびにストッパーに押し当てます。</p>
-  <nav class="step-links" aria-label="ステップ4の内容"><a href="#axis-console">コンソールのメッセージ</a><a href="#axis-positions">箱の置き方</a><a href="#axis-tips">ヒント</a><a href="#tracker-log">トラッカーのチェックリスト</a></nav>
-  <div class="tip"><b>センサーの2種類のキャリブレーション</b><p>センサーのキャリブレーションには2種類あります：<strong>6面</strong>（このステップ）と<strong>温度</strong>（ステップ5）です。下の動画ではトラッカーを時計回りに10回回していますが、<strong>これは必要ありません。</strong>それは別の感度キャリブレーションで、結果を手作業でファームウェアに書き込む必要があります。</p></div>
+  <nav class="step-links" aria-label="ステップ4の内容"><a href="#axis-console">コンソールのメッセージ</a><a href="#axis-positions">箱の置き方</a><a href="#axis-tips">ヒント</a></nav>
+  <div class="tip"><b>動画の一部は飛ばしてください</b><p>下の動画では、トラッカーを時計回りに10回回す場面もあります。<strong>これは不要です</strong>。このガイドの手順には含まれません。</p></div>
 
   <div class="video-card">
     <div class="video-play" aria-hidden="true"></div>
@@ -381,11 +365,10 @@
   <div class="tip tip-list" id="axis-tips"><b>ヒント</b>
     <dl>
       <dt>ケーブルの通し方</dt><dd>ケーブルが箱を引っ張ったり、持ち上げたり、ずらしたりしないようにしてください。そうなると箱が平らにならず、キャリブレーションが不正確になります。ほとんどの姿勢では、ケーブルは切り欠きから出て、机の上にゆるく置かれるだけです。箱を切り欠きが下になるように置くときは、ケーブルを切り欠きの中でそっと曲げ、箱の開いた側から外へ出します。裏返す前には毎回ケーブルにたるみを持たせておきます。</dd>
-      <dt>箱の中のトラッカーの付け方が大事な理由</dt><dd>ファームウェアは、トラッカーの6つの面がそれぞれ下になるように平らに置かれることを必要とします。最初の姿勢のあとは順番は問いませんが、動画のとおりにやるのがいちばん簡単です。大事なのは、トラッカーが<strong>まっすぐ、壁と平行に</strong>貼られていることです。そうすれば箱の面がケース内のセンサーの軸と一致し、キャリブレーションが正確になります。</dd>
       <dt>コンソールに何も変化がない場合</dt><dd>トラッカーは、動かされてから再び静止するのを待っています。「Recorded」の行が出ないときは、箱が動いていないか、手で押さえていないかを確認してください。うっかり同じ面で2回置いてしまった場合は、キャリブレーションが不正確になります。箱を裏返し、トラッカーを再起動して、キャリブレーションを最初からやり直してください。</dd>
     </dl>
   </div>
-  <div class="step-finish"><div><b>結果を確認する</b><p>コンソールに「Calibration data gathered」と表示されました。<a href="#tracker-log">トラッカーのチェックリスト</a>で、このトラッカーの「軸」にチェックを入れてください。ステップ全体のチェックは、すべてのトラッカーが終わってから入れます。</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
+  <div class="step-finish"><div><b>結果を確認する</b><p>コンソールに「Calibration data gathered」と表示されました。ステップ全体のチェックは、すべてのトラッカーが終わってから入れます。</p></div><button type="button" class="done-toggle" data-done="s4" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
   <p class="next">「Calibration data gathered」が出ましたか？ 同じトラッカーでステップ5へ進んでください</p>
 </section>
 
@@ -394,7 +377,7 @@
   <div class="step-head"><div class="num">5</div><div><h2>温度キャリブレーション</h2><p>同じトラッカー · 35分以上 · ドリフトを大きく減らせます</p></div></div>
   <p>BMI160は温まると、トラッカーが動いていなくても値が少しずつ「流れる」ことがあります。これをドリフトと呼びます。温度キャリブレーションはこれを減らすのに役立ちます。キャリブレーションは<strong>センサーの電源が入っていて15 °Cより冷たいときに自動で始まり</strong>、<strong>45 °Cを超えると自動で保存されます</strong>。押すボタンはありません。トラッカーをしっかり冷やし、ゆっくり温めるだけです。</p>
   <div class="tip"><b>ケーブルは不要</b><p>このキャリブレーションはUSBケーブルなしで行えます。トラッカーは自分のバッテリーで動き、Wi‑Fi経由で温度をSlimeVRに送ります。バッテリーは充電しておいてください。結果はステップ6でケーブルをつないで確認します。</p></div>
-  <nav class="step-links" aria-label="ステップ5の内容"><a href="#temperature-prep">準備</a><a href="#temperature-run">キャリブレーション</a><a href="#temperature-save">保存のメッセージ</a><a href="#tracker-log">トラッカーのチェックリスト</a></nav>
+  <nav class="step-links" aria-label="ステップ5の内容"><a href="#temperature-prep">準備</a><a href="#temperature-run">キャリブレーション</a><a href="#temperature-save">保存のメッセージ</a></nav>
   <figure class="temperature-figure" data-zoom="キャリブレーション中の温度">
     <ol class="temperature-stages" aria-label="温度の目安">
       <li><b>15 °C未満</b><span>トラッカーの電源を入れる</span></li>
@@ -431,7 +414,7 @@
   <h3 id="temperature-prep">準備</h3>
   <ol class="do">
     <li><span>SlimeVRで温度の表示をオンにします（ステップ2と同じ）。</span></li>
-    <li><span><strong>冷やす前に、トラッカーのふたを外しておきます</strong>。ふたがないと温風が直接センサーに当たり、温度がドライヤーに素直に追従します。ドライヤーを止めればケースが熱をため込まないので、トラッカーが温まりすぎません。あとからふたを外すことはできません。トラッカーは動かさずに置いておく必要があるからです。</span></li>
+    <li><span><strong>冷やす前に、トラッカーのふたを外しておきます</strong>。ふたがないと、ドライヤーの温風が直接センサーに当たります。あとから外すことはできません。トラッカーは動かさずに置いておく必要があるからです。</span></li>
     <li><span><strong>トラッカーの電源を切り</strong>、冷蔵庫か冷凍庫に<strong>約10分</strong>入れます。冷蔵庫に入れるのは必ず電源を切った状態にしてください。</span></li>
   </ol>
   <h3 id="temperature-run">キャリブレーション</h3>
@@ -461,7 +444,7 @@
       <li><strong>拡張センサーのない普通のトラッカー2台</strong>なら、均等に温めれば同時にキャリブレーションできます。</li>
     </ul>
   </div>
-  <div class="step-finish"><div><b>結果を確認する</b><p>センサーの温度が45 °Cを超えました。トラッカーを冷ましてください。<a href="#tracker-log">トラッカーのチェックリスト</a>で「温度」にチェックを入れ、ステップ6で記録を確認します。ステップ全体のチェックは、すべてのトラッカーが終わってから入れます。</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
+  <div class="step-finish"><div><b>結果を確認する</b><p>センサーの温度が45 °Cを超えました。トラッカーを冷まし、ステップ6で記録を確認します。ステップ全体のチェックは、すべてのトラッカーが終わってから入れます。</p></div><button type="button" class="done-toggle" data-done="s5" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
   <p class="next">キャリブレーションは保存されましたか？ ステップ6へ進んでください</p>
 </section>
 
@@ -501,7 +484,7 @@
     <b>繰り返し · 結果は良好？</b>
     <p>このトラッカーは完成です。まだキャリブレーションしていないトラッカーがあれば、次のトラッカーを取ってステップ4から始めます。すべて終わったらステップ7へ進みます。</p>
   </div>
-  <div class="step-finish"><div><b>結果を確認する</b><p><a href="#tracker-log">トラッカーのチェックリスト</a>で、終わったトラッカーの「確認」にチェックを入れます。セット全体を確認したら、ステップ全体にチェックを入れます。</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
+  <div class="step-finish"><div><b>結果を確認する</b><p>セット全体を確認したら、ステップ全体にチェックを入れます。</p></div><button type="button" class="done-toggle" data-done="s6" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
 </section>
 
 <!-- STEP 7 -->
@@ -576,7 +559,6 @@
     <li><label><input type="checkbox" data-prep="s8-3"><span>各トラッカーが体の部位のどこ（前、後ろ、左、右）に付いているかを<strong>覚えておいてください</strong>。ステップ9で必要になります。</span></label></li>
   </ul>
   <div class="warn"><b>装着したとおりにSlimeVRで設定する</b><p>SlimeVR Serverでのトラッカーの位置は、実際の装着位置と一致している必要があります。胸や腰のトラッカーを背中に付けていますか？ それならステップ9で<strong>「Back」</strong>（後ろ）を選びます。太もものトラッカーが横なら<strong>「Left」</strong>か<strong>「Right」</strong>（左か右）です。プログラムの設定が体と違うと、スケルトンが間違った方向に傾いたり回ったりします。</p></div>
-  <div class="tip"><b>いろいろ試してみる</b><p>最適な位置は人によって違います。トラッキングに満足できなければ、トラッカーを上下や前・横に動かしてみて、そのたびにステップ9の設定をやり直してください。少し位置を変えるだけで、結果がはっきり良くなることがよくあります。</p></div>
   <div class="step-finish"><div><b>結果を確認する</b><p>トラッカーはしっかり固定されています。どのトラッカーが体のどの部位のどちら側に付いているかわかっています。</p></div><button type="button" class="done-toggle" data-done="s8" aria-pressed="false"><span class="dt-box" aria-hidden="true"></span><span class="dt-label">ステップ完了</span></button></div>
   <p class="next">トラッカーを付けましたか？ ヘッドセットをかぶってステップ9へ進んでください</p>
 </section>
@@ -652,10 +634,6 @@
     <li><span>ゲームに入ります。<strong>VRChat</strong> でフルボディキャリブレーション、つまりトラッカーとアバターの対応付けを行います。</span></li>
   </ol>
   <figure class="reference-shot wide-shot" data-zoom="SlimeVRのホーム画面"><img style="--ar:auto 1400/566" src="../img/sv-home.webp" alt="SlimeVRのホーム画面：トラッカー一覧の上にFull Reset、Yaw Reset、Body、Feetのボタン" width="1400" height="566" loading="lazy"><figcaption><strong>SlimeVRのホーム画面。</strong>左上にFull ResetとYaw Reset。右側は装着キャリブレーションで、Bodyが体用、Feetが足用です。</figcaption></figure>
-  <details>
-    <summary>最初にトラッカーを温めておく理由</summary>
-    <div><p>15 °C未満で電源を入れると、トラッカーは新しい温度キャリブレーションを始めます。保存済みのデータはメモリに残っていて、暖かい場所で再起動すれば、トラッカーは再びそれを使います。</p></div>
-  </details>
   <div class="tip"><b>プレイ中に</b><p>脚や体が少しずつ横に「ずれて」きたら、まっすぐ立って <strong>Yaw Reset</strong> を行ってください。IMUトラッカーではよくあることです。SlimeVRの設定でショートカットキーを割り当てておくと便利です。</p></div>
 </section>
 
@@ -780,11 +758,11 @@
 
 </div>
 </div><!--layout-->
-<script>window.GUIDE_I18N={"Done": "完了", "Mark step done": "ステップ完了", "Start with the check": "確認から始める", "All steps done · before-play checklist": "すべてのステップが完了 · プレイ前のチェックリスト", "Continue: step ": "続きから：ステップ ", "Step ": "ステップ ", "Steps": "ステップ", "Axes": "軸", "Temperature": "温度", "Check": "確認", "None added": "未追加", "Tracker ": "トラッカー ", "e.g. left thigh": "例：左太もも", "Tracker name ": "トラッカー名 ", "Remove": "削除", "Remove tracker ": "トラッカーを削除 ", "Image viewer": "画像ビューアー", "Tap or pinch to zoom": "タップまたはピンチで拡大", "Click the image or use the mouse wheel to zoom": "画像をクリックするか、マウスホイールで拡大", "Close (Esc)": "閉じる（Esc）", "Previous image": "前の画像", "Next image": "次の画像", "Open larger: ": "拡大して開く： ", "Likes: ": "いいね： ", "♥ Thank you!": "♥ ありがとう！", "♡ Like": "♡ いいね", "Click again to remove your like": "もう一度クリックすると、いいねを取り消せます", "no data": "データなし", "Likes are unavailable right now": "現在いいねは利用できません", "Checking…": "確認中…", "Too many attempts. Try again in a minute.": "操作が多すぎます。1分後にもう一度お試しください。", "Check failed. Please try again": "確認に失敗しました。もう一度お試しください", "Could not send your like": "いいねを送信できませんでした", "Like count is unavailable right now": "現在いいねの数を表示できません", "Switch to light theme": "ライトテーマに切り替え", "Switch to dark theme": "ダークテーマに切り替え", "Done.": "完了しました。", "Download cancelled.": "ダウンロードをキャンセルしました。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "ここではダウンロードできません。ガイドのHTMLファイルをブラウザーで開き、そこでボタンを押してください。", "Copied": "コピーしました", "Copy nickname": "ユーザー名をコピー", "Nickname: ": "ユーザー名： ", "Reset view": "視点をリセット", "Bring the camera back to the box (NumPad “.”)": "カメラを箱の位置に戻す（テンキーの「.」）", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "ホイール：ズーム · ホイールを押したままドラッグ：回転、Shiftと一緒に：移動 · ダブルクリック：リセット", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "開始。箱は逆さま、短い側面をストッパーに押し当て、ケーブルの切り欠きは左。ここでトラッカーを再起動します。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿勢1。底が下、短い側面をストッパーに押し当てる。スイッチとケーブルは左で、ケーブルは切り欠きからまっすぐ出る。コンソール：「Waiting for position 1」。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿勢2。短い側面で立て、底をストッパーに向け、開いた面を自分に向ける。ケーブルは左から出て机に置かれる。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿勢3。逆さまで、短い側面をストッパーに当てる。テープがトラッカーを支え、ケーブルは左。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿勢4。反対の短い側面で立て、底をストッパーに向ける。ケーブルは今度は右から出る。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿勢5。長い側面で置き、底をストッパーに向け、切り欠きは上。ケーブルは上に出て、箱を引っ張らずにゆるやかに机へ下りる。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿勢6。反対の長い側面で置き、切り欠きは下。ケーブルを切り欠きの中で曲げ、箱を持ち上げないように開いた面から手前へ出す。このあとコンソールに「Calibration data gathered」と表示される。", "Face down:": "下を向いている面："};</script>
+<script>window.GUIDE_I18N={"Done": "完了", "Mark step done": "ステップ完了", "Start with the check": "確認から始める", "All steps done · before-play checklist": "すべてのステップが完了 · プレイ前のチェックリスト", "Continue: step ": "続きから：ステップ ", "Step ": "ステップ ", "Steps": "ステップ", "Image viewer": "画像ビューアー", "Tap or pinch to zoom": "タップまたはピンチで拡大", "Click the image or use the mouse wheel to zoom": "画像をクリックするか、マウスホイールで拡大", "Close (Esc)": "閉じる（Esc）", "Previous image": "前の画像", "Next image": "次の画像", "Open larger: ": "拡大して開く： ", "Likes: ": "いいね： ", "♥ Thank you!": "♥ ありがとう！", "♡ Like": "♡ いいね", "Click again to remove your like": "もう一度クリックすると、いいねを取り消せます", "no data": "データなし", "Likes are unavailable right now": "現在いいねは利用できません", "Checking…": "確認中…", "Too many attempts. Try again in a minute.": "操作が多すぎます。1分後にもう一度お試しください。", "Check failed. Please try again": "確認に失敗しました。もう一度お試しください", "Could not send your like": "いいねを送信できませんでした", "Like count is unavailable right now": "現在いいねの数を表示できません", "Switch to light theme": "ライトテーマに切り替え", "Switch to dark theme": "ダークテーマに切り替え", "Done.": "完了しました。", "Download cancelled.": "ダウンロードをキャンセルしました。", "Download is not possible here. Open the guide HTML file in a browser and press the button there.": "ここではダウンロードできません。ガイドのHTMLファイルをブラウザーで開き、そこでボタンを押してください。", "Copied": "コピーしました", "Copy nickname": "ユーザー名をコピー", "Nickname: ": "ユーザー名： ", "Reset view": "視点をリセット", "Bring the camera back to the box (NumPad “.”)": "カメラを箱の位置に戻す（テンキーの「.」）", "Wheel: zoom · hold wheel: orbit, with Shift: pan · double-click: reset": "ホイール：ズーム · ホイールを押したままドラッグ：回転、Shiftと一緒に：移動 · ダブルクリック：リセット", "Start. Box upside down, end pressed against the stop, cable cut-out on the left. Now restart the tracker.": "開始。箱は逆さま、短い側面をストッパーに押し当て、ケーブルの切り欠きは左。ここでトラッカーを再起動します。", "Position 1. Bottom down, end pressed against the stop. Switch and cable on the left, the cable goes straight out of the cut-out. Console: «Waiting for position 1».": "姿勢1。底が下、短い側面をストッパーに押し当てる。スイッチとケーブルは左で、ケーブルは切り欠きからまっすぐ出る。コンソール：「Waiting for position 1」。", "Position 2. Standing on its end, bottom against the stop, open side facing you. The cable comes out on the left and lies on the table.": "姿勢2。短い側面で立て、底をストッパーに向け、開いた面を自分に向ける。ケーブルは左から出て机に置かれる。", "Position 3. Upside down, end against the stop. The tape holds the tracker, cable on the left.": "姿勢3。逆さまで、短い側面をストッパーに当てる。テープがトラッカーを支え、ケーブルは左。", "Position 4. Standing on the other end, bottom against the stop. The cable now comes out on the right.": "姿勢4。反対の短い側面で立て、底をストッパーに向ける。ケーブルは今度は右から出る。", "Position 5. On its long side, bottom against the stop, cut-out on top. The cable goes up and gently drops to the table without pulling the box.": "姿勢5。長い側面で置き、底をストッパーに向け、切り欠きは上。ケーブルは上に出て、箱を引っ張らずにゆるやかに机へ下りる。", "Position 6. On the other long side, cut-out at the bottom. Bend the cable inside the cut-out and lead it out through the open side towards you so it does not lift the box. The console will then print «Calibration data gathered».": "姿勢6。反対の長い側面で置き、切り欠きは下。ケーブルを切り欠きの中で曲げ、箱を持ち上げないように開いた面から手前へ出す。このあとコンソールに「Calibration data gathered」と表示される。", "Face down:": "下を向いている面："};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/hyperion.js?v=af7e6f53"></script>
 <script src="../js/scenes.js?v=faccd82e"></script>
 <script src="../js/dl.js?v=c12138a0"></script>
-<script src="../js/nav.js?v=c7609ea3"></script>
+<script src="../js/nav.js?v=aedf3834"></script>
 </body>
 </html>
