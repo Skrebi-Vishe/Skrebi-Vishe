@@ -646,3 +646,64 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function T(ru,en){
     menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
   });
 })();
+
+// Смена языка без потери места: перед переходом запоминаем, какой блок страницы сейчас вверху экрана
+// (шаг + номер блока внутри шага + доля его высоты), и на странице другого языка прокручиваем туда же.
+// Разметка у всех языков одинаковая, поэтому блок находится по номеру. Передаётся в адресе (#at=...),
+// так работает и на сайте, и в файле гайда.
+(function () {
+  var SEL = 'h1,h2,h3,h4,p,li,figure,table,tr,details,summary,pre,.card,.tip,.warn,.step-finish,.reference-shot,.three-wrap';
+  function scopeOf(el) { var s = el.closest && el.closest('section[id], header, .howto, .road'); return s; }
+  function scopeId(s) { return s ? (s.id || (s.classList.contains('howto') ? 'howto' : s.classList.contains('road') ? 'road' : 'header')) : ''; }
+  function findScope(id) {
+    if (!id) return null;
+    if (id === 'howto') return document.querySelector('.howto');
+    if (id === 'road') return document.querySelector('.road');
+    if (id === 'header') return document.querySelector('.wrap header');
+    return document.getElementById(id);
+  }
+  // содержимое свёрнутого блока <details> не видно (кроме заголовка) — его не берём за ориентир
+  function hidden(el) { var d = el.parentElement && el.parentElement.closest('details:not([open])'); return !!d && el.tagName !== 'SUMMARY' && !(el.closest('summary')); }
+  function capture() {
+    var y = (window.innerHeight || 800) * 0.15, best = null;
+    var all = document.querySelectorAll('.wrap ' + SEL.split(',').join(',.wrap '));
+    for (var i = 0; i < all.length; i++) {
+      if (hidden(all[i])) continue;
+      var r = all[i].getBoundingClientRect();
+      if (!r.height) continue;
+      if (r.top <= y && r.bottom > y) best = all[i];          // самый глубокий блок на линии чтения
+      else if (r.top > y) { if (!best) best = all[i]; break; }
+    }
+    if (!best || window.scrollY < 40) return '';
+    var sc = scopeOf(best), list = sc ? sc.querySelectorAll(SEL) : [];
+    var idx = Array.prototype.indexOf.call(list, best), r2 = best.getBoundingClientRect();
+    var f = Math.max(0, Math.min(1, (y - r2.top) / r2.height));
+    return scopeId(sc) + '.' + idx + '.' + Math.round(f * 1000) + '.' + Math.round(y);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-setlang]');
+    if (!a || a.getAttribute('aria-current')) return;
+    var at = capture(), href = a.getAttribute('href').split('#')[0];
+    if (at) a.setAttribute('href', href + '#at=' + at);
+  }, true);
+
+  var m = /^#at=([\w-]+)\.(\d+)\.(\d+)\.(\d+)$/.exec(location.hash);
+  if (!m) return;
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  var touched = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) { window.addEventListener(t, function () { touched = true; }, { passive: true, once: true }); });
+  function restore() {
+    if (touched) return;
+    var sc = findScope(m[1]); if (!sc) return;
+    var list = sc.querySelectorAll(SEL), el = list[+m[2]] || sc;
+    if (hidden(el)) el = el.parentElement.closest('details:not([open])');
+    var r = el.getBoundingClientRect();
+    var top = window.scrollY + r.top + r.height * (+m[3] / 1000) - (+m[4]);
+    var html = document.documentElement, old = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto'; window.scrollTo(0, Math.max(0, top)); html.style.scrollBehavior = old;
+  }
+  restore();
+  window.addEventListener('load', restore);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
+  setTimeout(restore, 600);
+})();
