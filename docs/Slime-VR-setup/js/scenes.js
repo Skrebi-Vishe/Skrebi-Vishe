@@ -264,11 +264,11 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
     if (!WIRE_MATS) WIRE_MATS = [0x1b1a1e].map(function (c) { return new T.MeshStandardMaterial({ color: c, roughness: 0.45 }); });
     var connMat = new T.MeshStandardMaterial({ color: 0xf1eee6, roughness: 0.5 });
     var ax = HYP.auxH[0] * 0.1, mz = 2.05;
-    var CX = 0.73, CY = trY + 0.5;          // гнездо разъёма посередине стороны Y+ основного корпуса (отверстие в модели)
+    var CX = 0.35, CY = trY + 0.48;         // гнездо разъёма посередине стороны Y+ основного корпуса (глубокое отверстие в модели)
     // разъём на торце ответвления
     var c1 = new T.Mesh(new T.BoxGeometry(0.45, 0.42, 0.85), connMat); c1.position.set(ax + 0.2, auxY - 0.05, 0); c1.castShadow = true; group.add(c1);
     // разъём на боку основного корпуса
-    var c2 = new T.Mesh(new T.BoxGeometry(0.85, 0.4, 0.36), connMat); c2.position.set(CX, CY, -mz - 0.1); c2.castShadow = true; group.add(c2);
+    var c2 = new T.Mesh(new T.BoxGeometry(0.9, 0.4, 0.5), connMat); c2.position.set(CX, CY, -mz + 0.08);   // сидит в гнезде, снаружи видно ~2 мм c2.castShadow = true; group.add(c2);
     // Длина ≈13–14 см, как у настоящего кабеля: петля ложится на дно коробочки за торцом трекера
     // и возвращается к разъёму вдоль стороны Y+, не задевая скотч и ремешки корпуса.
     var fy = floorTop + 0.26;
@@ -281,9 +281,9 @@ var GLANG=document.documentElement.lang||'ru',GL=GLANG!=='ru';function TR(ru,en)
       new T.Vector3(7.4, fy, -2.6),
       new T.Vector3(5.6, fy, -3.8),
       new T.Vector3(3.4, fy, -3.75),
-      new T.Vector3(1.6, fy + 0.15, -3.55),
-      new T.Vector3(0.95, CY - 0.15, -3.0),
-      new T.Vector3(CX, CY, -mz - 0.28)
+      new T.Vector3(1.4, fy + 0.15, -3.55),
+      new T.Vector3(0.6, CY - 0.1, -3.0),
+      new T.Vector3(CX, CY, -mz - 0.17)
     ], false, 'centripetal');
     var L = path.getLength();
     // плотная чёрная оплётка по всей длине, вплотную к обоим разъёмам: цветных жил не видно
